@@ -8,7 +8,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import Authentication from '../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
-import symbolLogo from '../assets/LogoCHWLSymbol.png'
+import symbolLogo from '../assets/LogoCHWLSymbolWhite.png'
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)
