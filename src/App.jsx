@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar'
 import AdminDashboard from './views/AdminDashboard'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import PhoneSidebar from './components/PhoneSidebar'
-import LoginLandingPage from './components/LoginPage'
+import LoginPage from './components/LoginPage'
 import ErrorSnackbar from './components/ErrorSnackbar'
 import Authentication from './modules/Authentication'
 import { Route, Switch } from 'react-router-dom'
@@ -33,7 +33,7 @@ const App = () => {
           </Switch>
         </>
       ) : (
-        <LoginLandingPage />
+        <LoginPage />
       )}
     </>
   )
