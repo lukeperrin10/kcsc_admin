@@ -8,12 +8,12 @@ describe('Application features can be accessed', () => {
       cy.intercept(
         'POST',
         '**/api/auth/sign_in',
-        { fixture: 'broker.json' }
+        { fixture: 'authenticated_admin.json' }
       )
       cy.intercept(
         'GET',
         '**/api/auth/validate_token',
-        { fixture: 'broker.json', headers: { uid: 'johnny@cage.com' } }
+        { fixture: 'authenticated_admin.json', headers: { uid: 'johnny@cage.com' } }
       )
       cy.get('[data-cy=email-field]').type('johnny@cage.com')
       cy.get('[data-cy=password-field]').type('password')

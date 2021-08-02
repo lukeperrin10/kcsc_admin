@@ -14,7 +14,7 @@ describe('Broker can see business analytics', () => {
         'GET',
         '**/api/analytics',
         {
-          fixture: 'analytics.json',
+          body: {},
         }
       )
       cy.get('[data-cy=menu-analytics]').click()
@@ -23,24 +23,10 @@ describe('Broker can see business analytics', () => {
       cy.url().should('contain', '/analytics')
     })
 
-    it('is expected to display a funnel chart', () => {
-      cy.get('[data-cy=wizard-chart]').should('be.visible')
-    })
-
-    it('is expected to display a total visit stat card', () => {
-      cy.get('[data-cy=stat-card]').should('contain', '110')
-    })
-
-    it('is expected to display a total inquiries stat card', () => {
-      cy.get('[data-cy=stat-card]').should('contain', '30')
-    })
-
-    it('is expected to display a total call button clicks stat card', () => {
-      cy.get('[data-cy=stat-card]').should('contain', '17')
-    })
+   
   })
 
-  describe.only('When no data is present', () => {
+  describe('When no data is present', () => {
     beforeEach(() => {
       cy.intercept(
         'GET',
