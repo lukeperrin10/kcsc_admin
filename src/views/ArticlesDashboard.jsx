@@ -24,29 +24,29 @@ const useStyles = makeStyles({
     color: 'white',
   },
   column1: {
-    width: '1rem',
+    width: '10%',
   },
   column2: {
-    width: 'auto',
+    width: '70%',
     fontWeight: 800,
   },
   column3: {
-    maxWidth: '1rem',
+    width: '10%',
   },
   column1Header: {
-    width: '1rem',
+    maxWidth: '10%',
     color: 'white',
     fontWeight: 800,
     fontSize: '1.2rem',
   },
   column2Header: {
-    width: 'auto',
+    maxWidth: '70%',
     color: 'white',
     fontWeight: 800,
     fontSize: '1.2rem',
   },
   column3Header: {
-    maxWidth: '1rem',
+    maxWidth: '10%',
     color: 'white',
     fontWeight: 800,
     fontSize: '1.2rem',
@@ -74,25 +74,36 @@ const ArticlesDashboard = () => {
   const tableRows = articles.map((article) => {
     const { id, title, author, date, publish } = article
     return (
-      <TableRow key={`article-${id}`}>
-        <TableCell className={classes.column1}>
+      <TableRow data-cy='article' key={`article-${id}`}>
+        <TableCell data-cy='status' className={classes.column1}>
           <FormControlLabel
             control={<Switch checked={publish} name={`publish-${id}`} />}
             label={publish ? 'Published' : 'Hidden'}
             labelPlacement='bottom'
           />
         </TableCell>
-        <TableCell className={classes.column2}>{title}</TableCell>
-        <TableCell className={classes.column3}>{author}</TableCell>
-        <TableCell className={classes.column3}>{date}</TableCell>
-        <TableCell className={classes.column3}>Placeholder</TableCell>
+        <TableCell data-cy='title' className={classes.column2}>
+          {title}
+        </TableCell>
+        <TableCell data-cy='author' className={classes.column3}>
+          {author}
+        </TableCell>
+        <TableCell data-cy='date' className={classes.column3}>
+          {date}
+        </TableCell>
+        <TableCell data-cy='action' className={classes.column3}>
+          Placeholder
+        </TableCell>
       </TableRow>
     )
   })
 
   return (
     <>
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      <TableContainer
+        data-cy='articles-table'
+        component={Paper}
+        className={classes.tableContainer}>
         <Table>
           <TableHead className={classes.tableHeader}>{tableHeader}</TableHead>
           <TableBody>{tableRows}</TableBody>
