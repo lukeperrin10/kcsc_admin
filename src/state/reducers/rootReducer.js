@@ -1,3 +1,5 @@
+import { SportsTennis } from '@material-ui/icons'
+
 const rootReducer = (state, action) => {
   switch (action.type) {
     case 'SET_INQUIRIES':
@@ -45,6 +47,12 @@ const rootReducer = (state, action) => {
         error: false,
         authenticated: true,
         name: action.payload,
+      }
+    case 'ARTICLES_INDEX':
+      debugger
+      return {
+        ...state,
+        articles: action.payload,
       }
     default:
       return state
