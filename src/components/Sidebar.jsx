@@ -9,6 +9,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import Authentication from '../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
 import symbolLogo from '../assets/LogoCHWLSymbolWhite.png'
+import SubjectIcon from '@material-ui/icons/Subject';
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)
@@ -21,6 +22,9 @@ const Sidebar = () => {
       <List>
         <SidebarIcon text='Dashboard' to='/'>
           <MailIcon />
+        </SidebarIcon>
+        <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
+          <SubjectIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
           <AssessmentIcon />

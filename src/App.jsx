@@ -10,6 +10,7 @@ import ErrorSnackbar from './components/ErrorSnackbar'
 import Authentication from './modules/Authentication'
 import { Route, Switch } from 'react-router-dom'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
+import ArticlesDashboard from './views/ArticlesDashboard'
 import SuccessSnackbar from './components/SuccessSnackbar'
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={AdminDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
+            <Route exact path='/articles' component={ArticlesDashboard} />
           </Switch>
         </>
       ) : (
