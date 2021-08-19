@@ -49,7 +49,6 @@ const rootReducer = (state, action) => {
         name: action.payload,
       }
     case 'ARTICLES_INDEX':
-      debugger
       return {
         ...state,
         articles: action.payload,

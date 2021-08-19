@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Most recent article",
       "author": "Liu Kang",
-      "status": "published",
+      "publish": true,
       "teaser": "As self-care has become more mainstream, the definitions have started to become more applicable to the general public and tend to focus on tuning in to one’s needs and meeting those needs. “Self-care is anything that you do for yourself that ...",
       "date": "2021-05-12",      
       "image": {
@@ -16,7 +16,7 @@
       "id": 2,
       "title": "Article 2",
       "author": "Sonya Blade",
-      "status": "published",
+      "publish": true,
       "teaser": "Several organizations and researchers take a health-oriented approach when defining self-care. The World Health Organization defines self-care as: “the ability of individuals, families, and communities to promote health ...",
       "date": "2021-05-11",
       "image": {
@@ -28,7 +28,7 @@
       "id": 3,
       "title": "Article 3",
       "author": "Liu Kang",
-      "status": "published",
+      "publish": false,
       "teaser": "According to this definition, self-care includes everything related to staying physically healthy — including hygiene, nutrition, and ...",
       "date": "2021-05-10",
       "image": {
@@ -40,7 +40,7 @@
       "id": 4,
       "title": "Article 4",
       "author": "Liu Kang",
-      "status": "hidden",
+      "publish": true,
       "teaser": "Paula Gill Lopez, PhD, an associate professor and chair of the department of psychological and educational consultation at Fairfield University in Fairfield, Connecticut, says the need ...",
       "date": "2021-05-09",
       "image": {
@@ -52,7 +52,7 @@
       "id": 5,
       "title": "Article 5",
       "author": "Sonya Blade",
-      "status": "published",
+      "publish": false,
       "teaser": "Let’s clear up one common misconception from the get-go: Self-care is not synonymous with self-indulgence or being selfish. Self-care means ...",
       "date": "2021-05-08",
       "image": {
@@ -64,7 +64,7 @@
       "id": 6,
       "title": "Article 6",
       "author": "Sonya Blade",
-      "status": "hidden",
+      "publish": false,
       "teaser": "Tens of millions of Americans have lost crucial jobless benefits, and lawmakers still can’t seem to agree on a relief measure. Israel’s troubled school reopenings could be a lesson for the U.S.",
       "date": "2021-05-07",
       "image": {
