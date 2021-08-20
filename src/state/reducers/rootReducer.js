@@ -1,4 +1,3 @@
-import { SportsTennis } from '@material-ui/icons'
 
 const rootReducer = (state, action) => {
   switch (action.type) {
