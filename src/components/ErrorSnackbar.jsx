@@ -20,7 +20,7 @@ const ErrorSnackbar = () => {
 
   const errorContent = (
     <div className='error-snack-container'>
-      <p data-cy='error-snack'>{message}</p>
+      <p data-cy='snack-content'>{message}</p>
     </div>
   )
 

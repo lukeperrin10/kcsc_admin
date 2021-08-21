@@ -8,10 +8,30 @@ const headers = getHeaders()
 const Articles = {
   async index() {
     try {
-      const response = await axios.get('/api/articles', { headers: headers })      
-      store.dispatch({type: 'ARTICLES_INDEX', payload: response.data.articles})
+      const response = await axios.get('/api/articles', { headers: headers })
+      store.dispatch({
+        type: 'ARTICLES_INDEX',
+        payload: response.data.articles,
+      })      
     } catch (error) {
       errorHandler(error)
+    }
+  },
+  async update_publish(id, publish) {
+    try {
+      const response = await axios.post(
+        `/api/articles/${id}`,
+        { publish: publish },
+        { headers: headers }
+      )
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+      return 'success'
+    } catch (error) {
+      errorHandler(error)
+      return 'error'
     }
   },
 }
