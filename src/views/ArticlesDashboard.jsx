@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+  dateCell: { minWidth: '100px' },
+  titleCell: { minWidth: '400px' },
+  switchLabel: {fontSize: '0.8rem'}
 }))
 
 const StyledTableCell = withStyles((theme) => ({
@@ -168,17 +171,19 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
               control={
-                <StyledSwitch checked={publish} name={`publish-${id}`} />
+                <StyledSwitch size="small" checked={publish} name={`publish-${id}`} />
               }
-              label={publish ? 'Published' : 'Hidden'}
+              label={<Typography className={classes.switchLabel}>{publish ? 'Published' : 'Hidden'}</Typography>}
               labelPlacement='bottom'
             />
           </StyledTableCell>
-          <StyledTableCell data-cy='title' style={{ minWidth: '70%' }}>
+          <StyledTableCell data-cy='title' className={classes.titleCell}>
             {title}
           </StyledTableCell>
           <StyledTableCell data-cy='author'>{author}</StyledTableCell>
-          <StyledTableCell data-cy='date'>{date}</StyledTableCell>
+          <StyledTableCell data-cy='date' className={classes.dateCell}>
+            {date}
+          </StyledTableCell>
           <StyledTableCell data-cy='action'>Placeholder</StyledTableCell>
         </StyledTableRow>
       )
