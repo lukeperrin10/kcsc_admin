@@ -11,6 +11,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import Authentication from '../modules/Authentication'
 import { Grid, makeStyles } from '@material-ui/core'
+import ArticleIcon from '@material-ui/icons/Subject'
 
 const useStyles = makeStyles((theme) => ({
   menuBar: {
@@ -31,7 +32,7 @@ const PhoneSidebar = () => {
     <>
       <Grid container alignItems='center' className={classes.menuBar}>
         <IconButton className='menu-button' onClick={() => setOpen(!open)}>
-          <MenuIcon fontSize='large' style={{color: 'white'}}/>
+          <MenuIcon fontSize='large' style={{ color: 'white' }} />
         </IconButton>
         <img src={logoWhite} alt='logo' className={classes.mobileLogo} />
       </Grid>
@@ -44,6 +45,12 @@ const PhoneSidebar = () => {
         <List>
           <SidebarIcon text='Dashboard' to='/'>
             <MailIcon />
+          </SidebarIcon>
+          <SidebarIcon
+            dataCy='articles-dashboard'
+            text='Articles'
+            to='/articles'>
+            <ArticleIcon />
           </SidebarIcon>
           <SidebarIcon text='Analytics' to='/analytics'>
             <AssessmentIcon />
