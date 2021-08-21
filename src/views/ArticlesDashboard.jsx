@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableBody,
@@ -12,46 +12,49 @@ import {
   Paper,
   Switch,
   FormControlLabel,
+  Typography,
 } from '@material-ui/core'
 
 const useStyles = makeStyles({
   tableContainer: {
     marginLeft: '200px',
-    maxWidth: '1720px',
-  },
-  tableHeader: {
-    backgroundColor: '#FBBA00',
-    color: 'white',
-  },
-  column1: {
-    width: '10%',
-  },
-  column2: {
-    width: '70%',
-    fontWeight: 800,
-  },
-  column3: {
-    width: '10%',
-  },
-  column1Header: {
-    maxWidth: '10%',
-    color: 'white',
-    fontWeight: 800,
-    fontSize: '1.2rem',
-  },
-  column2Header: {
-    maxWidth: '70%',
-    color: 'white',
-    fontWeight: 800,
-    fontSize: '1.2rem',
-  },
-  column3Header: {
-    maxWidth: '10%',
-    color: 'white',
-    fontWeight: 800,
-    fontSize: '1.2rem',
+    maxWidth: '1280px',
   },
 })
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    fontSize: '1.2rem',
+    fontWeight: 800,
+  },
+  body: {
+    fontSize: '1rem',
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+const StyledSwitch = withStyles({
+  switchBase: {
+    color: "#ddd",
+    '&$checked': {
+      color: "#0BDA51",
+    },
+    '&$checked + $track': {
+      backgroundColor: "#00FF00",
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
 
 const ArticlesDashboard = () => {
   const classes = useStyles()
@@ -62,41 +65,47 @@ const ArticlesDashboard = () => {
   }, [])
 
   const tableHeader = (
-    <TableRow>
-      <TableCell className={classes.column1Header}>Status</TableCell>
-      <TableCell className={classes.column2Header}>Title</TableCell>
-      <TableCell className={classes.column3Header}>Author</TableCell>
-      <TableCell className={classes.column3Header}>Date</TableCell>
-      <TableCell className={classes.column3Header}>Action</TableCell>
-    </TableRow>
+    <StyledTableRow color='secondary'>
+      <StyledTableCell align='center' >Status</StyledTableCell>
+      <StyledTableCell align='left' >Title</StyledTableCell>
+      <StyledTableCell align='left' >Author</StyledTableCell>
+      <StyledTableCell align='left' >Date</StyledTableCell>
+      <StyledTableCell align='left' >Action</StyledTableCell>
+    </StyledTableRow>
   )
 
-  const tableRows = articles.map((article) => {
+  const tableRows = articles && articles.map((article) => {
     const { id, title, author, date, publish } = article
     return (
-      <TableRow data-cy='article' key={`article-${id}`}>
-        <TableCell data-cy='status' className={classes.column1}>
+      <StyledTableRow data-cy='article' key={`article-${id}`}>
+        <StyledTableCell data-cy='status' align='center'>
           <FormControlLabel
-            control={<Switch checked={publish} name={`publish-${id}`} />}
+            control={<StyledSwitch checked={publish} name={`publish-${id}`} />}
             label={publish ? 'Published' : 'Hidden'}
             labelPlacement='bottom'
           />
-        </TableCell>
-        <TableCell data-cy='title' className={classes.column2}>
+        </StyledTableCell>
+        <StyledTableCell data-cy='title' style={{minWidth: "70%"}}>
           {title}
-        </TableCell>
-        <TableCell data-cy='author' className={classes.column3}>
+        </StyledTableCell>
+        <StyledTableCell data-cy='author' >
           {author}
-        </TableCell>
-        <TableCell data-cy='date' className={classes.column3}>
+        </StyledTableCell>
+        <StyledTableCell data-cy='date' >
           {date}
-        </TableCell>
-        <TableCell data-cy='action' className={classes.column3}>
+        </StyledTableCell>
+        <StyledTableCell data-cy='action' >
           Placeholder
-        </TableCell>
-      </TableRow>
+        </StyledTableCell>
+      </StyledTableRow>
     )
   })
+
+  const noArticlesMessage = (
+    <Typography variant='h6' style={{padding: '12px'}}>
+      No articles to display
+    </Typography>
+  )
 
   return (
     <>
@@ -105,8 +114,8 @@ const ArticlesDashboard = () => {
         component={Paper}
         className={classes.tableContainer}>
         <Table>
-          <TableHead className={classes.tableHeader}>{tableHeader}</TableHead>
-          <TableBody>{tableRows}</TableBody>
+          <TableHead>{tableHeader}</TableHead>
+          <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
         </Table>
       </TableContainer>
     </>

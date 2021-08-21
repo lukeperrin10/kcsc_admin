@@ -5,6 +5,9 @@ import store from './state/store/configureStore'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import { BrowserRouter as Router } from 'react-router-dom'
+import theme from "./theme/theme";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const getHeaders = () => {
   return JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
@@ -19,7 +22,10 @@ if (window.Cypress) {
 ReactDOM.render(
   <Router>
     <Provider store={store}>
+    <ThemeProvider theme={theme}>
+    <CssBaseline />
       <App />
+      </ThemeProvider>
     </Provider>
   </Router>,
 
