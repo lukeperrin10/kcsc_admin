@@ -11,6 +11,10 @@ const useCommonStyles = makeStyles((theme) => ({
   },
   accordionDetails: {
     padding: '0 24px 24px 24px'
+  },
+  formControls: {
+    margin: '2rem 0',
+    padding: '0 3rem'
   }
 }))
 
