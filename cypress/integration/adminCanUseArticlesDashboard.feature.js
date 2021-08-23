@@ -50,7 +50,7 @@ describe('admin can navigate to articles dashboard on ', () => {
 
       it('can create a new article', () => {
         cy.get('[data-cy=new-article-btn').click()
-        cy.get('[data-cy=article-modal]').within(() => {
+        cy.get('[data-cy=new-article-modal]').within(() => {
           cy.get('[data-cy=title-input]').type('Free burgers')
           cy.get('[data-cy=teaser-input]').type('wow burgers')
           cy.get('[data-cy=body-input]').type('Burgers everywhere UwU')
@@ -58,6 +58,7 @@ describe('admin can navigate to articles dashboard on ', () => {
           cy.get('[data-cy=image-input]')
             .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
             .trigger('change')
+          cy.get('[data-cy=cancel-btn]').click()
           cy.get('[data-cy=submit-btn]').click()
         })
         cy.get('[data-cy=submit-message]').should(

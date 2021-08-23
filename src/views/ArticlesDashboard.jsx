@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import {
@@ -10,11 +9,16 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
   // Switch,
   FormControlLabel,
   Typography,
+  Button,
+  Modal,
+  TextField,
+  Box,
 } from '@material-ui/core'
+
+import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 
 const useStyles = makeStyles((theme) => ({
@@ -28,16 +32,53 @@ const useStyles = makeStyles((theme) => ({
   },
   newArticleBtn: {
     [theme.breakpoints.up('xs')]: {
-      fontSize: "1px",
+      fontSize: '1px',
       backgroundColor: '#5cb85c',
-      color: "#fff",
-      width: "300px",
-      margin: "20px 0px"
+      color: '#fff',
+      width: '300px',
+      margin: '20px 0px',
+    },
+  },
+  modal: {
+    [theme.breakpoints.up('xs')]: {
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: 'rgba(0,0,0, 0.5)',
+    },
+  },
+  formGroup: {
+    [theme.breakpoints.up('xs')]: {
+      margin: '10vh 10vw',
+      height: '80%',
+      width: '80%',
+      backgroundColor: theme.palette.primary.main,
+      borderRadius: '5px',
+    },
+  },
+  form: {
+    [theme.breakpoints.up('xs')]: {
+      width: '100%',
+      padding: '20px 20% 20px 0px',
+      marginLeft: '10%',
+      '& label': {
+        color: "#fff"
+      },
+      '& label.Mui-focused': {
+        color: "#fff"
+      },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: "#fff"
+      },
+    },
+  },
+  btnBox: {
+    [theme.breakpoints.up('xs')]: {
+      textColor: '#fff',
     },
   },
   dateCell: { minWidth: '100px' },
   titleCell: { minWidth: '400px' },
-  switchLabel: {fontSize: '0.8rem'}
+  switchLabel: { fontSize: '0.8rem' },
 }))
 
 const StyledTableCell = withStyles((theme) => ({
@@ -63,6 +104,7 @@ const StyledTableRow = withStyles((theme) => ({
 const ArticlesDashboard = () => {
   const classes = useStyles()
   const articles = useSelector((state) => state.articles)
+  const [open, setOpen] = useState(false)
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
@@ -88,10 +130,12 @@ const ArticlesDashboard = () => {
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={
-                <PublishedSwitch publish={publish} articleId={id} />
+              control={<PublishedSwitch publish={publish} articleId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {publish ? 'Published' : 'Hidden'}
+                </Typography>
               }
-              label={<Typography className={classes.switchLabel}>{publish ? 'Published' : 'Hidden'}</Typography>}
               labelPlacement='bottom'
             />
           </StyledTableCell>
@@ -113,6 +157,66 @@ const ArticlesDashboard = () => {
     </Typography>
   )
 
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const body = (
+    <form
+      noValidate
+      autoComplete='off'
+      className={classes.formGroup}
+      data-cy='new-article-modal'>
+      <TextField
+        className={classes.form}
+        data-cy='title-input'
+        required
+        id='standard-required'
+        label='Title'
+      />
+      <TextField
+        className={classes.form}
+        data-cy='teaser-input'
+        required
+        id='standard-required'
+        label='Teaser'
+      />
+      <TextField
+        className={classes.form}
+        data-cy='body-input'
+        required
+        id='standard-required'
+        label='Body'
+      />
+      <TextField
+        className={classes.form}
+        data-cy='author-input'
+        required
+        id='standard-required'
+        label='Author'
+      />
+      <TextField
+        className={classes.form}
+        data-cy='image-input'
+        required
+        id='standard-required'
+        label='Image'
+      />
+      <Box className={classes.btnBox}>
+        <Button data-cy='submit-btn' onClick={handleClose}>
+          Submit
+        </Button>
+        <Button data-cy='cancel-btn' onClick={handleClose}>
+          Cancel
+        </Button>
+      </Box>
+    </form>
+  )
+
   return (
     <>
       <TableContainer
@@ -120,7 +224,20 @@ const ArticlesDashboard = () => {
         component={Paper}
         className={classes.tableContainer}>
         <Table>
-          <Button data-cy='new-article-btn' className={classes.newArticleBtn}>Create new article</Button>
+          <Button
+            data-cy='new-article-btn'
+            className={classes.newArticleBtn}
+            onClick={handleOpen}>
+            Create new article
+          </Button>
+          <Modal
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby='create new article'
+            aria-describedby='opens a modal to create a new article'>
+            {body}
+          </Modal>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
         </Table>
