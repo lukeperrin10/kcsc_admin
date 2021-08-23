@@ -15,16 +15,9 @@ import {
   Typography,
 } from '@material-ui/core'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
+import useCommonStyles from '../theme/useCommonStyles'
 
-const useStyles = makeStyles((theme) => ({
-  tableContainer: {
-    marginLeft: '200px',
-    maxWidth: '1280px',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '0px',
-      width: '100%',
-    },
-  },
+const useStyles = makeStyles(() => ({
   dateCell: { minWidth: '100px' },
   titleCell: { minWidth: '400px' },
   switchLabel: {fontSize: '0.8rem'}
@@ -52,6 +45,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const ArticlesDashboard = () => {
   const classes = useStyles()
+  const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
@@ -108,7 +102,7 @@ const ArticlesDashboard = () => {
       <TableContainer
         data-cy='articles-table'
         component={Paper}
-        className={classes.tableContainer}>
+        className={commonClasses.viewContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>

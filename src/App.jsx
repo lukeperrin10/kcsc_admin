@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import './styles/globals.css'
 import Sidebar from './components/Sidebar'
-import AdminDashboard from './views/AdminDashboard'
+import GeneralDashboard from './views/GeneralDashboard'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import PhoneSidebar from './components/PhoneSidebar'
 import LoginPage from './components/LoginPage'
@@ -35,7 +35,7 @@ const App = () => {
         <>
           {isSmall ? <PhoneSidebar /> : <Sidebar />}
           <Switch>
-            <Route exact path='/' component={AdminDashboard} />
+            <Route exact path='/' component={GeneralDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
             <Route exact path='/articles' component={ArticlesDashboard} />
           </Switch>
