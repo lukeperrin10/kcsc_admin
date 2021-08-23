@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
   modal: {
     [theme.breakpoints.up('xs')]: {
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: 'rgba(0,0,0, 0.5)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   },
   formGroup: {
@@ -61,21 +61,34 @@ const useStyles = makeStyles((theme) => ({
       padding: '20px 20% 20px 0px',
       marginLeft: '10%',
       '& label': {
-        color: "#fff"
+        color: '#fff',
       },
       '& label.Mui-focused': {
-        color: "#fff"
+        color: '#fff',
       },
       '& .MuiInput-underline:after': {
-        borderBottomColor: "#fff"
+        borderBottomColor: '#fff',
       },
     },
   },
   btnBox: {
     [theme.breakpoints.up('xs')]: {
-      textColor: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   },
+  submit: {
+    [theme.breakpoints.up('xs')]: {
+      color: '#fff',
+    },
+  },
+  cancel: {
+    [theme.breakpoints.up('xs')]: {
+      color: '#fff',
+    },
+  },
+  input: { display: 'none' },
   dateCell: { minWidth: '100px' },
   titleCell: { minWidth: '400px' },
   switchLabel: { fontSize: '0.8rem' },
@@ -199,18 +212,31 @@ const ArticlesDashboard = () => {
         id='standard-required'
         label='Author'
       />
-      <TextField
-        className={classes.form}
-        data-cy='image-input'
-        required
-        id='standard-required'
-        label='Image'
-      />
+      <Box>
+        <input
+          accept='image/*'
+          className={classes.input}
+          id='contained-button-file'
+          multiple
+          type='file'
+        />
+        <label htmlFor='contained-button-file'>
+          <Button variant='contained' color='#fff' component='span'>
+            Upload Image
+          </Button>
+        </label>
+      </Box>
       <Box className={classes.btnBox}>
-        <Button data-cy='submit-btn' onClick={handleClose}>
+        <Button
+          className={classes.submit}
+          data-cy='submit-btn'
+          onClick={handleClose}>
           Submit
         </Button>
-        <Button data-cy='cancel-btn' onClick={handleClose}>
+        <Button
+          className={classes.cancel}
+          data-cy='cancel-btn'
+          onClick={handleClose}>
           Cancel
         </Button>
       </Box>
