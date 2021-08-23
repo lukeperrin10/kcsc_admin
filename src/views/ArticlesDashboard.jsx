@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Button,
   // Switch,
   FormControlLabel,
   Typography,
@@ -23,6 +24,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       marginLeft: '0px',
       width: '100%',
+    },
+  },
+  newArticleBtn: {
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "1px",
+      backgroundColor: '#5cb85c',
+      color: "#fff",
+      width: "300px",
+      margin: "20px 0px"
     },
   },
   dateCell: { minWidth: '100px' },
@@ -110,6 +120,7 @@ const ArticlesDashboard = () => {
         component={Paper}
         className={classes.tableContainer}>
         <Table>
+          <Button data-cy='new-article-btn' className={classes.newArticleBtn}>Create new article</Button>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
         </Table>

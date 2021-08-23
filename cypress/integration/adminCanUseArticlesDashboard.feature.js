@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
-const sizes = ['iphone-x', ['ipad-2', 'landscape'], [1024, 768], [1920, 1080], [2560, 1440]]
+const sizes = [
+  'iphone-x',
+  ['ipad-2', 'landscape'],
+  [1024, 768],
+  [1920, 1080],
+  [2560, 1440],
+]
 
 describe('admin can navigate to articles dashboard on ', () => {
   beforeEach(() => {
@@ -21,7 +27,7 @@ describe('admin can navigate to articles dashboard on ', () => {
           cy.viewport(size[0], size[1])
         } else {
           cy.viewport(size)
-        }  
+        }
       })
 
       it('is expected to show a table with the list of all articles', () => {
@@ -43,7 +49,21 @@ describe('admin can navigate to articles dashboard on ', () => {
       })
 
       it('can create a new article', () => {
-        cy.get('[data-cy=]')
+        cy.get('[data-cy=new-article-btn').click()
+        cy.get('[data-cy=article-modal]').within(() => {
+          cy.get('[data-cy=title-input]').type('Free burgers')
+          cy.get('[data-cy=teaser-input]').type('wow burgers')
+          cy.get('[data-cy=body-input]').type('Burgers everywhere UwU')
+          cy.get('[data-cy=author-input]').type('Squidward')
+          cy.get('[data-cy=image-input]')
+            .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
+            .trigger('change')
+          cy.get('[data-cy=submit-btn]').click()
+        })
+        cy.get('[data-cy=submit-message]').should(
+          'contain',
+          'Article has been created'
+        )
       })
     })
   })
