@@ -46,6 +46,11 @@ const rootReducer = (state, action) => {
         authenticated: true,
         name: action.payload,
       }
+    case 'ARTICLES_INDEX':
+      return {
+        ...state,
+        articles: action.payload,
+      }
     default:
       return state
   }

@@ -6,28 +6,51 @@ import IconButton from '@material-ui/core/IconButton'
 import MailIcon from '@material-ui/icons/Mail'
 import SidebarIcon from './SidebarIcon'
 import MenuIcon from '@material-ui/icons/Menu'
-import symbolLogo from '../assets/LogoCHWLSymbolWhite.png'
+import logoWhite from '../assets/LogoCHWLSymbolWhite.png'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import Authentication from '../modules/Authentication'
+import { Grid, makeStyles } from '@material-ui/core'
+import ArticleIcon from '@material-ui/icons/Subject'
+
+const useStyles = makeStyles((theme) => ({
+  menuBar: {
+    height: '3.5rem',
+    backgroundColor: theme.palette.primary.main,
+  },
+  mobileLogo: {
+    height: '80%',
+    margin: '0 12px 0 auto',
+  },
+}))
 
 const PhoneSidebar = () => {
+  const classes = useStyles()
   const [open, setOpen] = useState(false)
 
   return (
     <>
-      <IconButton className='menu-button' onClick={() => setOpen(!open)}>
-        <MenuIcon fontSize='large' />
-      </IconButton>
+      <Grid container alignItems='center' className={classes.menuBar}>
+        <IconButton className='menu-button' onClick={() => setOpen(!open)}>
+          <MenuIcon fontSize='large' style={{ color: 'white' }} />
+        </IconButton>
+        <img src={logoWhite} alt='logo' className={classes.mobileLogo} />
+      </Grid>
       <Drawer
         className='drawer'
         anchor='left'
         open={open}
         onClose={() => setOpen(false)}>
-        <img src={symbolLogo} alt='logo' />
+        <img src={logoWhite} alt='logo' />
         <List>
           <SidebarIcon text='Dashboard' to='/'>
             <MailIcon />
+          </SidebarIcon>
+          <SidebarIcon
+            dataCy='articles-dashboard'
+            text='Articles'
+            to='/articles'>
+            <ArticleIcon />
           </SidebarIcon>
           <SidebarIcon text='Analytics' to='/analytics'>
             <AssessmentIcon />

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
@@ -41,7 +41,8 @@ const SuccessSnackbar = () => {
 
   return (
     <div>
-      <Snackbar className='success-snackbar'
+      <Snackbar
+        className='success-snackbar'
         open={success}
         anchorOrigin={{
           vertical: 'bottom',

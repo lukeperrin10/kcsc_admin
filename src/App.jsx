@@ -7,17 +7,24 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import PhoneSidebar from './components/PhoneSidebar'
 import LoginPage from './components/LoginPage'
 import ErrorSnackbar from './components/ErrorSnackbar'
-import Authentication from './modules/Authentication'
+//import Authentication from './modules/Authentication'
 import { Route, Switch } from 'react-router-dom'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
+import ArticlesDashboard from './views/ArticlesDashboard'
 import SuccessSnackbar from './components/SuccessSnackbar'
+import store from './state/store/configureStore'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
   const isSmall = useMediaQuery('(max-width:1280px)')
 
   useEffect(() => {
-    Authentication.validateToken()
+    // Authentication.validateToken()
+    // Following will automatically authenticate on localhost while API is not up
+    store.dispatch({
+      type: 'AUTHENTICATE',
+      payload: 'Johnny Cage',
+    })
   }, [authenticated])
 
   return (
@@ -30,6 +37,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={AdminDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
+            <Route exact path='/articles' component={ArticlesDashboard} />
           </Switch>
         </>
       ) : (

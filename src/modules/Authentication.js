@@ -45,6 +45,6 @@ const Authentication = {
 
 export default Authentication
 
-const getHeaders = () => {
+export const getHeaders = () => {
   return JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
 }
