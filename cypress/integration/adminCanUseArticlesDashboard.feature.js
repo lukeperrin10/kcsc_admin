@@ -41,6 +41,10 @@ describe('admin can navigate to articles dashboard on ', () => {
             })
         })
       })
+
+      it('can create a new article', () => {
+        cy.get('[data-cy=]')
+      })
     })
   })
 })

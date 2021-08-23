@@ -2,17 +2,25 @@ import store from '../state/store/configureStore'
 import { getHeaders } from './Authentication'
 import errorHandler from './ErrorHandler'
 import axios from 'axios'
+import all_articles from '../data/fixtures/all_articles.json'
 
 const headers = getHeaders()
 
 const Articles = {
   async index() {
     try {
-      const response = await axios.get('/api/articles', { headers: headers })
-      store.dispatch({
-        type: 'ARTICLES_INDEX',
-        payload: response.data.articles,
-      })      
+      if (window.Cypress) {
+        const response = await axios.get('/api/articles', { headers: headers })
+        store.dispatch({
+          type: 'ARTICLES_INDEX',
+          payload: response.data.articles,
+        })
+      } else {
+        store.dispatch({
+          type: 'ARTICLES_INDEX',
+          payload: all_articles.articles,
+        })
+      }
     } catch (error) {
       errorHandler(error)
     }
