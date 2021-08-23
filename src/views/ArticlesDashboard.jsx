@@ -14,6 +14,7 @@ import {
   FormControlLabel,
   Typography,
 } from '@material-ui/core'
+import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -49,20 +50,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const StyledSwitch = withStyles({
-  switchBase: {
-    color: '#ddd',
-    '&$checked': {
-      color: '#0BDA51',
-    },
-    '&$checked + $track': {
-      backgroundColor: '#00FF00',
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch)
-
 const ArticlesDashboard = () => {
   const classes = useStyles()
   const articles = useSelector((state) => state.articles)
@@ -92,7 +79,7 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
               control={
-                <StyledSwitch size="small" checked={publish} name={`publish-${id}`} />
+                <PublishedSwitch publish={publish} articleId={id} />
               }
               label={<Typography className={classes.switchLabel}>{publish ? 'Published' : 'Hidden'}</Typography>}
               labelPlacement='bottom'
