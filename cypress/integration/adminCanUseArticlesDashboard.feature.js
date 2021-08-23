@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const sizes = ['iphone-x', ['ipad-2', 'landscape'], [1024, 768], [1920, 1080], [2560, 1440]]
 
 describe('admin can navigate to articles dashboard on ', () => {
