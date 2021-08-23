@@ -1,5 +1,4 @@
 const initialState = {
-  inquiries: [],
   articles: [],
   authenticated: false,
   name: '',
