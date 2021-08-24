@@ -60,7 +60,8 @@ sizes.forEach((size) => {
       })
 
       it('is expected to log the user out', () => {
-        TestHelpers.sizeCase(size)
+        const selection = 'logout-button'
+        TestHelpers.sizeCase(size, selection)
       })
     })
   })
