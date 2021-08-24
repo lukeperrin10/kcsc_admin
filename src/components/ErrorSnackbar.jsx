@@ -42,6 +42,7 @@ const ErrorSnackbar = () => {
   return (
     <div>
       <Snackbar className='error-snackbar'
+        data-cy='error-snack'
         open={error}
         anchorOrigin={{
           vertical: 'bottom',
