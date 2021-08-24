@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
 import AppData from '../../modules/AppData'
+import SubmitButton from './SubmitButton'
 
 const FooterForm = ({ about, disclaimers }) => {
   const [expanded, setExpanded] = useState({ footer: true })
@@ -21,13 +22,13 @@ const FooterForm = ({ about, disclaimers }) => {
   const copyrightMaxLength = 80
   const accessabilityMaxLength = 80
 
-  const onSubmit = ({about, copyright, accessability}) => {
+  const onSubmit = ({ about, copyright, accessability }) => {
     let attributes = {
       about: about,
       disclaimers: {
         copyright: copyright,
-        accessability: accessability
-      }
+        accessability: accessability,
+      },
     }
     AppData.update(attributes)
   }
@@ -105,20 +106,7 @@ const FooterForm = ({ about, disclaimers }) => {
                 )}
               />
             </Grid>
-            <Grid
-              item
-              container
-              direction='row'
-              alignItems='center'
-              justifyContent='flex-end'>
-              <Button
-                data-cy='footer-submit-button'
-                type='submit'
-                variant='contained'
-                color='primary'>
-                Submit
-              </Button>
-            </Grid>
+            <SubmitButton />
           </Grid>
         </AccordionDetails>
       </Accordion>

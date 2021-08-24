@@ -1,5 +1,128 @@
 {
   "app_data": {
+    "navigation": {
+      "main_tabs": [
+        {
+          "label": "home",
+          "link": "/home"
+        },
+        {
+          "label": "services",
+          "link": "/services",
+          "secondary_tabs": [
+            {
+              "label": "Find a service",
+              "link": "/services",
+              "ref": "find-a-self-care-service"
+            },
+            {
+              "label": "Long term Self Care",
+              "link": "/services",
+              "ref": "long-term-self-care"
+            },
+            {
+              "label": "Mental health",
+              "link": "/services",
+              "ref": "mental-health"
+            },
+            {
+              "label": "n.kensington self-care",
+              "link": "/services",
+              "ref": "north-kensington-self-care"
+            },
+            {
+              "label": "find a link workers",
+              "link": "/services",
+              "ref": "find-a-link-workers"
+            }
+          ]
+        },
+        {
+          "label": "about",
+          "link": "/about/organization",
+          "secondary_tabs": [
+            {
+              "label": "organization",
+              "link": "/about/organization"
+            },
+            {
+              "label": "self care",
+              "link": "/about/self_care"
+            }
+          ]
+        },
+        {
+          "label": "news & info",
+          "link": "/info/news",
+          "secondary_tabs": [
+            {
+              "label": "news",
+              "link": "/info/news"
+            },
+            {
+              "label": "information",
+              "link": "/info/information"
+            }
+          ]
+        },
+        {
+          "label": "contact",
+          "link": "/contact"
+        }
+      ],
+      "secondary_tabs": [
+        {
+          "parent": "about",
+          "label": "organization",
+          "link": "/about/organization"
+        },
+        {
+          "parent": "about",
+          "label": "self care",
+          "link": "/about/self_care"
+        },
+        {
+          "parent": "news & info",
+          "label": "news",
+          "link": "/info/news"
+        },
+        {
+          "parent": "news & info",
+          "label": "information",
+          "link": "/info/information"
+        },
+        {
+          "parent": "services",
+          "label": "Find a service",
+          "link": "/services",
+          "ref": "find-a-self-care-service"
+        },
+        {
+          "parent": "services",
+          "label": "Long term Self Care",
+          "link": "/services",
+          "ref": "long-term-self-care"
+        },
+        {
+          "parent": "services",
+          "label": "Mental health",
+          "link": "/services",
+          "ref": "mental-health"
+        },
+        {
+          "parent": "services",
+          "label": "n.kensington self-care",
+          "link": "/services",
+          "ref": "north-kensington-self-care"
+        },
+        {
+          "parent": "services",
+          "label": "find a link workers",
+          "link": "/services",
+          "ref": "find-a-link-workers"
+        }
+      ]
+    },
     "about": "Community Health West London is a Community Interest Company made up of six local charities. We are working together with the wider community to improve the health and wellbeing of our residents.",
     "disclaimers": {
       "copyright": "2021 All Rights Reserved by Community Health West London.",
