@@ -1,35 +1,5 @@
-<<<<<<< HEAD
 /* eslint-disable no-undef */
-const sizes = [
-  'iphone-x',
-  ['ipad-2', 'landscape'],
-  [1024, 768],
-  [1920, 1080],
-  [2560, 1440],
-]
 
-describe('admin can navigate to articles dashboard on ', () => {
-  beforeEach(() => {
-    cy.intercept('GET', '**/api/articles', {
-      fixture: 'all_articles.json',
-    })
-    cy.visit('/')
-    cy.window().its('store').invoke('dispatch', {
-      type: 'AUTHENTICATE',
-      payload: 'Johhny Cage',
-    })
-    cy.visit('/articles')
-  })
-
-  sizes.forEach((size) => {
-    context(`viewport = ${size}`, () => {
-      beforeEach(() => {
-        if (Cypress._.isArray(size)) {
-          cy.viewport(size[0], size[1])
-        } else {
-          cy.viewport(size)
-        }
-=======
 import sizes from '../support/index'
 import TestHelpers from '../support/testhelper'
 
@@ -38,7 +8,6 @@ sizes.forEach((size) => {
     beforeEach(() => {
       cy.intercept('GET', '**/api/articles', {
         fixture: 'all_articles.json',
->>>>>>> main
       })
       TestHelpers.sizeParameters(size)
       cy.visit('/')
