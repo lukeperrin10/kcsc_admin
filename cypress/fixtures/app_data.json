@@ -33,27 +33,32 @@
             {
               "label": "Find a service",
               "link": "/services",
-              "ref": "find-a-self-care-service"
+              "ref": "find-a-self-care-service",
+              "visible": true
             },
             {
               "label": "Long term Self Care",
               "link": "/services",
-              "ref": "long-term-self-care"
+              "ref": "long-term-self-care",
+              "visible": true
             },
             {
               "label": "Mental health",
               "link": "/services",
-              "ref": "mental-health"
+              "ref": "mental-health",
+              "visible": true
             },
             {
               "label": "n.kensington self-care",
               "link": "/services",
-              "ref": "north-kensington-self-care"
+              "ref": "north-kensington-self-care",
+              "visible": true
             },
             {
               "label": "find a link workers",
               "link": "/services",
-              "ref": "find-a-link-workers"
+              "ref": "find-a-link-workers",
+              "visible": true
             }
           ]
         },
@@ -64,11 +69,13 @@
           "secondary_tabs": [
             {
               "label": "organization",
-              "link": "/about/organization"
+              "link": "/about/organization",
+              "visible": true
             },
             {
               "label": "self care",
-              "link": "/about/self_care"
+              "link": "/about/self_care",
+              "visible": true
             }
           ]
         },
@@ -79,11 +86,13 @@
           "secondary_tabs": [
             {
               "label": "news",
-              "link": "/info/news"
+              "link": "/info/news",
+              "visible": true
             },
             {
               "label": "information",
-              "link": "/info/information"
+              "link": "/info/information",
+              "visible": true
             }
           ]
         },

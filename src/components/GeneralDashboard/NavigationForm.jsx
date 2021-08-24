@@ -15,9 +15,7 @@ import {
 import useCommonStyles from '../../theme/useCommonStyles'
 import AppData from '../../modules/AppData'
 import SubmitButton from '../SubmitButton'
-import MainTabFormSection from './MainTabFormSection'
-
-
+import TabFormSection from './TabFormSection'
 
 const NavigationForm = ({ mainTabs, secondaryTabs }) => {
   const [expanded, setExpanded] = useState({ footer: true })
@@ -35,15 +33,26 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
   const mainTabsList = mainTabs.map((mainTab, index) => {
     let secondaryTabList = <></>
     if (mainTab.secondary_tabs) {
-      secondaryTabList = mainTab.secondary_tabs.map((secondaryTab) => (
-        <h1>{secondaryTab.label}</h1>
-      ))
+      secondaryTabList = mainTab.secondary_tabs.map(
+        (secondaryTab, indexSec) => (
+          <TabFormSection
+            index={`${index+1}.${indexSec+1}`}
+            label={secondaryTab.label}
+            visible={secondaryTab.visible}
+            secondary={true}
+          />
+        )
+      )
     }
 
     return (
-      <Grid item container direction='column'>
-        <MainTabFormSection index={index} label={mainTab.label} visible={mainTab.visible}/>
-        <Grid item>{secondaryTabList && secondaryTabList}</Grid>
+      <Grid item container direction='column' spacing={3} style={{width: '50%'}}>
+        <TabFormSection
+          index={index+1}
+          label={mainTab.label}
+          visible={mainTab.visible}
+        />
+        {secondaryTabList && secondaryTabList}
       </Grid>
     )
   })
