@@ -58,8 +58,8 @@ const FooterForm = ({ about, disclaimers }) => {
                     fullWidth
                     label={`About CHWL (max ${aboutMaxLength} char.)*`}
                     multiline
-                    rows={2}
-                    rowsMax={6}
+                    minRows={2}
+                    maxRows={6}
                     inputProps={{ maxLength: aboutMaxLength }}
                     error={!!error}
                     helperText={error ? error.message : null}
@@ -110,7 +110,7 @@ const FooterForm = ({ about, disclaimers }) => {
               container
               direction='row'
               alignItems='center'
-              justify='flex-end'>
+              justifyContent='flex-end'>
               <Button
                 data-cy='footer-submit-button'
                 type='submit'

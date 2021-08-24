@@ -1,26 +1,18 @@
-const sizes = ['iphone-x', ['ipad-2', 'landscape'], [1024, 768], [1920, 1080], [2560, 1440]]
+/* eslint-disable no-undef */
+import sizes from '../support/index'
+import TestHelpers from '../support/testhelper'
 
-describe('admin can navigate to articles dashboard', () => {
-  beforeEach(() => {
-    cy.intercept('GET', '**/api/articles', {
-      fixture: 'all_articles.json',
-    })
-    cy.visit('/')
-    cy.window().its('store').invoke('dispatch', {
-      type: 'AUTHENTICATE',
-      payload: 'Johhny Cage',
-    })
-    cy.visit('/articles')
-  })
-
+describe('Admin Can Use Articles Dashboard', () => {
   sizes.forEach((size) => {
-    context(`viewport = ${size}`, () => {
+    describe(`admin can navigate to articles dashboard on ${size}`, () => {
       beforeEach(() => {
-        if (Cypress._.isArray(size)) {
-          cy.viewport(size[0], size[1])
-        } else {
-          cy.viewport(size)
-        }  
+        cy.intercept('GET', '**/api/articles', {
+          fixture: 'all_articles.json',
+        })
+        TestHelpers.sizeParameters(size)
+        cy.visit('/')
+        TestHelpers.authenticate()
+        cy.visit('/articles')
       })
 
       it('is expected to show a table with the list of all articles', () => {

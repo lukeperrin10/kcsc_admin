@@ -19,7 +19,7 @@ const App = () => {
   const isSmall = useMediaQuery('(max-width:1280px)')
 
   useEffect(() => {
-    // Authentication.validateToken()
+    //Authentication.validateToken()
     // Following will automatically authenticate on localhost while API is not up
     store.dispatch({
       type: 'AUTHENTICATE',
