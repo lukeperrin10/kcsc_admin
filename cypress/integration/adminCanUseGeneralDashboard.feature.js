@@ -6,7 +6,7 @@ describe('Admin Can Use General Dashboard', () => {
   sizes.forEach((size) => {
     describe('admin can navigate to articles dashboard', () => {
       beforeEach(() => {
-        cy.viewport('macbook-16')
+        TestHelpers.sizeParameters(size)
         cy.intercept('GET', '**/api/app_data', {
           fixture: 'app_data.json',
         })
