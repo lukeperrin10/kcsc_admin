@@ -2,29 +2,29 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import store from '../state/store/configureStore'
+import store from '../../state/store/configureStore'
 import Snackbar from '@material-ui/core/Snackbar'
 
-const SuccessSnackbar = () => {
-  const { success, message } = useSelector((state) => state)
+const ErrorSnackbar = () => {
+  const { error, message } = useSelector((state) => state)
 
   useEffect(() => {
-    if (success) {
+    if (error) {
       setTimeout(() => {
         store.dispatch({
-          type: 'RESET_SUCCESS',
+          type: 'RESET_ERROR',
         })
       }, 5000)
     }
-  }, [success])
+  }, [error])
 
-  const successContent = (
-    <div className='snack-container'>
+  const errorContent = (
+    <div className='error-snack-container'>
       <p data-cy='snack-content'>{message}</p>
     </div>
   )
 
-  const successAction = (
+  const errorAction = (
     <IconButton
       className='close-icon'
       size='small'
@@ -32,7 +32,7 @@ const SuccessSnackbar = () => {
       color='inherit'
       onClick={() =>
         store.dispatch({
-          type: 'RESET_SUCCESS',
+          type: 'RESET_ERROR',
         })
       }>
       <CloseIcon fontSize='small' />
@@ -41,18 +41,18 @@ const SuccessSnackbar = () => {
 
   return (
     <div>
-      <Snackbar
-        className='success-snackbar'
-        open={success}
+      <Snackbar className='error-snackbar'
+        data-cy='error-snack'
+        open={error}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        message={successContent}
-        action={successAction}
+        message={errorContent}
+        action={errorAction}
       />
     </div>
   )
 }
 
-export default SuccessSnackbar
+export default ErrorSnackbar
