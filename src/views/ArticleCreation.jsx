@@ -1,23 +1,30 @@
 import React, { useState } from 'react'
-
-import Articles, { imageEncoder } from '../modules/Articles'
+import Articles from '../modules/Articles'
 import ArticleCreationForm from '../components/ArticleCreationForm'
 
 const newArticle = {
   title: '',
-  teaser: '',
   body: '',
-  author: '',
 }
-
 const ArticleCreation = () => {
   const [article, setArticle] = useState(newArticle)
 
+  const handleChange = (event) => {
+    setArticle({
+      ...article,
+      [event.target.name]: event.target.value,
+    })
+  }
   const handleSubmit = async () => {
     Articles.create(article)
   }
 
-  return <ArticleCreationForm handleSubmit={handleSubmit} />
+  return (
+    <ArticleCreationForm
+      handleSubmit={handleSubmit}
+      handleChange={(event) => handleChange(event)}
+    />
+  )
 }
 
 export default ArticleCreation

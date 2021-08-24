@@ -43,6 +43,7 @@ const SuccessSnackbar = () => {
     <div>
       <Snackbar
         className='success-snackbar'
+        data-cy='success-message'
         open={success}
         anchorOrigin={{
           vertical: 'bottom',

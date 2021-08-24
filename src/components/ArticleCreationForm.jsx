@@ -1,10 +1,11 @@
 import React from 'react'
-import { TextField, Box, Button, CardMedia } from '@material-ui/core'
+import { TextField, Box, Button } from '@material-ui/core'
 import { DropzoneArea } from 'material-ui-dropzone'
 import articleCreationTheme from '../theme/articleCreationTheme'
 
-const ArticleCreationForm = ({ handleSubmit }) => {
+const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
   const classes = articleCreationTheme()
+
   return (
     <form
       noValidate
@@ -18,6 +19,9 @@ const ArticleCreationForm = ({ handleSubmit }) => {
         required
         id='standard-required'
         label='Title'
+        type='string'
+        name='title'
+        onChange={handleChange}
       />
 
       <TextField
@@ -27,6 +31,9 @@ const ArticleCreationForm = ({ handleSubmit }) => {
         multiline
         id='standard-required'
         label='Body'
+        type='text'
+        name='body'
+        onChange={handleChange}
       />
       <DropzoneArea
         data-cy='article-image'

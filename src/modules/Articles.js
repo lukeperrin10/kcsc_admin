@@ -30,10 +30,10 @@ const Articles = {
     let params = { article: article }
     debugger
     try {
-      let response = await axios.post('api/articles', params, {
+      let response = await axios.post('/articles/create', params, {
         headers: headers,
       })
-
+      Articles.index()
       store.dispatch({
         type: 'SET_SUBMIT',
         payload: { status: true, message: response.data.message },
