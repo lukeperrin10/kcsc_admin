@@ -9,13 +9,15 @@ const useCommonStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+  dashboardHeader: {
+    padding: '1rem 2rem',
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText
+  },
   accordionDetails: {
     padding: '0 24px 24px 24px'
   },
-  formControls: {
-    margin: '2rem 0',
-    padding: '0 3rem'
-  }
+
 }))
 
 export default useCommonStyles
