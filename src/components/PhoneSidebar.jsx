@@ -31,7 +31,7 @@ const PhoneSidebar = () => {
   return (
     <>
       <Grid container alignItems='center' className={classes.menuBar}>
-        <IconButton className='menu-button' onClick={() => setOpen(!open)}>
+        <IconButton data-cy='hamburger-menu' className='menu-button' onClick={() => setOpen(!open)}>
           <MenuIcon fontSize='large' style={{ color: 'white' }} />
         </IconButton>
         <img src={logoWhite} alt='logo' className={classes.mobileLogo} />

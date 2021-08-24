@@ -7,7 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import PhoneSidebar from './components/PhoneSidebar'
 import LoginPage from './components/LoginPage'
 import ErrorSnackbar from './components/ErrorSnackbar'
-//import Authentication from './modules/Authentication'
+import Authentication from './modules/Authentication'
 import { Route, Switch } from 'react-router-dom'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
 import ArticlesDashboard from './views/ArticlesDashboard'
@@ -19,12 +19,12 @@ const App = () => {
   const isSmall = useMediaQuery('(max-width:1280px)')
 
   useEffect(() => {
-    // Authentication.validateToken()
+    Authentication.validateToken()
     // Following will automatically authenticate on localhost while API is not up
-    store.dispatch({
-      type: 'AUTHENTICATE',
-      payload: 'Johnny Cage',
-    })
+    // store.dispatch({
+    //   type: 'AUTHENTICATE',
+    //   payload: 'Johnny Cage',
+    // })
   }, [authenticated])
 
   return (
