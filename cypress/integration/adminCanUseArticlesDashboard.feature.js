@@ -1,4 +1,4 @@
-const sizes = ['iphone-x', ['ipad-2', 'landscape'], [1024, 768], [1920, 1080], [2560, 1440]]
+import sizes from '../support/index'
 
 describe('admin can navigate to articles dashboard on ', () => {
   beforeEach(() => {
@@ -14,13 +14,13 @@ describe('admin can navigate to articles dashboard on ', () => {
   })
 
   sizes.forEach((size) => {
-    context(`viewport = ${size}`, () => {
+    context(`${size}`, () => {
       beforeEach(() => {
         if (Cypress._.isArray(size)) {
           cy.viewport(size[0], size[1])
         } else {
           cy.viewport(size)
-        }  
+        }
       })
 
       it('is expected to show a table with the list of all articles', () => {
