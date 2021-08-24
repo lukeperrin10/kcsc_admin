@@ -48,12 +48,13 @@ describe('admin can navigate to articles dashboard', () => {
         })
       })
 
-      it('is expected to show success message on submit', () => {
+      it.only('is expected to show success message on submit', () => {
         cy.get('[data-cy=footer-submit-button]').click()
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
           'Info has been updated'
         )
+        cy.wait(3000)
       })
     })
 
@@ -67,12 +68,13 @@ describe('admin can navigate to articles dashboard', () => {
         })
       })
 
-      it('is expected to show success message on submit', () => {
+      it.only('is expected to show success message on submit', () => {
         cy.get('[data-cy=footer-submit-button]').click()
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
           'Something went wrong, try again later'
         )
+        cy.wait(3000)
       })
     })
   })
