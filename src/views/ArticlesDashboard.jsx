@@ -19,7 +19,7 @@ import {
   CardMedia,
 } from '@material-ui/core'
 
-import Articles, {imageEncoder} from '../modules/Articles'
+import Articles, { imageEncoder } from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import articleDashboard from '../theme/articleDashboardTheme'
 
@@ -48,21 +48,20 @@ const newArticle = {
   teaser: '',
   body: '',
   author: '',
-};
+}
 
 const ArticlesDashboard = () => {
   const classes = articleDashboard()
   const articles = useSelector((state) => state.articles)
   const [open, setOpen] = useState(false)
-  const [article, setArticle] = useState(newArticle);
-  const [thumbnail, setThumbnail] = useState();
+  const [article, setArticle] = useState(newArticle)
+  const [thumbnail, setThumbnail] = useState()
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
   useEffect(() => {
     Articles.index()
   }, [])
-
 
   const handleOpen = () => {
     setOpen(true)
@@ -73,18 +72,18 @@ const ArticlesDashboard = () => {
   }
 
   const handleSubmit = async () => {
-    Articles.create(article);
-  };
+    Articles.create(article)
+  }
 
   const handleImage = async (event) => {
-    let file = event.target.files[0];
-    setThumbnail(file);
-    let encodedFile = await imageEncoder(file);
+    let file = event.target.files[0]
+    setThumbnail(file)
+    let encodedFile = await imageEncoder(file)
     setArticle({
       ...article,
       image: encodedFile,
-    });
-  };
+    })
+  }
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
@@ -137,8 +136,7 @@ const ArticlesDashboard = () => {
       autoComplete='off'
       className={classes.formGroup}
       data-cy='new-article-modal'
-      onSubmit={handleSubmit}
-      >
+      onSubmit={handleSubmit}>
       <TextField
         className={classes.form}
         data-cy='title-input'
@@ -157,6 +155,7 @@ const ArticlesDashboard = () => {
         className={classes.form}
         data-cy='body-input'
         required
+        multiline
         id='standard-required'
         label='Body'
       />
@@ -181,27 +180,24 @@ const ArticlesDashboard = () => {
             Upload Image
           </Button>
         </label>
-        <Box >
-            {article.image ? (
-              <CardMedia
+        <Box>
+          {article.image ? (
+            <CardMedia
               className={classes.thumbnailContainer}
-                data-cy='thumbnail'
-                component="img"
-                image={thumbnail ? URL.createObjectURL(thumbnail) : article.image}
-                alt='thumbnail'
-              />
-            ) : (
-              <Box>
-                <p style={{ fontSize: 20, color: 'white' }}>Thumbnail</p>
-              </Box>
-            )}
-          </Box>
+              data-cy='thumbnail'
+              component='img'
+              image={thumbnail ? URL.createObjectURL(thumbnail) : article.image}
+              alt='thumbnail'
+            />
+          ) : (
+            <Box>
+              <p style={{ fontSize: 20, color: 'white' }}>Thumbnail</p>
+            </Box>
+          )}
+        </Box>
       </Box>
       <Box className={classes.btnBox}>
-        <Button
-          className={classes.submit}
-          data-cy='submit-btn'
-          type="submit">
+        <Button className={classes.submit} data-cy='submit-btn' type='submit'>
           Submit
         </Button>
         <Button
@@ -228,6 +224,7 @@ const ArticlesDashboard = () => {
             Create new article
           </Button>
           <Modal
+            disableBackdropClick={true} //Deprecated look in to
             className={classes.modal}
             open={open}
             onClose={handleClose}
