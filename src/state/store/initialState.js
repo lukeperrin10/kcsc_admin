@@ -5,7 +5,8 @@ const initialState = {
   message: '',
   analytics: {},
   error: false,
-  success: false
+  success: false,
+  submitted: false,
 }
 
 export default initialState

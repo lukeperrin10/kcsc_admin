@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableBody,
@@ -16,83 +16,12 @@ import {
   Modal,
   TextField,
   Box,
+  CardMedia,
 } from '@material-ui/core'
 
-import Articles from '../modules/Articles'
+import Articles, {imageEncoder} from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
-
-const useStyles = makeStyles((theme) => ({
-  tableContainer: {
-    marginLeft: '200px',
-    maxWidth: '1280px',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '0px',
-      width: '100%',
-    },
-  },
-  newArticleBtn: {
-    [theme.breakpoints.up('xs')]: {
-      fontSize: '1px',
-      backgroundColor: '#5cb85c',
-      color: '#fff',
-      width: '300px',
-      margin: '20px 0px',
-    },
-  },
-  modal: {
-    [theme.breakpoints.up('xs')]: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  },
-  formGroup: {
-    [theme.breakpoints.up('xs')]: {
-      margin: '10vh 10vw',
-      height: '80%',
-      width: '80%',
-      backgroundColor: theme.palette.primary.main,
-      borderRadius: '5px',
-    },
-  },
-  form: {
-    [theme.breakpoints.up('xs')]: {
-      width: '100%',
-      padding: '20px 20% 20px 0px',
-      marginLeft: '10%',
-      '& label': {
-        color: '#fff',
-      },
-      '& label.Mui-focused': {
-        color: '#fff',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: '#fff',
-      },
-    },
-  },
-  btnBox: {
-    [theme.breakpoints.up('xs')]: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  },
-  submit: {
-    [theme.breakpoints.up('xs')]: {
-      color: '#fff',
-    },
-  },
-  cancel: {
-    [theme.breakpoints.up('xs')]: {
-      color: '#fff',
-    },
-  },
-  input: { display: 'none' },
-  dateCell: { minWidth: '100px' },
-  titleCell: { minWidth: '400px' },
-  switchLabel: { fontSize: '0.8rem' },
-}))
+import articleDashboard from '../theme/articleDashboardTheme'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -114,16 +43,48 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
+const newArticle = {
+  title: '',
+  teaser: '',
+  body: '',
+  author: '',
+};
+
 const ArticlesDashboard = () => {
-  const classes = useStyles()
+  const classes = articleDashboard()
   const articles = useSelector((state) => state.articles)
   const [open, setOpen] = useState(false)
+  const [article, setArticle] = useState(newArticle);
+  const [thumbnail, setThumbnail] = useState();
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
   useEffect(() => {
     Articles.index()
   }, [])
+
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleSubmit = async () => {
+    Articles.create(article);
+  };
+
+  const handleImage = async (event) => {
+    let file = event.target.files[0];
+    setThumbnail(file);
+    let encodedFile = await imageEncoder(file);
+    setArticle({
+      ...article,
+      image: encodedFile,
+    });
+  };
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
@@ -170,20 +131,14 @@ const ArticlesDashboard = () => {
     </Typography>
   )
 
-  const handleOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   const body = (
     <form
       noValidate
       autoComplete='off'
       className={classes.formGroup}
-      data-cy='new-article-modal'>
+      data-cy='new-article-modal'
+      onSubmit={handleSubmit}
+      >
       <TextField
         className={classes.form}
         data-cy='title-input'
@@ -219,18 +174,34 @@ const ArticlesDashboard = () => {
           id='contained-button-file'
           multiple
           type='file'
+          onChange={(event) => handleImage(event)}
         />
         <label htmlFor='contained-button-file'>
           <Button variant='contained' color='#fff' component='span'>
             Upload Image
           </Button>
         </label>
+        <Box >
+            {article.image ? (
+              <CardMedia
+              className={classes.thumbnailContainer}
+                data-cy='thumbnail'
+                component="img"
+                image={thumbnail ? URL.createObjectURL(thumbnail) : article.image}
+                alt='thumbnail'
+              />
+            ) : (
+              <Box>
+                <p style={{ fontSize: 20, color: 'white' }}>Thumbnail</p>
+              </Box>
+            )}
+          </Box>
       </Box>
       <Box className={classes.btnBox}>
         <Button
           className={classes.submit}
           data-cy='submit-btn'
-          onClick={handleClose}>
+          type="submit">
           Submit
         </Button>
         <Button

@@ -25,6 +25,23 @@ const Articles = {
       errorHandler(error)
     }
   },
+
+  async create(article) {
+    let params = { article: article };
+    try {
+      let response = await axios.post('api/articles', params, {
+        headers: headers,
+      });
+      Articles.index();
+      store.dispatch({
+        type: 'SET_SUBMIT',
+        payload: { status: true, message: response.data.message },
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
+
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
@@ -43,5 +60,14 @@ const Articles = {
     }
   },
 }
+
+
+export const imageEncoder = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 export default Articles
