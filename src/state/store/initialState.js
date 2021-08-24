@@ -1,6 +1,6 @@
 const initialState = {
   articles: [],
-  app_data: {},
+  app_data: null,
   authenticated: false,
   name: '',
   message: '',

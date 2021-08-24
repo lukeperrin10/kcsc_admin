@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Switch,
   FormControlLabel,
   Typography,
 } from '@material-ui/core'

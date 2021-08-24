@@ -11,6 +11,7 @@ import {
   Button,
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
+import AppData from '../../modules/AppData'
 
 const FooterForm = ({ about, disclaimers }) => {
   const [expanded, setExpanded] = useState({ footer: true })
@@ -20,13 +21,19 @@ const FooterForm = ({ about, disclaimers }) => {
   const copyrightMaxLength = 80
   const accessabilityMaxLength = 80
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = ({about, copyright, accessability}) => {
+    let params = {
+      about: about,
+      disclaimers: {
+        copyright: copyright,
+        accessability: accessability
+      }
+    }
+    AppData.update(params)
   }
 
   return (
-    <form    
-      onSubmit={handleSubmit(onSubmit)}>
+    <form data-cy='footer-form' onSubmit={handleSubmit(onSubmit)}>
       <Accordion
         expanded={expanded.footer}
         onChange={() => setExpanded({ ...expanded, footer: !expanded.footer })}>
@@ -46,6 +53,7 @@ const FooterForm = ({ about, disclaimers }) => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    data-cy='about-field'
                     variant='outlined'
                     fullWidth
                     label={`About CHWL (max ${aboutMaxLength} char.)*`}
@@ -68,6 +76,7 @@ const FooterForm = ({ about, disclaimers }) => {
                 defaultValue={disclaimers && disclaimers.copyright}
                 render={({ field: { onChange, value } }) => (
                   <TextField
+                    data-cy='copyright-field'
                     variant='outlined'
                     fullWidth
                     label={`Copyright disclaimer (max ${copyrightMaxLength} char.)`}
@@ -85,6 +94,7 @@ const FooterForm = ({ about, disclaimers }) => {
                 defaultValue={disclaimers && disclaimers.accessability}
                 render={({ field: { onChange, value } }) => (
                   <TextField
+                    data-cy='accessability-field'
                     variant='outlined'
                     fullWidth
                     label={`Accessability disclaimer (max ${accessabilityMaxLength} char.)`}
@@ -101,7 +111,11 @@ const FooterForm = ({ about, disclaimers }) => {
               direction='row'
               alignItems='center'
               justify='flex-end'>
-              <Button type='submit' variant='contained' color='primary'>
+              <Button
+                data-cy='footer-submit-button'
+                type='submit'
+                variant='contained'
+                color='primary'>
                 Submit
               </Button>
             </Grid>
