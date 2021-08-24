@@ -6,9 +6,9 @@ import Divider from '@material-ui/core/Divider'
 import MailIcon from '@material-ui/icons/Mail'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import Authentication from '../modules/Authentication'
+import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
-import symbolLogo from '../assets/LogoCHWLSymbolWhite.png'
+import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
 import ArticleIcon from '@material-ui/icons/Subject';
 
 const Sidebar = () => {
