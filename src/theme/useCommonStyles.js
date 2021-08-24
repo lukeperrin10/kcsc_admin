@@ -17,7 +17,6 @@ const useCommonStyles = makeStyles((theme) => ({
   accordionDetails: {
     padding: '0 24px 24px 24px'
   },
-
 }))
 
 export default useCommonStyles

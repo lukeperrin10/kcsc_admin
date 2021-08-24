@@ -65,7 +65,7 @@ const FooterForm = ({ about, disclaimers }) => {
               <Controller
                 name='copyright'
                 control={control}
-                defaultValue={disclaimers.copyright}
+                defaultValue={disclaimers && disclaimers.copyright}
                 render={({ field: { onChange, value } }) => (
                   <TextField
                     variant='outlined'
@@ -82,12 +82,12 @@ const FooterForm = ({ about, disclaimers }) => {
               <Controller
                 name='accessability'
                 control={control}
-                defaultValue={disclaimers.accessability}
+                defaultValue={disclaimers && disclaimers.accessability}
                 render={({ field: { onChange, value } }) => (
                   <TextField
                     variant='outlined'
                     fullWidth
-                    label={`About CHWL (max ${accessabilityMaxLength} char.)`}
+                    label={`Accessability disclaimer (max ${accessabilityMaxLength} char.)`}
                     inputProps={{ maxLength: accessabilityMaxLength }}
                     value={value}
                     onChange={onChange}

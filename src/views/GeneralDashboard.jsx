@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
 // import app_data from '../data/add_data.json'
@@ -7,11 +8,11 @@ import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
   const commonClasses = useCommonStyles()
-  const { about, disclaimers } = useSelector((state) => state.app_data)
+  const app_data = useSelector((state) => state.app_data)
   // Use that on localhost
   // const { about, disclaimers } = app_data.app_data
 
-  useEffect(() => {  
+  useEffect(() => {
     AppData.index()
   }, [])
 
@@ -26,7 +27,17 @@ const GeneralDashboard = () => {
         </Typography>
       </Box>
       <Divider />
-      <FooterForm about={about} disclaimers={disclaimers} />
+      {app_data ? (
+        <FooterForm
+          about={app_data && app_data.about}
+          disclaimers={app_data && app_data.disclaimers}
+        />
+      ) : (
+        <Typography variant='h6' style={{padding: '1rem 2rem'}}>
+          There is a problem loading a form. Please check your connection or try again
+          later. If the problem persist contact the development team.
+        </Typography>
+      )}
     </Box>
   )
 }
