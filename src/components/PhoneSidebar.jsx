@@ -3,7 +3,7 @@ import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import MailIcon from '@material-ui/icons/Mail'
+import SettingsIcon from '@material-ui/icons/Settings';
 import SidebarIcon from './SidebarIcon'
 import MenuIcon from '@material-ui/icons/Menu'
 import logoWhite from '../assets/LogoCHWLSymbolWhite.png'
@@ -46,8 +46,8 @@ const PhoneSidebar = () => {
         onClick={() => setOpen(false)}>
         <img src={logoWhite} alt='logo' />
         <List>
-          <SidebarIcon text='Dashboard' to='/'>
-            <MailIcon />
+          <SidebarIcon text='General' to='/'>
+            <SettingsIcon />
           </SidebarIcon>
           <SidebarIcon
             dataCy='articles-dashboard'
