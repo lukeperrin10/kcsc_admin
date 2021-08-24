@@ -1,36 +1,22 @@
 import sizes from '../support/index'
+import TestHelpers from '../support/testhelper'
+
 
 sizes.forEach((size) => {
-describe('admin can publish or unpublish article', () => {
-  beforeEach(() => {
-    cy.intercept('GET', '**/api/articles', {
-      fixture: 'all_articles.json',
-    })
-    cy.visit('/')
-    cy.window().its('store').invoke('dispatch', {
-      type: 'AUTHENTICATE',
-      payload: 'Johhny Cage',
-    })
-    switch (size) {
-      case 'macbook-15':
-        cy.get('[data-cy=articles-dashboard]').click()
-        break
-
-      default:
-        cy.get('[data-cy=hamburger-menu]').click()
-        cy.get('[data-cy=articles-dashboard]').click()
-        break
-    }
-  })
-
-    context(`${size}`, () => {
-      beforeEach(() => {
-        if (Cypress._.isArray(size)) {
-          cy.viewport(size[0], size[1])
-        } else {
-          cy.viewport(size)
-        }
+  
+  describe(`admin can publish or unpublish article on ${size}`, () => {
+    const selection = "articles-dashboard"
+    beforeEach(() => {
+      cy.intercept('GET', '**/api/articles', {
+        fixture: 'all_articles.json',
       })
+      cy.visit('/')
+      TestHelpers.sizeParameters(size)
+      TestHelpers.authenticate()
+      TestHelpers.sizeCase(size, selection)
+    })
+
+    
       context('successfully, by clicking `publish` switch', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/api/articles/**', {
@@ -69,4 +55,3 @@ describe('admin can publish or unpublish article', () => {
       })
     })
   })
-})

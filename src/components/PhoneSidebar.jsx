@@ -55,7 +55,7 @@ const PhoneSidebar = () => {
             to='/articles'>
             <ArticleIcon />
           </SidebarIcon>
-          <SidebarIcon text='Analytics' to='/analytics'>
+          <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
             <AssessmentIcon />
           </SidebarIcon>
         </List>
