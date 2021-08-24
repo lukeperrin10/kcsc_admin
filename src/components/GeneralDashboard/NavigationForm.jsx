@@ -44,18 +44,19 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
     // AppData.update(attributes)
   }
 
-  const mainTabsList = (
-    <Grid item>
+  const mainTabsList = mainTabs.map((mainTab, index)=>(
+    <Grid item container direction='row' alignItems='center'>
+      <Typography variant='h7' style={{marginRight: '1rem'}}>{index}.</Typography>
       <Controller
-        name={`main-tab-${1}-input`}
+        name={`main-tab-${index}-input`}
         control={control}
-        defaultValue={''}
+        defaultValue={mainTab.label}
         rules={{ required: 'This field cannot be empty' }}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <TextField
-            data-cy={`main-tab-${1}-input`}
+            data-cy={`main-tab-${index}-input`}
             variant='outlined'
-            label={`Primary Tab Label*`}
+            label={`Label*`}
             inputProps={{ maxLength: labelMaxLength }}
             error={!!error}
             helperText={error ? error.message : null}
@@ -67,10 +68,10 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
       <Controller
         name={`main-tab-${1}-switch`}
         control={control}
-        defaultValue={false}
+        defaultValue={mainTab.visible}
         render={({ field: { onChange, value } }) => (
           <FormControlLabel
-            control={<StyledSwitch value={value} onChange={onChange} articleId={1} />}
+            control={<StyledSwitch checked={value} onChange={onChange} articleId={1} />}
             label={
               <Typography className={commonClasses.switchLabel}>
                 {value ? 'Visible' : 'Hidden'}
@@ -81,7 +82,7 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
         )}
       />
     </Grid>
-  )
+  ))
 
   return (
     <form data-cy='footer-form' onSubmit={handleSubmit(onSubmit)}>

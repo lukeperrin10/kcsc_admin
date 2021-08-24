@@ -4,11 +4,13 @@
       "main_tabs": [
         {
           "label": "home",
-          "link": "/home"
+          "link": "/home",
+          "visible": true
         },
         {
           "label": "services",
           "link": "/services",
+          "visible": true,
           "secondary_tabs": [
             {
               "label": "Find a service",
@@ -40,6 +42,7 @@
         {
           "label": "about",
           "link": "/about/organization",
+          "visible": true,
           "secondary_tabs": [
             {
               "label": "organization",
@@ -54,6 +57,7 @@
         {
           "label": "news & info",
           "link": "/info/news",
+          "visible": true,
           "secondary_tabs": [
             {
               "label": "news",
@@ -67,7 +71,8 @@
         },
         {
           "label": "contact",
-          "link": "/contact"
+          "link": "/contact",
+          "visible": true
         }
       ],
       "secondary_tabs": [
