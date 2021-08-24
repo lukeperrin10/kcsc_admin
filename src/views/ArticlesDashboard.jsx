@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -12,14 +12,9 @@ import {
   // Switch,
   FormControlLabel,
   Typography,
-  Button,
-  Modal,
-  TextField,
-  Box,
-  CardMedia,
 } from '@material-ui/core'
 
-import Articles, { imageEncoder } from '../modules/Articles'
+import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import articleDashboard from '../theme/articleDashboardTheme'
 
@@ -43,47 +38,16 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const newArticle = {
-  title: '',
-  teaser: '',
-  body: '',
-  author: '',
-}
-
 const ArticlesDashboard = () => {
   const classes = articleDashboard()
   const articles = useSelector((state) => state.articles)
-  const [open, setOpen] = useState(false)
-  const [article, setArticle] = useState(newArticle)
-  const [thumbnail, setThumbnail] = useState()
+
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
   useEffect(() => {
     Articles.index()
   }, [])
-
-  const handleOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
-  const handleSubmit = async () => {
-    Articles.create(article)
-  }
-
-  const handleImage = async (event) => {
-    let file = event.target.files[0]
-    setThumbnail(file)
-    let encodedFile = await imageEncoder(file)
-    setArticle({
-      ...article,
-      image: encodedFile,
-    })
-  }
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
@@ -130,86 +94,6 @@ const ArticlesDashboard = () => {
     </Typography>
   )
 
-  const body = (
-    <form
-      noValidate
-      autoComplete='off'
-      className={classes.formGroup}
-      data-cy='new-article-modal'
-      onSubmit={handleSubmit}>
-      <TextField
-        className={classes.form}
-        data-cy='title-input'
-        required
-        id='standard-required'
-        label='Title'
-      />
-      <TextField
-        className={classes.form}
-        data-cy='teaser-input'
-        required
-        id='standard-required'
-        label='Teaser'
-      />
-      <TextField
-        className={classes.form}
-        data-cy='body-input'
-        required
-        multiline
-        id='standard-required'
-        label='Body'
-      />
-      <TextField
-        className={classes.form}
-        data-cy='author-input'
-        required
-        id='standard-required'
-        label='Author'
-      />
-      <Box>
-        <input
-          accept='image/*'
-          className={classes.input}
-          id='contained-button-file'
-          multiple
-          type='file'
-          onChange={(event) => handleImage(event)}
-        />
-        <label htmlFor='contained-button-file'>
-          <Button variant='contained' color='#fff' component='span'>
-            Upload Image
-          </Button>
-        </label>
-        <Box>
-          {article.image ? (
-            <CardMedia
-              className={classes.thumbnailContainer}
-              data-cy='thumbnail'
-              component='img'
-              image={thumbnail ? URL.createObjectURL(thumbnail) : article.image}
-              alt='thumbnail'
-            />
-          ) : (
-            <Box>
-              <p style={{ fontSize: 20, color: 'white' }}>Thumbnail</p>
-            </Box>
-          )}
-        </Box>
-      </Box>
-      <Box className={classes.btnBox}>
-        <Button className={classes.submit} data-cy='submit-btn' type='submit'>
-          Submit
-        </Button>
-        <Button
-          className={classes.cancel}
-          data-cy='cancel-btn'
-          onClick={handleClose}>
-          Cancel
-        </Button>
-      </Box>
-    </form>
-  )
-
   return (
     <>
       <TableContainer
@@ -217,21 +101,6 @@ const ArticlesDashboard = () => {
         component={Paper}
         className={classes.tableContainer}>
         <Table>
-          <Button
-            data-cy='new-article-btn'
-            className={classes.newArticleBtn}
-            onClick={handleOpen}>
-            Create new article
-          </Button>
-          <Modal
-            disableBackdropClick={true} //Deprecated look in to
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby='create new article'
-            aria-describedby='opens a modal to create a new article'>
-            {body}
-          </Modal>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
         </Table>

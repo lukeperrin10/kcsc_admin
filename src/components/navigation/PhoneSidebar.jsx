@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
+import {
+  Grid,
+  makeStyles,
+  Drawer,
+  List,
+  Divider,
+  IconButton,
+} from '@material-ui/core'
 import MailIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
-import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import { Grid, makeStyles } from '@material-ui/core'
+import AssessmentIcon from '@material-ui/icons/Assessment'
 import ArticleIcon from '@material-ui/icons/Subject'
+import CreateIcon from '@material-ui/icons/Create'
 
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
@@ -55,6 +59,12 @@ const PhoneSidebar = () => {
             text='Articles'
             to='/articles'>
             <ArticleIcon />
+          </SidebarIcon>
+          <SidebarIcon
+            dataCy='article-creation'
+            text='Create Article'
+            to='/articles/create'>
+            <CreateIcon />
           </SidebarIcon>
           <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
             <AssessmentIcon />
