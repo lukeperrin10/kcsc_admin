@@ -2,16 +2,17 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
-import app_data from '../data/app_data.json'
+import appData from '../data/app_data.json'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import NavigationForm from '../components/GeneralDashboard/NavigationForm'
 import AppData from '../modules/AppData'
+
 
 const GeneralDashboard = () => {
   const commonClasses = useCommonStyles()
   //const app_data = useSelector((state) => state.app_data)
   // Use that on localhost
-  const { about, disclaimers } = app_data.app_data
+  const app_data = appData.app_data
 
   useEffect(() => {
     AppData.index()
@@ -30,11 +31,14 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
+          <NavigationForm
+            mainTabs={app_data && app_data.navigation.main_tabs}
+            secondaryTabs={app_data && app_data.navigation.secondary_tabs}
+          />
           <FooterForm
             about={app_data && app_data.about}
             disclaimers={app_data && app_data.disclaimers}
           />
-          <NavigationForm />
         </>
       ) : (
         <Typography
