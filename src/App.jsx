@@ -6,14 +6,14 @@ import AdminDashboard from './views/AdminDashboard'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import PhoneSidebar from './components/navigation/PhoneSidebar'
 import LoginPage from './components/LoginPage'
-import SuccessSnackbar from './components/popups/SuccessSnackbar'
 //import Authentication from './modules/Authentication'
 import { Route, Switch } from 'react-router-dom'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
 import ArticlesDashboard from './views/ArticlesDashboard'
-import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import store from './state/store/configureStore'
 import ArticleCreation from './views/ArticleCreation'
+import SuccessSnackbar from './components/popups/SuccessSnackbar'
+import ErrorSnackbar from './components/popups/ErrorSnackbar'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -39,7 +39,7 @@ const App = () => {
             <Route exact path='/' component={AdminDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
             <Route exact path='/articles' component={ArticlesDashboard} />
-            <Route exact path='/articles/create' component={ArticleCreation}/>
+            <Route exact path='/articles/create' component={ArticleCreation} />
           </Switch>
         </>
       ) : (

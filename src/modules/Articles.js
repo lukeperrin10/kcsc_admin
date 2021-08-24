@@ -28,7 +28,6 @@ const Articles = {
 
   async create(article) {
     let params = { article: article }
-    debugger
     try {
       let response = await axios.post('/articles/create', params, {
         headers: headers,

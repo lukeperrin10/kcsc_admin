@@ -54,7 +54,7 @@ const rootReducer = (state, action) => {
     case 'SET_SUBMIT':
       return {
         ...state,
-        submitted: action.payload.status,
+        success: true,
         message: action.payload.message,
       }
     default:

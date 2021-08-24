@@ -49,7 +49,6 @@ const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
           type='submit'>
           Submit
         </Button>
-        <Button className={classes.cancel} data-cy='cancel-btn' Cancel></Button>
       </Box>
     </form>
   )
