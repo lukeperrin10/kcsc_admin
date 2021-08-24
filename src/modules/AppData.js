@@ -17,14 +17,14 @@ const AppData = {
       errorHandler(error)
     }
   },
-  async update(params) {
+  async update(attributes) {
     try {
       let response = {}  
-      for (const key in params) {
-        let appDataKey = { [key]: params[key] }  
-        response = await axios.post(
+      for (const key in attributes) {
+        let params = { key: key, value: attributes[key] }  
+        response = await axios.put(
           '/api/app_data',
-          { params: appDataKey },
+          { params: params },
           { headers: headers }
         )        
       }

@@ -22,14 +22,14 @@ const FooterForm = ({ about, disclaimers }) => {
   const accessabilityMaxLength = 80
 
   const onSubmit = ({about, copyright, accessability}) => {
-    let params = {
+    let attributes = {
       about: about,
       disclaimers: {
         copyright: copyright,
         accessability: accessability
       }
     }
-    AppData.update(params)
+    AppData.update(attributes)
   }
 
   return (
