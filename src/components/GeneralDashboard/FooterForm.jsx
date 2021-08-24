@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
 import AppData from '../../modules/AppData'
-import SubmitButton from './SubmitButton'
+import SubmitButton from '../SubmitButton'
 
 const FooterForm = ({ about, disclaimers }) => {
   const [expanded, setExpanded] = useState({ footer: true })
