@@ -1,13 +1,19 @@
 import React from 'react'
 import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
-import app_data from '../data/add_data.json'
+// import app_data from '../data/add_data.json'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
+import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
   const commonClasses = useCommonStyles()
+  const { about, disclaimers } = useSelector((state) => state.app_data)
   // Use that on localhost
-  const { about, disclaimers } = app_data.app_data
+  // const { about, disclaimers } = app_data.app_data
+
+  useEffect(() => {  
+    AppData.index()
+  }, [])
 
   return (
     <Box className={commonClasses.viewContainer}>
