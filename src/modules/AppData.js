@@ -7,23 +7,27 @@ const headers = getHeaders()
 
 const AppData = {
   async index() {
-    try {  
-      const response = await axios.get('/api/app_data', { headers: headers })      
+    try {
+      const response = await axios.get('/api/app_data', { headers: headers })
       store.dispatch({
         type: 'APP_DATA_INDEX',
         payload: response.data.app_data,
-      })      
+      })
     } catch (error) {
       errorHandler(error)
     }
   },
-  async update(params) {
+  async update(attributes) {
     try {
-      const response = await axios.post(
-        '/api/app_data',
-        { params: params },
-        { headers: headers }
-      )
+      let response = {}  
+      for (const key in attributes) {
+        let params = { key: key, value: attributes[key] }  
+        response = await axios.put(
+          '/api/app_data',
+          { params: params },
+          { headers: headers }
+        )        
+      }
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,
@@ -31,7 +35,7 @@ const AppData = {
     } catch (error) {
       errorHandler(error)
     }
-  },  
+  },
 }
 
 export default AppData
