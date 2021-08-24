@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable no-undef */
 const sizes = [
   'iphone-x',
@@ -30,6 +31,27 @@ describe('admin can publish or unpublish article', () => {
         }
       })
 
+=======
+import sizes from '../support/index'
+import TestHelpers from '../support/testhelper'
+
+
+sizes.forEach((size) => {
+  
+  describe(`admin can publish or unpublish article on ${size}`, () => {
+    const selection = "articles-dashboard"
+    beforeEach(() => {
+      cy.intercept('GET', '**/api/articles', {
+        fixture: 'all_articles.json',
+      })
+      cy.visit('/')
+      TestHelpers.sizeParameters(size)
+      TestHelpers.authenticate()
+      TestHelpers.sizeCase(size, selection)
+    })
+
+    
+>>>>>>> main
       context('successfully, by clicking `publish` switch', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/api/articles/**', {
@@ -68,4 +90,3 @@ describe('admin can publish or unpublish article', () => {
       })
     })
   })
-})
