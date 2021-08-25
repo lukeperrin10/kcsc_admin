@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Box, Typography } from '@material-ui/core'
 import Articles from '../modules/Articles'
 import ArticleCreationForm from '../components/ArticleCreationForm'
 import SuccessSnackbar from '../components/popups/SuccessSnackbar'
+import useCommonStyles from '../theme/useCommonStyles'
 
 const newArticle = {
   title: '',
@@ -10,6 +12,7 @@ const newArticle = {
 }
 
 const ArticleCreation = () => {
+  const commonClasses = useCommonStyles()
   const [redirect, setRedirect] = useState(false)
   const [article, setArticle] = useState(newArticle)
 
@@ -27,14 +30,22 @@ const ArticleCreation = () => {
   }
 
   return (
-    <>
+    <Box className={commonClasses.viewContainer}>
       <SuccessSnackbar />
+      <Box className={commonClasses.dashboardHeader}>
+        <Typography
+          data-cy='dashboard-header'
+          variant='h5'
+          style={{ fontWeight: 600 }}>
+          Create a new article
+        </Typography>
+      </Box>
       {redirect && <Redirect to='/articles' />}
       <ArticleCreationForm
         handleSubmit={handleSubmit}
         handleChange={(event) => handleChange(event)}
       />
-    </>
+    </Box>
   )
 }
 
