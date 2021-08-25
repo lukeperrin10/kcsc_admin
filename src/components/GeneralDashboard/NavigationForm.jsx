@@ -19,11 +19,12 @@ import TabFormSection from './TabFormSection'
 
 const NavigationForm = ({ mainTabs, secondaryTabs }) => {
   const [expanded, setExpanded] = useState({ footer: true })
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, watch } = useForm()
   const commonClasses = useCommonStyles()
   const labelMaxLength = 50
 
-  const onSubmit = ({ navigation }) => {
+  const onSubmit = (tab1Input) => {
+    console.log(tab1Input)
     // let attributes = {
     //   navigation: navigation,
     // }
@@ -36,9 +37,11 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
       secondaryTabList = mainTab.secondary_tabs.map(
         (secondaryTab, indexSec) => (
           <TabFormSection
-            index={`${index+1}.${indexSec+1}`}
+            key={`secondary-${indexSec}`}
+            control={control}
+            index={`${index + 1}.${indexSec + 1}`}
             label={secondaryTab.label}
-            visible={secondaryTab.visible}
+            visible={mainTab.visible && secondaryTab.visible}
             secondary={true}
           />
         )
@@ -46,9 +49,16 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
     }
 
     return (
-      <Grid item container direction='column' spacing={3} style={{width: '50%'}}>
+      <Grid
+        item
+        container
+        direction='column'
+        spacing={3}
+        style={{ maxWidth: '600px' }}>
         <TabFormSection
-          index={index+1}
+          key={`main-${index}`}
+          control={control}
+          index={index + 1}
           label={mainTab.label}
           visible={mainTab.visible}
         />

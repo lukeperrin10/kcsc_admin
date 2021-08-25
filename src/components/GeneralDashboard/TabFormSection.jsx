@@ -26,13 +26,13 @@ const StyledSwitch = withStyles({
 
 const useStyles = makeStyles(() => ({
   tabLabelInput: {flex: '1', marginLeft: '1rem'},
-  number: { width: '2rem', textAlign: 'end' }
+  number: { width: '1rem', textAlign: 'end' }
 }))
 
-const TabFormSection = ({ index, label, visible, secondary = false }) => {
+const TabFormSection = ({control, index, label, visible, secondary = false }) => {
   const commonClasses = useCommonStyles()
   const classes = useStyles()
-  const { control, handleSubmit } = useForm()
+  //const { control } = useForm()
   const labelMaxLength = 50
 
   return (
@@ -43,17 +43,17 @@ const TabFormSection = ({ index, label, visible, secondary = false }) => {
       alignItems='center'
       justifyContent='space-between'
       style={secondary ? { paddingLeft: '3rem' } : undefined}>
-      <Typography variant='h7' className={classes.number}>
+      <Typography variant='body1' className={classes.number}>
         {index}
       </Typography>
       <Controller
-        name={`main-tab-${index}-input`}
+        name={`tab${index}Input`}
         control={control}
         defaultValue={label}
         rules={{ required: 'This field cannot be empty' }}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <TextField
-            data-cy={`main-tab-${index}-input`}
+            data-cy={`tab-${index}-input`}
             variant='outlined'
             label={`Label*`}
             className={classes.tabLabelInput}
@@ -66,13 +66,13 @@ const TabFormSection = ({ index, label, visible, secondary = false }) => {
         )}
       />
       <Controller
-        name={`main-tab-${1}-switch`}
+        name={`tab${index}Switch`}
         control={control}
         defaultValue={visible}
         render={({ field: { onChange, value } }) => (
           <FormControlLabel
             control={
-              <StyledSwitch checked={value} onChange={onChange} articleId={1} />
+              <StyledSwitch checked={value} onChange={onChange} />
             }
             label={
               <Typography className={commonClasses.switchLabel}>
