@@ -1,22 +1,21 @@
+/* eslint-disable no-undef */
 import sizes from '../support/index'
 import TestHelpers from '../support/testhelper'
 
-
-sizes.forEach((size) => {
-  
-  describe(`admin can publish or unpublish article on ${size}`, () => {
-    const selection = "articles-dashboard"
-    beforeEach(() => {
-      cy.intercept('GET', '**/api/articles', {
-        fixture: 'all_articles.json',
+describe('Admin Can Publish Or Unpublish Article', () => {
+  sizes.forEach((size) => {
+    describe(`admin can publish or unpublish article on ${size}`, () => {
+      const selection = 'articles-dashboard'
+      beforeEach(() => {
+        cy.intercept('GET', '**/api/articles', {
+          fixture: 'all_articles.json',
+        })
+        cy.visit('/')
+        TestHelpers.sizeParameters(size)
+        TestHelpers.authenticate()
+        TestHelpers.sizeCase(size, selection)
       })
-      cy.visit('/')
-      TestHelpers.sizeParameters(size)
-      TestHelpers.authenticate()
-      TestHelpers.sizeCase(size, selection)
-    })
 
-    
       context('successfully, by clicking `publish` switch', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/api/articles/**', {
@@ -55,3 +54,4 @@ sizes.forEach((size) => {
       })
     })
   })
+})

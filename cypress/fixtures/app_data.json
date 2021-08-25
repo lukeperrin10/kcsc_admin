@@ -1,0 +1,189 @@
+{
+  "app_data": {
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Maggie Black",
+        "text": "\"In my personal life, I am a daughter, a mother, a sister, a wife, a friend, a counselor, a working woman, etc. Even though and because I know I am all these things, I often forget who I am. I know I will use mindfulness as part of a lifestyle change to focus on my self-care and reconnecting with myself. I also learned some things I want to practice with my 3 young children to teach them now self-care lessons that will last their lifetime. Life is too short and precious to miss any of it.\"",
+        "photo": "https://freerangestock.com/sample/114840/a-caucasian-woman-posing-with-a-smile.jpg",
+        "alt": "Maggie Black smiling to the camera",
+        "article_id": 2
+      },
+      {
+        "id": 2,
+        "name": "Richard Erricson",
+        "text": "\"I work with patients with life threatening illnesses who often feel so uncertain, anxious and depressed about their future. I so many times feel powerless for them. I feel that mindfulness is something they all can utilize anywhere, anytime. It is good to have a tool they can take home with them, to empower them to also help themselves.\"",
+        "photo": "https://t3.ftcdn.net/jpg/01/15/46/70/360_F_115467073_9hWxkk2M8b4obn3Aq0JW3YDxtYt5nXqn.jpg",
+        "alt": "Richard Erricson smiling to the camera",
+        "article_id": 3
+      }
+    ],
+    "navigation": {
+      "main_tabs": [
+        {
+          "label": "home",
+          "link": "/home"
+        },
+        {
+          "label": "services",
+          "link": "/services",
+          "secondary_tabs": [
+            {
+              "label": "Find a service",
+              "link": "/services",
+              "ref": "find-a-self-care-service"
+            },
+            {
+              "label": "Long term Self Care",
+              "link": "/services",
+              "ref": "long-term-self-care"
+            },
+            {
+              "label": "Mental health",
+              "link": "/services",
+              "ref": "mental-health"
+            },
+            {
+              "label": "n.kensington self-care",
+              "link": "/services",
+              "ref": "north-kensington-self-care"
+            },
+            {
+              "label": "find a link workers",
+              "link": "/services",
+              "ref": "find-a-link-workers"
+            }
+          ]
+        },
+        {
+          "label": "about",
+          "link": "/about/organization",
+          "secondary_tabs": [
+            {
+              "label": "organization",
+              "link": "/about/organization"
+            },
+            {
+              "label": "self care",
+              "link": "/about/self_care"
+            }
+          ]
+        },
+        {
+          "label": "news & info",
+          "link": "/info/news",
+          "secondary_tabs": [
+            {
+              "label": "news",
+              "link": "/info/news"
+            },
+            {
+              "label": "information",
+              "link": "/info/information"
+            }
+          ]
+        },
+        {
+          "label": "contact",
+          "link": "/contact"
+        }
+      ],
+      "secondary_tabs": [
+        {
+          "parent": "about",
+          "label": "organization",
+          "link": "/about/organization"
+        },
+        {
+          "parent": "about",
+          "label": "self care",
+          "link": "/about/self_care"
+        },
+        {
+          "parent": "news & info",
+          "label": "news",
+          "link": "/info/news"
+        },
+        {
+          "parent": "news & info",
+          "label": "information",
+          "link": "/info/information"
+        },
+        {
+          "parent": "services",
+          "label": "Find a service",
+          "link": "/services",
+          "ref": "find-a-self-care-service"
+        },
+        {
+          "parent": "services",
+          "label": "Long term Self Care",
+          "link": "/services",
+          "ref": "long-term-self-care"
+        },
+        {
+          "parent": "services",
+          "label": "Mental health",
+          "link": "/services",
+          "ref": "mental-health"
+        },
+        {
+          "parent": "services",
+          "label": "n.kensington self-care",
+          "link": "/services",
+          "ref": "north-kensington-self-care"
+        },
+        {
+          "parent": "services",
+          "label": "find a link workers",
+          "link": "/services",
+          "ref": "find-a-link-workers"
+        }
+      ]
+    },
+    "contact": {
+      "email": "info@communityhealthwestlondon.org.uk",
+      "phone": "0207-243 9806",
+      "form": [
+        {
+          "placeholder": "Purpose of inquiry",
+          "options": [
+            "I have a question",
+            "I want to donate",
+            "I want to be a partner"
+          ],
+          "type": "dropdown",
+          "required": true,
+          "dataKey": "purpose"
+        },
+        {
+          "placeholder": "Enter your name",
+          "type": "text",
+          "required": true,
+          "multiline": false,
+          "dataKey": "name"
+        },
+        {
+          "placeholder": "Enter your email",
+          "type": "email",
+          "required": true,
+          "multiline": false,
+          "dataKey": "email"
+        },
+        {
+          "placeholder": "Enter your message...",
+          "type": "text",
+          "required": false,
+          "multiline": true,
+          "rows": 4,
+          "dataKey": "message"
+        }
+      ]
+    },
+    "about": "Community Health West London is a Community Interest Company made up of six local charities. We are working together with the wider community to improve the health and wellbeing of our residents.",
+    "disclaimers": {
+      "copyright": "2021 All Rights Reserved by Community Health West London.",
+      "accessability": "This site is built according to Web Content Accessibility Guidelines"
+    }
+  }
+}
