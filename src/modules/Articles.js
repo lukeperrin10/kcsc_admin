@@ -34,8 +34,8 @@ const Articles = {
       })
       Articles.index()
       store.dispatch({
-        type: 'SET_SUBMIT',
-        payload: { status: true, message: response.data.message },
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
       })
     } catch (error) {
       errorHandler(error)

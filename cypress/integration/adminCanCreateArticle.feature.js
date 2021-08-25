@@ -30,7 +30,6 @@ describe('Admin is able to create an article ', () => {
             'contain',
             'Your article has successfully been created'
           )
-          cy.wait(1000)
         })
       })
     })

@@ -6,15 +6,13 @@ import ArticleCreationForm from '../components/ArticleCreationForm'
 import SuccessSnackbar from '../components/popups/SuccessSnackbar'
 import useCommonStyles from '../theme/useCommonStyles'
 
-const newArticle = {
-  title: '',
-  body: '',
-}
-
 const ArticleCreation = () => {
   const commonClasses = useCommonStyles()
   const [redirect, setRedirect] = useState(false)
-  const [article, setArticle] = useState(newArticle)
+  const [article, setArticle] = useState({
+    title: '',
+    body: '',
+  })
 
   const handleChange = (event) => {
     setArticle({

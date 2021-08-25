@@ -51,12 +51,6 @@ const rootReducer = (state, action) => {
         ...state,
         articles: action.payload,
       }
-    case 'SET_SUBMIT':
-      return {
-        ...state,
-        success: true,
-        message: action.payload.message,
-      }
     case 'APP_DATA_INDEX':
       return {
         ...state,

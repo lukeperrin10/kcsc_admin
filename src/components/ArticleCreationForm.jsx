@@ -50,7 +50,6 @@ const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
       <Box className={classes.btnBox}>
         <Button
           data-cy='article-submit'
-          className={classes.submit}
           variant='contained'
           type='submit'
           color='primary'>
