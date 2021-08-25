@@ -3,6 +3,7 @@ import { getHeaders } from './Authentication'
 import errorHandler from './ErrorHandler'
 import axios from 'axios'
 import all_articles from '../data/fixtures/all_articles.json'
+import single_article from '../data/fixtures/single_article.json'
 
 const headers = getHeaders()
 
@@ -42,10 +43,25 @@ const Articles = {
     }
   },
 
+  async show(id) {
+    try {
+      if (window.Cypress) {
+        const response = await axios.get(`/articles/${id}`, {
+          headers: headers,
+        })
+        return response.data
+      } else {
+        return single_article
+      }
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
-        `/api/articles/${id}`,
+        `/articles/${id}`,
         { publish: publish },
         { headers: headers }
       )

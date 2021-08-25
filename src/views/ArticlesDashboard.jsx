@@ -15,6 +15,7 @@ import {
 
 import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
+import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
 
@@ -65,27 +66,31 @@ const ArticlesDashboard = () => {
     articles.map((article) => {
       const { id, title, author, date, publish } = article
       return (
-        <StyledTableRow data-cy='article' key={`article-${id}`}>
-          <StyledTableCell data-cy='status' align='center'>
-            <FormControlLabel
-              control={<PublishedSwitch publish={publish} articleId={id} />}
-              label={
-                <Typography className={classes.switchLabel}>
-                  {publish ? 'Published' : 'Hidden'}
-                </Typography>
-              }
-              labelPlacement='bottom'
-            />
-          </StyledTableCell>
-          <StyledTableCell data-cy='title' className={classes.titleCell}>
-            {title}
-          </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
-          <StyledTableCell data-cy='date' className={classes.dateCell}>
-            {date}
-          </StyledTableCell>
-          <StyledTableCell data-cy='action'>Placeholder</StyledTableCell>
-        </StyledTableRow>
+        <>
+          <StyledTableRow data-cy='article' key={`article-${id}`}>
+            <StyledTableCell data-cy='status' align='center'>
+              <FormControlLabel
+                control={<PublishedSwitch publish={publish} articleId={id} />}
+                label={
+                  <Typography className={classes.switchLabel}>
+                    {publish ? 'Published' : 'Hidden'}
+                  </Typography>
+                }
+                labelPlacement='bottom'
+              />
+            </StyledTableCell>
+            <StyledTableCell data-cy='title' className={classes.titleCell}>
+              {title}
+            </StyledTableCell>
+            <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+            <StyledTableCell data-cy='date' className={classes.dateCell}>
+              {date}
+            </StyledTableCell>
+            <StyledTableCell data-cy='action'>
+              <ArticlePreviewModal article={article} />
+            </StyledTableCell>
+          </StyledTableRow>
+        </>
       )
     })
 
