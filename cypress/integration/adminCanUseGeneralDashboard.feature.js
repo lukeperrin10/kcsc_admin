@@ -142,16 +142,21 @@ describe('Admin Can Use General Dashboard', () => {
         })
       })
 
-      describe('and edit Testimonials info', () => {
+      describe.only('and edit Testimonials info', () => {
         it('is expected to show testimonial accordion with pre-filled form in details', () => {
           cy.get('[data-cy=testimonial-form]').should('have.length', 2)
           cy.get('[data-cy=testimonial-form]')
             .first()
             .within(() => {
-              cy.get('[data-cy=name-input]')
-                .first()
+              cy.get('[data-cy=testimonial-name]')
                 .find('input')
                 .should('have.value', 'Maggie Black')
+                cy.get('[data-cy=testimonial-text]')
+                .find('textarea')
+                .should('contain.text', '"In my personal life, I am a daughter, a mother, ')
+                cy.get('[data-cy=testimonial-alt]')
+                .find('input')
+                .should('have.value', 'Maggie Black smiling to the camera')
             })
         })
 

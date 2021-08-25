@@ -24,7 +24,7 @@ const TestimonialsForm = ({ testimonials }) => {
   }
 
   const testimonialsFormList = testimonials.map((testimonial, index) => (
-    <Grid item container direction='column' spacing={3} xs={6}>
+    <Grid key={`testimonial-form-${index}`} data-cy='testimonial-form' item container direction='column' spacing={3} sm={12} md={6}>
       <Grid item>
         <Controller
           name={`testimonials[${index}].name`}
@@ -113,7 +113,7 @@ const TestimonialsForm = ({ testimonials }) => {
             <Grid item container direction='row' spacing={3}>
               {testimonialsFormList}
             </Grid>
-            <SubmitButton />
+            <SubmitButton dataCy='testimonial-submit-button'/>
           </Grid>
         </AccordionDetails>
       </Accordion>
