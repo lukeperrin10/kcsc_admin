@@ -54,7 +54,7 @@ const AppData = {
           }
         })
       }
-      
+
       return {
         label: tab.label,
         link:
@@ -65,7 +65,22 @@ const AppData = {
         secondary_tabs: !tab.secondary_tabs ? null : secondary_tabs,
       }
     })
-    return main_tabs
+
+    const secondary_tabs = []
+    main_tabs.map((tab) => {
+      if (tab.secondary_tabs) {
+        tab.secondary_tabs.map((secTab) => {
+          secondary_tabs.push({
+            parent: tab.label,
+            label: secTab.label,
+            link: secTab.link,
+          })
+        })
+      }
+    })
+    return {
+      navigation: { main_tabs: main_tabs, secondary_tabs: secondary_tabs },
+    }
   },
 }
 

@@ -20,8 +20,6 @@ const NavigationForm = ({ mainTabs }) => {
 
   const onSubmit = ({ navigation }) => {    
     const result = AppData.toNavigationObject(navigation)
-    console.log(result)
-    debugger
     // let attributes = {
     //   navigation: navigation,
     // }
