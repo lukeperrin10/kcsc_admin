@@ -19,11 +19,8 @@ const NavigationForm = ({ mainTabs }) => {
   const commonClasses = useCommonStyles()
 
   const onSubmit = ({ navigation }) => {    
-    const result = AppData.toNavigationObject(navigation)
-    // let attributes = {
-    //   navigation: navigation,
-    // }
-    // AppData.update(attributes)
+    const attributes = AppData.toNavigationObject(navigation)
+    AppData.update(attributes)
   }
 
   const mainTabsList = mainTabs.map((mainTab, index) => {

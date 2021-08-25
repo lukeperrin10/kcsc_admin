@@ -67,9 +67,9 @@ const AppData = {
     })
 
     const secondary_tabs = []
-    main_tabs.map((tab) => {
+    main_tabs.forEach((tab) => {
       if (tab.secondary_tabs) {
-        tab.secondary_tabs.map((secTab) => {
+        tab.secondary_tabs.forEach((secTab) => {
           secondary_tabs.push({
             parent: tab.label,
             label: secTab.label,
