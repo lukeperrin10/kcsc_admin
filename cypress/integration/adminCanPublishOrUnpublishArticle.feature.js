@@ -10,6 +10,12 @@ describe('Admin Can Publish Or Unpublish Article', () => {
         cy.intercept('GET', '**/api/articles', {
           fixture: 'all_articles.json',
         })
+        cy.intercept('POST', '**/api/articles/**', {
+          statusCode: 200,
+          body: {
+            message: 'Article has been unpublished',
+          },
+        })
         cy.visit('/')
         TestHelpers.sizeParameters(size)
         TestHelpers.authenticate()
@@ -17,22 +23,13 @@ describe('Admin Can Publish Or Unpublish Article', () => {
       })
 
       context('successfully, by clicking `publish` switch', () => {
-        beforeEach(() => {
-          cy.intercept('POST', '**/api/articles/**', {
-            statusCode: 200,
-            body: {
-              message: 'Article has been unpublished',
-            },
-          })
+        it('is expected to show success message', () => {
+          cy.get('[data-cy=publish-1]').click()
+          cy.get('[data-cy=snack-content]').should(
+            'contain',
+            'Article has been unpublished'
+          )
         })
-      })
-
-      it('is expected to show success message', () => {
-        cy.get('[data-cy=publish-1]').click()
-        cy.get('[data-cy=snack-content]').should(
-          'contain',
-          'Article has been unpublished'
-        )
       })
     })
 
