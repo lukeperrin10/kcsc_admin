@@ -40,10 +40,12 @@ const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
         acceptedFiles={['image/*']}
         dropzoneText='Drag and drop or click here to add images'
         filesLimit={1}
+        showPreviewsInDropzone={true}
       />
 
       <Box className={classes.btnBox}>
         <Button
+          variant='outlined'
           className={classes.submit}
           data-cy='article-submit'
           type='submit'>

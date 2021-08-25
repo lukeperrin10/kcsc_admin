@@ -38,13 +38,3 @@ const ArticleCreation = () => {
 }
 
 export default ArticleCreation
-
-// const handleImage = async (event) => {
-//   let file = event.target.files[0]
-//   setThumbnail(file)
-//   let encodedFile = await imageEncoder(file)
-//   setArticle({
-//     ...article,
-//     image: encodedFile,
-//   })
-// }

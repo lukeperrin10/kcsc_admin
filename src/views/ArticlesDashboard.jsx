@@ -9,7 +9,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  // Switch,
   FormControlLabel,
   Typography,
 } from '@material-ui/core'
