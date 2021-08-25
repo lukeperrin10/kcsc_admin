@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "title": "Really long article title that should be broken up or it will look bad Really long article title that should be broken up or it will look bad",
+  "author": "Sonya Blade",
+  "publish": true,
+  "teaser": "Several organizations and researchers take a health-oriented approach when defining self-care. The World Health Organization defines self-care as: “the ability of individuals, families, and communities to promote health ...",
+  "date": "2021-05-11",
+  "image": {
+    "url": "https://i1.wp.com/www.thekashmirmonitor.net/wp-content/uploads/2020/02/nurse.jpg",
+    "alt": "Doctor holding tablet"
+  }
+}

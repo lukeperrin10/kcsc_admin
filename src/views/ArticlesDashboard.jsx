@@ -13,8 +13,10 @@ import {
   Switch,
   FormControlLabel,
   Typography,
+  Button,
 } from '@material-ui/core'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
+import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dateCell: { minWidth: '100px' },
   titleCell: { minWidth: '400px' },
-  switchLabel: {fontSize: '0.8rem'}
+  switchLabel: { fontSize: '0.8rem' },
 }))
 
 const StyledTableCell = withStyles((theme) => ({
@@ -50,7 +52,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const ArticlesDashboard = () => {
+const ArticlesDashboard = ({ article }) => {
   const classes = useStyles()
   const articles = useSelector((state) => state.articles)
   // Put fixture here to see articles on localhost
@@ -78,10 +80,12 @@ const ArticlesDashboard = () => {
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={
-                <PublishedSwitch publish={publish} articleId={id} />
+              control={<PublishedSwitch publish={publish} articleId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {publish ? 'Published' : 'Hidden'}
+                </Typography>
               }
-              label={<Typography className={classes.switchLabel}>{publish ? 'Published' : 'Hidden'}</Typography>}
               labelPlacement='bottom'
             />
           </StyledTableCell>
@@ -92,7 +96,9 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='date' className={classes.dateCell}>
             {date}
           </StyledTableCell>
-          <StyledTableCell data-cy='action'>Placeholder</StyledTableCell>
+          <StyledTableCell data-cy='action'>
+            <ArticlePreviewModal id={articles.id} />
+          </StyledTableCell>
         </StyledTableRow>
       )
     })

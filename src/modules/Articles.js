@@ -12,10 +12,19 @@ const Articles = {
       store.dispatch({
         type: 'ARTICLES_INDEX',
         payload: response.data.articles,
-      })      
+      })
     } catch (error) {
       errorHandler(error)
     }
+  },
+
+  async show(id) {
+    try {
+      let response = await axios.get(`/api/articles/${id}`, {
+        headers: headers,
+      })
+      return response.data.article
+    } catch (error) {}
   },
   async update_publish(id, publish) {
     try {
