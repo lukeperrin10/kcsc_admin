@@ -10,6 +10,13 @@ describe('Admin Can Use General Dashboard', () => {
         cy.intercept('GET', '**/api/app_data', {
           fixture: 'app_data.json',
         })
+        cy.intercept('PUT', '**/api/app_data**', {
+          statusCode: 200,
+          body: {
+            message: 'Info has been updated',
+          },
+        })
+
         cy.visit('/')
         TestHelpers.authenticate()
       })
@@ -56,7 +63,7 @@ describe('Admin Can Use General Dashboard', () => {
               },
             })
           })
-
+          
           it('is expected to show success message on submit', () => {
             cy.get('[data-cy=footer-submit-button]').click()
             cy.get('[data-cy=snack-content]').should(
@@ -75,7 +82,6 @@ describe('Admin Can Use General Dashboard', () => {
               },
             })
           })
-
           it('is expected to show success message on submit', () => {
             cy.get('[data-cy=footer-submit-button]').click()
             cy.get('[data-cy=snack-content]').should(
