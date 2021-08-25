@@ -49,7 +49,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('successfully', () => {
           beforeEach(() => {
-            cy.intercept('POST', '**/api/app_data**', {
+            cy.intercept('PUT', '**/api/app_data**', {
               statusCode: 200,
               body: {
                 message: 'Info has been updated',
@@ -68,7 +68,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('unsuccessfully', () => {
           beforeEach(() => {
-            cy.intercept('POST', '**/api/app_data**', {
+            cy.intercept('PUT', '**/api/app_data**', {
               statusCode: 400,
               body: {
                 error_message: 'Something went wrong, try again later',
@@ -89,16 +89,17 @@ describe('Admin Can Use General Dashboard', () => {
       describe('and edit Navigation info', () => {
         it('is expected to show navigation accordion with pre-filled form in details', () => {
           cy.get('[data-cy=navigation-form]').within(() => {
-            cy.get('[data-cy=tab-1-input]')
-              .find('textarea')
-              .should('contain.text', 'home')
-            cy.get('[data-cy=tab-1-switch]').should('be.visible')
+            cy.get('[data-cy=tab-input]')
+              .first()
+              .find('input')
+              .should('have.value', 'home')
+            cy.get('[data-cy=tab-switch]').should('have.length', 14)
           })
         })
 
         context('successfully', () => {
           beforeEach(() => {
-            cy.intercept('POST', '**/api/app_data**', {
+            cy.intercept('PUT', '**/api/app_data**', {
               statusCode: 200,
               body: {
                 message: 'Info has been updated',
@@ -117,7 +118,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('unsuccessfully', () => {
           beforeEach(() => {
-            cy.intercept('POST', '**/api/app_data**', {
+            cy.intercept('PUT', '**/api/app_data**', {
               statusCode: 400,
               body: {
                 error_message: 'Something went wrong, try again later',

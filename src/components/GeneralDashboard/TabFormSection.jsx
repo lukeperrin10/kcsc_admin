@@ -71,7 +71,7 @@ const TabFormSection = ({
           rules={{ required: 'This field cannot be empty' }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
-              data-cy={`tab-${index}-input`}
+              data-cy={`tab-input`}
               variant='outlined'
               label={`Label*`}
               className={classes.tabLabelInput}
@@ -91,7 +91,7 @@ const TabFormSection = ({
             rules={{ required: 'This field cannot be empty' }}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
-                data-cy={`tab-${index}-ref`}
+                data-cy={`tab-ref`}
                 variant='outlined'
                 label={`Ref*`}
                 className={classes.tabLabelInput}
@@ -115,7 +115,7 @@ const TabFormSection = ({
         defaultValue={visible}
         render={({ field: { onChange, value } }) => (
           <FormControlLabel
-            control={<StyledSwitch checked={value} onChange={onChange} />}
+            control={<StyledSwitch data-cy='tab-switch' checked={value} onChange={onChange} />}
             label={
               <Typography className={commonClasses.switchLabel}>
                 {value ? 'Visible' : 'Hidden'}

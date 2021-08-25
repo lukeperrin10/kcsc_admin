@@ -63,7 +63,7 @@ const NavigationForm = ({ mainTabs }) => {
   })
 
   return (
-    <form data-cy='footer-form' onSubmit={handleSubmit(onSubmit)}>
+    <form data-cy='navigation-form' onSubmit={handleSubmit(onSubmit)}>
       <Accordion
         expanded={expanded.footer}
         onChange={() => setExpanded({ ...expanded, footer: !expanded.footer })}>
