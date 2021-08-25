@@ -31,14 +31,14 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
-          <TestimonialsForm testimonials={app_data && app_data.testimonials} />
+          <TestimonialsForm testimonials={app_data.testimonials} />
           <NavigationForm
-            mainTabs={app_data && app_data.navigation.main_tabs}
-            secondaryTabs={app_data && app_data.navigation.secondary_tabs}
+            mainTabs={app_data.navigation.main_tabs}
+            secondaryTabs={app_data.navigation.secondary_tabs}
           />
           <FooterForm
-            about={app_data && app_data.about}
-            disclaimers={app_data && app_data.disclaimers}
+            about={app_data.about}
+            disclaimers={app_data.disclaimers}
           />
         </>
       ) : (
