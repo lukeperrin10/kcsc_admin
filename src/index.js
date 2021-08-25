@@ -12,8 +12,8 @@ import { ThemeProvider } from "@material-ui/core/styles";
 const getHeaders = () => {
   return JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
 }
-axios.defaults.baseURL = 'http://localhost:3002/'
-// axios.defaults.baseURL = process.env.REACT_APP_API_URL
+
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
 axios.defaults.headers.common = getHeaders()
 
 if (window.Cypress) {

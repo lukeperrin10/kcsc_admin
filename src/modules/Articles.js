@@ -8,7 +8,7 @@ const headers = getHeaders()
 const Articles = {
   async index() {
     try {
-      const response = await axios.get('/api/articles', { headers: headers })
+      const response = await axios.get('/articles', { headers: headers })
       store.dispatch({
         type: 'ARTICLES_INDEX',
         payload: response.data.articles,
@@ -20,7 +20,7 @@ const Articles = {
 
   async show(id) {
     try {
-      let response = await axios.get(`/api/articles/${id}`, {
+      let response = await axios.get(`/articles/${id}`, {
         headers: headers,
       })
       return response.data
@@ -31,7 +31,7 @@ const Articles = {
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
-        `/api/articles/${id}`,
+        `/articles/${id}`,
         { publish: publish },
         { headers: headers }
       )

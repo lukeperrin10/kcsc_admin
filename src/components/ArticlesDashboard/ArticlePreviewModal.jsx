@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
-import { Box, Button, Modal, Typography, withStyles } from '@material-ui/core'
+import { Button, Modal, Typography } from '@material-ui/core'
 import Articles from '../../modules/Articles'
-import modalTheme from '../../theme/modalTheme'
-import theme from '../../theme/theme'
 
 const ArticlePreviewModal = ({ article }) => {
   const [open, setOpen] = useState(false)
   const [preview, setPreview] = useState({})
-  const modalClasses = modalTheme()
-
 
   const getArticle = async () => {
     let response = await Articles.show(article.id)
@@ -28,9 +24,11 @@ const ArticlePreviewModal = ({ article }) => {
         Preview
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <div className={modalClasses.viewContainer}>
-          <Typography className={modalClasses.articleTitle}>{preview.title}</Typography>
+        <div>
+          <Typography>{preview.title}</Typography>
           <Typography>{preview.body}</Typography>
+          <Typography>{preview.author}</Typography>
+          
         </div>
       </Modal>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
@@ -12,7 +12,6 @@ import {
   Paper,
   FormControlLabel,
   Typography,
-  Button,
 } from '@material-ui/core'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
