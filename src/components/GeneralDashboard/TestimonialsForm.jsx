@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import {
   TextField,
-  Box,
-  Button,
   Grid,
   Accordion,
   AccordionSummary,
@@ -10,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { DropzoneArea } from 'material-ui-dropzone'
-import articleCreationTheme from '../../theme/articleCreationTheme'
+import AppData from '../../modules/AppData'
 import { useForm, Controller } from 'react-hook-form'
 import useCommonStyles from '../../theme/useCommonStyles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -19,11 +17,10 @@ import SubmitButton from '../SubmitButton'
 const TestimonialsForm = ({ testimonials }) => {
   const [expanded, setExpanded] = useState(true)
   const { control, handleSubmit } = useForm()
-  const classes = articleCreationTheme()
   const commonClasses = useCommonStyles()
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = (attributes) => {
+    AppData.update(attributes)
   }
 
   const testimonialsFormList = testimonials.map((testimonial, index) => (
@@ -62,7 +59,7 @@ const TestimonialsForm = ({ testimonials }) => {
               label='Testimonial Text (max 500 char.)*'
               fullWidth
               multiline
-              minRows={5}
+              minRows={8}
               inputProps={{ maxLength: 500 }}
               error={!!error}
               helperText={error ? error.message : null}
@@ -93,13 +90,14 @@ const TestimonialsForm = ({ testimonials }) => {
           )}
         />
       </Grid>
-      {/* <DropzoneArea
+      <DropzoneArea
         data-cy='testimonial-image'
         acceptedFiles={['image/*']}
         dropzoneText='Drag and drop or click here to add images'
         filesLimit={1}
         showPreviewsInDropzone={true}
-      /> */}
+      />
+      {/* 690 x 350*/}
     </Grid>
   ))
 
