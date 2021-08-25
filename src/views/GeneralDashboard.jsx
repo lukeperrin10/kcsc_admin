@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
-// import appData from '../data/app_data.json'
+import appData from '../data/app_data.json'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import NavigationForm from '../components/GeneralDashboard/NavigationForm'
+import TestimonialsForm from '../components/GeneralDashboard/TestimonialsForm'
 import AppData from '../modules/AppData'
-
 
 const GeneralDashboard = () => {
   const commonClasses = useCommonStyles()
-  const app_data = useSelector((state) => state.app_data)
+  // const app_data = useSelector((state) => state.app_data)
   // Use that on localhost
-  // const app_data = appData.app_data
+  const app_data = appData.app_data
 
   useEffect(() => {
     AppData.index()
@@ -31,6 +31,7 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
+          <TestimonialsForm testimonials={app_data && app_data.testimonials} />
           <NavigationForm
             mainTabs={app_data && app_data.navigation.main_tabs}
             secondaryTabs={app_data && app_data.navigation.secondary_tabs}
