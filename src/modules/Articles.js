@@ -23,8 +23,10 @@ const Articles = {
       let response = await axios.get(`/api/articles/${id}`, {
         headers: headers,
       })
-      return response.data.article
-    } catch (error) {}
+      return response.data
+    } catch (error) {
+      errorHandler(error)
+    }
   },
   async update_publish(id, publish) {
     try {

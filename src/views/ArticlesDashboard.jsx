@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
@@ -44,7 +44,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const ArticlesDashboard = ({ article }) => {
+const ArticlesDashboard = () => {
   const classes = useStyles()
   const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
@@ -70,29 +70,31 @@ const ArticlesDashboard = ({ article }) => {
     articles.map((article) => {
       const { id, title, author, date, publish } = article
       return (
-        <StyledTableRow data-cy='article' key={`article-${id}`}>
-          <StyledTableCell data-cy='status' align='center'>
-            <FormControlLabel
-              control={<PublishedSwitch publish={publish} articleId={id} />}
-              label={
-                <Typography className={classes.switchLabel}>
-                  {publish ? 'Published' : 'Hidden'}
-                </Typography>
-              }
-              labelPlacement='bottom'
-            />
-          </StyledTableCell>
-          <StyledTableCell data-cy='title' className={classes.titleCell}>
-            {title}
-          </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
-          <StyledTableCell data-cy='date' className={classes.dateCell}>
-            {date}
-          </StyledTableCell>
-          <StyledTableCell data-cy='action'>
-            <ArticlePreviewModal id={articles.id} />
-          </StyledTableCell>
-        </StyledTableRow>
+        <>
+          <StyledTableRow data-cy='article' key={`article-${id}`}>
+            <StyledTableCell data-cy='status' align='center'>
+              <FormControlLabel
+                control={<PublishedSwitch publish={publish} articleId={id} />}
+                label={
+                  <Typography className={classes.switchLabel}>
+                    {publish ? 'Published' : 'Hidden'}
+                  </Typography>
+                }
+                labelPlacement='bottom'
+              />
+            </StyledTableCell>
+            <StyledTableCell data-cy='title' className={classes.titleCell}>
+              {title}
+            </StyledTableCell>
+            <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+            <StyledTableCell data-cy='date' className={classes.dateCell}>
+              {date}
+            </StyledTableCell>
+            <StyledTableCell data-cy='action'>
+              <ArticlePreviewModal article={article} />
+            </StyledTableCell>
+          </StyledTableRow>
+        </>
       )
     })
 

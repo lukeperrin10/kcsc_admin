@@ -32,17 +32,17 @@ describe('Admin Can Use Articles Dashboard', () => {
             })
         })
       })
-    })
+      describe('Admin is able to preview an article', () => {
+        beforeEach(() => {
+          cy.intercept('GET', '**/api/articles/1', {
+            fixture: 'single_article.json',
+          })
+        })
 
-    describe('Admin is able to preview an article', () => {
-      beforeEach(() => {
-        cy.intercept('GET', '**/api/articles/2', { fixture: 'single_article.json'})
+        it('is expected to preview the article', () => {
+          cy.get('[data-cy=article-preview-button]').first().click()
+        })
       })
-
-      it('is expected to preview the article', () => {
-        cy.get('[data-cy=article-preview-button]').second().click();
-      });
     })
-    
   })
 })
