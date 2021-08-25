@@ -41,6 +41,15 @@ describe('Admin Can Use Articles Dashboard', () => {
 
         it('is expected to preview the article', () => {
           cy.get('[data-cy=article-preview-button]').first().click()
+          cy.get('[data-cy=article-container]').within(() => {
+            cy.get('[data-cy=title]').should('contain', 'Suicide rate decreased with 88%')
+            cy.get('[data-cy=author]').should('contain', 'Sonya Blade')
+            cy.get('[data-cy=date]').should('contain', '2021-05-11')
+            cy.get('[data-cy=image]').should('have.attr', 'alt').should('equal', 'Doctor holding tablet')
+            cy.get('[data-cy=body]').should('contain', 'Everywhere you look you see the words self-care, self-help, self-love, and wellness')
+            cy.get('[data-cy=close-btn]').click()
+          })
+          cy.get('[data-cy=body]').should('not.exist')
         })
       })
     })

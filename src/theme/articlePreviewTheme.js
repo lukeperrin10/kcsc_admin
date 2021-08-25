@@ -5,11 +5,16 @@ const articlePreview = makeStyles((theme) => ({
     overflow: "scroll"
   },
   articleContainer: {
-    backgroundColor: '#fff',
-    marginTop: "180px",
-    marginBottom: "180px",
-    maxWidth: "960px",
-    padding: "80px",
+    [theme.breakpoints.up('xs')]: {
+      backgroundColor: '#fff',
+      marginTop: "180px",
+      marginBottom: "180px",
+      maxWidth: "960px",
+      padding: "30px",
+    },
+    [theme.breakpoints.up('sm')]: {
+      padding: "80px",
+    },
   },
   information: {
     marginTop: "12px",
@@ -26,6 +31,9 @@ const articlePreview = makeStyles((theme) => ({
   },
   body: {
     whiteSpace: "pre-wrap"
+  },
+  closeBtn: {
+    marginTop: "40px"
   }
 }))
 

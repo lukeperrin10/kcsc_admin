@@ -26,11 +26,17 @@ const ArticlePreviewModal = ({ article }) => {
     getArticle()
     setOpen(true)
   }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
   return (
     <>
       <Button
         data-cy='article-preview-button'
         type='button'
+        variant='contained'
+        color='primary'
         onClick={handleOpen}>
         Preview
       </Button>
@@ -38,7 +44,9 @@ const ArticlePreviewModal = ({ article }) => {
         open={open}
         onClose={() => setOpen(false)}
         className={classes.modal}>
-        <Container className={classes.articleContainer}>
+        <Container
+          data-cy='article-container'
+          className={classes.articleContainer}>
           <Typography component='h5' variant='h4' data-cy='title'>
             {preview.title}
           </Typography>
@@ -77,6 +85,15 @@ const ArticlePreviewModal = ({ article }) => {
             className={classes.body}>
             {preview.body}
           </Typography>
+          <Button
+            className={classes.closeBtn}
+            variant='contained'
+            color='primary'
+            data-cy='close-btn'
+            type='button'
+            onClick={handleClose}>
+            Close
+          </Button>
         </Container>
       </Modal>
     </>
