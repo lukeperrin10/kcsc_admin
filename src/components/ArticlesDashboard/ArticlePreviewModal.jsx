@@ -8,7 +8,9 @@ const ArticlePreviewModal = ({ article }) => {
 
   const getArticle = async () => {
     let response = await Articles.show(article.id)
+    debugger
     setPreview(response)
+    debugger
   }
 
   const handleOpen = () => {
