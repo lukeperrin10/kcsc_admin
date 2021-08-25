@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableBody,
@@ -13,15 +12,12 @@ import {
   FormControlLabel,
   Typography,
 } from '@material-ui/core'
+
+import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
+import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
-
-const useStyles = makeStyles(() => ({
-  dateCell: { minWidth: '100px' },
-  titleCell: { minWidth: '400px' },
-  switchLabel: { fontSize: '0.8rem' },
-}))
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -44,9 +40,10 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow)
 
 const ArticlesDashboard = () => {
-  const classes = useStyles()
+  const classes = articleDashboard()
   const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
+
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 

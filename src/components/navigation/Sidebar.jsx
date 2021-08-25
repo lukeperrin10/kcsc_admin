@@ -1,15 +1,15 @@
 import React from 'react'
-import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
 import { useSelector } from 'react-redux'
-import Divider from '@material-ui/core/Divider'
+import { Drawer, List, Divider } from '@material-ui/core'
 import SettingsIcon from '@material-ui/icons/Settings';
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import Authentication from '../modules/Authentication'
+import ArticleIcon from '@material-ui/icons/Subject'
+import CreateIcon from '@material-ui/icons/Create'
+
+import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
-import symbolLogo from '../assets/LogoCHWLSymbolWhite.png'
-import ArticleIcon from '@material-ui/icons/Subject';
+import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)
@@ -25,6 +25,12 @@ const Sidebar = () => {
         </SidebarIcon>
         <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
           <ArticleIcon />
+        </SidebarIcon>
+        <SidebarIcon
+          dataCy='article-creation'
+          text='Create Article'
+          to='/articles/create'>
+          <CreateIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
           <AssessmentIcon />
