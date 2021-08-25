@@ -12,11 +12,12 @@ const useCommonStyles = makeStyles((theme) => ({
   dashboardHeader: {
     padding: '1rem 2rem',
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText
+    color: theme.palette.secondary.contrastText,
   },
   accordionDetails: {
-    padding: '0 24px 24px 24px'
+    padding: '0 24px 24px 24px',
   },
+  switchLabel: { fontSize: '0.8rem' },
 }))
 
 export default useCommonStyles
