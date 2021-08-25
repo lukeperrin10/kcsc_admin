@@ -1,30 +1,27 @@
 import React, { useState } from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
-  TextField,
   Grid,
-  Button,
-  Switch,
-  FormControlLabel,
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
 import AppData from '../../modules/AppData'
 import SubmitButton from '../SubmitButton'
 import TabFormSection from './TabFormSection'
 
-const NavigationForm = ({ mainTabs, secondaryTabs }) => {
+const NavigationForm = ({ mainTabs }) => {
   const [expanded, setExpanded] = useState({ footer: true })
-  const { control, handleSubmit, watch } = useForm()
+  const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
-  const labelMaxLength = 50
 
-  const onSubmit = (tab1Input) => {
-    console.log(tab1Input)
+  const onSubmit = ({ navigation }) => {    
+    const result = AppData.toNavigationObject(navigation)
+    console.log(result)
+    debugger
     // let attributes = {
     //   navigation: navigation,
     // }
@@ -37,9 +34,10 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
       secondaryTabList = mainTab.secondary_tabs.map(
         (secondaryTab, indexSec) => (
           <TabFormSection
-            key={`secondary-${indexSec}`}
+            key={`secondary-${index}.${indexSec}`}
             control={control}
-            index={`${index + 1}.${indexSec + 1}`}
+            index={index + 1}
+            indexSec={indexSec + 1}
             label={secondaryTab.label}
             visible={mainTab.visible && secondaryTab.visible}
             secondary={true}
@@ -54,9 +52,9 @@ const NavigationForm = ({ mainTabs, secondaryTabs }) => {
         container
         direction='column'
         spacing={3}
+        key={`nav-form-row-${index}`}
         style={{ maxWidth: '600px' }}>
         <TabFormSection
-          key={`main-${index}`}
           control={control}
           index={index + 1}
           label={mainTab.label}

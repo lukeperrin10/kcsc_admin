@@ -7,7 +7,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import useCommonStyles from '../../theme/useCommonStyles'
 
 const StyledSwitch = withStyles({
@@ -25,14 +25,20 @@ const StyledSwitch = withStyles({
 })(Switch)
 
 const useStyles = makeStyles(() => ({
-  tabLabelInput: {flex: '1', marginLeft: '1rem'},
-  number: { width: '1rem', textAlign: 'end' }
+  tabLabelInput: { flex: '1', marginLeft: '1rem' },
+  number: { width: '1rem', textAlign: 'end' },
 }))
 
-const TabFormSection = ({control, index, label, visible, secondary = false }) => {
+const TabFormSection = ({
+  control,
+  index,
+  indexSec,
+  label,
+  visible,
+  secondary = false,
+}) => {
   const commonClasses = useCommonStyles()
   const classes = useStyles()
-  //const { control } = useForm()
   const labelMaxLength = 50
 
   return (
@@ -44,10 +50,14 @@ const TabFormSection = ({control, index, label, visible, secondary = false }) =>
       justifyContent='space-between'
       style={secondary ? { paddingLeft: '3rem' } : undefined}>
       <Typography variant='body1' className={classes.number}>
-        {index}
+        {indexSec ? `${index}.${indexSec}` : `${index}.`}
       </Typography>
       <Controller
-        name={`tab${index}Input`}
+        name={
+          secondary
+            ? `navigation.main_tabs[${index}].secondary_tabs[${indexSec}].label`
+            : `navigation.main_tabs[${index}].label`
+        }
         control={control}
         defaultValue={label}
         rules={{ required: 'This field cannot be empty' }}
@@ -66,14 +76,16 @@ const TabFormSection = ({control, index, label, visible, secondary = false }) =>
         )}
       />
       <Controller
-        name={`tab${index}Switch`}
+        name={
+          secondary
+            ? `navigation.main_tabs[${index}].secondary_tabs[${indexSec}].visible`
+            : `navigation.main_tabs[${index}].visible`
+        }
         control={control}
         defaultValue={visible}
         render={({ field: { onChange, value } }) => (
           <FormControlLabel
-            control={
-              <StyledSwitch checked={value} onChange={onChange} />
-            }
+            control={<StyledSwitch checked={value} onChange={onChange} />}
             label={
               <Typography className={commonClasses.switchLabel}>
                 {value ? 'Visible' : 'Hidden'}

@@ -3,6 +3,8 @@ import { getHeaders } from './Authentication'
 import errorHandler from './ErrorHandler'
 import axios from 'axios'
 
+const _ = require('lodash')
+
 const headers = getHeaders()
 
 const AppData = {
@@ -19,14 +21,14 @@ const AppData = {
   },
   async update(attributes) {
     try {
-      let response = {}  
+      let response = {}
       for (const key in attributes) {
-        let params = { key: key, value: attributes[key] }  
+        let params = { key: key, value: attributes[key] }
         response = await axios.put(
           '/api/app_data',
           { params: params },
           { headers: headers }
-        )        
+        )
       }
       store.dispatch({
         type: 'SET_SUCCESS',
@@ -35,6 +37,35 @@ const AppData = {
     } catch (error) {
       errorHandler(error)
     }
+  },
+  toNavigationObject(formData) {
+    //const {main_tabs} = formData
+    const main_tabs = formData.main_tabs.map((tab) => {
+      let secondary_tabs = []
+      if (tab.secondary_tabs) {
+        secondary_tabs = tab.secondary_tabs.map((secTab) => {
+          return {
+            label: secTab.label,
+            link: secTab.ref
+              ? `/${_.snakeCase(tab.label)}`
+              : `/${_.snakeCase(tab.label)}/${_.snakeCase(secTab.label)}`,
+            ref: secTab.ref ? _.kebabCase(secTab.ref) : null,
+            visible: secTab.visible,
+          }
+        })
+      }
+      
+      return {
+        label: tab.label,
+        link:
+          secondary_tabs.length !== 0
+            ? secondary_tabs[1].link
+            : `/${_.snakeCase(tab.label)}`,
+        visible: tab.visible,
+        secondary_tabs: !tab.secondary_tabs ? null : secondary_tabs,
+      }
+    })
+    return main_tabs
   },
 }
 
