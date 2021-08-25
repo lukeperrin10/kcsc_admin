@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import Articles from '../modules/Articles'
 import { useSelector } from 'react-redux'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableBody,
@@ -13,14 +12,11 @@ import {
   FormControlLabel,
   Typography,
 } from '@material-ui/core'
-import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
-import useCommonStyles from '../theme/useCommonStyles'
 
-const useStyles = makeStyles(() => ({
-  dateCell: { minWidth: '100px' },
-  titleCell: { minWidth: '400px' },
-  switchLabel: {fontSize: '0.8rem'}
-}))
+import Articles from '../modules/Articles'
+import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
+import articleDashboard from '../theme/articleDashboardTheme'
+import useCommonStyles from '../theme/useCommonStyles'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -43,9 +39,10 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow)
 
 const ArticlesDashboard = () => {
-  const classes = useStyles()
+  const classes = articleDashboard()
   const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
+
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
@@ -71,10 +68,12 @@ const ArticlesDashboard = () => {
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={
-                <PublishedSwitch publish={publish} articleId={id} />
+              control={<PublishedSwitch publish={publish} articleId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {publish ? 'Published' : 'Hidden'}
+                </Typography>
               }
-              label={<Typography className={classes.switchLabel}>{publish ? 'Published' : 'Hidden'}</Typography>}
               labelPlacement='bottom'
             />
           </StyledTableCell>
