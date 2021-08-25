@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import sizes from '../support/index'
 import TestHelpers from '../support/testhelper'
 
@@ -6,8 +7,11 @@ describe('Admin is able to create an article ', () => {
     describe(`on ${size}`, () => {
       const selection = 'article-creation'
       beforeEach(() => {
-        cy.intercept('POST', 'https://kcsc-api.herokuapp.com/api/articles/**', {
+        cy.intercept('POST', '**/articles/**', {
           message: 'Your article has successfully been created',
+        })
+        cy.intercept('GET', '**/api/articles', {
+          fixture: 'all_articles.json',
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
