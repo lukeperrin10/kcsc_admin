@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Button } from '@material-ui/core'
 
-const SubmitButton = () => {
+const SubmitButton = ({dataCy}) => {
   return (
     <Grid
       item
@@ -10,7 +10,7 @@ const SubmitButton = () => {
       alignItems='center'
       justifyContent='flex-end'>
       <Button
-        data-cy='footer-submit-button'
+        data-cy={dataCy}
         type='submit'
         variant='contained'
         color='primary'>

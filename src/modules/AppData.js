@@ -39,7 +39,6 @@ const AppData = {
     }
   },
   toNavigationObject(formData) {
-    //const {main_tabs} = formData
     const main_tabs = formData.main_tabs.map((tab) => {
       let secondary_tabs = []
       if (tab.secondary_tabs) {

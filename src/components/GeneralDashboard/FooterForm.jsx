@@ -105,7 +105,7 @@ const FooterForm = ({ about, disclaimers }) => {
                 )}
               />
             </Grid>
-            <SubmitButton />
+            <SubmitButton dataCy='footer-submit-button' />
           </Grid>
         </AccordionDetails>
       </Accordion>

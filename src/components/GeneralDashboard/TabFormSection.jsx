@@ -5,10 +5,13 @@ import {
   Grid,
   Switch,
   FormControlLabel,
+  useMediaQuery
 } from '@material-ui/core'
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
 import useCommonStyles from '../../theme/useCommonStyles'
+
+const _ = require('lodash')
 
 const StyledSwitch = withStyles({
   switchBase: {
@@ -25,7 +28,8 @@ const StyledSwitch = withStyles({
 })(Switch)
 
 const useStyles = makeStyles(() => ({
-  tabLabelInput: { flex: '1', marginLeft: '1rem' },
+  tabLabelInputContainer: { flex: '1' },
+  tabLabelInput: { flex: '1', margin: '8px 0 8px 1rem' },
   number: { width: '1rem', textAlign: 'end' },
 }))
 
@@ -35,11 +39,14 @@ const TabFormSection = ({
   indexSec,
   label,
   visible,
+  section = null,
   secondary = false,
 }) => {
   const commonClasses = useCommonStyles()
   const classes = useStyles()
   const labelMaxLength = 50
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <Grid
@@ -48,33 +55,56 @@ const TabFormSection = ({
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      style={secondary ? { paddingLeft: '3rem' } : undefined}>
+      style={(secondary && mobile) ? { paddingLeft: '3rem' } : undefined}>
       <Typography variant='body1' className={classes.number}>
         {indexSec ? `${index}.${indexSec}` : `${index}.`}
       </Typography>
-      <Controller
-        name={
-          secondary
-            ? `navigation.main_tabs[${index}].secondary_tabs[${indexSec}].label`
-            : `navigation.main_tabs[${index}].label`
-        }
-        control={control}
-        defaultValue={label}
-        rules={{ required: 'This field cannot be empty' }}
-        render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <TextField
-            data-cy={`tab-${index}-input`}
-            variant='outlined'
-            label={`Label*`}
-            className={classes.tabLabelInput}
-            inputProps={{ maxLength: labelMaxLength }}
-            error={!!error}
-            helperText={error ? error.message : null}
-            value={value}
-            onChange={onChange}
+      <Grid item container direction='column' className={classes.tabLabelInputContainer}>
+        <Controller
+          name={
+            secondary
+              ? `navigation.main_tabs[${index}].secondary_tabs[${indexSec}].label`
+              : `navigation.main_tabs[${index}].label`
+          }
+          control={control}
+          defaultValue={label}
+          rules={{ required: 'This field cannot be empty' }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              data-cy={`tab-${index}-input`}
+              variant='outlined'
+              label={`Label*`}
+              className={classes.tabLabelInput}
+              inputProps={{ maxLength: labelMaxLength }}
+              error={!!error}
+              helperText={error ? error.message : null}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
+        {section && (
+          <Controller
+            name={`navigation.main_tabs[${index}].secondary_tabs[${indexSec}].ref`}
+            control={control}
+            defaultValue={_.startCase(section)}
+            rules={{ required: 'This field cannot be empty' }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                data-cy={`tab-${index}-ref`}
+                variant='outlined'
+                label={`Ref*`}
+                className={classes.tabLabelInput}
+                inputProps={{ maxLength: labelMaxLength }}
+                error={!!error}
+                helperText={error ? error.message : null}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
         )}
-      />
+      </Grid>
       <Controller
         name={
           secondary

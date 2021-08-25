@@ -20,6 +20,7 @@ const NavigationForm = ({ mainTabs }) => {
 
   const onSubmit = ({ navigation }) => {    
     const attributes = AppData.toNavigationObject(navigation)
+    console.log(attributes)
     AppData.update(attributes)
   }
 
@@ -36,6 +37,7 @@ const NavigationForm = ({ mainTabs }) => {
             label={secondaryTab.label}
             visible={mainTab.visible && secondaryTab.visible}
             secondary={true}
+            section={secondaryTab.ref}
           />
         )
       )
@@ -72,7 +74,7 @@ const NavigationForm = ({ mainTabs }) => {
         <AccordionDetails className={commonClasses.accordionDetails}>
           <Grid container direction='column' spacing={3}>
             {mainTabsList}
-            <SubmitButton />
+            <SubmitButton dataCy='navigation-submit-button' />
           </Grid>
         </AccordionDetails>
       </Accordion>

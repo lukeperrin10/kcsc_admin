@@ -85,6 +85,55 @@ describe('Admin Can Use General Dashboard', () => {
           })
         })
       })
+
+      describe('and edit Navigation info', () => {
+        it('is expected to show navigation accordion with pre-filled form in details', () => {
+          cy.get('[data-cy=navigation-form]').within(() => {
+            cy.get('[data-cy=tab-1-input]')
+              .find('textarea')
+              .should('contain.text', 'home')
+            cy.get('[data-cy=tab-1-switch]').should('be.visible')
+          })
+        })
+
+        context('successfully', () => {
+          beforeEach(() => {
+            cy.intercept('POST', '**/api/app_data**', {
+              statusCode: 200,
+              body: {
+                message: 'Info has been updated',
+              },
+            })
+          })
+
+          it('is expected to show success message on submit', () => {
+            cy.get('[data-cy=navigation-submit-button]').click()
+            cy.get('[data-cy=snack-content]').should(
+              'contain.text',
+              'Info has been updated'
+            )
+          })
+        })
+
+        context('unsuccessfully', () => {
+          beforeEach(() => {
+            cy.intercept('POST', '**/api/app_data**', {
+              statusCode: 400,
+              body: {
+                error_message: 'Something went wrong, try again later',
+              },
+            })
+          })
+
+          it('is expected to show success message on submit', () => {
+            cy.get('[data-cy=navigation-submit-button]').click()
+            cy.get('[data-cy=snack-content]').should(
+              'contain.text',
+              'Something went wrong, try again later'
+            )
+          })
+        })
+      })
     })
   })
 })
