@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Drawer, List, Divider } from '@material-ui/core'
-import MailIcon from '@material-ui/icons/Mail'
+import SettingsIcon from '@material-ui/icons/Settings';
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
@@ -20,8 +20,8 @@ const Sidebar = () => {
       <p>Welcome back</p>
       <p data-cy='broker-name'>{name}</p>
       <List>
-        <SidebarIcon text='Dashboard' to='/'>
-          <MailIcon />
+        <SidebarIcon text='General' to='/'>
+          <SettingsIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
           <ArticleIcon />

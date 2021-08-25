@@ -16,6 +16,7 @@ import {
 import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import articleDashboard from '../theme/articleDashboardTheme'
+import useCommonStyles from '../theme/useCommonStyles'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -39,6 +40,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const ArticlesDashboard = () => {
   const classes = articleDashboard()
+  const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
 
   // Put fixture here to see articles on localhost
@@ -98,7 +100,7 @@ const ArticlesDashboard = () => {
       <TableContainer
         data-cy='articles-table'
         component={Paper}
-        className={classes.tableContainer}>
+        className={commonClasses.viewContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>

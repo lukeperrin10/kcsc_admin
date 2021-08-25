@@ -57,6 +57,11 @@ const rootReducer = (state, action) => {
         success: true,
         message: action.payload.message,
       }
+    case 'APP_DATA_INDEX':
+      return {
+        ...state,
+        app_data: action.payload,
+      }
     default:
       return state
   }

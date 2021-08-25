@@ -7,7 +7,7 @@ import {
   Divider,
   IconButton,
 } from '@material-ui/core'
-import MailIcon from '@material-ui/icons/Mail'
+import SettingsIcon from '@material-ui/icons/Settings';
 import MenuIcon from '@material-ui/icons/Menu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import AssessmentIcon from '@material-ui/icons/Assessment'
@@ -51,8 +51,8 @@ const PhoneSidebar = () => {
         onClick={() => setOpen(false)}>
         <img src={logoWhite} alt='logo' />
         <List>
-          <SidebarIcon text='Dashboard' to='/'>
-            <MailIcon />
+          <SidebarIcon text='General' to='/'>
+            <SettingsIcon />
           </SidebarIcon>
           <SidebarIcon
             dataCy='articles-dashboard'
