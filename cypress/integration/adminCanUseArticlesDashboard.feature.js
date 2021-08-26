@@ -72,13 +72,15 @@ describe('Admin Can Use Articles Dashboard', () => {
           cy.get('[data-cy=article-edit-button]').first().click()
         })
 
-        it('is expected to be able to update the article title and body', () => {
+        it('is expected to be able to update the article title image, image alt and body', () => {
           cy.get('[data-cy=article-container]').within(() => {
             cy.get('[data-cy=article-title]')
-              .find('input')
-              .clear()
-              .type('This is the new Title for this article')
+            .find('input')
+            .clear()
+            .type('This is the new Title for this article')
           })
+          cy.get('[data-cy=upload-image-camera]').attachFile('imageFixture.png').trigger('change')
+          cy.get('[data-cy=alt]').should('contain', '');
           cy.get('[data-cy=article-body]')
             .clear()
             .type(

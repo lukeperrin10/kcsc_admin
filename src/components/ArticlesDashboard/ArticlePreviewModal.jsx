@@ -9,18 +9,18 @@ import {
   CardMedia,
   TextField,
   ButtonGroup,
-  IconButton,
 } from '@material-ui/core'
 
 import Articles from '../../modules/Articles'
 import articlePreview from '../../theme/articlePreviewTheme'
-import { PhotoCamera } from '@material-ui/icons'
+import ImageUploader from '../ImageUploader'
 
-const ArticlePreviewModal = ({ article }) => {
+const ArticlePreviewModal = ({ article, editArticle }) => {
   const classes = articlePreview()
   const [open, setOpen] = useState(false)
-  const [currentArticle, setCurrentArticle] = useState({})
+  const [currentArticle, setCurrentArticle] = useState()
   const [changeMode, setChangeMode] = useState(false)
+  const [imageVisible, setImageVisible] = useState(true)
 
   const getArticle = async () => {
     let response = await Articles.show(article.id)
@@ -63,98 +63,114 @@ const ArticlePreviewModal = ({ article }) => {
           Edit
         </Button>
       </ButtonGroup>
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        className={classes.modal}>
-        <Container
-          data-cy='article-container'
-          className={classes.articleContainer}>
-          {changeMode ? (
-            <TextField
-              data-cy='article-title'
-              label='Title'
-              fullWidth
-              defaultValue={currentArticle.title}
-            />
-          ) : (
-            <Typography component='h5' variant='h4' data-cy='title'>
-              {currentArticle.title}
-            </Typography>
-          )}
+      {currentArticle && (
+        <>
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            className={classes.modal}>
+            <Container
+              data-cy='article-container'
+              className={classes.articleContainer}>
+              {changeMode ? (
+                <TextField
+                  data-cy='article-title'
+                  label='Title'
+                  fullWidth
+                  defaultValue={currentArticle.title}
+                />
+              ) : (
+                <Typography component='h5' variant='h4' data-cy='title'>
+                  {currentArticle.title}
+                </Typography>
+              )}
 
-          <Grid
-            container
-            justify='space-between'
-            className={classes.information}>
-            <Grid item>
-              <Typography
-                component='p'
-                variant='subtitle1'
-                data-cy='author'>{`Written by: ${currentArticle.author}`}</Typography>
-            </Grid>
-            <Grid item>
-              <Typography component='p' variant='subtitle1' data-cy='date'>
-                {currentArticle.date}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider
-            className={classes.divider}
-            orientation='horizontal'
-            variant='fullWidth'
-          />
-          <CardMedia
-            className={classes.image}
-            data-cy='image'
-            component='img'
-            src={currentArticle.image?.url}
-            alt={currentArticle.image?.alt}
-          />
-          {changeMode && <>
-          </>}
-          {changeMode ? (
-            <TextField
-              label='Main body'
-              data-cy='article-body'
-              multiline
-              fullWidth
-              defaultValue={currentArticle.body}
-            />
-          ) : (
-            <Typography
-              component='p'
-              variant='body1'
-              data-cy='body'
-              className={classes.body}>
-              {currentArticle.body}
-            </Typography>
-          )}
+              <Grid
+                container
+                justify='space-between'
+                className={classes.information}>
+                <Grid item>
+                  <Typography
+                    component='p'
+                    variant='subtitle1'
+                    data-cy='author'>{`Written by: ${currentArticle.author}`}</Typography>
+                </Grid>
+                <Grid item>
+                  <Typography component='p' variant='subtitle1' data-cy='date'>
+                    {currentArticle.date}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Divider
+                className={classes.divider}
+                orientation='horizontal'
+                variant='fullWidth'
+              />
 
-          <ButtonGroup size='small' variant='text' color='primary'>
-            <Button
-              className={classes.closeBtn}
-              variant='contained'
-              color='primary'
-              data-cy='close-btn'
-              type='button'
-              onClick={handleClose}>
-              Close
-            </Button>
-            {changeMode && (
-              <Button
-                className={classes.closeBtn}
-                variant='contained'
-                color='primary'
-                type='button'
-                data-cy='submit-button'
-                onClick={handleSubmit}>
-                Submit
-              </Button>
-            )}
-          </ButtonGroup>
-        </Container>
-      </Modal>
+              {imageVisible && (
+                <CardMedia
+                  className={classes.image}
+                  data-cy='image'
+                  component='img'
+                  src={currentArticle.image?.url}
+                  alt={currentArticle.image?.alt}
+                />
+              )}
+
+              {changeMode && (
+                <>
+                  <ImageUploader
+                    article={currentArticle}
+                    setArticle={setCurrentArticle}
+                    editArticle={() => editArticle(true)}
+                    setImageVisible={setImageVisible}
+                  />
+                </>
+              )}
+              {changeMode ? (
+                <TextField
+                  label='Main body'
+                  data-cy='article-body'
+                  multiline
+                  fullWidth
+                  defaultValue={currentArticle.body}
+                />
+              ) : (
+                <Typography
+                  component='p'
+                  variant='body1'
+                  data-cy='body'
+                  className={classes.body}>
+                  {currentArticle.body}
+                </Typography>
+              )}
+
+              <ButtonGroup size='small' variant='text' color='primary'>
+                <Button
+                  className={classes.closeBtn}
+                  variant='contained'
+                  color='primary'
+                  data-cy='close-btn'
+                  type='button'
+                  onClick={handleClose}>
+                  Close
+                </Button>
+                {changeMode && (
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    type='button'
+                    data-cy='submit-button'
+                    onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                )}
+              </ButtonGroup>
+            </Container>
+          </Modal>
+        </>
+      )}
     </>
   )
 }
