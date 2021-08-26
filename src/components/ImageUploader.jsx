@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CardMedia, makeStyles, Button, TextField } from '@material-ui/core'
-import { imageEncoder } from '../modules/ImageEncoder'
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -16,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     margin: '2% 2% 5% 2%',
   },
   uploadBtn: {
-    marginBottom: '50px'
-  }
+    marginBottom: '50px',
+  },
 }))
 
 const ImageUploader = ({ handleChange, article, setArticle }) => {
@@ -33,6 +32,14 @@ const ImageUploader = ({ handleChange, article, setArticle }) => {
       image: encodedFile,
     })
   }
+
+  const imageEncoder = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
 
   return (
     <>
@@ -63,7 +70,7 @@ const ImageUploader = ({ handleChange, article, setArticle }) => {
       />
       <label htmlFor='contained-button-file'>
         <Button
-        className={classes.uploadBtn}
+          className={classes.uploadBtn}
           variant='contained'
           color='primary'
           component='span'
