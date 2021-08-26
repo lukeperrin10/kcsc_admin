@@ -58,6 +58,22 @@ const Articles = {
     }
   },
 
+  async update(article) {
+    let params = { article: article }
+    try {
+      let response = await axios.put(`/articles/${article.id}`, params, {
+        headers: headers,
+      })
+      Articles.index()
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
