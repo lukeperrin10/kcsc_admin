@@ -29,7 +29,7 @@ describe('Admin is able to create an article ', () => {
           cy.get('[data-cy=alt]').type('screenshot of dashboard')
           cy.get('[data-cy=image]').should('contain', '')
           cy.get('input[type="file"]').attachFile(filepath)
-          cy.get('[data-cy=image]').should('have.attr', 'src').should('contain', 'imageFixture')
+          cy.get('[data-cy=image]').should('have.attr', 'src')
           cy.get('[data-cy=article-submit]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',

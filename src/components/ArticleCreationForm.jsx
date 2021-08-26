@@ -3,7 +3,12 @@ import { TextField, Box, Button } from '@material-ui/core'
 import ImageUploader from '../components/ImageUploader'
 import articleCreationTheme from '../theme/articleCreationTheme'
 
-const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
+const ArticleCreationForm = ({
+  handleSubmit,
+  handleChange,
+  article,
+  setArticle,
+}) => {
   const classes = articleCreationTheme()
 
   return (
@@ -39,7 +44,12 @@ const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
         name='body'
         onChange={handleChange}
       />
-      <ImageUploader/>
+
+      <ImageUploader
+        article={article}
+        setArticle={setArticle}
+        handleChange={(event) => handleChange(event)}
+      />
 
       <Box className={classes.btnBox}>
         <Button
