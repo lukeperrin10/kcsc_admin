@@ -40,6 +40,8 @@ const ArticleCreation = () => {
       </Box>
       {redirect && <Redirect to='/articles' />}
       <ArticleCreationForm
+        article={article}
+        setArticle={setArticle}
         handleSubmit={handleSubmit}
         handleChange={(event) => handleChange(event)}
       />
