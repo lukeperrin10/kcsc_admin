@@ -14,7 +14,7 @@ const SectionsList = ({ tabValue }) => {
   }, [tabValue])
 
   const sectionList = sections.map((section, index) => {
-    return <SectionSelector key={`section-${index}`} section={section} />
+    return <SectionSelector key={`section-${index}`} index={index+1} section={section} />
   })
   return <div>{sectionList}</div>
 }
