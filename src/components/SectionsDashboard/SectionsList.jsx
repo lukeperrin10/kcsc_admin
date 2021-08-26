@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sections from '../../modules/Sections'
+import SectionSelector from './SectionSelector'
 
 const SectionsList = ({ tabValue }) => {
   const [sections, setSections] = useState([])
@@ -13,13 +14,7 @@ const SectionsList = ({ tabValue }) => {
   }, [tabValue])
 
   const sectionList = sections.map((section) => {
-    return (
-      <div style={{margin: '30px'}}>
-        <h1>{section.header}</h1>
-        <h3>{section.variant}</h3>
-        <p>{section.description}</p>
-      </div>
-    )
+    return <SectionSelector section={section} />
   })
   return <div>{sectionList}</div>
 }
