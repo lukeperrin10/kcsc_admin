@@ -14,7 +14,7 @@ import SubmitButton from '../SubmitButton'
 import TabFormSection from './TabFormSection'
 
 const NavigationForm = ({ mainTabs }) => {
-  const [expanded, setExpanded] = useState({ footer: true })
+  const [expanded, setExpanded] = useState(true)
   const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
 
@@ -64,8 +64,8 @@ const NavigationForm = ({ mainTabs }) => {
   return (
     <form data-cy='navigation-form' onSubmit={handleSubmit(onSubmit)}>
       <Accordion
-        expanded={expanded.footer}
-        onChange={() => setExpanded({ ...expanded, footer: !expanded.footer })}>
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>Navigation</Typography>
         </AccordionSummary>

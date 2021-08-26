@@ -14,7 +14,7 @@ import AppData from '../../modules/AppData'
 import SubmitButton from '../SubmitButton'
 
 const FooterForm = ({ about, disclaimers }) => {
-  const [expanded, setExpanded] = useState({ footer: true })
+  const [expanded, setExpanded] = useState(true)
   const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
   const aboutMaxLength = 200
@@ -35,8 +35,8 @@ const FooterForm = ({ about, disclaimers }) => {
   return (
     <form data-cy='footer-form' onSubmit={handleSubmit(onSubmit)}>
       <Accordion
-        expanded={expanded.footer}
-        onChange={() => setExpanded({ ...expanded, footer: !expanded.footer })}>
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>Footer</Typography>
         </AccordionSummary>
