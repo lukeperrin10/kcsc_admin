@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextField, Box, Button } from '@material-ui/core'
-import { DropzoneArea } from 'material-ui-dropzone'
+import ImageUploader from '../components/ImageUploader'
 import articleCreationTheme from '../theme/articleCreationTheme'
 
 const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
@@ -39,13 +39,7 @@ const ArticleCreationForm = ({ handleSubmit, handleChange }) => {
         name='body'
         onChange={handleChange}
       />
-      <DropzoneArea
-        data-cy='article-image'
-        acceptedFiles={['image/*']}
-        dropzoneText='Drag and drop or click here to add images'
-        filesLimit={1}
-        showPreviewsInDropzone={true}
-      />
+      <ImageUploader/>
 
       <Box className={classes.btnBox}>
         <Button
