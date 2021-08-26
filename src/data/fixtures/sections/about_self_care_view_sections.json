@@ -1,0 +1,38 @@
+{
+  "sections": [
+    {
+      "id": 1,
+      "variant": "regular",
+      "header": "Self Care",
+      "description": "This section tells vistor what is Self Care and how beneficial it is for them",
+      "image": {
+        "url": "https://assets.zyto.com/wp-content/uploads/2018/05/holistic-health-concept-woman-doing-yoga-on-beach-at-dusk.jpg",
+        "alt": "Woman is standing on the ocean beach in the sunset"
+      },
+      "buttons": []
+    },
+    {
+      "id": 2,
+      "variant": "regular",
+      "header": "Social Prescribing",
+      "description": "This section tells vistor what is Social Prescribing and how beneficial it is for them",
+      "image": {
+        "url": "https://www1.racgp.org.au/getattachment/12340621-1a55-415a-8417-a3486b08af95/attachment.aspx",
+        "alt": "People doing stuff I cannot really explain"
+      },
+      "buttons": []
+    },
+    {
+      "id": 3,
+      "variant": "no_image",
+      "header": "Case studies from KCSC",
+      "description": "This section spells out about results of case studies from KCSC"
+    },
+    {
+      "id": 4,
+      "variant": "no_image",
+      "header": "Case studies from other organisations",
+      "description": "This section spells out about results of case studies from other organisations"
+    }
+  ]
+}
