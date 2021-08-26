@@ -6,7 +6,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
-
+import ViewCompactIcon from '@material-ui/icons/ViewCompact';
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
@@ -23,6 +23,12 @@ const Sidebar = () => {
         <SidebarIcon text='General' to='/'>
           <SettingsIcon />
         </SidebarIcon>
+        <SidebarIcon
+          dataCy='sections'
+          text='Edit Sections'
+          to='/sections'>
+          <ViewCompactIcon />
+        </SidebarIcon>
         <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
           <ArticleIcon />
         </SidebarIcon>
@@ -31,7 +37,7 @@ const Sidebar = () => {
           text='Create Article'
           to='/articles/create'>
           <CreateIcon />
-        </SidebarIcon>
+        </SidebarIcon>       
         <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
           <AssessmentIcon />
         </SidebarIcon>
