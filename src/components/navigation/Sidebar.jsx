@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Drawer, List, Divider } from '@material-ui/core'
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@material-ui/icons/Settings'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
-import ViewCompactIcon from '@material-ui/icons/ViewCompact';
+import ViewCompactIcon from '@material-ui/icons/ViewCompact'
+import InfoIcon from '@material-ui/icons/Info'
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
@@ -23,10 +24,7 @@ const Sidebar = () => {
         <SidebarIcon text='General' to='/'>
           <SettingsIcon />
         </SidebarIcon>
-        <SidebarIcon
-          dataCy='sections'
-          text='Sections'
-          to='/sections'>
+        <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
@@ -37,7 +35,13 @@ const Sidebar = () => {
           text='Create Article'
           to='/articles/create'>
           <CreateIcon />
-        </SidebarIcon>       
+        </SidebarIcon>
+        <SidebarIcon
+          dataCy='information-edit'
+          text='Information'
+          to='/information'>
+          <InfoIcon />
+        </SidebarIcon>
         <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
           <AssessmentIcon />
         </SidebarIcon>

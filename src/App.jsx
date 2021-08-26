@@ -10,6 +10,7 @@ import AnalyticsDashboard from './views/AnalyticsDashboard'
 import ArticlesDashboard from './views/ArticlesDashboard'
 import ArticleCreation from './views/ArticleCreation'
 import SectionsDashboard from './views/SectionsDashboard'
+import InformationDashboard from './views/InformationDashboard'
 import LoginPage from './components/LoginPage'
 import Sidebar from './components/navigation/Sidebar'
 import PhoneSidebar from './components/navigation/PhoneSidebar'
@@ -43,6 +44,7 @@ const App = () => {
             <Route exact path='/articles' component={ArticlesDashboard} />
             <Route exact path='/articles/create' component={ArticleCreation} />
             <Route exact path='/sections' component={SectionsDashboard} />
+            <Route exact path='/information' component={InformationDashboard} />
           </Switch>
         </>
       ) : (
