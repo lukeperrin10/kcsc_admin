@@ -13,8 +13,8 @@ const SectionsList = ({ tabValue }) => {
     getSections(tabValue)
   }, [tabValue])
 
-  const sectionList = sections.map((section) => {
-    return <SectionSelector section={section} />
+  const sectionList = sections.map((section, index) => {
+    return <SectionSelector key={`section-${index}`} section={section} />
   })
   return <div>{sectionList}</div>
 }

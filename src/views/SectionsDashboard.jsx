@@ -23,8 +23,6 @@ const StyledTab = withStyles({
     color: '#E86406',
     fontWeight: 600,
   },
-  checked: {},
-  track: {},
 })(Tab)
 
 const SectionsDashboard = () => {
@@ -53,7 +51,7 @@ const SectionsDashboard = () => {
         value={value}
         onChange={handleChange}
         indicatorColor='primary'
-        textColor='secondary.contrastText'>
+        >
         <StyledTab
           data-cy='navigation-tab'
           style={{ margin: 'auto' }}
