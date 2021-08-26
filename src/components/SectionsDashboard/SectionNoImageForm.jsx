@@ -6,13 +6,12 @@ import {
   Typography,
   AccordionDetails,
   Grid,
-  TextField
+  TextField,
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
 import SubmitButton from '../SubmitButton'
 import { Controller, useForm } from 'react-hook-form'
 import Sections from '../../modules/Sections'
-
 
 const SectionRegularForm = ({ id, variant, header, description, index }) => {
   const [expanded, setExpanded] = useState(true)
@@ -21,7 +20,7 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
   const descriptionMaxLength = 1500
 
   const onSubmit = (formData) => {
-    Sections.update({...formData, variant: variant, id: id})
+    Sections.update({ ...formData, variant: variant, id: id })
   }
 
   return (
@@ -66,7 +65,7 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
                   fieldState: { error },
                 }) => (
                   <TextField
-                    data-cy='about-field'
+                    data-cy='description-input'
                     variant='outlined'
                     multiline
                     minRows={3}
@@ -81,7 +80,7 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
                 )}
               />
             </Grid>
-            <SubmitButton />
+            <SubmitButton dataCy='section-submit-button' />
           </Grid>
         </AccordionDetails>
       </Accordion>
