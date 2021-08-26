@@ -53,7 +53,7 @@ describe('Admin Can Use Sections Dashboard', () => {
         cy.get('[data-cy=section-edit-form]').should('have.length', 1)
       })
 
-      it.only('is expected to be able to edit section no image', () => {
+      it('is expected to be able to edit section no image', () => {
         cy.get('[data-cy=navigation-tab]').eq(1).click()
         cy.get('[data-cy=section-edit-form]')
           .eq(1)
@@ -67,6 +67,45 @@ describe('Admin Can Use Sections Dashboard', () => {
                 'contain.text',
                 'This section tells vistor Community Health West London plans to improve lives of people'
               )
+            cy.get('[data-cy=section-submit-button]').click()
+          })
+        cy.get('[data-cy=snack-content]').should(
+          'contain.text',
+          'Info has been updated'
+        )
+      })
+
+      it('is expected to edit section regular', () => {
+        cy.get('[data-cy=navigation-tab]').eq(1).click()
+        cy.get('[data-cy=section-edit-form]')
+          .eq(3)
+          .within(() => {
+            cy.get('[data-cy=header-input]')
+              .find('input')
+              .should('have.value', 'VCS info')
+            cy.get('[data-cy=description-input]')
+              .find('textarea')
+              .should('contain.text', 'This section tells vistor about VCS')
+            cy.get('[data-cy=alt-input]')
+              .find('input')
+              .should('have.value', 'Picture of happy woman')
+            cy.get('[data-cy=image-upload]').should('be.visible')
+            cy.get('[data-cy=image-preview]').should('be.visible')
+            cy.get('[data-cy=buttons-grid]').within(() => {
+              cy.get('[data-cy=button-form]').should('have.length', 2)
+              cy.get('[data-cy=button-form]')
+                .first()
+                .within(() => {
+                  cy.get('[data-cy=text-input]').should(
+                    'have.value',
+                    'KCSC Contact'
+                  )
+                  cy.get('[data-cy=link-input]').should(
+                    'have.value',
+                    'https://www.kcsc.org.uk/contact-us'
+                  )
+                })
+            })
             cy.get('[data-cy=section-submit-button]').click()
           })
         cy.get('[data-cy=snack-content]').should(
