@@ -13,7 +13,7 @@ import SubmitButton from '../SubmitButton'
 import { Controller, useForm } from 'react-hook-form'
 import Sections from '../../modules/Sections'
 
-const SectionRegularForm = ({ id, variant, header, description, index }) => {
+const SectionNoImageForm = ({ id, variant, header, description, index }) => {
   const [expanded, setExpanded] = useState(true)
   const commonClasses = useCommonStyles()
   const { control, handleSubmit } = useForm()
@@ -88,4 +88,4 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
   )
 }
 
-export default SectionRegularForm
+export default SectionNoImageForm
