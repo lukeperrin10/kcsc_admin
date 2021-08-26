@@ -36,7 +36,6 @@ const SectionsDashboard = () => {
         <Tab label='Services' />
         <Tab label='About organization' />
         <Tab label='About Self Care' />
-        <Tab label='News' />
         <Tab label='Information' />
       </Tabs>
       <Box>

@@ -1,0 +1,87 @@
+{
+  "sections": [
+    {
+      "id": 1,
+      "variant": "regular",
+      "header": "Find a Self-Care service",
+      "description": "Find local health and wellbeing services in the West London community.",
+      "image": {
+        "url": "https://prikolist.club/wp-content/uploads/2019/07/tancuyuschaya_devushka_2_14144925-1024x717.jpg",
+        "alt": "Happy girl watering flowers"
+      },
+      "buttons": [{
+        "id": 1,
+        "text": "Find self-care service",
+        "link": "/services/search"
+      }]
+    },
+    {
+      "id": 2,
+      "variant": "regular",
+      "header": "Long term Self Care",
+      "description": "Need support with your long term health conditions & are registered for a GP surgery in West London? You can access My Care My Way through speaking to your GP.",
+      "image": {
+        "url": "https://wellnesscenter.uic.edu/wp-content/uploads/sites/100/2020/07/01-04-1090x595.jpg",
+        "alt": "Happy girl watering flowers"
+      },
+      "buttons": [
+        {
+          "id": 1,
+          "text": "my care my way",
+          "link": "http://mycaremyway.co.uk/"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "variant": "regular",
+      "header": "Mental health",
+      "description": "A referral to a service in the community to support peoples mental health.",
+      "image": {
+        "url": "https://prikolist.club/wp-content/uploads/2019/07/tancuyuschaya_devushka_2_14144925-1024x717.jpg",
+        "alt": "Happy girl watering flowers"
+      },
+      "buttons": [
+        {
+          "id": 1,
+          "text": "Take me there",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "variant": "regular",
+      "header": "North Kensington Self-Care",
+      "description": "A referral to services in the community to support people in North Kensington affected by the Grenfell Tower fire.",
+      "image": {
+        "url": "https://wellnesscenter.uic.edu/wp-content/uploads/sites/100/2020/07/01-04-1090x595.jpg",
+        "alt": "Happy girl watering flowers"
+      },
+      "buttons": [
+        {
+          "id": 1,
+          "text": "Take me there",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "variant": "regular",
+      "header": "Find a Link workers",
+      "description": "A Social Prescribing Link worker is someone based in a GP surgery that will link people up to services in their local community.",
+      "image": {
+        "url": "https://prikolist.club/wp-content/uploads/2019/07/tancuyuschaya_devushka_2_14144925-1024x717.jpg",
+        "alt": "Happy girl watering flowers"
+      },
+      "buttons": [
+        {
+          "id": 1,
+          "text": "Take me there",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

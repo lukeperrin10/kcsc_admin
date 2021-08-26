@@ -1,0 +1,15 @@
+{
+  "sections": [
+    {
+      "id": 1,
+      "variant": "regular",
+      "header": "Information",
+      "description": "On this page, you can find very usefull information about Self Care and Healthcare in West London",
+      "image": {
+        "url": "https://media.rbcdn.ru/media/news/shutterstock349400798_ocj7iaS.jpg",
+        "alt": "Abstract information image"
+      },
+      "buttons": []
+    }
+  ]
+}
