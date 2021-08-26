@@ -6,11 +6,11 @@ describe('Admin Can Use Articles Dashboard', () => {
   sizes.forEach((size) => {
     describe(`admin can navigate to articles dashboard on ${size}`, () => {
       beforeEach(() => {
-        cy.intercept('GET', '**/api/info/information', {
+        cy.intercept('GET', '**/api/information', {
           fixture: 'information_items.json',
         })
-        cy.visit('/')
         TestHelpers.sizeParameters(size)
+        cy.visit('/')
         TestHelpers.authenticate()
         cy.visit('/information')
       })
@@ -30,6 +30,7 @@ describe('Admin Can Use Articles Dashboard', () => {
                 'contain.text',
                 'https://www.netdoctor.co.uk/health-services/'
               )
+              cy.get('[data-cy=action]').should('contain.text', 'placeholder')
             })
         })
       })
