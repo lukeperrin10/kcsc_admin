@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography, Divider, Box, AppBar, Tabs, Tab } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
+import SectionsList from '../components/SectionsDashboard/SectionsList'
 // import appData from '../data/app_data.json'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import NavigationForm from '../components/GeneralDashboard/NavigationForm'
@@ -15,10 +16,11 @@ const SectionsDashboard = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
+    debugger
   }
 
-  const sectionNavigation = (
-    <Box>
+  return (
+    <Box className={commonClasses.viewContainer}>
       <Box className={commonClasses.dashboardHeader}>
         <Typography
           data-cy='dashboard-header'
@@ -34,14 +36,15 @@ const SectionsDashboard = () => {
         textColor='secondary.contrastText'>
         <Tab label='Services' />
         <Tab label='About organization' />
-        <Tab label='About SelfCare' />
+        <Tab label='About Self Care' />
         <Tab label='News' />
         <Tab label='Information' />
       </Tabs>
+      <Box>
+        <SectionsList route={value} />
+      </Box>
     </Box>
   )
-
-  return <Box className={commonClasses.viewContainer}>{sectionNavigation}</Box>
 }
 
 export default SectionsDashboard
