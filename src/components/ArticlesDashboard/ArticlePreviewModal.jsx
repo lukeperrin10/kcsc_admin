@@ -9,20 +9,22 @@ import {
   CardMedia,
   TextField,
   ButtonGroup,
+  IconButton,
 } from '@material-ui/core'
 
 import Articles from '../../modules/Articles'
 import articlePreview from '../../theme/articlePreviewTheme'
+import { PhotoCamera } from '@material-ui/icons'
 
 const ArticlePreviewModal = ({ article }) => {
   const classes = articlePreview()
   const [open, setOpen] = useState(false)
-  const [preview, setPreview] = useState({})
+  const [currentArticle, setCurrentArticle] = useState({})
   const [changeMode, setChangeMode] = useState(false)
 
   const getArticle = async () => {
     let response = await Articles.show(article.id)
-    setPreview(response)
+    setCurrentArticle(response)
   }
 
   const handleOpen = () => {
@@ -73,11 +75,11 @@ const ArticlePreviewModal = ({ article }) => {
               data-cy='article-title'
               label='Title'
               fullWidth
-              defaultValue={preview.title}
+              defaultValue={currentArticle.title}
             />
           ) : (
             <Typography component='h5' variant='h4' data-cy='title'>
-              {preview.title}
+              {currentArticle.title}
             </Typography>
           )}
 
@@ -89,11 +91,11 @@ const ArticlePreviewModal = ({ article }) => {
               <Typography
                 component='p'
                 variant='subtitle1'
-                data-cy='author'>{`Written by: ${preview.author}`}</Typography>
+                data-cy='author'>{`Written by: ${currentArticle.author}`}</Typography>
             </Grid>
             <Grid item>
               <Typography component='p' variant='subtitle1' data-cy='date'>
-                {preview.date}
+                {currentArticle.date}
               </Typography>
             </Grid>
           </Grid>
@@ -106,16 +108,18 @@ const ArticlePreviewModal = ({ article }) => {
             className={classes.image}
             data-cy='image'
             component='img'
-            src={preview.image?.url}
-            alt={preview.image?.alt}
+            src={currentArticle.image?.url}
+            alt={currentArticle.image?.alt}
           />
+          {changeMode && <>
+          </>}
           {changeMode ? (
             <TextField
               label='Main body'
               data-cy='article-body'
               multiline
               fullWidth
-              defaultValue={preview.body}
+              defaultValue={currentArticle.body}
             />
           ) : (
             <Typography
@@ -123,7 +127,7 @@ const ArticlePreviewModal = ({ article }) => {
               variant='body1'
               data-cy='body'
               className={classes.body}>
-              {preview.body}
+              {currentArticle.body}
             </Typography>
           )}
 
@@ -142,7 +146,6 @@ const ArticlePreviewModal = ({ article }) => {
                 className={classes.closeBtn}
                 variant='contained'
                 color='primary'
-                data-cy='close-btn'
                 type='button'
                 data-cy='submit-button'
                 onClick={handleSubmit}>
