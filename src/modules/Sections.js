@@ -4,6 +4,10 @@ import about_self_care_view_sections from '../data/fixtures/sections/about_self_
 import about_us_view_sections from '../data/fixtures/sections/about_us_view_sections.json'
 import services_view_sections from '../data/fixtures/sections/services_view_sections.json'
 import information_view_sections from '../data/fixtures/sections/information_view_sections.json'
+import store from '../state/store/configureStore'
+import { getHeaders } from './Authentication'
+
+const headers = getHeaders()
 
 const Sections = {
   async index(tabValue) {
@@ -25,9 +29,25 @@ const Sections = {
           1: about_us_view_sections.sections,
           2: about_self_care_view_sections.sections,
           3: information_view_sections.sections,
-        }  
+        }
         return getSections[tabValue]
       }
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+  async update(section) {
+    try {
+      let response = {}
+      response = await axios.put(
+        `/api/sections/${section.id}`,
+        { params: section },
+        { headers: headers }
+      )
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
     } catch (error) {
       errorHandler(error)
     }
