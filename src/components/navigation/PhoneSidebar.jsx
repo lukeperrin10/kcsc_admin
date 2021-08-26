@@ -7,13 +7,13 @@ import {
   Divider,
   IconButton,
 } from '@material-ui/core'
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@material-ui/icons/Settings'
 import MenuIcon from '@material-ui/icons/Menu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
-
+import ViewCompactIcon from '@material-ui/icons/ViewCompact';
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
 import Authentication from '../../modules/Authentication'
@@ -53,6 +53,12 @@ const PhoneSidebar = () => {
         <List>
           <SidebarIcon text='General' to='/'>
             <SettingsIcon />
+          </SidebarIcon>
+          <SidebarIcon 
+            dataCy='sections' 
+            text='Sections' 
+            to='/sections'>
+            <ViewCompactIcon />
           </SidebarIcon>
           <SidebarIcon
             dataCy='articles-dashboard'

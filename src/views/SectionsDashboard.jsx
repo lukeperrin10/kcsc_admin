@@ -1,18 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Typography, Divider, Box, AppBar, Tabs, Tab } from '@material-ui/core'
+import React, { useState } from 'react'
+import {
+  Typography,
+  Divider,
+  Box,
+  Tabs,
+  Tab,
+  useMediaQuery,
+} from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
 import SectionsList from '../components/SectionsDashboard/SectionsList'
-// import appData from '../data/app_data.json'
-import FooterForm from '../components/GeneralDashboard/FooterForm'
-import NavigationForm from '../components/GeneralDashboard/NavigationForm'
-import TestimonialsForm from '../components/GeneralDashboard/TestimonialsForm'
-import AppData from '../modules/AppData'
+import { withStyles, useTheme } from '@material-ui/core/styles'
+
+const StyledTab = withStyles({
+  root: {
+    margin: 'auto',
+    minWidth: '100%',
+    '@media screen and (min-width: 600px)': {
+      minWidth: '0',
+    },
+  },
+  selected: {
+    color: '#E86406',
+    fontWeight: 600,
+  },
+  checked: {},
+  track: {},
+})(Tab)
 
 const SectionsDashboard = () => {
   const commonClasses = useCommonStyles()
-  const app_data = useSelector((state) => state.app_data)
   const [value, setValue] = useState(0)
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('xs'))
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -29,15 +48,34 @@ const SectionsDashboard = () => {
         </Typography>
       </Box>
       <Tabs
+        scrollButtons='auto'
+        orientation={mobile ? 'vertical' : 'horizontal'}
         value={value}
         onChange={handleChange}
         indicatorColor='primary'
         textColor='secondary.contrastText'>
-        <Tab label='Services' />
-        <Tab label='About organization' />
-        <Tab label='About Self Care' />
-        <Tab label='Information' />
+        <StyledTab
+          data-cy='navigation-tab'
+          style={{ margin: 'auto' }}
+          label='Services'
+        />
+        <StyledTab
+          data-cy='navigation-tab'
+          style={{ margin: 'auto' }}
+          label='About organization'
+        />
+        <StyledTab
+          data-cy='navigation-tab'
+          style={{ margin: 'auto' }}
+          label='About Self Care'
+        />
+        <StyledTab
+          data-cy='navigation-tab'
+          style={{ margin: 'auto' }}
+          label='Information'
+        />
       </Tabs>
+      {mobile && <Divider />}
       <Box>
         <SectionsList tabValue={value} />
       </Box>

@@ -25,7 +25,7 @@ const Sidebar = () => {
         </SidebarIcon>
         <SidebarIcon
           dataCy='sections'
-          text='Edit Sections'
+          text='Sections'
           to='/sections'>
           <ViewCompactIcon />
         </SidebarIcon>

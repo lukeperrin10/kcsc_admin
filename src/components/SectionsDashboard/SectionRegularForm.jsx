@@ -14,14 +14,16 @@ const SectionRegularForm = ({ variant }) => {
   const commonClasses = useCommonStyles()
 
   return (
-    <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant='h6'>{variant}</Typography>
-      </AccordionSummary>
-      <AccordionDetails className={commonClasses.accordionDetails}>
-        <Grid container direction='column' spacing={3}></Grid>
-      </AccordionDetails>
-    </Accordion>
+    <form data-cy='section-edit-form'>
+      <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant='h6'>{variant}</Typography>
+        </AccordionSummary>
+        <AccordionDetails className={commonClasses.accordionDetails}>
+          <Grid container direction='column' spacing={3}></Grid>
+        </AccordionDetails>
+      </Accordion>
+    </form>
   )
 }
 
