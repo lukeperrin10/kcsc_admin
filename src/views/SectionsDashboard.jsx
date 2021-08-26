@@ -16,7 +16,6 @@ const SectionsDashboard = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
-    debugger
   }
 
   return (
@@ -41,7 +40,7 @@ const SectionsDashboard = () => {
         <Tab label='Information' />
       </Tabs>
       <Box>
-        <SectionsList route={value} />
+        <SectionsList tabValue={value} />
       </Box>
     </Box>
   )

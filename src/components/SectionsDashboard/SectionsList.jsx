@@ -1,9 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import Section from '../../modules/Section'
 
-const SectionsList = ({route}) => {
+const SectionsList = ({tabValue}) => {
+const [sections, setSections] = useState([])
+
+  useEffect(() => {
+    const getSections = async (tabValue) => {
+      let response = await Section.index(tabValue)
+      setSections(response)
+    }
+    getSections(tabValue)
+  }, [tabValue])
+
   return (
     <div>
-      {`Sections List from ${route}`}
+      {`Sections List from ${tabValue}`}
     </div>
   )
 }
