@@ -42,6 +42,12 @@ const Sidebar = () => {
           to='/information'>
           <InfoIcon />
         </SidebarIcon>
+        <SidebarIcon
+          dataCy='information-create'
+          text='Create Information'
+          to='/information/create'>
+          <CreateIcon />
+        </SidebarIcon>
         <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
           <AssessmentIcon />
         </SidebarIcon>

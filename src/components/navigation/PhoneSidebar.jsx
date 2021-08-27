@@ -13,7 +13,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
-import ViewCompactIcon from '@material-ui/icons/ViewCompact';
+import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
@@ -55,10 +55,7 @@ const PhoneSidebar = () => {
           <SidebarIcon text='General' to='/'>
             <SettingsIcon />
           </SidebarIcon>
-          <SidebarIcon 
-            dataCy='sections' 
-            text='Sections' 
-            to='/sections'>
+          <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
             <ViewCompactIcon />
           </SidebarIcon>
           <SidebarIcon
@@ -74,11 +71,17 @@ const PhoneSidebar = () => {
             <CreateIcon />
           </SidebarIcon>
           <SidebarIcon
-          dataCy='information-edit'
-          text='Information'
-          to='/information'>
-          <InfoIcon />
-        </SidebarIcon>
+            dataCy='information-edit'
+            text='Information'
+            to='/information'>
+            <InfoIcon />
+          </SidebarIcon>
+          <SidebarIcon
+            dataCy='information-create'
+            text='Create Information'
+            to='/information/create'>
+            <CreateIcon />
+          </SidebarIcon>
           <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
             <AssessmentIcon />
           </SidebarIcon>
