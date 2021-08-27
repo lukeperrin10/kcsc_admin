@@ -2,9 +2,9 @@
 import sizes from '../support/index'
 import TestHelpers from '../support/testhelper'
 
-describe('Admin Can Use Articles Dashboard', () => {
+describe('Admin Can Use information Dashboard', () => {
   sizes.forEach((size) => {
-    describe(`admin can navigate to articles dashboard on ${size}`, () => {
+    describe(`admin can navigate to information dashboard on ${size}`, () => {
       beforeEach(() => {
         cy.intercept('GET', '**/api/information', {
           fixture: 'information_items.json',
@@ -20,17 +20,14 @@ describe('Admin Can Use Articles Dashboard', () => {
             .should('have.length', 10)
             .first()
             .within(() => {
-              cy.get('[data-cy=status]').should('be.visible')
-              cy.get('[data-cy=header]').should('contain.text', 'item-0')
+              cy.get('[data-cy=status]').should('contain.text', 'published')
+              cy.get('[data-cy=pinned]').should('contain.text', 'pinned')
+              cy.get('[data-cy=header]').should('contain.text', 'Item-0')
               cy.get('[data-cy=description]').should(
                 'contain.text',
                 'Often just simple changes'
               )
-              cy.get('[data-cy=link]').should(
-                'contain.text',
-                'https://www.netdoctor.co.uk/health-services/'
-              )
-              cy.get('[data-cy=action]').should('contain.text', 'placeholder')
+              cy.get('[data-cy=action]').should('contain.text', 'Placeholder')
             })
         })
       })

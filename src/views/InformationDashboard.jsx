@@ -46,7 +46,7 @@ const InformationDashboard = () => {
   const tableHeader = (
     <StyledTableRow color='secondary'>
       <StyledTableCell align='center'>Status</StyledTableCell>
-      <StyledTableCell align='Left'>Pinned</StyledTableCell>
+      <StyledTableCell align='left'>Pinned</StyledTableCell>
       <StyledTableCell align='left'>Header</StyledTableCell>
       <StyledTableCell align='left'>Description</StyledTableCell>
       <StyledTableCell align='left'>Action</StyledTableCell>
@@ -64,11 +64,10 @@ const InformationDashboard = () => {
               data-cy='status'
               align='center'
               className={classes.statusCell}>
-                {publish ? "published" : "unpublished"}
+              {publish ? 'published' : 'unpublished'}
             </StyledTableCell>
-            <StyledTableCell
-              className={classes.statusCell}>
-                {pinned ? "pinned" : "other"}
+            <StyledTableCell data-cy='pinned' className={classes.statusCell}>
+              {pinned ? 'pinned' : 'other'}
             </StyledTableCell>
             <StyledTableCell data-cy='header' className={classes.headerCell}>
               {header}
