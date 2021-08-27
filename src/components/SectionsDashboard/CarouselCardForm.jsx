@@ -8,6 +8,7 @@ import {
   IconButton,
   TextField,
   Grid,
+  Button,
 } from '@material-ui/core'
 import { Controller, useForm } from 'react-hook-form'
 import carouselCard from '../../theme/carouselCardTheme'
@@ -15,22 +16,22 @@ import { useWatch } from 'react-hook-form'
 import { PhotoCamera } from '@material-ui/icons'
 import SubmitButton from '../SubmitButton'
 
-const CarouselCard = ({ card, arrayIndex }) => {
+const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) => {
   const classes = carouselCard()
   const descriptionMaxLength = 250
   const { logo, alt, organization, description, links, publish } = card
   const [preview, setPreview] = useState()
-  const { control, handleSubmit } = useForm()
   const [newLogo, setNewLogo] = useState(card.logo)
+  const { control, handleSubmit } = useForm()
   const disable = useWatch({
     control,
     name: `card.publish`,
-    defaultValue: publish,
+    defaultValue: publish ? publish : true,
   })
 
   const onSubmit = (formData) => {
-    console.log({ card: { ...formData.card, logo: newLogo } })
-    // Sections.update(updatedSection)
+    const card = {...formData, logo: newLogo}
+    sectionSubmit(card)
   }
 
   const imageEncoder = (file) =>
@@ -56,31 +57,58 @@ const CarouselCard = ({ card, arrayIndex }) => {
         variant='outlined'
         className={classes.card}>
         <Grid container direction='column' spacing={3}>
-          <Grid item>
-            <FormControlLabel
-              control={
-                <Controller
-                  name={`card.publish`}
-                  control={control}
-                  defaultValue={publish}
-                  render={({ field: { onChange, value } }) => (
-                    <Switch
-                      size='small'
-                      checked={value}
-                      onChange={onChange}
-                      data-cy={`card-publish-${arrayIndex}`}
-                      name={`card-publish-${arrayIndex}`}
-                    />
-                  )}
-                />
-              }
-              label={
-                <Typography className={classes.switchLabel}>
-                  {disable ? 'Visible' : 'Hidden'}
-                </Typography>
-              }
-              labelPlacement='bottom'
-            />
+          <Grid item container direction='row' justifyContent='space-between'>
+            <Grid item>
+              <FormControlLabel
+                control={
+                  <Controller
+                    name={`card.publish`}
+                    control={control}
+                    defaultValue={publish ? publish : true}
+                    render={({ field: { onChange, value } }) => (
+                      <Switch
+                        size='small'
+                        checked={value}
+                        onChange={onChange}
+                        data-cy={`card-publish-${arrayIndex}`}
+                        name={`card-publish-${arrayIndex}`}
+                      />
+                    )}
+                  />
+                }
+                label={
+                  <Typography className={classes.switchLabel}>
+                    {disable ? 'Visible' : 'Hidden'}
+                  </Typography>
+                }
+                labelPlacement='bottom'
+              />
+            </Grid>
+            {create && (
+              <>
+                <Grid item>
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    type='button'
+                    data-cy='submit-button'
+                    onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    className={classes.closeBtn}
+                    color='primary'
+                    data-cy='close-btn'
+                    type='button'
+                    onClick={handleClose}>
+                    Close
+                  </Button>
+                </Grid>
+              </>
+            )}
           </Grid>
           <Grid item container style={{ height: '250px' }}>
             <CardMedia
@@ -187,7 +215,7 @@ const CarouselCard = ({ card, arrayIndex }) => {
           </Grid>
           <Grid item>
             <Controller
-              name={`card.links.web-link`}
+              name={`card.links.web`}
               control={control}
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
@@ -204,7 +232,7 @@ const CarouselCard = ({ card, arrayIndex }) => {
           </Grid>
           <Grid item>
             <Controller
-              name={`card.links.facebook-link`}
+              name={`card.links.facebook`}
               control={control}
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
@@ -221,7 +249,7 @@ const CarouselCard = ({ card, arrayIndex }) => {
           </Grid>
           <Grid item>
             <Controller
-              name={`card.links.twitter-link`}
+              name={`card.links.twitter`}
               control={control}
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
@@ -236,7 +264,7 @@ const CarouselCard = ({ card, arrayIndex }) => {
               )}
             />
           </Grid>
-          <SubmitButton dataCy='section-submit-button' />
+          {!create && <SubmitButton dataCy='section-submit-button' />}
         </Grid>
       </Card>
     </form>
