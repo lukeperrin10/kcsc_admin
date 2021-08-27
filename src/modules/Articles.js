@@ -61,7 +61,7 @@ const Articles = {
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
-        `/aoi/articles/${id}`,
+        `/api/articles/${id}`,
         { publish: publish },
         { headers: headers }
       )
