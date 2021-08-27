@@ -1,39 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Card,
   CardMedia,
   Typography,
-  CardContent,
-  CardActions,
+  FormControlLabel,
+  Switch,
   Button,
   Box,
   TextField,
   Grid,
 } from '@material-ui/core'
 import { Controller } from 'react-hook-form'
+import carouselCard from '../../theme/carouselCardTheme'
+import PublishedSwitch from '../ArticlesDashboard/PublishedSwitch'
 
-const CarouselCard = ({ card, control }) => {
+const CarouselCard = ({ card, control, arrayIndex }) => {
+  const classes = carouselCard()
   const descriptionMaxLength = 250
-  const { logo, alt, organization, description, links } = card
+  const { logo, alt, organization, description, links, publish } = card
+  const [disable, setDisable] = useState(publish)
+
+  const handleChange = (e) => {    
+    setDisable(e.target.checked)
+  }
 
   return (
     <Card
       data-cy='carousel-card-form'
       elevation={0}
       variant='outlined'
-      style={styles.card}>
+      className={classes.card}>
       <Grid container direction='column' spacing={3}>
+        <Grid item>
+          <FormControlLabel
+            control={
+              <Controller
+                name={`cards[${arrayIndex}].publish`}
+                control={control}
+                defaultValue={publish}
+                render={({ field: { onChange, value } }) => (
+                  <Switch
+                    size='small'
+                    checked={disable}
+                    onChange={(e) => {
+                      onChange()
+                      handleChange(e)
+                    }}
+                    data-cy={`card-publish-${arrayIndex}`}
+                    name={`card-publish-${arrayIndex}`}
+                  />
+                )}
+              />
+            }
+            label={
+              <Typography className={classes.switchLabel}>
+                {disable ? 'Visible' : 'Hidden'}
+              </Typography>
+            }
+            labelPlacement='bottom'
+          />
+        </Grid>
         <Grid item container style={{ height: '150px' }}>
           <CardMedia
-            style={styles.logo}
+            className={classes.logo}
             data-cy='image-preview'
             component='img'
+            style={!disable ? {filter: 'grayscale(100%)'} : undefined}
             src={logo}
           />
         </Grid>
         <Grid item>
           <Controller
-            name='alt'
+            name={`cards[${arrayIndex}].alt`}
             control={control}
             defaultValue={alt}
             rules={{ required: 'This field cannot be empty' }}
@@ -42,6 +80,7 @@ const CarouselCard = ({ card, control }) => {
                 data-cy='alt-input'
                 label={`Logo Alt attribute*`}
                 error={!!error}
+                disabled={!disable}
                 fullWidth
                 helperText={error ? error.message : null}
                 value={value}
@@ -52,7 +91,7 @@ const CarouselCard = ({ card, control }) => {
         </Grid>
         <Grid item>
           <Controller
-            name='organization'
+            name={`cards[${arrayIndex}].organization`}
             control={control}
             defaultValue={organization}
             rules={{ required: 'This field cannot be empty' }}
@@ -62,6 +101,7 @@ const CarouselCard = ({ card, control }) => {
                 label={`Organization name*`}
                 variant='outlined'
                 error={!!error}
+                disabled={!disable}
                 fullWidth
                 helperText={error ? error.message : null}
                 value={value}
@@ -72,7 +112,7 @@ const CarouselCard = ({ card, control }) => {
         </Grid>
         <Grid item>
           <Controller
-            name='description'
+            name={`cards[${arrayIndex}].description`}
             control={control}
             defaultValue={description}
             rules={{ required: 'This field cannot be empty' }}
@@ -85,6 +125,7 @@ const CarouselCard = ({ card, control }) => {
                 label={`Description (max ${descriptionMaxLength} char.)*`}
                 inputProps={{ maxLength: descriptionMaxLength }}
                 error={!!error}
+                disabled={!disable}
                 fullWidth
                 helperText={error ? error.message : null}
                 value={value}
@@ -95,7 +136,7 @@ const CarouselCard = ({ card, control }) => {
         </Grid>
         <Grid item>
           <Controller
-            name='web-link'
+            name={`cards[${arrayIndex}].web-link`}
             control={control}
             defaultValue={links.web}
             render={({ field: { onChange, value } }) => (
@@ -103,6 +144,7 @@ const CarouselCard = ({ card, control }) => {
                 data-cy='web-link-input'
                 label={`Link to website*`}
                 fullWidth
+                disabled={!disable}
                 value={value}
                 onChange={onChange}
               />
@@ -111,7 +153,7 @@ const CarouselCard = ({ card, control }) => {
         </Grid>
         <Grid item>
           <Controller
-            name='facebook-link'
+            name={`cards[${arrayIndex}].facebook-link`}
             control={control}
             defaultValue={links.web}
             render={({ field: { onChange, value } }) => (
@@ -119,6 +161,7 @@ const CarouselCard = ({ card, control }) => {
                 data-cy='facebook-link-input'
                 label={`Link to Facebook*`}
                 fullWidth
+                disabled={!disable}
                 value={value}
                 onChange={onChange}
               />
@@ -127,7 +170,7 @@ const CarouselCard = ({ card, control }) => {
         </Grid>
         <Grid item>
           <Controller
-            name='twitter-link'
+            name={`cards[${arrayIndex}].twitter-link`}
             control={control}
             defaultValue={links.web}
             render={({ field: { onChange, value } }) => (
@@ -135,6 +178,7 @@ const CarouselCard = ({ card, control }) => {
                 data-cy='twitter-link-input'
                 label={`Link to Twitter*`}
                 fullWidth
+                disabled={!disable}
                 value={value}
                 onChange={onChange}
               />
@@ -147,34 +191,3 @@ const CarouselCard = ({ card, control }) => {
 }
 
 export default CarouselCard
-
-const styles = {
-  card: {
-    padding: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    height: '200px',
-  },
-  cardContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingTop: '1rem',
-  },
-  buttonContainer: {
-    alignSelf: 'flex-end',
-    position: 'absolute',
-    bottom: '20px',
-  },
-  logo: {
-    margin: 'auto',
-    maxHeight: '90%',
-    maxWidth: '90%',
-    objectFit: 'contain',
-  },
-}

@@ -94,10 +94,10 @@ const SectionCarouselForm = ({ id, variant, header, cards, index }) => {
     setUpdatedImage(true)
   }
 
-  const cardList = cards.map((card, i) => {
+  const cardList = cards.map((card, arrayIndex) => {
     return (
       <Grid item xs={12} md={6}>
-        <CarouselCard card={card} control={control}/>
+        <CarouselCard card={card} control={control} arrayIndex={arrayIndex}/>
       </Grid>
     )
   })
