@@ -32,6 +32,11 @@ const articlePreview = makeStyles((theme) => ({
   body: {
     whiteSpace: 'pre-wrap',
   },
+  buttonsContainer: {
+    display: 'flex',
+    direction: 'row',
+    justifyContent: 'space-between',
+  },
   closeBtn: {
     marginTop: '40px',
   },
