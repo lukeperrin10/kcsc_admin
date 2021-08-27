@@ -8,15 +8,15 @@ import {
 const CardCreateModal = ({ open, setOpen, sectionSubmit }) => {
   const emptyCard = {
     id: null,
-    publish: null,
-    logo: null,
-    alt: null,
-    organization: null,
-    description: null,
+    publish: '',
+    logo: '',
+    alt: '',
+    organization: '',
+    description: '',
     links: {
-      web: null,
-      facebook: null,
-      twitter: null,
+      web: '',
+      facebook: '',
+      twitter: '',
     },
   }
 

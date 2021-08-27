@@ -30,8 +30,8 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
   })
 
   const onSubmit = (formData) => {
-    const card = {...formData, logo: newLogo}
-    sectionSubmit(card)
+    const newCard = {...formData.card, id: card.id, logo: newLogo}
+    sectionSubmit(newCard)
   }
 
   const imageEncoder = (file) =>
@@ -91,9 +91,9 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
                     className={classes.closeBtn}
                     variant='contained'
                     color='primary'
-                    type='button'
+                    type='submit'
                     data-cy='submit-button'
-                    onClick={handleSubmit}>
+                    >
                     Submit
                   </Button>
                 </Grid>
@@ -133,7 +133,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
             <label htmlFor={`card-image-input-section-${arrayIndex}`}>
               <IconButton
                 data-cy='image-upload-button'
-                color={!disable ? '#777' : 'primary'}
+                color={!disable ? 'default' : 'primary'}
                 component='span'>
                 <PhotoCamera />
               </IconButton>

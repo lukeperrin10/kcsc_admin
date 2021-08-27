@@ -18,7 +18,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
   const [open, setOpen] = useState(false)
 
   const sectionSubmit = (newCard) => {
-    if (newCard.id) {
+    if (newCard.id) {  
       let newCards = cards
       let cardIndex = newCards.findIndex((card) => card.id === newCard.id)
       newCards[cardIndex] = newCard
@@ -30,13 +30,18 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
       }
       console.log({ section: section })
     } else {
-      const newCards = cards.push(newCard)
+      let newCards = [...cards, { ...newCard, id: null }]
+      newCards = newCards.map((card, i) => {
+        card.id = i
+        return card
+      })
       let section = {
         id: id,
         variant: variant,
         header: header,
         cards: newCards,
       }
+      setOpen(false)
       console.log({ section: section })
     }
   }
@@ -55,7 +60,11 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
 
   return (
     <>
-      <CardCreateModal open={open} setOpen={setOpen}/>
+      <CardCreateModal
+        open={open}
+        setOpen={setOpen}
+        sectionSubmit={sectionSubmit}
+      />
       <Accordion
         style={{ backgroundColor: '#00000000' }}
         expanded={expanded}
