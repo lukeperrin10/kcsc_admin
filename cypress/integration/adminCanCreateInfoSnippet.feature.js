@@ -38,6 +38,27 @@ describe('Admin is able to create an info snippet ', () => {
           )
         })
       })
+
+      describe('unsuccessfully', () => {
+        beforeEach(() => {
+          cy.intercept('POST', '**/api/information/**', {
+            statusCode: 400,
+            body: {
+              error_message: 'An error occurred',
+            },
+          })
+        })
+
+        context('unsuccessfully, by clicking `submit` btn', () => {
+          it('is expected to show error message', () => {
+            cy.get('[data-cy=info-submit]').click()
+            cy.get('[data-cy=snack-content]').should(
+              'contain',
+              'An error occurred'
+            )
+          })
+        })
+      })
     })
   })
 })
