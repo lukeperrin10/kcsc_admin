@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, makeStyles } from '@material-ui/core'
 import Sections from '../../modules/Sections'
 import SectionSelector from './SectionSelector'
 
