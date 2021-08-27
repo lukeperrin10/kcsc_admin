@@ -9,6 +9,9 @@ describe('Admin Can Use information Dashboard', () => {
         cy.intercept('GET', '**/api/information', {
           fixture: 'information_items.json',
         })
+        cy.intercept('GET', '**/api/app_data', {
+          fixture: 'app_data.json',
+        })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
@@ -20,8 +23,8 @@ describe('Admin Can Use information Dashboard', () => {
             .should('have.length', 10)
             .first()
             .within(() => {
-              cy.get('[data-cy=status]').should('contain.text', 'published')
-              cy.get('[data-cy=pinned]').should('contain.text', 'pinned')
+              cy.get('[data-cy=status]').should('contain.text', 'Published')
+              cy.get('[data-cy=pinned]').should('contain.text', 'Pinned')
               cy.get('[data-cy=header]').should('contain.text', 'Item-0')
               cy.get('[data-cy=description]').should(
                 'contain.text',

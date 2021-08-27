@@ -17,20 +17,14 @@ const StyledSwitch = withStyles({
   track: {},
 })(Switch)
 
-export const Switches = ({ publish, pinned, itemId }) => {
-  const [checkedPublish, setCheckedPublish] = useState(publish)
-  const [checkedPinned, setCheckedPinned] = useState(pinned)
+export const Switches = ({ value, itemId, name }) => {
+  const [checked, setChecked] = useState(value)
 
   const handleChange = async () => {
-    let publishState = !checkedPublish   
-    let pinnedState = !checkedPinned     
-    let result = await Information.update_publish(itemId, publishState, pinnedState)
+    let switchState = !checked
+    let result = await Information.update_publish(itemId, switchState)
     if (result !== 'error') {
-      if (publish) {
-        setCheckedPublish(publishState)
-      } else if (pinned) {
-        setCheckedPinned(pinnedState)
-      }
+      setChecked(switchState)
     }
   }
 
@@ -38,14 +32,13 @@ export const Switches = ({ publish, pinned, itemId }) => {
     <>
       <StyledSwitch
         size='small'
-        checked={checkedPublish ? checkedPublish : checkedPinned}
+        checked={checked}
         onChange={handleChange}
-        data-cy={ checkedPublish ? `publish-${itemId}` : `pinned-${itemId}`}
-        name={checkedPublish ? `publish-${itemId}` : `pinned-${itemId}`}
+        data-cy={checked ? `publish-${itemId}` : `pinned-${itemId}`}
+        name={name === "publish" ? `publish-${itemId}` : `pinned-${itemId}`}
       />
     </>
   )
 }
 
 export default Switches
-
