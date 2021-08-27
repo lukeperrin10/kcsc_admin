@@ -28,11 +28,11 @@ const Information = {
     }
   },
 
-  async update_switch(itemId, name, switchState) {
+  async update_switch(itemId, attr, switchState) {
     try {
       const response = await axios.post(
         `/api/information/${itemId}`,
-        { [name]: switchState },
+        { [attr]: switchState },
         { headers: headers }
       )
       store.dispatch({
