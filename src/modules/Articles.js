@@ -30,7 +30,7 @@ const Articles = {
   async create(article) {
     let params = { article: article }
     try {
-      let response = await axios.post('/articles/create', params, {
+      let response = await axios.post('/api/articles/create', params, {
         headers: headers,
       })
       Articles.index()
@@ -46,7 +46,7 @@ const Articles = {
   async show(id) {
     try {
       if (window.Cypress) {
-        const response = await axios.get(`/articles/${id}`, {
+        const response = await axios.get(`/api/articles/${id}`, {
           headers: headers,
         })
         return response.data
@@ -77,7 +77,7 @@ const Articles = {
   async update_publish(id, publish) {
     try {
       const response = await axios.post(
-        `/articles/${id}`,
+        `/api/articles/${id}`,
         { publish: publish },
         { headers: headers }
       )

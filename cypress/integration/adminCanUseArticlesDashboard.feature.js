@@ -9,6 +9,9 @@ describe('Admin Can Use Articles Dashboard', () => {
         cy.intercept('GET', '**/api/articles', {
           fixture: 'all_articles.json',
         })
+        cy.intercept('GET', '**/api/app_data', {
+          fixture: 'app_data.json',
+        })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()

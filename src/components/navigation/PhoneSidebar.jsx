@@ -14,6 +14,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
 import ViewCompactIcon from '@material-ui/icons/ViewCompact';
+import InfoIcon from '@material-ui/icons/Info'
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
 import Authentication from '../../modules/Authentication'
@@ -72,6 +73,12 @@ const PhoneSidebar = () => {
             to='/articles/create'>
             <CreateIcon />
           </SidebarIcon>
+          <SidebarIcon
+          dataCy='information-edit'
+          text='Information'
+          to='/information'>
+          <InfoIcon />
+        </SidebarIcon>
           <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
             <AssessmentIcon />
           </SidebarIcon>

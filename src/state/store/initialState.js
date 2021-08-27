@@ -1,5 +1,6 @@
 const initialState = {
   articles: [],
+  information_items: [],
   app_data: null,
   authenticated: false,
   name: '',

@@ -66,31 +66,29 @@ const ArticlesDashboard = () => {
     articles.map((article) => {
       const { id, title, author, date, publish } = article
       return (
-        <>
-          <StyledTableRow data-cy='article' key={`article-${id}`}>
-            <StyledTableCell data-cy='status' align='center'>
-              <FormControlLabel
-                control={<PublishedSwitch publish={publish} articleId={id} />}
-                label={
-                  <Typography className={classes.switchLabel}>
-                    {publish ? 'Published' : 'Hidden'}
-                  </Typography>
-                }
-                labelPlacement='bottom'
-              />
-            </StyledTableCell>
-            <StyledTableCell data-cy='title' className={classes.titleCell}>
-              {title}
-            </StyledTableCell>
-            <StyledTableCell data-cy='author'>{author}</StyledTableCell>
-            <StyledTableCell data-cy='date' className={classes.dateCell}>
-              {date}
-            </StyledTableCell>
-            <StyledTableCell data-cy='action'>
-              <ArticlePreviewModal article={article} />
-            </StyledTableCell>
-          </StyledTableRow>
-        </>
+        <StyledTableRow data-cy='article' key={`article-${id}`}>
+          <StyledTableCell data-cy='status' align='center'>
+            <FormControlLabel
+              control={<PublishedSwitch publish={publish} articleId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {publish ? 'Published' : 'Hidden'}
+                </Typography>
+              }
+              labelPlacement='bottom'
+            />
+          </StyledTableCell>
+          <StyledTableCell data-cy='title' className={classes.titleCell}>
+            {title}
+          </StyledTableCell>
+          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+          <StyledTableCell data-cy='date' className={classes.dateCell}>
+            {date}
+          </StyledTableCell>
+          <StyledTableCell data-cy='action'>
+            <ArticlePreviewModal article={article} />
+          </StyledTableCell>
+        </StyledTableRow>
       )
     })
 
