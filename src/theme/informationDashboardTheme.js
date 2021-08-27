@@ -27,12 +27,6 @@ const informationDashboard = makeStyles((theme) => ({
       minWidth: '400px',
     },
   },
-  linkCell: {
-    [theme.breakpoints.down('md')]: {
-      maxWidth: '400px',
-      minWidth: '200px',
-    },
-  },
   actionCell: {
     [theme.breakpoints.down('md')]: {
       maxWidth: '200px',

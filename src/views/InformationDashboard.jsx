@@ -46,9 +46,9 @@ const InformationDashboard = () => {
   const tableHeader = (
     <StyledTableRow color='secondary'>
       <StyledTableCell align='center'>Status</StyledTableCell>
+      <StyledTableCell align='Left'>Pinned</StyledTableCell>
       <StyledTableCell align='left'>Header</StyledTableCell>
       <StyledTableCell align='left'>Description</StyledTableCell>
-      <StyledTableCell align='left'>Link</StyledTableCell>
       <StyledTableCell align='left'>Action</StyledTableCell>
     </StyledTableRow>
   )
@@ -56,7 +56,7 @@ const InformationDashboard = () => {
   const tableRows =
     information &&
     information.map((information_item) => {
-      const { id, header, description, link } = information_item
+      const { id, header, description, publish, pinned } = information_item
       return (
         <>
           <StyledTableRow data-cy='information' key={id}>
@@ -64,16 +64,17 @@ const InformationDashboard = () => {
               data-cy='status'
               align='center'
               className={classes.statusCell}>
-              placeholder
+                {publish ? "published" : "unpublished"}
+            </StyledTableCell>
+            <StyledTableCell
+              className={classes.statusCell}>
+                {pinned ? "pinned" : "other"}
             </StyledTableCell>
             <StyledTableCell data-cy='header' className={classes.headerCell}>
               {header}
             </StyledTableCell>
             <StyledTableCell data-cy='description' className={classes.descCell}>
               {description}
-            </StyledTableCell>
-            <StyledTableCell data-cy='link' className={classes.linkCell}>
-              {link}
             </StyledTableCell>
             <StyledTableCell data-cy='action' className={classes.actionCell}>
               Placeholder

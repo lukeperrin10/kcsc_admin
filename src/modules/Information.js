@@ -14,12 +14,12 @@ const Information = {
         const response = await axios.get('/api/information', { headers: headers })
         store.dispatch({
           type: 'INFORMATION_INDEX',
-          payload: response.data.information_items.pinned, 
+          payload: response.data.information_items, 
         })
       } else {
         store.dispatch({
           type: 'INFORMATION_INDEX',
-          payload: information.information_items.pinned,
+          payload: information.information_items,
         })
       }
     } catch (error) {
