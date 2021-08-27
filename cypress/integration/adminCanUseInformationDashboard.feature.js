@@ -12,7 +12,13 @@ describe('Admin Can Use information Dashboard', () => {
         cy.intercept('GET', '**/api/app_data', {
           fixture: 'app_data.json',
         })
-    
+        cy.intercept('POST', '**/api/information/**', {
+          statusCode: 200,
+          body: {
+            message: 'Information has been updated',
+          },
+        })
+
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
@@ -38,13 +44,7 @@ describe('Admin Can Use information Dashboard', () => {
 
       context('successfully, by clicking `publish` switch', () => {
         it('is expected to show success message', () => {
-          cy.intercept('POST', '**/api/information/**', {
-            statusCode: 200,
-            body: {
-              message: 'Information has been updated',
-            },
-          })
-          cy.get('[data-cy=publish-1]').click()
+          cy.get('[data-cy=publish-2]').click()
           cy.get('[data-cy=snack-content]').should(
             'contain',
             'Information has been updated'
@@ -52,7 +52,17 @@ describe('Admin Can Use information Dashboard', () => {
         })
       })
 
-      context('unsuccessfully, by clicking `publish` switch', () => {
+      context('successfully, by clicking `pinned` switch', () => {
+        it('is expected to show success message', () => {
+          cy.get('[data-cy=pinned-2]').click()
+          cy.get('[data-cy=snack-content]').should(
+            'contain',
+            'Information has been updated'
+          )
+        })
+      })
+
+      context('unsuccessfully', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/api/information/**', {
             statusCode: 400,
@@ -61,12 +71,25 @@ describe('Admin Can Use information Dashboard', () => {
             },
           })
         })
-        it('is expected to show error message', () => {
-          cy.get('[data-cy=publish-1]').click()
-          cy.get('[data-cy=snack-content]').should(
-            'contain',
-            'An error occurred'
-          )
+
+        context('unsuccessfully, by clicking `publish` switch', () => {
+          it('is expected to show error message', () => {
+            cy.get('[data-cy=publish-1]').click()
+            cy.get('[data-cy=snack-content]').should(
+              'contain',
+              'An error occurred'
+            )
+          })
+        })
+
+        context('unsuccessfully, by clicking `pinned` switch', () => {
+          it('is expected to show error message', () => {
+            cy.get('[data-cy=pinned-1]').click()
+            cy.get('[data-cy=snack-content]').should(
+              'contain',
+              'An error occurred'
+            )
+          })
         })
       })
     })

@@ -4,17 +4,18 @@ import errorHandler from './ErrorHandler'
 import axios from 'axios'
 import information from '../data/fixtures/information_items.json'
 
-
 const headers = getHeaders()
 
 const Information = {
   async index() {
     try {
       if (window.Cypress) {
-        const response = await axios.get('/api/information', { headers: headers })
+        const response = await axios.get('/api/information', {
+          headers: headers,
+        })
         store.dispatch({
           type: 'INFORMATION_INDEX',
-          payload: response.data.information_items, 
+          payload: response.data.information_items,
         })
       } else {
         store.dispatch({
@@ -27,12 +28,11 @@ const Information = {
     }
   },
 
-  async update_publish(id, publish, pinned) {
+  async update_switch(itemId, name, switchState) {
     try {
       const response = await axios.post(
-        `/api/information/${id}`,
-        { publish: publish },
-        { pinned: pinned },
+        `/api/information/${itemId}`,
+        { [name]: switchState },
         { headers: headers }
       )
       store.dispatch({

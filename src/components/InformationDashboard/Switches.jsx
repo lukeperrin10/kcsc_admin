@@ -22,22 +22,20 @@ export const Switches = ({ value, itemId, name }) => {
 
   const handleChange = async () => {
     let switchState = !checked
-    let result = await Information.update_publish(itemId, switchState)
+    let result = await Information.update_switch(itemId, name, switchState)
     if (result !== 'error') {
       setChecked(switchState)
     }
   }
 
   return (
-    <>
-      <StyledSwitch
-        size='small'
-        checked={checked}
-        onChange={handleChange}
-        data-cy={name === "publish" ? `publish-${itemId}` : `pinned-${itemId}`}
-        name={name === "publish" ? `publish-${itemId}` : `pinned-${itemId}`}
-      />
-    </>
+    <StyledSwitch
+      size='small'
+      checked={checked}
+      onChange={handleChange}
+      data-cy={name === 'publish' ? `publish-${itemId}` : `pinned-${itemId}`}
+      name={name === 'publish' ? `publish-${itemId}` : `pinned-${itemId}`}
+    />
   )
 }
 
