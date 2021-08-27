@@ -34,7 +34,7 @@ export const Switches = ({ value, itemId, name }) => {
         size='small'
         checked={checked}
         onChange={handleChange}
-        data-cy={checked ? `publish-${itemId}` : `pinned-${itemId}`}
+        data-cy={name === "publish" ? `publish-${itemId}` : `pinned-${itemId}`}
         name={name === "publish" ? `publish-${itemId}` : `pinned-${itemId}`}
       />
     </>

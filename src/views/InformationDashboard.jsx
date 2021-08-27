@@ -66,7 +66,7 @@ const InformationDashboard = () => {
             align='center'
             className={classes.statusCell}>
             <FormControlLabel
-              control={<Switches value={publish} name="publish" itemId={id} />}
+              control={<Switches value={publish} name="publish" key={`publish${id}`} itemId={id} />}
               label={
                 <Typography className={classes.switchLabel}>
                   {publish ? 'Published' : 'Hidden'}
@@ -77,7 +77,7 @@ const InformationDashboard = () => {
           </StyledTableCell>
           <StyledTableCell data-cy='pinned' className={classes.statusCell}>
           <FormControlLabel
-              control={<Switches value={pinned} name="pin" itemId={id} />}
+              control={<Switches value={pinned} name="pin" key={`pin${id}`} itemId={id} />}
               label={
                 <Typography className={classes.switchLabel}>
                   {pinned ? 'Pinned' : 'Other'}

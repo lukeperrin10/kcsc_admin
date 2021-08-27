@@ -12,6 +12,7 @@ describe('Admin Can Use information Dashboard', () => {
         cy.intercept('GET', '**/api/app_data', {
           fixture: 'app_data.json',
         })
+    
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
@@ -32,6 +33,40 @@ describe('Admin Can Use information Dashboard', () => {
               )
               cy.get('[data-cy=action]').should('contain.text', 'Placeholder')
             })
+        })
+      })
+
+      context('successfully, by clicking `publish` switch', () => {
+        it('is expected to show success message', () => {
+          cy.intercept('POST', '**/api/information/**', {
+            statusCode: 200,
+            body: {
+              message: 'Information has been updated',
+            },
+          })
+          cy.get('[data-cy=publish-1]').click()
+          cy.get('[data-cy=snack-content]').should(
+            'contain',
+            'Information has been updated'
+          )
+        })
+      })
+
+      context('unsuccessfully, by clicking `publish` switch', () => {
+        beforeEach(() => {
+          cy.intercept('POST', '**/api/information/**', {
+            statusCode: 400,
+            body: {
+              error_message: 'An error occurred',
+            },
+          })
+        })
+        it('is expected to show error message', () => {
+          cy.get('[data-cy=publish-1]').click()
+          cy.get('[data-cy=snack-content]').should(
+            'contain',
+            'An error occurred'
+          )
         })
       })
     })
