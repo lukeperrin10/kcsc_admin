@@ -63,19 +63,19 @@ const InformationDashboard = () => {
             <StyledTableCell
               data-cy='status'
               align='center'
-              className={classes.cell}>
+              className={classes.statusCell}>
               placeholder
             </StyledTableCell>
-            <StyledTableCell data-cy='header' className={classes.cell}>
+            <StyledTableCell data-cy='header' className={classes.headerCell}>
               {header}
             </StyledTableCell>
-            <StyledTableCell data-cy='description' className={classes.cell}>
+            <StyledTableCell data-cy='description' className={classes.descCell}>
               {description}
             </StyledTableCell>
-            <StyledTableCell data-cy='link' className={classes.cell}>
+            <StyledTableCell data-cy='link' className={classes.linkCell}>
               {link}
             </StyledTableCell>
-            <StyledTableCell data-cy='action' className={classes.cell}>
+            <StyledTableCell data-cy='action' className={classes.actionCell}>
               Placeholder
             </StyledTableCell>
           </StyledTableRow>
