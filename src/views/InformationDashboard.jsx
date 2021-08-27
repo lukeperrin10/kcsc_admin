@@ -58,28 +58,26 @@ const InformationDashboard = () => {
     information.map((information_item) => {
       const { id, header, description, publish, pinned } = information_item
       return (
-        <>
-          <StyledTableRow data-cy='information' key={id}>
-            <StyledTableCell
-              data-cy='status'
-              align='center'
-              className={classes.statusCell}>
-              {publish ? 'published' : 'unpublished'}
-            </StyledTableCell>
-            <StyledTableCell data-cy='pinned' className={classes.statusCell}>
-              {pinned ? 'pinned' : 'other'}
-            </StyledTableCell>
-            <StyledTableCell data-cy='header' className={classes.headerCell}>
-              {header}
-            </StyledTableCell>
-            <StyledTableCell data-cy='description' className={classes.descCell}>
-              {description}
-            </StyledTableCell>
-            <StyledTableCell data-cy='action' className={classes.actionCell}>
-              Placeholder
-            </StyledTableCell>
-          </StyledTableRow>
-        </>
+        <StyledTableRow data-cy='information' key={id}>
+          <StyledTableCell
+            data-cy='status'
+            align='center'
+            className={classes.statusCell}>
+            {publish ? 'published' : 'unpublished'}
+          </StyledTableCell>
+          <StyledTableCell data-cy='pinned' className={classes.statusCell}>
+            {pinned ? 'pinned' : 'other'}
+          </StyledTableCell>
+          <StyledTableCell data-cy='header' className={classes.headerCell}>
+            {header}
+          </StyledTableCell>
+          <StyledTableCell data-cy='description' className={classes.descCell}>
+            {description}
+          </StyledTableCell>
+          <StyledTableCell data-cy='action' className={classes.actionCell}>
+            Placeholder
+          </StyledTableCell>
+        </StyledTableRow>
       )
     })
 

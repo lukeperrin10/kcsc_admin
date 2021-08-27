@@ -52,7 +52,7 @@ const ArticlePreviewModal = ({ article }) => {
           </Typography>
           <Grid
             container
-            justify='space-between'
+            justifyContent='space-between'
             className={classes.information}>
             <Grid item>
               <Typography
