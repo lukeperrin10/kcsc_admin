@@ -5,13 +5,16 @@ import TestHelpers from '../support/testhelper'
 describe('Admin is able to create an info snippet ', () => {
   sizes.forEach((size) => {
     describe(`on ${size}`, () => {
-      const selection = 'info-creation'
+      const selection = 'information-create'
       beforeEach(() => {
         cy.intercept('POST', '**api/information/**', {
           message: 'Your information snippet has successfully been created',
         })
-        cy.intercept('GET', '**api/information', {
+        cy.intercept('GET', '**api/information**', {
           fixture: 'information_items.json',
+        })
+        cy.intercept('GET', '**/api/app_data', {
+          fixture: 'app_data.json',
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
@@ -21,7 +24,7 @@ describe('Admin is able to create an info snippet ', () => {
 
       describe('successfully', () => {
         it('is expected to show information creation page', () => {
-          cy.get('[data-cy=status]').click()
+          cy.get('[data-cy=publish]').click()
           cy.get('[data-cy=pinned]').click()
           cy.get('[data-cy=header]').type('Covid 19 measures')
           cy.get('[data-cy=description]').type(

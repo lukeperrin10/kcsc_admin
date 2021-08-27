@@ -9,7 +9,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core'
-import Information from '../modules/Articles'
+import Information from '../modules/Information'
 import infoCreationTheme from '../theme/articleCreationTheme'
 import SuccessSnackbar from '../components/popups/SuccessSnackbar'
 import useCommonStyles from '../theme/useCommonStyles'
@@ -35,6 +35,7 @@ const InformationCreation = () => {
   }
 
   const handleSubmit = async (event) => {
+    debugger
     event.preventDefault()
     Information.create(info)
     setRedirect(true)
@@ -62,6 +63,7 @@ const InformationCreation = () => {
           <FormControlLabel
             control={
               <Checkbox
+                data-cy='publish'
                 value={info.publish}
                 onChange={handleChange}
                 name='publish'
@@ -73,6 +75,7 @@ const InformationCreation = () => {
           <FormControlLabel
             control={
               <Checkbox
+                data-cy='pinned'
                 value={info.pinned}
                 onChange={handleChange}
                 name='pinned'
