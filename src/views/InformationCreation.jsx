@@ -35,7 +35,6 @@ const InformationCreation = () => {
   }
 
   const handleSubmit = async (event) => {
-    debugger
     event.preventDefault()
     Information.create(info)
     setRedirect(true)
