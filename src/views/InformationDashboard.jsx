@@ -9,10 +9,12 @@ import {
   TableHead,
   TableRow,
   Paper,
+  FormControlLabel,
   Typography,
 } from '@material-ui/core'
 
 import Information from '../modules/Information'
+import Switches from '../components/InformationDashboard/Switches'
 import informationDashboard from '../theme/informationDashboardTheme'
 
 const StyledTableCell = withStyles((theme) => ({
@@ -63,10 +65,26 @@ const InformationDashboard = () => {
             data-cy='status'
             align='center'
             className={classes.statusCell}>
-            {publish ? 'published' : 'unpublished'}
+            <FormControlLabel
+              control={<Switches value={publish} name="publish" itemId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {publish ? 'Published' : 'Hidden'}
+                </Typography>
+              }
+              labelPlacement='bottom'
+            />
           </StyledTableCell>
           <StyledTableCell data-cy='pinned' className={classes.statusCell}>
-            {pinned ? 'pinned' : 'other'}
+          <FormControlLabel
+              control={<Switches value={pinned} name="pinned" itemId={id} />}
+              label={
+                <Typography className={classes.switchLabel}>
+                  {pinned ? 'Pinned' : 'Other'}
+                </Typography>
+              }
+              labelPlacement='bottom'
+            />
           </StyledTableCell>
           <StyledTableCell data-cy='header' className={classes.headerCell}>
             {header}

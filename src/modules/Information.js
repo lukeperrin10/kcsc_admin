@@ -4,17 +4,18 @@ import errorHandler from './ErrorHandler'
 import axios from 'axios'
 import information from '../data/fixtures/information_items.json'
 
-
 const headers = getHeaders()
 
 const Information = {
   async index() {
     try {
       if (window.Cypress) {
-        const response = await axios.get('/api/information', { headers: headers })
+        const response = await axios.get('/api/information', {
+          headers: headers,
+        })
         store.dispatch({
           type: 'INFORMATION_INDEX',
-          payload: response.data.information_items, 
+          payload: response.data.information_items,
         })
       } else {
         store.dispatch({
@@ -24,6 +25,24 @@ const Information = {
       }
     } catch (error) {
       errorHandler(error)
+    }
+  },
+
+  async update_switch(itemId, attr, switchState) {
+    try {
+      const response = await axios.post(
+        `/api/information/${itemId}`,
+        { [attr]: switchState },
+        { headers: headers }
+      )
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+      return 'success'
+    } catch (error) {
+      errorHandler(error)
+      return 'error'
     }
   },
 }
