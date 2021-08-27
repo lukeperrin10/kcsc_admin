@@ -3,7 +3,7 @@ import SectionRegularForm from './SectionRegularForm'
 import SectionNoImageForm from './SectionNoImageForm'
 import SectionCarouselForm from './SectionCarouselForm'
 
-const SectionSelector = ({ section }) => {
+const SectionSelector = ({ section, index }) => {
   const selector = (variant) => {
     switch (variant) {
       case 'regular':
@@ -15,6 +15,7 @@ const SectionSelector = ({ section }) => {
             description={section.description}
             image={section.image}
             buttons={section.buttons}
+            index={index}
           />
         )
       case 'no_image':
@@ -24,6 +25,7 @@ const SectionSelector = ({ section }) => {
             variant={variant}
             header={section.header}
             description={section.description}
+            index={index}
           />
         )
       case 'carousel':
@@ -33,6 +35,7 @@ const SectionSelector = ({ section }) => {
             variant={variant}
             header={section.header}
             cards={section.cards}
+            index={index}
           />
         )
       default:

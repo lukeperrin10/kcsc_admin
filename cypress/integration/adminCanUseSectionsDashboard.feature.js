@@ -22,6 +22,13 @@ describe('Admin Can Use Sections Dashboard', () => {
         cy.intercept('GET', '**/api/sections?view=information', {
           fixture: 'information_view_sections.json',
         })
+        cy.intercept('PUT', '**/api/sections/**', {
+          statusCode: 200,
+          body: {
+            message: 'Info has been updated',
+          },
+        })
+
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.sizeCase(size, selection)
@@ -44,6 +51,28 @@ describe('Admin Can Use Sections Dashboard', () => {
         cy.get('[data-cy=section-edit-form]').should('have.length', 4)
         cy.get('[data-cy=navigation-tab]').eq(3).click()
         cy.get('[data-cy=section-edit-form]').should('have.length', 1)
+      })
+
+      it.only('is expected to be able to edit section no image', () => {
+        cy.get('[data-cy=navigation-tab]').eq(1).click()
+        cy.get('[data-cy=section-edit-form]')
+          .eq(1)
+          .within(() => {
+            cy.get('[data-cy=header-input]')
+              .find('input')
+              .should('have.value', 'Plans')
+            cy.get('[data-cy=description-input]')
+              .find('textarea')
+              .should(
+                'contain.text',
+                'This section tells vistor Community Health West London plans to improve lives of people'
+              )
+            cy.get('[data-cy=section-submit-button]').click()
+          })
+        cy.get('[data-cy=snack-content]').should(
+          'contain.text',
+          'Info has been updated'
+        )
       })
     })
   })
