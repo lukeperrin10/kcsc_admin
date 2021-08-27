@@ -12,17 +12,17 @@ import {
 } from '@material-ui/core'
 import { Controller } from 'react-hook-form'
 import carouselCard from '../../theme/carouselCardTheme'
-import PublishedSwitch from '../ArticlesDashboard/PublishedSwitch'
+import { useWatch } from 'react-hook-form'
 
 const CarouselCard = ({ card, control, arrayIndex }) => {
   const classes = carouselCard()
   const descriptionMaxLength = 250
   const { logo, alt, organization, description, links, publish } = card
-  const [disable, setDisable] = useState(publish)
-
-  const handleChange = (e) => {    
-    setDisable(e.target.checked)
-  }
+  const disable = useWatch({
+    control,
+    name: `cards[${arrayIndex}].publish`,
+    defaultValue: publish,
+  })
 
   return (
     <Card
@@ -41,11 +41,8 @@ const CarouselCard = ({ card, control, arrayIndex }) => {
                 render={({ field: { onChange, value } }) => (
                   <Switch
                     size='small'
-                    checked={disable}
-                    onChange={(e) => {
-                      onChange()
-                      handleChange(e)
-                    }}
+                    checked={value}
+                    onChange={onChange}
                     data-cy={`card-publish-${arrayIndex}`}
                     name={`card-publish-${arrayIndex}`}
                   />
@@ -65,7 +62,7 @@ const CarouselCard = ({ card, control, arrayIndex }) => {
             className={classes.logo}
             data-cy='image-preview'
             component='img'
-            style={!disable ? {filter: 'grayscale(100%)'} : undefined}
+            style={!disable ? { filter: 'grayscale(100%)' } : undefined}
             src={logo}
           />
         </Grid>

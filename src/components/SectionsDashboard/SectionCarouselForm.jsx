@@ -55,20 +55,21 @@ const SectionCarouselForm = ({ id, variant, header, cards, index }) => {
   const [expanded, setExpanded] = useState(true)
   const classes = useStyles()
   const commonClasses = useCommonStyles()
-  const { control, handleSubmit } = useForm()
+  const { control, watch, handleSubmit } = useForm()
   const descriptionMaxLength = 1500
   const [preview, setPreview] = useState('')
-  const [newImage, setNewImage] = useState({image: null })
+  const [newImage, setNewImage] = useState({ image: null })
   const [updatedImage, setUpdatedImage] = useState(false)
 
   const onSubmit = (formData) => {
-    let updatedSection = {
-      ...formData,
-      image: { alt: newImage.alt, image: newImage.image },
-      variant: variant,
-      id: id,
-    }
-    Sections.update(updatedSection)
+    console.log(formData)
+    // let updatedSection = {
+    //   ...formData,
+    //   image: { alt: newImage.alt, image: newImage.image },
+    //   variant: variant,
+    //   id: id,
+    // }
+    // Sections.update(updatedSection)
   }
 
   const imageEncoder = (file) =>
@@ -97,7 +98,7 @@ const SectionCarouselForm = ({ id, variant, header, cards, index }) => {
   const cardList = cards.map((card, arrayIndex) => {
     return (
       <Grid item xs={12} md={6}>
-        <CarouselCard card={card} control={control} arrayIndex={arrayIndex}/>
+        <CarouselCard card={card} control={control} arrayIndex={arrayIndex} watch={watch}/>
       </Grid>
     )
   })
