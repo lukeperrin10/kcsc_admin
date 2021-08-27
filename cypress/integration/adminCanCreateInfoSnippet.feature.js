@@ -28,7 +28,7 @@ describe('Admin is able to create an info snippet ', () => {
             'Some longer text to see that the body of the article creation is working correctly'
           )
           cy.get('[data-cy=link]').type('www.google.com')
-          cy.get('[data-cy=article-submit]').click()
+          cy.get('[data-cy=info-submit]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
             'Your information snippet has successfully been created'
