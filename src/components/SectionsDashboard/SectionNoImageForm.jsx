@@ -13,7 +13,7 @@ import SubmitButton from '../SubmitButton'
 import { Controller, useForm } from 'react-hook-form'
 import Sections from '../../modules/Sections'
 
-const SectionRegularForm = ({ id, variant, header, description, index }) => {
+const SectionNoImageForm = ({ id, variant, header, description, index }) => {
   const [expanded, setExpanded] = useState(true)
   const commonClasses = useCommonStyles()
   const { control, handleSubmit } = useForm()
@@ -25,7 +25,10 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
 
   return (
     <form data-cy='section-edit-form' onSubmit={handleSubmit(onSubmit)}>
-      <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+      <Accordion
+        style={{ backgroundColor: '#00000000' }}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>{`${index}) ${header}`}</Typography>
         </AccordionSummary>
@@ -88,4 +91,4 @@ const SectionRegularForm = ({ id, variant, header, description, index }) => {
   )
 }
 
-export default SectionRegularForm
+export default SectionNoImageForm

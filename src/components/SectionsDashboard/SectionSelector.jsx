@@ -10,6 +10,7 @@ const SectionSelector = ({ section, index }) => {
         return (
           <SectionRegularForm
             id={section.id}
+            key={`section-regular-${section.id}`}
             variant={variant}
             header={section.header}
             description={section.description}
@@ -22,6 +23,7 @@ const SectionSelector = ({ section, index }) => {
         return (
           <SectionNoImageForm
             id={section.id}
+            key={`section-no-image-${section.id}`}
             variant={variant}
             header={section.header}
             description={section.description}
@@ -32,6 +34,7 @@ const SectionSelector = ({ section, index }) => {
         return (
           <SectionCarouselForm
             id={section.id}
+            key={`section-carousel-${section.id}`}
             variant={variant}
             header={section.header}
             cards={section.cards}
@@ -42,6 +45,7 @@ const SectionSelector = ({ section, index }) => {
         return (
           <SectionRegularForm
             id={section.id}
+            key={`section-regular-${section.id}`}
             variant={variant}
             header={section.header}
             description={section.description}

@@ -15,7 +15,10 @@ const SectionRegularForm = ({ variant }) => {
 
   return (
     <form data-cy='section-edit-form'>
-      <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+      <Accordion
+        style={{ backgroundColor: '#00000000' }}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>{variant}</Typography>
         </AccordionSummary>

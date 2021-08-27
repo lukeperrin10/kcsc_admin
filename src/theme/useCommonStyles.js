@@ -18,6 +18,16 @@ const useCommonStyles = makeStyles((theme) => ({
     padding: '0 24px 24px 24px',
   },
   switchLabel: { fontSize: '0.8rem' },
+  image: {
+    margin: '10px 0 50px 0',
+    maxHeight: '500px',
+    maxWidth: '500px',
+  },
+  formImage: {
+    maxHeight: '300px', 
+    maxWidth: '100%', 
+    width: 'auto'
+  }
 }))
 
 export default useCommonStyles

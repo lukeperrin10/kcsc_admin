@@ -67,7 +67,6 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
         <>
           <Modal
             open={open}
-            onClose={() => setOpen(false)}
             className={classes.modal}>
             <Container
               data-cy='article-container'
@@ -145,7 +144,7 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
                 </Typography>
               )}
 
-              <ButtonGroup size='small' variant='text' color='primary'>
+              <ButtonGroup className={classes.buttonsContainer} size='small' variant='text' color='primary'>
                 <Button
                   className={classes.closeBtn}
                   variant='contained'
