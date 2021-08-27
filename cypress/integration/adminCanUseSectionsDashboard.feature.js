@@ -75,10 +75,10 @@ describe('Admin Can Use Sections Dashboard', () => {
         )
       })
 
-      it('is expected to edit section regular', () => {
+      it.only('is expected to edit section regular', () => {
         cy.get('[data-cy=navigation-tab]').eq(1).click()
         cy.get('[data-cy=section-edit-form]')
-          .eq(3)
+          .eq(4)
           .within(() => {
             cy.get('[data-cy=header-input]')
               .find('input')
@@ -87,23 +87,21 @@ describe('Admin Can Use Sections Dashboard', () => {
               .find('textarea')
               .should('contain.text', 'This section tells vistor about VCS')
             cy.get('[data-cy=alt-input]')
-              .find('input')
-              .should('have.value', 'Picture of happy woman')
-            cy.get('[data-cy=image-upload]').should('be.visible')
+              .find('textarea')
+              .should('have.text', 'Picture of happy woman')
+            cy.get('[data-cy=image-upload-button]').should('be.visible')
             cy.get('[data-cy=image-preview]').should('be.visible')
             cy.get('[data-cy=buttons-grid]').within(() => {
               cy.get('[data-cy=button-form]').should('have.length', 2)
               cy.get('[data-cy=button-form]')
                 .first()
                 .within(() => {
-                  cy.get('[data-cy=text-input]').should(
-                    'have.value',
-                    'KCSC Contact'
-                  )
-                  cy.get('[data-cy=link-input]').should(
-                    'have.value',
-                    'https://www.kcsc.org.uk/contact-us'
-                  )
+                  cy.get('[data-cy=text-input]')
+                    .find('input')
+                    .should('have.value', 'KCSC Contact')
+                  cy.get('[data-cy=link-input]')
+                    .find('input')
+                    .should('have.value', 'https://www.kcsc.org.uk/contact-us')
                 })
             })
             cy.get('[data-cy=section-submit-button]').click()

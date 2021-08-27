@@ -23,11 +23,12 @@ const SectionsList = ({ tabValue }) => {
       setSections(response)
     }
     getSections(tabValue)
+    return setSections([])
   }, [tabValue])
 
   const sectionList = sections.map((section, index) => {
     return (
-      <Box className={classes.section}>
+      <Box key={`section-${index}`} className={classes.section}>
         <SectionSelector
           key={`section-${index}`}
           index={index + 1}

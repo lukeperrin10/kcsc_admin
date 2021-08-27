@@ -7,6 +7,7 @@ import {
   IconButton,
 } from '@material-ui/core'
 import { PhotoCamera } from '@material-ui/icons'
+import useCommonStyles from '../theme/useCommonStyles'
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -49,6 +50,7 @@ const ImageUploader = ({
   const classes = useStyles()
   const [preview, setPreview] = useState()
   const [updatedImage, setUpdatedImage] = useState(false)
+  const commonClasses = useCommonStyles()
 
   const handleImage = async (event) => {
     event.preventDefault()
@@ -130,7 +132,7 @@ const ImageUploader = ({
             onChange={handleChange}
           />
           <CardMedia
-            className={classes.image}
+            className={commonClasses.image}
             data-cy='image'
             component='img'
             src={preview && URL?.createObjectURL(preview)}
