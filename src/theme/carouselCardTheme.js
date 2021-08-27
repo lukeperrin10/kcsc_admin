@@ -25,8 +25,8 @@ const carouselCardTheme = makeStyles((theme) => ({
   },
   logo: {
     margin: 'auto',
-    maxHeight: '90%',
-    maxWidth: '90%',
+    maxHeight: '100%',
+    maxWidth: '100%',
     objectFit: 'contain',
   },
   switchLabel: { fontSize: '0.8rem' },
