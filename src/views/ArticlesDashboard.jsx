@@ -69,7 +69,7 @@ const ArticlesDashboard = () => {
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={<PublishedSwitch publish={publish} articleId={id} />}
+              control={<PublishedSwitch publish={publish} itemId={id} />}
               label={
                 <Typography className={classes.switchLabel}>
                   {publish ? 'Published' : 'Hidden'}

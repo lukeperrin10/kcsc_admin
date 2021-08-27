@@ -26,6 +26,25 @@ const Information = {
       errorHandler(error)
     }
   },
+
+  async update_publish(id, publish, pinned) {
+    try {
+      const response = await axios.post(
+        `/api/information/${id}`,
+        { publish: publish },
+        { pinned: pinned },
+        { headers: headers }
+      )
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+      return 'success'
+    } catch (error) {
+      errorHandler(error)
+      return 'error'
+    }
+  },
 }
 
 export default Information
