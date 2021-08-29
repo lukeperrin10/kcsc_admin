@@ -16,7 +16,13 @@ import { useWatch } from 'react-hook-form'
 import { PhotoCamera } from '@material-ui/icons'
 import SubmitButton from '../SubmitButton'
 
-const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) => {
+const CarouselCard = ({
+  card,
+  arrayIndex,
+  create,
+  handleClose,
+  sectionSubmit,
+}) => {
   const classes = carouselCard()
   const descriptionMaxLength = 250
   const { logo, alt, organization, description, links, publish } = card
@@ -30,7 +36,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
   })
 
   const onSubmit = (formData) => {
-    const newCard = {...formData.card, id: card.id, logo: newLogo}
+    const newCard = { ...formData.card, id: card.id, logo: newLogo }
     sectionSubmit(newCard)
   }
 
@@ -50,7 +56,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
   }
 
   return (
-    <form data-cy='section-edit-form' onSubmit={handleSubmit(onSubmit)}>
+    <form data-cy='cards-form-section' onSubmit={handleSubmit(onSubmit)}>
       <Card
         data-cy='carousel-card-form'
         elevation={0}
@@ -67,11 +73,11 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
                     defaultValue={publish ? publish : true}
                     render={({ field: { onChange, value } }) => (
                       <Switch
+                        data-cy='visible-switch'
                         size='small'
                         checked={value}
                         onChange={onChange}
-                        data-cy={`card-publish-${arrayIndex}`}
-                        name={`card-publish-${arrayIndex}`}
+                        name='visible-switch'
                       />
                     )}
                   />
@@ -92,8 +98,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
                     variant='contained'
                     color='primary'
                     type='submit'
-                    data-cy='submit-button'
-                    >
+                    data-cy='submit-button'>
                     Submit
                   </Button>
                 </Grid>
@@ -101,7 +106,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
                   <Button
                     className={classes.closeBtn}
                     color='primary'
-                    data-cy='close-btn'
+                    data-cy='close-button'
                     type='button'
                     onClick={handleClose}>
                     Close
@@ -173,7 +178,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
                 fieldState: { error },
               }) => (
                 <TextField
-                  data-cy='organization-input'
+                  data-cy='name-input'
                   label={`Organization name*`}
                   variant='outlined'
                   error={!!error}
@@ -220,8 +225,8 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
-                  data-cy='web-link-input'
-                  label={`Link to website*`}
+                  data-cy='web-input'
+                  label={`Link to website`}
                   fullWidth
                   disabled={!disable}
                   value={value}
@@ -237,8 +242,8 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
-                  data-cy='facebook-link-input'
-                  label={`Link to Facebook*`}
+                  data-cy='facebook-input'
+                  label={`Link to Facebook`}
                   fullWidth
                   disabled={!disable}
                   value={value}
@@ -254,8 +259,8 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
               defaultValue={links.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
-                  data-cy='twitter-link-input'
-                  label={`Link to Twitter*`}
+                  data-cy='twitter-input'
+                  label={`Link to Twitter`}
                   fullWidth
                   disabled={!disable}
                   value={value}
@@ -264,7 +269,7 @@ const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionSubmit }) 
               )}
             />
           </Grid>
-          {!create && <SubmitButton dataCy='section-submit-button' />}
+          {!create && <SubmitButton dataCy='submit-button' />}
         </Grid>
       </Card>
     </form>

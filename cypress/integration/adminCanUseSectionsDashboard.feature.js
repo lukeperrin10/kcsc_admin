@@ -27,9 +27,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           body: {
             message: 'Info has been updated',
           },
-        })
-
-        TestHelpers.sizeParameters(size)
+        }) + TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
@@ -75,7 +73,7 @@ describe('Admin Can Use Sections Dashboard', () => {
         )
       })
 
-      it.only('is expected to edit section regular', () => {
+      it('is expected to edit section regular', () => {
         cy.get('[data-cy=navigation-tab]').eq(1).click()
         cy.get('[data-cy=section-edit-form]')
           .eq(4)
@@ -110,6 +108,105 @@ describe('Admin Can Use Sections Dashboard', () => {
           'contain.text',
           'Info has been updated'
         )
+      })
+
+      it('is expected to edit section carousel', () => {
+        cy.get('[data-cy=navigation-tab]').eq(1).click()
+        cy.get('[data-cy=section-edit-form]')
+          .eq(3)
+          .within(() => {
+            cy.get('[data-cy=header-edit-form]').within(() => {
+              cy.get('[data-cy=header-input]')
+                .find('input')
+                .should('have.value', 'Our Partners')
+              cy.get('[data-cy=header-submit]').click()
+            })
+          })
+        cy.get('[data-cy=snack-content]').should(
+          'contain.text',
+          'Info has been updated'
+        )
+        cy.get('[data-cy=section-edit-form]')
+          .eq(3)
+          .within(() => {
+            cy.get('[data-cy=cards-form-section]').within(() => {
+              cy.get('[data-cy=carousel-card-form]').should('have.length', 4)
+              cy.get('[data-cy=carousel-card-form]')
+                .first()
+                .within(() => {
+                  cy.get('[data-cy=visible-switch]').should('be.visible')
+                  cy.get('[data-cy=image-preview]').should('be.visible')
+                  cy.get('[data-cy=image-upload-button]').should('be.visible')
+                  cy.get('[data-cy=alt-input]')
+                    .find('input')
+                    .should(
+                      'have.value',
+                      'logo of Kensington & Chelsea Social Council organization'
+                    )
+                  cy.get('[data-cy=name-input]')
+                    .find('input')
+                    .should('have.value', 'Kensington & Chelsea Social Council')
+                  cy.get('[data-cy=description-input]')
+                    .find('textarea')
+                    .should(
+                      'have.text',
+                      'Description of what this partner does'
+                    )
+                  cy.get('[data-cy=web-input]')
+                    .find('input')
+                    .should('have.value', 'https://www.kcsc.org.uk/')
+                  cy.get('[data-cy=facebook-input]')
+                    .find('input')
+                    .should('have.value', 'https://www.kcsc.org.uk/')
+                  cy.get('[data-cy=twitter-input]')
+                    .find('input')
+                    .should('have.value', 'https://www.kcsc.org.uk/')
+                  cy.get('[data-cy=submit-button]').click()
+                })
+            })
+          })
+        cy.get('[data-cy=snack-content]').should(
+          'contain.text',
+          'Info has been updated'
+        )
+      })
+
+      it('is expected to create new card', () => {
+        cy.get('[data-cy=navigation-tab]').eq(1).click()
+        cy.get('[data-cy=section-edit-form]')
+          .eq(3)
+          .within(() => {
+            cy.get('[data-cy=add-new-card-button]').click()
+          })
+        cy.get('[data-cy=create-card-modal-container]')
+          .first()
+          .within(() => {
+            cy.get('[data-cy=visible-switch]').should('be.visible')
+            cy.get('[data-cy=close-button]').should('be.visible')
+            cy.get('[data-cy=image-preview]').should('not.be.visible')
+            cy.get('[data-cy=image-upload-button]').should('be.visible')
+            cy.get('[data-cy=alt-input]').find('input').type('alt')
+            cy.get('[data-cy=name-input]').find('input').type('name')
+            cy.get('[data-cy=description-input]')
+              .find('textarea')
+              .first()
+              .type('description')
+            cy.get('[data-cy=web-input]')
+              .find('input')
+              .type('https://www.kcsc.org.uk/')
+            cy.get('[data-cy=facebook-input]')
+              .find('input')
+              .type('https://www.kcsc.org.uk/')
+            cy.get('[data-cy=twitter-input]')
+              .find('input')
+              .type('https://www.kcsc.org.uk/')
+            cy.get('[data-cy=submit-button]').click()
+          })
+        cy.get('[data-cy=snack-content]').should(
+          'contain.text',
+          'Info has been updated'
+        )
+        cy.get('[data-cy=new-card-form]').should('not.exist')
       })
     })
   })

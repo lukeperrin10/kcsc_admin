@@ -14,6 +14,7 @@ import useCommonStyles from '../../theme/useCommonStyles'
 import CarouselCardForm from './CarouselCardForm'
 import CardCreateModal from './CardCreateModal'
 import { Controller, useForm } from 'react-hook-form'
+import Sections from '../../modules/Sections'
 
 const SectionCarousel = ({ id, variant, header, cards, index }) => {
   const [expanded, setExpanded] = useState(true)
@@ -32,7 +33,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
         header: header,
         cards: newCards,
       }
-      console.log({ section: section })
+      Sections.update(section)
     } else {
       let newCards = [...cards, { ...newCard, id: null }]
       newCards = newCards.map((card, i) => {
@@ -46,7 +47,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
         cards: newCards,
       }
       setOpen(false)
-      console.log({ section: section })
+      Sections.update(section)
     }
   }
 
@@ -57,7 +58,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
       header: newHeader.header,
       cards: cards,
     }
-    console.log({ section: section })
+    Sections.update(section)
   }
 
   const cardList = cards.map((card, arrayIndex) => {
@@ -86,7 +87,9 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>{`${index}) ${header}`}</Typography>
         </AccordionSummary>
-        <AccordionDetails className={commonClasses.accordionDetails}>
+        <AccordionDetails
+          data-cy='section-edit-form'
+          className={commonClasses.accordionDetails}>
           <Grid container direction='column'>
             <Grid item>
               <form
@@ -120,7 +123,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
                       variant='contained'
                       color='primary'
                       type='submit'
-                      data-cy='submit-button'>
+                      data-cy='header-submit'>
                       Change Header
                     </Button>
                   </Grid>
@@ -132,7 +135,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
               <Divider />
             </Grid>
             <Grid item>
-              <Button color='primary' onClick={() => setOpen(true)}>
+              <Button data-cy='add-new-card-button' color='primary' onClick={() => setOpen(true)}>
                 + ADD NEW CARD
               </Button>
             </Grid>
