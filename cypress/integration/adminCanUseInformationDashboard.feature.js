@@ -22,7 +22,8 @@ describe('Admin Can Use information Dashboard', () => {
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
-        cy.visit('/information')
+        const selection = 'information-edit'
+        TestHelpers.sizeCase(size, selection)
       })
       it('is expected to show a table with list of all information snippets', () => {
         cy.get('[data-cy=information-table]').within(() => {

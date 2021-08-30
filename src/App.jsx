@@ -24,11 +24,12 @@ const App = () => {
 
   useEffect(() => {
     Authentication.validateToken()
-    // Following will automatically authenticate on localhost while API is not up
-    // store.dispatch({
-    //   type: 'AUTHENTICATE',
-    //   payload: 'Johnny Cage',
-    // })
+    if (window.Cypress) {
+      store.dispatch({
+        type: 'AUTHENTICATE',
+        payload: 'Johnny Cage',
+      })
+    }
   }, [authenticated])
 
   return (

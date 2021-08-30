@@ -15,7 +15,8 @@ describe('Admin Can Use Articles Dashboard', () => {
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
-        cy.visit('/articles')
+        const selection = 'articles-dashboard'
+        TestHelpers.sizeCase(size, selection)
       })
 
       it('is expected to show a table with the list of all articles', () => {

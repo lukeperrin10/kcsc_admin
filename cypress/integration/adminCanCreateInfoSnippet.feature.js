@@ -7,10 +7,10 @@ describe('Admin is able to create an info snippet ', () => {
     describe(`on ${size}`, () => {
       const selection = 'information-create'
       beforeEach(() => {
-        cy.intercept('POST', '**api/information', {
+        cy.intercept('POST', '**/information', {
           message: 'Your information snippet has successfully been created',
         })
-        cy.intercept('GET', '**api/information**', {
+        cy.intercept('GET', '**/information**', {
           fixture: 'information_items.json',
         })
         cy.intercept('GET', '**/app_data', {
