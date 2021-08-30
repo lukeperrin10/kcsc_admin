@@ -19,7 +19,7 @@ const InformationCreation = () => {
   const classes = infoCreationTheme()
   const [redirect, setRedirect] = useState(false)
   const [info, setInfo] = useState({
-    publish: true,
+    publish: false,
     pinned: false,
     header: '',
     description: '',
@@ -31,6 +31,13 @@ const InformationCreation = () => {
     setInfo({
       ...info,
       [event.target.name]: event.target.value,
+    })
+  }
+
+  const handleCheckbox = (event) => {
+    setInfo({
+      ...info,
+      [event.target.name]: event.target.checked
     })
   }
 
@@ -64,7 +71,7 @@ const InformationCreation = () => {
               <Checkbox
                 data-cy='publish'
                 value={info.publish}
-                onChange={handleChange}
+                onChange={handleCheckbox}
                 name='publish'
                 color='primary'
               />
@@ -76,7 +83,7 @@ const InformationCreation = () => {
               <Checkbox
                 data-cy='pinned'
                 value={info.pinned}
-                onChange={handleChange}
+                onChange={handleCheckbox}
                 name='pinned'
                 color='primary'
               />
@@ -94,6 +101,7 @@ const InformationCreation = () => {
           label='Header'
           type='string'
           name='header'
+          value={info.header}
           onChange={handleChange}
         />
 

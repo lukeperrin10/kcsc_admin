@@ -30,7 +30,7 @@ const Articles = {
   async create(article) {
     let params = { article: article }
     try {
-      let response = await axios.post('/api/articles/create', params, {
+      let response = await axios.post('/api/articles', params, {
         headers: headers,
       })
       Articles.index()

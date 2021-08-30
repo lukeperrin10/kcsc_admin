@@ -31,7 +31,7 @@ const Information = {
   async create(info) {
     try {
       let response = await axios.post(
-        'api/information/create',
+        'api/information',
         { headers: headers },
         { info: info }
       )

@@ -39,7 +39,7 @@ describe('Admin is able to create an info snippet ', () => {
         })
       })
 
-      describe('unsuccessfully', () => {
+      describe('unsuccessfully, by clicking `submit` btn', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/api/information/**', {
             statusCode: 400,
@@ -49,14 +49,12 @@ describe('Admin is able to create an info snippet ', () => {
           })
         })
 
-        context('unsuccessfully, by clicking `submit` btn', () => {
-          it('is expected to show error message', () => {
-            cy.get('[data-cy=info-submit]').click()
-            cy.get('[data-cy=snack-content]').should(
-              'contain',
-              'An error occurred'
-            )
-          })
+        it('is expected to show error message', () => {
+          cy.get('[data-cy=info-submit]').click()
+          cy.get('[data-cy=snack-content]').should(
+            'contain',
+            'An error occurred'
+          )
         })
       })
     })
