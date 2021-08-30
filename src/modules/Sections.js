@@ -41,8 +41,7 @@ const Sections = {
       let response = {}
       response = await axios.put(
         `/api/sections/${section.id}`,
-        { params: section },
-        { headers: headers }
+        { params: section }
       )
       store.dispatch({
         type: 'SET_SUCCESS',
