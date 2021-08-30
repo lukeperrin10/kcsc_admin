@@ -7,7 +7,7 @@ describe('Admin is able to create an article ', () => {
     describe(`on ${size}`, () => {
       const selection = 'article-creation'
       beforeEach(() => {
-        cy.intercept('POST', '**/articles/**', {
+        cy.intercept('POST', '**/articles', {
           message: 'Your article has successfully been created',
         })
         cy.intercept('GET', '**/api/articles', {

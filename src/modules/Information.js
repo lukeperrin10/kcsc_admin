@@ -28,6 +28,23 @@ const Information = {
     }
   },
 
+  async create(info) {
+    try {
+      let response = await axios.post(
+        'api/information',
+        { headers: headers },
+        { info: info }
+      )
+      Information.index()
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
   async update_switch(itemId, attr, switchState) {
     try {
       const response = await axios.post(
