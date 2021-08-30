@@ -1,7 +1,7 @@
 import React from 'react'
 import SectionRegularForm from './SectionRegularForm'
 import SectionNoImageForm from './SectionNoImageForm'
-import SectionCarouselForm from './SectionCarouselForm'
+import SectionCarousel from './SectionCarousel'
 
 const SectionSelector = ({ section, index }) => {
   const selector = (variant) => {
@@ -32,7 +32,7 @@ const SectionSelector = ({ section, index }) => {
         )
       case 'carousel':
         return (
-          <SectionCarouselForm
+          <SectionCarousel
             id={section.id}
             key={`section-carousel-${section.id}`}
             variant={variant}
