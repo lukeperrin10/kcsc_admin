@@ -15,7 +15,51 @@ All content of the website can be edited using forms. To Navigate to the particu
 
 All forms are split into groups to make it easy to find a correct form. Following chapters will go through each group in details.
 
-## 3. Editing Page Information
+## 3. General Dashboard
+
+After logging in, you will be redirecting to General Dashboard that will let you edit information in Testimonials, site Navigation and Footer. It has a separate collapsible (by clicking the header) form.
+
+*Previw General Dashboard*
+![title](Images/generalDashboard.png)
+*if all forms but Footer are collapsed*
+![title](Images/generalDashboardCollapsed.png)
+
+### 3.1 Editing Testimonials
+Currently there are two testimonials that can be edited. You can change person's Name, Testimonial Text, Picture, Alt attribute that holds description of what is depicted on the picture for accessability purposes and link to the full article.
+
+*example of testimonial form and corresponding card*  
+<img src="Images/testimonialsForm.png" width="49%"/>
+<img src="Images/testimonial.png" width="49%"/>
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update testimonials.
+
+### 3.2 Editing Navigation
+Admin interface provides ability to edit navigation tabs labels and where they lead. Be very careful with this feature as it is possible to break the scrolling on the Services page if incorrect ref parameters are provided (more on that later).
+
+There are two types of Tabs: main and secondary. For main tabs only the label and visibility can be edited. The route will be auto generated based on label that put in (ex. News & Info => /news_info).
+
+*main tabs on CHWL website*
+<img src="Images/siteMainTabs.png"/>
+
+Secondary Tabs come in two types, with and without ref. parameter. Secondary Tabs in section Services have this parameter as it is responsible for scroll effect. The ref parameter should be equal to the Title of the section to which it should scroll to.
+
+*secondary tabs on CHWL website*
+<img src="Images/siteSecondaryTabs.png"/>
+
+*part of the navigation edit form*  
+<img src="Images/navigationForm.png" width='300px'/>
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update navigation.
+
+### 3.3 Editing Footer
+The last form in the General Dashboard lets you update Footer information. You can update about CHWL text, copyright and accessability disclaimers. The character count is limited to preserve page layout.
+
+*Footer form*  
+<img src="Images/footerForm.png" />
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update footer.
+
+## 4. Editing Page Information
 
 *Previw Sections Dashboard*
 ![title](Images/sectionDashboardPreview.png)
@@ -57,11 +101,12 @@ After you made all necessary changes press <img src="Images/submitButton.png" wi
 *example of error message*  
 <img src="Images/errorMessage.png" width='200px'/>
 
-### Other Sections
 Some section do not hold a picture. They will have simplified form with increased number of characters in the description.
 
 *example of form without image*  
 <img src="Images/sectionNoImage.png" />
+
+### 4.1 Editing Partners Carousel
 
 Other type of form is one to edit Our Partners carousel in About Organization view. It allows to separately edit section header by filling in the input and clicking Change Header button.
 

@@ -24,7 +24,15 @@ const TestimonialsForm = ({ testimonials }) => {
   }
 
   const testimonialsFormList = testimonials.map((testimonial, index) => (
-    <Grid key={`testimonial-form-${index}`} data-cy='testimonial-form' item container direction='column' spacing={3} sm={12} md={6}>
+    <Grid
+      key={`testimonial-form-${index}`}
+      data-cy='testimonial-form'
+      item
+      container
+      direction='column'
+      spacing={3}
+      sm={12}
+      md={6}>
       <Grid item>
         <Controller
           name={`testimonials[${index}].name`}
@@ -97,7 +105,26 @@ const TestimonialsForm = ({ testimonials }) => {
         filesLimit={1}
         showPreviewsInDropzone={true}
       />
-      {/* 690 x 350*/}
+      <Grid item>
+        <Controller
+          name={`testimonials[${index}].link`}
+          control={control}
+          defaultValue={testimonial.link}
+          rules={{ required: 'This field cannot be empty' }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              data-cy='testimonial-link'
+              variant='outlined'
+              label='Link to Full Article*'
+              fullWidth
+              error={!!error}
+              helperText={error ? error.message : null}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
+      </Grid>
     </Grid>
   ))
 
@@ -113,7 +140,7 @@ const TestimonialsForm = ({ testimonials }) => {
             <Grid item container direction='row' spacing={3}>
               {testimonialsFormList}
             </Grid>
-            <SubmitButton dataCy='testimonial-submit-button'/>
+            <SubmitButton dataCy='testimonial-submit-button' />
           </Grid>
         </AccordionDetails>
       </Accordion>

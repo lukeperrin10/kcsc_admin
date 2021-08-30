@@ -18,8 +18,8 @@ const FooterForm = ({ about, disclaimers }) => {
   const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
   const aboutMaxLength = 200
-  const copyrightMaxLength = 80
-  const accessabilityMaxLength = 80
+  const copyrightMaxLength = 100
+  const accessabilityMaxLength = 100
 
   const onSubmit = ({ about, copyright, accessability }) => {
     let attributes = {
