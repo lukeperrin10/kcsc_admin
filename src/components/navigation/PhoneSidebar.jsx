@@ -82,9 +82,9 @@ const PhoneSidebar = () => {
             to='/information/create'>
             <CreateIcon />
           </SidebarIcon>
-          <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
+          {/* <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
             <AssessmentIcon />
-          </SidebarIcon>
+          </SidebarIcon> */}
         </List>
         <Divider />
         <List>
