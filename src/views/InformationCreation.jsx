@@ -70,7 +70,6 @@ const InformationCreation = () => {
             control={
               <Checkbox
                 data-cy='publish'
-                value={info.publish}
                 onChange={handleCheckbox}
                 name='publish'
                 color='primary'
@@ -82,7 +81,6 @@ const InformationCreation = () => {
             control={
               <Checkbox
                 data-cy='pinned'
-                value={info.pinned}
                 onChange={handleCheckbox}
                 name='pinned'
                 color='primary'

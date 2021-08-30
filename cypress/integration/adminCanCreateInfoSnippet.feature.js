@@ -7,7 +7,7 @@ describe('Admin is able to create an info snippet ', () => {
     describe(`on ${size}`, () => {
       const selection = 'information-create'
       beforeEach(() => {
-        cy.intercept('POST', '**api/information/**', {
+        cy.intercept('POST', '**api/information', {
           message: 'Your information snippet has successfully been created',
         })
         cy.intercept('GET', '**api/information**', {
@@ -41,7 +41,7 @@ describe('Admin is able to create an info snippet ', () => {
 
       describe('unsuccessfully, by clicking `submit` btn', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/information/**', {
+          cy.intercept('POST', '**/api/information', {
             statusCode: 400,
             body: {
               error_message: 'An error occurred',
