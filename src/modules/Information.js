@@ -10,7 +10,7 @@ const Information = {
   async index() {
     try {
       if (window.Cypress) {
-        const response = await axios.get('/api/information')
+        const response = await axios.get('/information')
         store.dispatch({
           type: 'INFORMATION_INDEX',
           payload: response.data.information_items,
@@ -45,7 +45,7 @@ const Information = {
   async update_switch(itemId, attr, switchState) {
     try {
       const response = await axios.post(
-        `/api/information/${itemId}`,
+        `/information/${itemId}`,
         { [attr]: switchState }
       )
       store.dispatch({

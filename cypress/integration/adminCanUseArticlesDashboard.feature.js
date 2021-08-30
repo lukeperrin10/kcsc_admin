@@ -6,10 +6,10 @@ describe('Admin Can Use Articles Dashboard', () => {
   sizes.forEach((size) => {
     describe(`admin can navigate to articles dashboard on ${size}`, () => {
       beforeEach(() => {
-        cy.intercept('GET', '**/api/articles', {
+        cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
-        cy.intercept('GET', '**/api/app_data', {
+        cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
         TestHelpers.sizeParameters(size)
@@ -37,7 +37,7 @@ describe('Admin Can Use Articles Dashboard', () => {
       })
       describe('Admin is able to preview an article', () => {
         beforeEach(() => {
-          cy.intercept('GET', '**/api/articles/1', {
+          cy.intercept('GET', '**/articles/1', {
             fixture: 'single_article.json',
           })
         })
@@ -66,10 +66,10 @@ describe('Admin Can Use Articles Dashboard', () => {
 
       describe('Admin is able to edit an article', () => {
         beforeEach(() => {
-          cy.intercept('GET', '**/api/articles/1', {
+          cy.intercept('GET', '**/articles/1', {
             fixture: 'single_article.json',
           })
-          cy.intercept('PUT', '**/api/articles/1', {
+          cy.intercept('PUT', '**/articles/1', {
             message: 'The article has been successfully updated.',
           })
           cy.get('[data-cy=article-edit-button]').first().click()

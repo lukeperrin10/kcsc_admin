@@ -97,7 +97,6 @@ const TestimonialsForm = ({ testimonials }) => {
         filesLimit={1}
         showPreviewsInDropzone={true}
       />
-      {/* 690 x 350*/}
     </Grid>
   ))
 

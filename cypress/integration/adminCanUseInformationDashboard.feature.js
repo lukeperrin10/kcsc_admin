@@ -6,13 +6,13 @@ describe('Admin Can Use information Dashboard', () => {
   sizes.forEach((size) => {
     describe(`admin can navigate to information dashboard on ${size}`, () => {
       beforeEach(() => {
-        cy.intercept('GET', '**/api/information', {
+        cy.intercept('GET', '**/information', {
           fixture: 'information_items.json',
         })
-        cy.intercept('GET', '**/api/app_data', {
+        cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
-        cy.intercept('POST', '**/api/information/**', {
+        cy.intercept('POST', '**/information/**', {
           statusCode: 200,
           body: {
             message: 'Information has been updated',
@@ -64,7 +64,7 @@ describe('Admin Can Use information Dashboard', () => {
 
       context('unsuccessfully', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/information/**', {
+          cy.intercept('POST', '**/information/**', {
             statusCode: 400,
             body: {
               error_message: 'An error occurred',

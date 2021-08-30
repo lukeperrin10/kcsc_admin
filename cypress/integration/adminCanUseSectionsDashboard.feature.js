@@ -7,22 +7,22 @@ describe('Admin Can Use Sections Dashboard', () => {
     describe('admin can navigate to sections dashboard', () => {
       const selection = 'sections'
       beforeEach(() => {
-        cy.intercept('GET', '**/api/app_data', {
+        cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
-        cy.intercept('GET', '**/api/sections?view=services', {
+        cy.intercept('GET', '**/sections?view=services', {
           fixture: 'services_view_sections.json',
         })
-        cy.intercept('GET', '**/api/sections?view=about_us', {
+        cy.intercept('GET', '**/sections?view=about_us', {
           fixture: 'about_us_view_sections.json',
         })
-        cy.intercept('GET', '**/api/sections?view=about_self_care', {
+        cy.intercept('GET', '**/sections?view=about_self_care', {
           fixture: 'about_self_care_view_sections.json',
         })
-        cy.intercept('GET', '**/api/sections?view=information', {
+        cy.intercept('GET', '**/sections?view=information', {
           fixture: 'information_view_sections.json',
         })
-        cy.intercept('PUT', '**/api/sections/**', {
+        cy.intercept('PUT', '**/sections/**', {
           statusCode: 200,
           body: {
             message: 'Info has been updated',

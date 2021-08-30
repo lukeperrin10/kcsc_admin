@@ -46,5 +46,7 @@ const Authentication = {
 export default Authentication
 
 export const getHeaders = () => {
-  return JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
+  const headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
+  const apiKey = process.env.REACT_APP_API_KEY
+  return { ...headers, API_KEY: apiKey }
 }

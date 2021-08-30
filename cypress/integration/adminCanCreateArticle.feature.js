@@ -10,7 +10,7 @@ describe('Admin is able to create an article ', () => {
         cy.intercept('POST', '**/articles', {
           message: 'Your article has successfully been created',
         })
-        cy.intercept('GET', '**/api/articles', {
+        cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
         TestHelpers.sizeParameters(size)
