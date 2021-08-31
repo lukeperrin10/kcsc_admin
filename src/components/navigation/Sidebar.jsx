@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Drawer, List, Divider } from '@material-ui/core'
 import SettingsIcon from '@material-ui/icons/Settings'
-import AssessmentIcon from '@material-ui/icons/Assessment'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
@@ -48,9 +47,6 @@ const Sidebar = () => {
           to='/information/create'>
           <CreateIcon />
         </SidebarIcon>
-        {/* <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
-          <AssessmentIcon />
-        </SidebarIcon> */}
       </List>
       <Divider />
       <List>
