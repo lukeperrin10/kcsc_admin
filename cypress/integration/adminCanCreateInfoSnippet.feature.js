@@ -7,13 +7,13 @@ describe('Admin is able to create an info snippet ', () => {
     describe(`on ${size}`, () => {
       const selection = 'information-create'
       beforeEach(() => {
-        cy.intercept('POST', '**api/information', {
+        cy.intercept('POST', '**/information', {
           message: 'Your information snippet has successfully been created',
         })
-        cy.intercept('GET', '**api/information**', {
+        cy.intercept('GET', '**/information**', {
           fixture: 'information_items.json',
         })
-        cy.intercept('GET', '**/api/app_data', {
+        cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
         TestHelpers.sizeParameters(size)
@@ -41,7 +41,7 @@ describe('Admin is able to create an info snippet ', () => {
 
       describe('unsuccessfully, by clicking `submit` btn', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/information', {
+          cy.intercept('POST', '**/information', {
             statusCode: 400,
             body: {
               error_message: 'An error occurred',

@@ -11,7 +11,7 @@ const Articles = {
   async index() {
     try {
       if (window.Cypress) {
-        const response = await axios.get('/api/articles', { headers: headers })
+        const response = await axios.get('/articles', { headers: headers })
         store.dispatch({
           type: 'ARTICLES_INDEX',
           payload: response.data.articles,
@@ -30,9 +30,7 @@ const Articles = {
   async create(article) {
     let params = { article: article }
     try {
-      let response = await axios.post('/api/articles', params, {
-        headers: headers,
-      })
+      let response = await axios.post('/articles', params, { headers: headers })
       Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
@@ -46,7 +44,7 @@ const Articles = {
   async show(id) {
     try {
       if (window.Cypress) {
-        const response = await axios.get(`/api/articles/${id}`, {
+        const response = await axios.get(`/articles/${id}`, {
           headers: headers,
         })
         return response.data
@@ -61,9 +59,11 @@ const Articles = {
   async update(article) {
     let params = { article: article }
     try {
-      let response = await axios.put(`/articles/${article.id}`, params, {
-        headers: headers,
-      })
+      let response = await axios.put(
+        `/articles/${article.id}`,
+        params,
+        { headers: headers }
+      )
       Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
@@ -76,11 +76,7 @@ const Articles = {
 
   async update_publish(id, publish) {
     try {
-      const response = await axios.post(
-        `/api/articles/${id}`,
-        { publish: publish },
-        { headers: headers }
-      )
+      const response = await axios.post(`/articles/${id}`, { publish: publish }, { headers: headers })
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,

@@ -7,10 +7,10 @@ describe('Admin Can Use General Dashboard', () => {
     describe('admin can navigate to articles dashboard', () => {
       beforeEach(() => {
         TestHelpers.sizeParameters(size)
-        cy.intercept('GET', '**/api/app_data', {
+        cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
-        cy.intercept('PUT', '**/api/app_data**', {
+        cy.intercept('PUT', '**/app_data**', {
           statusCode: 200,
           body: {
             message: 'Info has been updated',
@@ -56,7 +56,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('successfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 200,
               body: {
                 message: 'Info has been updated',
@@ -75,7 +75,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('unsuccessfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 400,
               body: {
                 error_message: 'Something went wrong, try again later',
@@ -105,7 +105,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('successfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 200,
               body: {
                 message: 'Info has been updated',
@@ -124,7 +124,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('unsuccessfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 400,
               body: {
                 error_message: 'Something went wrong, try again later',
@@ -162,7 +162,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('successfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 200,
               body: {
                 message: 'Info has been updated',
@@ -181,7 +181,7 @@ describe('Admin Can Use General Dashboard', () => {
 
         context('unsuccessfully', () => {
           beforeEach(() => {
-            cy.intercept('PUT', '**/api/app_data**', {
+            cy.intercept('PUT', '**/app_data**', {
               statusCode: 400,
               body: {
                 error_message: 'Something went wrong, try again later',

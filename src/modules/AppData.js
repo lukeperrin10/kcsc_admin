@@ -10,7 +10,7 @@ const headers = getHeaders()
 const AppData = {
   async index() {
     try {
-      const response = await axios.get('/api/app_data', { headers: headers })
+      const response = await axios.get('/app_data', { headers: headers })
       store.dispatch({
         type: 'APP_DATA_INDEX',
         payload: response.data.app_data,
@@ -25,8 +25,8 @@ const AppData = {
       for (const key in attributes) {
         let params = { key: key, value: attributes[key] }
         response = await axios.put(
-          '/api/app_data',
-          { params: params },
+          '/app_data',
+          params,
           { headers: headers }
         )
       }
@@ -38,6 +38,7 @@ const AppData = {
       errorHandler(error)
     }
   },
+
   toNavigationObject(formData) {
     const main_tabs = formData.main_tabs.map((tab) => {
       let secondary_tabs = []

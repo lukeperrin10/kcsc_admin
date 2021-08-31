@@ -7,10 +7,10 @@ describe('Admin Can Publish Or Unpublish Article', () => {
     describe(`admin can publish or unpublish article on ${size}`, () => {
       const selection = 'articles-dashboard'
       beforeEach(() => {
-        cy.intercept('GET', '**/api/articles', {
+        cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
-        cy.intercept('POST', '**/api/articles/**', {
+        cy.intercept('POST', '**/articles/**', {
           statusCode: 200,
           body: {
             message: 'Article has been unpublished',
@@ -35,7 +35,7 @@ describe('Admin Can Publish Or Unpublish Article', () => {
 
     context('unsuccessfully, by clicking `publish` switch', () => {
       beforeEach(() => {
-        cy.intercept('POST', '**/api/articles/**', {
+        cy.intercept('POST', '**/articles/**', {
           statusCode: 400,
           body: {
             error_message: 'An error occurred',

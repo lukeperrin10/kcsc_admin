@@ -10,9 +10,7 @@ const Information = {
   async index() {
     try {
       if (window.Cypress) {
-        const response = await axios.get('/api/information', {
-          headers: headers,
-        })
+        const response = await axios.get('/information', { headers: headers })
         store.dispatch({
           type: 'INFORMATION_INDEX',
           payload: response.data.information_items,
@@ -32,8 +30,8 @@ const Information = {
     try {
       let response = await axios.post(
         'api/information',
-        { headers: headers },
-        { info: info }
+        { info: info },
+        { headers: headers }
       )
       Information.index()
       store.dispatch({
@@ -47,11 +45,9 @@ const Information = {
 
   async update_switch(itemId, attr, switchState) {
     try {
-      const response = await axios.post(
-        `/api/information/${itemId}`,
-        { [attr]: switchState },
-        { headers: headers }
-      )
+      const response = await axios.post(`/information/${itemId}`, {
+        [attr]: switchState,
+      })
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,
