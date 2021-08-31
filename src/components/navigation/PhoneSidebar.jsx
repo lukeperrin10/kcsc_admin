@@ -10,7 +10,6 @@ import {
 import SettingsIcon from '@material-ui/icons/Settings'
 import MenuIcon from '@material-ui/icons/Menu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import AssessmentIcon from '@material-ui/icons/Assessment'
 import ArticleIcon from '@material-ui/icons/Subject'
 import CreateIcon from '@material-ui/icons/Create'
 import ViewCompactIcon from '@material-ui/icons/ViewCompact'
@@ -82,9 +81,6 @@ const PhoneSidebar = () => {
             to='/information/create'>
             <CreateIcon />
           </SidebarIcon>
-          {/* <SidebarIcon dataCy='menu-analytics' text='Analytics' to='/analytics'>
-            <AssessmentIcon />
-          </SidebarIcon> */}
         </List>
         <Divider />
         <List>
