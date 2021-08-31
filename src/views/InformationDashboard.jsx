@@ -51,7 +51,6 @@ const InformationDashboard = () => {
       <StyledTableCell align='left'>Pinned</StyledTableCell>
       <StyledTableCell align='left'>Header</StyledTableCell>
       <StyledTableCell align='left'>Description</StyledTableCell>
-      <StyledTableCell align='left'>Action</StyledTableCell>
     </StyledTableRow>
   )
 
@@ -91,9 +90,6 @@ const InformationDashboard = () => {
           </StyledTableCell>
           <StyledTableCell data-cy='description' className={classes.descCell}>
             {description}
-          </StyledTableCell>
-          <StyledTableCell data-cy='action' className={classes.actionCell}>
-            Placeholder
           </StyledTableCell>
         </StyledTableRow>
       )

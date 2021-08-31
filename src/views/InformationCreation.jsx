@@ -55,7 +55,7 @@ const InformationCreation = () => {
           data-cy='dashboard-header'
           variant='h5'
           style={{ fontWeight: 600 }}>
-          Create a new article
+          Create a new Info Card
         </Typography>
       </Box>
       {redirect && <Redirect to='/information' />}
