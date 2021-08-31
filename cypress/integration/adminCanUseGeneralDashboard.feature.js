@@ -142,7 +142,7 @@ describe('Admin Can Use General Dashboard', () => {
         })
       })
 
-      describe.only('and edit Testimonials info', () => {
+      describe('and edit Testimonials info', () => {
         it('is expected to show testimonial accordion with pre-filled form in details', () => {
           cy.get('[data-cy=testimonial-form]').should('have.length', 2)
           cy.get('[data-cy=testimonial-form]')
@@ -171,7 +171,7 @@ describe('Admin Can Use General Dashboard', () => {
           })
 
           it('is expected to show success message on submit', () => {
-            cy.get('[data-cy=testimonial-submit-button]').click()
+            cy.get('[data-cy=testimonial-submit-button]').first().click()
             cy.get('[data-cy=snack-content]').should(
               'contain.text',
               'Info has been updated'
@@ -190,7 +190,7 @@ describe('Admin Can Use General Dashboard', () => {
           })
 
           it('is expected to show success message on submit', () => {
-            cy.get('[data-cy=testimonial-submit-button]').click()
+            cy.get('[data-cy=testimonial-submit-button]').first().click()
             cy.get('[data-cy=snack-content]').should(
               'contain.text',
               'Something went wrong, try again later'

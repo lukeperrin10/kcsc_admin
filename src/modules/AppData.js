@@ -5,11 +5,10 @@ import axios from 'axios'
 
 const _ = require('lodash')
 
-const headers = getHeaders()
-
 const AppData = {
   async index() {
     try {
+      const headers = getHeaders()
       const response = await axios.get('/app_data', { headers: headers })
       store.dispatch({
         type: 'APP_DATA_INDEX',
@@ -23,12 +22,9 @@ const AppData = {
     try {
       let response = {}
       for (const key in attributes) {
+        const headers = getHeaders()
         let params = { key: key, value: attributes[key] }
-        response = await axios.put(
-          '/app_data',
-          params,
-          { headers: headers }
-        )
+        response = await axios.put('/app_data', params, { headers: headers })
       }
       store.dispatch({
         type: 'SET_SUCCESS',
