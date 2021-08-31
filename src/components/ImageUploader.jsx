@@ -68,8 +68,10 @@ const ImageUploader = ({
   const imageEncoder = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result)
+      if (file) {
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+      }
       reader.onerror = (error) => reject(error)
     })
 
@@ -104,7 +106,8 @@ const ImageUploader = ({
             defaultValue={article.image?.alt}
             onChange={handleChange}
             helperText={
-              updatedImage && 'Please make sure to update the alternative text for the image!'
+              updatedImage &&
+              'Please make sure to update the alternative text for the image!'
             }
           />
           <label htmlFor='icon-button-file'>
