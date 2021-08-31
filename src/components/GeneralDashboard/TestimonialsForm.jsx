@@ -20,7 +20,6 @@ const TestimonialsForm = ({ testimonials }) => {
   const commonClasses = useCommonStyles()
 
   const onSubmit = (attributes, id, photo) => {
-    //attributes.testimonials['id'] = testimonialId
     const fromData = {
       testimonials: { ...attributes[`testimonials${id}`], id: id, photo: photo },
     }
