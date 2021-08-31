@@ -11,10 +11,10 @@ describe.only('Admin Can Login To Access Application Features', () => {
       })
       describe('Successfully by an authenticated broker', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/auth/sign_in', {
+          cy.intercept('POST', '**/auth/sign_in', {
             fixture: 'authenticated_admin.json',
           })
-          cy.intercept('GET', '**/api/auth/validate_token', {
+          cy.intercept('GET', '**/auth/validate_token', {
             fixture: 'authenticated_admin.json',
             headers: { uid: 'johnny@cage.com' },
           })
@@ -26,7 +26,7 @@ describe.only('Admin Can Login To Access Application Features', () => {
   
       describe('Unsuccessfully with wrong credentials', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/auth/sign_in', {
+          cy.intercept('POST', '**/auth/sign_in', {
             statusCode: 422,
             body: { data: { errors: ['Wrong credentials, please try again'] } },
           })
@@ -44,14 +44,14 @@ describe.only('Admin Can Login To Access Application Features', () => {
       })
       describe('Admin is able to logout after being logged in', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/api/auth/sign_in', {
+          cy.intercept('POST', '**/auth/sign_in', {
             fixture: 'authenticated_admin.json',
           })
-          cy.intercept('GET', '**/api/auth/validate_token', {
+          cy.intercept('GET', '**/auth/validate_token', {
             fixture: 'authenticated_admin.json',
             headers: { uid: 'johnny@cage.com' },
           })
-          cy.intercept('DELETE', '**/api/auth/sign_out', {
+          cy.intercept('DELETE', '**/auth/sign_out', {
             statusCode: 200,
           })
   

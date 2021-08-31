@@ -20,7 +20,8 @@ const Sections = {
           3: 'information',
         }
         const response = await axios.get(
-          `/api/sections?view=${getSection[tabValue]}`
+          `/sections?view=${getSection[tabValue]}`,
+          { headers: headers }
         )
         return response.data.sections
       } else {
@@ -40,7 +41,7 @@ const Sections = {
     try {
       let response = {}
       response = await axios.put(
-        `/api/sections/${section.id}`,
+        `/sections/${section.id}`,
         { params: section },
         { headers: headers }
       )

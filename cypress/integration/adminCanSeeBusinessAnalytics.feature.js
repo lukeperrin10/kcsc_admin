@@ -15,7 +15,7 @@ describe('Admin Can See Business Analytics', () => {
 
       describe('Successfully', () => {
         beforeEach(() => {
-          cy.intercept('GET', '**/api/analytics', {
+          cy.intercept('GET', '**/analytics', {
             body: {},
           })
         })
@@ -26,7 +26,7 @@ describe('Admin Can See Business Analytics', () => {
 
       describe('When no data is present', () => {
         beforeEach(() => {
-          cy.intercept('GET', '**/api/analytics', {
+          cy.intercept('GET', '**/analytics', {
             statusCode: 500,
           })
         })
