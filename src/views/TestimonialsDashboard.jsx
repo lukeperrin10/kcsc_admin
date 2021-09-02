@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
 // import appData from '../data/app_data.json'
-import FooterForm from '../components/GeneralDashboard/FooterForm'
-import NavigationForm from '../components/GeneralDashboard/NavigationForm'
+import TestimonialsForm from '../components/TestimonialsDashboard/TestimonialsForm'
 import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
@@ -24,20 +23,13 @@ const GeneralDashboard = () => {
           data-cy='dashboard-header'
           variant='h5'
           style={{ fontWeight: 600 }}>
-          Edit General App Info
+          Edit Testimonials Info
         </Typography>
       </Box>
       <Divider />
       {app_data ? (
         <>
-          <NavigationForm
-            mainTabs={app_data.navigation.main_tabs}
-            secondaryTabs={app_data.navigation.secondary_tabs}
-          />
-          <FooterForm
-            about={app_data.about}
-            disclaimers={app_data.disclaimers}
-          />
+          <TestimonialsForm testimonials={app_data.testimonials} />         
         </>
       ) : (
         <Typography
