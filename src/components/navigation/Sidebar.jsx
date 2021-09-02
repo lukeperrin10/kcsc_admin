@@ -10,6 +10,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
+import PersonIcon from '@material-ui/icons/Person'
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)
@@ -22,6 +23,9 @@ const Sidebar = () => {
       <List>
         <SidebarIcon text='General' to='/'>
           <SettingsIcon />
+        </SidebarIcon>
+        <SidebarIcon text='Testimonials' to='/testimonials'>
+          <PersonIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />

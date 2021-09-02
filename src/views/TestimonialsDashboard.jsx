@@ -9,12 +9,10 @@ import {
   TableHead,
   TableRow,
   Paper,
-  FormControlLabel,
   Typography,
 } from '@material-ui/core'
-import Articles from '../modules/Articles'
-import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
-import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
+import AppData from '../modules/AppData'
+import TestimonialEditModal from '../components/TestimonialsDashboard/TestimonialEditModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
 
@@ -41,51 +39,41 @@ const StyledTableRow = withStyles((theme) => ({
 const ArticlesDashboard = () => {
   const classes = articleDashboard()
   const commonClasses = useCommonStyles()
-  const articles = useSelector((state) => state.articles)
+  const testimonials = useSelector((state) => state.app_data?.testimonials)
 
   // Put fixture here to see articles on localhost
   //const [articles, setArticles] = useState([])
 
   useEffect(() => {
-    Articles.index()
+    AppData.index()
   }, [])
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
-      <StyledTableCell align='center'>Status</StyledTableCell>
-      <StyledTableCell align='left'>Title</StyledTableCell>
-      <StyledTableCell align='left'>Author</StyledTableCell>
-      <StyledTableCell align='left'>Date</StyledTableCell>
+      <StyledTableCell align='left'>id</StyledTableCell>
+      <StyledTableCell align='left'>Name</StyledTableCell>
+      <StyledTableCell align='left'>Link</StyledTableCell>
       <StyledTableCell align='left'>Action</StyledTableCell>
     </StyledTableRow>
   )
 
   const tableRows =
-    articles &&
-    articles.map((article) => {
-      const { id, title, author, date, publish } = article
+    testimonials &&
+    testimonials.map((testimonial) => {
+      const { id, name, link } = testimonial
       return (
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
-            <FormControlLabel
-              control={<PublishedSwitch publish={publish} articleId={id} />}
-              label={
-                <Typography className={classes.switchLabel}>
-                  {publish ? 'Published' : 'Hidden'}
-                </Typography>
-              }
-              labelPlacement='bottom'
-            />
+            {id}
           </StyledTableCell>
           <StyledTableCell data-cy='title' className={classes.titleCell}>
-            {title}
+            {name}
           </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
           <StyledTableCell data-cy='date' className={classes.dateCell}>
-            {date}
+            {link}
           </StyledTableCell>
-          <StyledTableCell data-cy='action'>
-            <ArticlePreviewModal article={article} />
+          <StyledTableCell data-cy='date' className={classes.dateCell}>
+            <TestimonialEditModal testimonial={testimonial} />
           </StyledTableCell>
         </StyledTableRow>
       )
@@ -105,7 +93,7 @@ const ArticlesDashboard = () => {
         className={commonClasses.viewContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
-          <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
+          <TableBody>{testimonials ? tableRows : noArticlesMessage}</TableBody>
         </Table>
       </TableContainer>
     </>

@@ -5,7 +5,6 @@ import useCommonStyles from '../theme/useCommonStyles'
 // import appData from '../data/app_data.json'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import NavigationForm from '../components/GeneralDashboard/NavigationForm'
-import TestimonialsForm from '../components/GeneralDashboard/TestimonialsForm'
 import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
@@ -31,7 +30,6 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
-          <TestimonialsForm testimonials={app_data.testimonials} />
           <NavigationForm
             mainTabs={app_data.navigation.main_tabs}
             secondaryTabs={app_data.navigation.secondary_tabs}
