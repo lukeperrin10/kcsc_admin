@@ -9,12 +9,12 @@ import {
   TableHead,
   TableRow,
   Paper,
-  FormControlLabel,
+  Button,
   Typography,
 } from '@material-ui/core'
 import AppData from '../modules/AppData'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
-import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
+import TestimonialEditModal from '../components/TestimonialsDashboard/TestimonialEditModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
 
@@ -50,6 +50,8 @@ const ArticlesDashboard = () => {
     AppData.index()
   }, [])
 
+  const editTestimonial = (testimonial) => {}
+
   const tableHeader = (
     <StyledTableRow color='secondary'>
       <StyledTableCell align='left'>id</StyledTableCell>
@@ -75,7 +77,7 @@ const ArticlesDashboard = () => {
             {link}
           </StyledTableCell>
           <StyledTableCell data-cy='date' className={classes.dateCell}>
-            Edit
+            <TestimonialEditModal testimonial={testimonial} />
           </StyledTableCell>
         </StyledTableRow>
       )

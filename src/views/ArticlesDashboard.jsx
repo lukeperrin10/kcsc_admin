@@ -12,7 +12,6 @@ import {
   FormControlLabel,
   Typography,
 } from '@material-ui/core'
-
 import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
