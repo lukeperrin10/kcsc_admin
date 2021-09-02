@@ -6,6 +6,7 @@ import useCommonStyles from '../theme/useCommonStyles'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import NavigationForm from '../components/GeneralDashboard/NavigationForm'
 import TestimonialsForm from '../components/GeneralDashboard/TestimonialsForm'
+import TaglineForm from '../components/GeneralDashboard/TaglineForm'
 import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
@@ -31,6 +32,7 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
+          <TaglineForm tagline={app_data.tagline} />
           <TestimonialsForm testimonials={app_data.testimonials} />
           <NavigationForm
             mainTabs={app_data.navigation.main_tabs}
