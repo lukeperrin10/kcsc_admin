@@ -16,6 +16,7 @@ import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
+import ListIcon from '@material-ui/icons/List';
 import Authentication from '../../modules/Authentication'
 
 const useStyles = makeStyles((theme) => ({
@@ -53,6 +54,9 @@ const PhoneSidebar = () => {
         <List>
           <SidebarIcon text='General' to='/'>
             <SettingsIcon />
+            </SidebarIcon>
+        <SidebarIcon text='Navigation' to='/navigation'>
+          <ListIcon />
           </SidebarIcon>
           <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
             <ViewCompactIcon />

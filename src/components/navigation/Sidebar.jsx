@@ -9,6 +9,7 @@ import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
+import ListIcon from '@material-ui/icons/List';
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
 
 const Sidebar = () => {
@@ -22,6 +23,9 @@ const Sidebar = () => {
       <List>
         <SidebarIcon text='General' to='/'>
           <SettingsIcon />
+        </SidebarIcon>
+        <SidebarIcon text='Navigation' to='/navigation'>
+          <ListIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />
