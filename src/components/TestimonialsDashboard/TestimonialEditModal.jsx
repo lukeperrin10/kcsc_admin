@@ -74,10 +74,7 @@ const TestimonialsForm = ({ testimonial }) => {
         Edit
       </Button>
       {open && (
-        <Modal
-          open={open}
-          style={{ overflow: 'scroll' }}
-          onClose={() => setOpen(false)}>
+        <Modal open={open} style={{ overflow: 'scroll' }}>
           <Paper className={classes.testimonialContainer}>
             <Grid
               key={`testimonial-form-${id}`}
@@ -103,13 +100,13 @@ const TestimonialsForm = ({ testimonial }) => {
                     <input
                       accept='image/*'
                       style={{ display: 'none' }}
-                      id={`card-image-input-section-${id}`}
+                      id={`testimonial-image-input-section-${id}`}
                       type='file'
                       onChange={(event) => {
                         handleImage(event)
                       }}
                     />
-                    <label htmlFor={`card-image-input-section-${id}`}>
+                    <label htmlFor={`testimonial-image-input-section-${id}`}>
                       <IconButton
                         data-cy='image-upload-button'
                         component='span'
@@ -216,8 +213,18 @@ const TestimonialsForm = ({ testimonial }) => {
                       )}
                     />
                   </Grid>
-                  <Grid item>
-                    <SubmitButton dataCy='testimonial-submit-button' />
+                  <Grid item container justifyContent='space-between'>
+                    <Grid item>
+                      <Button
+                        variant='contained'
+                        color='primary'
+                        onClick={() => setOpen(false)}>
+                        Close
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <SubmitButton dataCy='testimonial-submit-button' />
+                    </Grid>
                   </Grid>
                 </Grid>
               </form>

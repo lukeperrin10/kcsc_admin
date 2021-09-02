@@ -9,7 +9,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
   Typography,
 } from '@material-ui/core'
 import AppData from '../modules/AppData'
@@ -48,8 +47,6 @@ const ArticlesDashboard = () => {
   useEffect(() => {
     AppData.index()
   }, [])
-
-  const editTestimonial = (testimonial) => {}
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
