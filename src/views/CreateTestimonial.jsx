@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+import { Box, Typography } from '@material-ui/core'
+import AppData from '../modules/AppData'
+import useCommonStyles from '../theme/useCommonStyles'
+import SuccessSnackbar from '../components/popups/SuccessSnackbar'
+import CreateTestimonialForm from '../components/TestimonialsDashboard/CreateTestimonialForm'
 const CreateTestimonial = () => {
+  const commonClasses = useCommonStyles()
   const testimonials = useSelector((state) => state.app_data?.testimonials)
-  const [id, setIds] = useState([])
+  const [id, setId] = useState([])
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     AppData.index()
-    const testimonialIds = testimonials.map((testimonial) => {
-      return testimonial.id
-    })
-    id = Math.max(...testimonialIds)
-    setId(id + 1)
+    if (testimonials) {
+      const testimonialIds = testimonials.map((testimonial) => {
+        return testimonial.id
+      })
+      let uniqueId = Math.max(...testimonialIds) + 1
+      setId(uniqueId)
+    }
   }, [testimonials])
 
   return (

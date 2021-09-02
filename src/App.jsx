@@ -19,6 +19,7 @@ import SuccessSnackbar from './components/popups/SuccessSnackbar'
 import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import './styles/globals.css'
 import NavigationDashboard from './views/NavigationDashboard'
+import CreateTestimonial from './views/CreateTestimonial'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -55,6 +56,7 @@ const App = () => {
               component={InformationCreation}
             />
             <Route exact path='/testimonials' component={TestimonialsDashboard} />
+            <Route exact path='/testimonials/create' component={CreateTestimonial} />
           </Switch>
         </>
       ) : (

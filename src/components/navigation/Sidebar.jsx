@@ -31,6 +31,12 @@ const Sidebar = () => {
         <SidebarIcon text='Testimonials' to='/testimonials'>
           <PersonIcon />
         </SidebarIcon>
+        <SidebarIcon
+          dataCy='testimonial-creation'
+          text='Create Testimonial'
+          to='/testimonials/create'>
+          <CreateIcon />
+        </SidebarIcon>
         <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />
         </SidebarIcon>

@@ -3,7 +3,6 @@ import {
   TextField,
   Grid,
   Button,
-
   makeStyles,
   IconButton,
   CardMedia,
@@ -32,11 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TestimonialsForm = ({ testimonial }) => {
-  const { id, name, text, photo, alt, link } = testimonial
-  const [open, setOpen] = useState(false)
+const TestimonialsForm = (id) => {
   const [preview, setPreview] = useState()
-  const [newPhoto, setNewPhoto] = useState(photo)
+  const [newPhoto, setNewPhoto] = useState()
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
 
@@ -78,7 +75,7 @@ const TestimonialsForm = ({ testimonial }) => {
                 className={classes.photo}
                 data-cy='image-preview'
                 component='img'
-                src={preview ? URL?.createObjectURL(preview) : photo}
+                src={preview ? URL?.createObjectURL(preview) : undefined}
               />
             </Grid>
             <Grid item container justifyContent='flex-end'>
@@ -105,7 +102,6 @@ const TestimonialsForm = ({ testimonial }) => {
               <Controller
                 name='name'
                 control={control}
-                defaultValue={name}
                 rules={{ required: 'This field cannot be empty' }}
                 render={({
                   field: { onChange, value },
@@ -129,7 +125,6 @@ const TestimonialsForm = ({ testimonial }) => {
               <Controller
                 name='text'
                 control={control}
-                defaultValue={text}
                 rules={{ required: 'This field cannot be empty' }}
                 render={({
                   field: { onChange, value },
@@ -155,7 +150,6 @@ const TestimonialsForm = ({ testimonial }) => {
               <Controller
                 name='alt'
                 control={control}
-                defaultValue={alt}
                 rules={{ required: 'This field cannot be empty' }}
                 render={({
                   field: { onChange, value },
@@ -179,7 +173,6 @@ const TestimonialsForm = ({ testimonial }) => {
               <Controller
                 name='link'
                 control={control}
-                defaultValue={link}
                 rules={{ required: 'This field cannot be empty' }}
                 render={({
                   field: { onChange, value },
@@ -198,15 +191,7 @@ const TestimonialsForm = ({ testimonial }) => {
                 )}
               />
             </Grid>
-            <Grid item container justifyContent='space-between'>
-              <Grid item>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={() => setOpen(false)}>
-                  Close
-                </Button>
-              </Grid>
+            <Grid item container justifyContent='center'>
               <Grid item>
                 <SubmitButton dataCy='testimonial-submit-button' />
               </Grid>
