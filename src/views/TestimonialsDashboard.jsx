@@ -13,7 +13,6 @@ import {
   Typography,
 } from '@material-ui/core'
 import AppData from '../modules/AppData'
-import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import TestimonialEditModal from '../components/TestimonialsDashboard/TestimonialEditModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'

@@ -6,11 +6,13 @@ import {
   Modal,
   Paper,
   makeStyles,
+  IconButton,
+  CardMedia,
 } from '@material-ui/core'
-import { DropzoneArea } from 'material-ui-dropzone'
 import AppData from '../../modules/AppData'
 import { useForm, Controller } from 'react-hook-form'
 import SubmitButton from '../SubmitButton'
+import { PhotoCamera } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   testimonialContainer: {
@@ -26,12 +28,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TestimonialsForm = ({ testimonial, index }) => {
+const TestimonialsForm = ({ testimonial }) => {
+  const { id, name, text, photo, alt, link } = testimonial
   const [open, setOpen] = useState(false)
+  const [preview, setPreview] = useState()
+  const [newPhoto, setNewPhoto] = useState(testimonial.photo)
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
 
   const onSubmit = (attributes, id, photo) => {
+    // newPhoto goes here
     const fromData = {
       testimonials: {
         ...attributes[`testimonials${id}`],
@@ -40,6 +46,21 @@ const TestimonialsForm = ({ testimonial, index }) => {
       },
     }
     AppData.update(fromData)
+  }
+
+  const imageEncoder = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+
+  const handleImage = async (event) => {
+    let file = event.target.files[0]
+    setPreview(file)
+    let encodedFile = await imageEncoder(file)
+    setNewPhoto(encodedFile)
   }
 
   const testimonialsForm = (
@@ -54,7 +75,7 @@ const TestimonialsForm = ({ testimonial, index }) => {
           onClose={() => setOpen(false)}>
           <Paper className={classes.testimonialContainer}>
             <Grid
-              key={`testimonial-form-${index}`}
+              key={`testimonial-form-${id}`}
               data-cy='testimonial-form'
               item
               container
@@ -65,6 +86,33 @@ const TestimonialsForm = ({ testimonial, index }) => {
                   onSubmit(attributes, testimonial.id, testimonial.photo)
                 )}>
                 <Grid item container direction='column' spacing={3}>
+                  <Grid item container style={{ height: '250px' }}>
+                    <CardMedia
+                      className={classes.logo}
+                      data-cy='image-preview'
+                      component='img'
+                      src={preview ? URL?.createObjectURL(preview) : photo}
+                    />
+                  </Grid>
+                  <Grid item container justifyContent='flex-end'>
+                    <input
+                      accept='image/*'
+                      style={{ display: 'none' }}
+                      id={`card-image-input-section-${id}`}
+                      type='file'
+                      onChange={(event) => {
+                        handleImage(event)
+                      }}
+                    />
+                    <label htmlFor={`card-image-input-section-${id}`}>
+                      <IconButton
+                        data-cy='image-upload-button'
+                        component='span'>
+                        <PhotoCamera />
+                      </IconButton>
+                    </label>
+                  </Grid>
+
                   <Grid item>
                     <Controller
                       name={`testimonials${testimonial.id}.name`}
@@ -139,13 +187,6 @@ const TestimonialsForm = ({ testimonial, index }) => {
                       )}
                     />
                   </Grid>
-                  <DropzoneArea
-                    data-cy='testimonial-image'
-                    acceptedFiles={['image/*']}
-                    dropzoneText='Drag and drop or click here to add images'
-                    filesLimit={1}
-                    showPreviewsInDropzone={true}
-                  />
                   <Grid item>
                     <Controller
                       name={`testimonials${testimonial.id}.link`}
