@@ -19,9 +19,7 @@ const useStyles = makeStyles((theme) => ({
       margin: '50px auto',
       height: 'auto',
       maxWidth: '500px',
-      border: '1px solid #eee'
-    },
-    [theme.breakpoints.up('sm')]: {
+      border: '1px solid #eee',
       padding: '30px',
     },
   },
@@ -46,6 +44,7 @@ const TestimonialsForm = ({ id, setRedirect }) => {
         photo: newPhoto,
       },
     }
+    debugger
     AppData.update(fromData)
     setRedirect(true)
   }
