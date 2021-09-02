@@ -26,12 +26,12 @@ const App = () => {
 
   useEffect(() => {
     Authentication.validateToken()
-    if (window.Cypress) {
+    //if (window.Cypress) {
       store.dispatch({
         type: 'AUTHENTICATE',
         payload: 'Johnny Cage',
       })
-    }
+    //}
   }, [authenticated])
 
   return (

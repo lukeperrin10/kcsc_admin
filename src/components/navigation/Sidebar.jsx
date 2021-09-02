@@ -9,7 +9,7 @@ import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
-import ListIcon from '@material-ui/icons/List';
+import ListIcon from '@material-ui/icons/List'
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
 import PersonIcon from '@material-ui/icons/Person'
 
@@ -27,6 +27,7 @@ const Sidebar = () => {
         </SidebarIcon>
         <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
           <ListIcon />
+        </SidebarIcon>
         <SidebarIcon text='Testimonials' to='/testimonials'>
           <PersonIcon />
         </SidebarIcon>

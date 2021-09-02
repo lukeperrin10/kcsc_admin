@@ -38,6 +38,7 @@ const ArticleCreationForm = ({
         fullWidth
         required
         multiline
+        minRows={8}
         id='standard-required'
         label='Body'
         type='text'

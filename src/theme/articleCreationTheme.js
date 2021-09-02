@@ -9,7 +9,7 @@ const articleCreationTheme = makeStyles((theme) => ({
   },
   form: {
     width: '70%',
-    margin: '2% 2% 5% 2%',
+    margin: '0.5rem',
   },
   btnBox: {
     [theme.breakpoints.up('xs')]: {

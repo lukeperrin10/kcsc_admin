@@ -16,7 +16,7 @@ import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
-import ListIcon from '@material-ui/icons/List';
+import ListIcon from '@material-ui/icons/List'
 import Authentication from '../../modules/Authentication'
 import PersonIcon from '@material-ui/icons/Person'
 
@@ -55,9 +55,9 @@ const PhoneSidebar = () => {
         <List>
           <SidebarIcon text='General' to='/'>
             <SettingsIcon />
-            </SidebarIcon>
-        <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
-          <ListIcon />
+          </SidebarIcon>
+          <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
+            <ListIcon />
           </SidebarIcon>
           <SidebarIcon text='Testimonials' to='/testimonials'>
             <PersonIcon />
