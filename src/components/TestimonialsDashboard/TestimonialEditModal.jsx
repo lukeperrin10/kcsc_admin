@@ -41,13 +41,12 @@ const TestimonialsForm = ({ testimonial }) => {
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
 
-  const onSubmit = (attributes, id, photo) => {
-    // newPhoto goes here
+  const onSubmit = (attributes) => {
     const fromData = {
       testimonials: {
-        ...attributes[`testimonials${id}`],
+        ...attributes,
         id: id,
-        photo: photo,
+        photo: newPhoto,
       },
     }
     AppData.update(fromData)
@@ -76,17 +75,10 @@ const TestimonialsForm = ({ testimonial }) => {
       {open && (
         <Modal open={open} style={{ overflow: 'scroll' }}>
           <Paper className={classes.testimonialContainer}>
-            <Grid
-              key={`testimonial-form-${id}`}
-              data-cy='testimonial-form'
-              item
-              container
-              sm={12}>
+            <Grid data-cy='testimonial-form' item container sm={12}>
               <form
                 data-cy='new-article-modal'
-                onSubmit={handleSubmit((attributes) =>
-                  onSubmit(attributes, id, photo)
-                )}>
+                onSubmit={handleSubmit((attributes) => onSubmit(attributes))}>
                 <Grid item container direction='column' spacing={3}>
                   <Grid item style={{ height: 'auto' }}>
                     <CardMedia
@@ -118,7 +110,7 @@ const TestimonialsForm = ({ testimonial }) => {
 
                   <Grid item>
                     <Controller
-                      name={`testimonials${id}.name`}
+                      name='name'
                       control={control}
                       defaultValue={name}
                       rules={{ required: 'This field cannot be empty' }}
@@ -142,7 +134,7 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${id}.text`}
+                      name='text'
                       control={control}
                       defaultValue={text}
                       rules={{ required: 'This field cannot be empty' }}
@@ -168,7 +160,7 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${id}.alt`}
+                      name='alt'
                       control={control}
                       defaultValue={alt}
                       rules={{ required: 'This field cannot be empty' }}
@@ -192,7 +184,7 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${id}.link`}
+                      name='link'
                       control={control}
                       defaultValue={link}
                       rules={{ required: 'This field cannot be empty' }}
