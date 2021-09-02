@@ -9,7 +9,7 @@ import CreateTestimonialForm from '../components/TestimonialsDashboard/CreateTes
 const CreateTestimonial = () => {
   const commonClasses = useCommonStyles()
   const testimonials = useSelector((state) => state.app_data?.testimonials)
-  const [id, setId] = useState([])
+  const [id, setId] = useState(null)
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const CreateTestimonial = () => {
         </Typography>
       </Box>
       {redirect && <Redirect to='/testimonials' />}
-      <CreateTestimonialForm />
+      <CreateTestimonialForm id={id} setRedirect={setRedirect}/>
     </Box>
   )
 }

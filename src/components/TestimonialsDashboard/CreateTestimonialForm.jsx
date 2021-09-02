@@ -16,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
   testimonialContainer: {
     [theme.breakpoints.up('xs')]: {
       backgroundColor: '#fff',
-      margin: 'auto',
-      maxWidth: '600px',
-      padding: '30px',
+      margin: '50px auto',
+      height: 'auto',
+      maxWidth: '500px',
+      border: '1px solid #eee'
     },
     [theme.breakpoints.up('sm')]: {
       padding: '30px',
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TestimonialsForm = (id) => {
+const TestimonialsForm = ({ id, setRedirect }) => {
   const [preview, setPreview] = useState()
   const [newPhoto, setNewPhoto] = useState()
   const { control, handleSubmit } = useForm()
@@ -46,6 +47,7 @@ const TestimonialsForm = (id) => {
       },
     }
     AppData.update(fromData)
+    setRedirect(true)
   }
 
   const imageEncoder = (file) =>
@@ -65,11 +67,22 @@ const TestimonialsForm = (id) => {
 
   const testimonialsForm = (
     <>
-      <Grid data-cy='testimonial-form' item container sm={12}>
+      <Grid
+        data-cy='create-testimonial-form'      
+        container
+        sm={12}
+        justifyContent='center'
+        className={classes.testimonialContainer}>
         <form
           data-cy='new-article-modal'
-          onSubmit={handleSubmit((attributes) => onSubmit(attributes))}>
-          <Grid item container direction='column' spacing={3}>
+          onSubmit={handleSubmit((attributes) => onSubmit(attributes))}
+          style={{width: '100%'}}>
+          <Grid
+            item
+            container
+            direction='column'
+            spacing={3}
+            >
             <Grid item style={{ height: 'auto' }}>
               <CardMedia
                 className={classes.photo}
@@ -97,7 +110,6 @@ const TestimonialsForm = (id) => {
                 </IconButton>
               </label>
             </Grid>
-
             <Grid item>
               <Controller
                 name='name'
@@ -199,7 +211,6 @@ const TestimonialsForm = (id) => {
           </Grid>
         </form>
       </Grid>
-      )
     </>
   )
 
