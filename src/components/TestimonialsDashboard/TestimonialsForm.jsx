@@ -14,7 +14,7 @@ import useCommonStyles from '../../theme/useCommonStyles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SubmitButton from '../SubmitButton'
 
-const TestimonialsForm = ({ testimonials }) => {
+const TestimonialsForm = ({ testimonial, index }) => {
   const [expanded, setExpanded] = useState(true)
   const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
@@ -26,7 +26,7 @@ const TestimonialsForm = ({ testimonials }) => {
     AppData.update(fromData)
   }
 
-  const testimonialsFormList = testimonials.map((testimonial, index) => (
+  const testimonialsForm = (
     <Grid
       key={`testimonial-form-${index}`}
       data-cy='testimonial-form'
@@ -150,8 +150,8 @@ const TestimonialsForm = ({ testimonials }) => {
         </Grid>
       </form>
     </Grid>
-  ))
-
+  )
+  
   return (
     <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -160,7 +160,7 @@ const TestimonialsForm = ({ testimonials }) => {
       <AccordionDetails className={commonClasses.accordionDetails}>
         <Grid container direction='column' spacing={3}>
           <Grid item container direction='row' spacing={3}>
-            {testimonialsFormList}
+            {testimonialsForm}
           </Grid>
         </Grid>
       </AccordionDetails>

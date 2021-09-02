@@ -1,47 +1,105 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Typography, Divider, Box } from '@material-ui/core'
-import useCommonStyles from '../theme/useCommonStyles'
-// import appData from '../data/app_data.json'
-import TestimonialsForm from '../components/TestimonialsDashboard/TestimonialsForm'
+import { withStyles } from '@material-ui/core/styles'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  FormControlLabel,
+  Typography,
+} from '@material-ui/core'
 import AppData from '../modules/AppData'
+import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
+import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
+import articleDashboard from '../theme/articleDashboardTheme'
+import useCommonStyles from '../theme/useCommonStyles'
 
-const GeneralDashboard = () => {
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    fontSize: '1.2rem',
+    fontWeight: 800,
+  },
+  body: {
+    fontSize: '1rem',
+  },
+}))(TableCell)
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow)
+
+const ArticlesDashboard = () => {
+  const classes = articleDashboard()
   const commonClasses = useCommonStyles()
-  const app_data = useSelector((state) => state.app_data)
-  // Use that on localhost
-  // const app_data = appData.app_data
+  const testimonials = useSelector((state) => state.app_data?.testimonials)
+
+  // Put fixture here to see articles on localhost
+  //const [articles, setArticles] = useState([])
 
   useEffect(() => {
     AppData.index()
   }, [])
 
+  const tableHeader = (
+    <StyledTableRow color='secondary'>
+      <StyledTableCell align='left'>id</StyledTableCell>
+      <StyledTableCell align='left'>Name</StyledTableCell>
+      <StyledTableCell align='left'>Link</StyledTableCell>
+      <StyledTableCell align='left'>Action</StyledTableCell>
+    </StyledTableRow>
+  )
+
+  const tableRows =
+    testimonials &&
+    testimonials.map((testimonial) => {
+      const { id, name, link } = testimonial
+      return (
+        <StyledTableRow data-cy='article' key={`article-${id}`}>
+          <StyledTableCell data-cy='status' align='center'>
+            {id}
+          </StyledTableCell>
+          <StyledTableCell data-cy='title' className={classes.titleCell}>
+            {name}
+          </StyledTableCell>
+          <StyledTableCell data-cy='date' className={classes.dateCell}>
+            {link}
+          </StyledTableCell>
+          <StyledTableCell data-cy='date' className={classes.dateCell}>
+            Edit
+          </StyledTableCell>
+        </StyledTableRow>
+      )
+    })
+
+  const noArticlesMessage = (
+    <Typography variant='h6' style={{ padding: '12px' }}>
+      No articles to display
+    </Typography>
+  )
+
   return (
-    <Box className={commonClasses.viewContainer}>
-      <Box className={commonClasses.dashboardHeader}>
-        <Typography
-          data-cy='dashboard-header'
-          variant='h5'
-          style={{ fontWeight: 600 }}>
-          Edit Testimonials Info
-        </Typography>
-      </Box>
-      <Divider />
-      {app_data ? (
-        <>
-          <TestimonialsForm testimonials={app_data.testimonials} />         
-        </>
-      ) : (
-        <Typography
-          data-cy='form-loading-error-message'
-          variant='h6'
-          style={{ padding: '1rem 2rem' }}>
-          There is a problem loading a form. Please check your connection or try
-          again later. If the problem persist contact the development team.
-        </Typography>
-      )}
-    </Box>
+    <>
+      <TableContainer
+        data-cy='articles-table'
+        component={Paper}
+        className={commonClasses.viewContainer}>
+        <Table>
+          <TableHead>{tableHeader}</TableHead>
+          <TableBody>{testimonials ? tableRows : noArticlesMessage}</TableBody>
+        </Table>
+      </TableContainer>
+    </>
   )
 }
 
-export default GeneralDashboard
+export default ArticlesDashboard
