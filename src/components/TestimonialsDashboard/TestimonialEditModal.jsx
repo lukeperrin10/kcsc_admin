@@ -26,13 +26,18 @@ const useStyles = makeStyles((theme) => ({
       padding: '30px',
     },
   },
+  photo: {
+    margin: 'auto',
+    maxWidth: '100%',
+    objectFit: 'contain',
+  },
 }))
 
 const TestimonialsForm = ({ testimonial }) => {
   const { id, name, text, photo, alt, link } = testimonial
   const [open, setOpen] = useState(false)
   const [preview, setPreview] = useState()
-  const [newPhoto, setNewPhoto] = useState(testimonial.photo)
+  const [newPhoto, setNewPhoto] = useState(photo)
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
 
@@ -83,12 +88,12 @@ const TestimonialsForm = ({ testimonial }) => {
               <form
                 data-cy='new-article-modal'
                 onSubmit={handleSubmit((attributes) =>
-                  onSubmit(attributes, testimonial.id, testimonial.photo)
+                  onSubmit(attributes, id, photo)
                 )}>
                 <Grid item container direction='column' spacing={3}>
-                  <Grid item container style={{ height: '250px' }}>
+                  <Grid item style={{ height: 'auto' }}>
                     <CardMedia
-                      className={classes.logo}
+                      className={classes.photo}
                       data-cy='image-preview'
                       component='img'
                       src={preview ? URL?.createObjectURL(preview) : photo}
@@ -107,7 +112,8 @@ const TestimonialsForm = ({ testimonial }) => {
                     <label htmlFor={`card-image-input-section-${id}`}>
                       <IconButton
                         data-cy='image-upload-button'
-                        component='span'>
+                        component='span'
+                        color='primary'>
                         <PhotoCamera />
                       </IconButton>
                     </label>
@@ -115,9 +121,9 @@ const TestimonialsForm = ({ testimonial }) => {
 
                   <Grid item>
                     <Controller
-                      name={`testimonials${testimonial.id}.name`}
+                      name={`testimonials${id}.name`}
                       control={control}
-                      defaultValue={testimonial.name}
+                      defaultValue={name}
                       rules={{ required: 'This field cannot be empty' }}
                       render={({
                         field: { onChange, value },
@@ -139,9 +145,9 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${testimonial.id}.text`}
+                      name={`testimonials${id}.text`}
                       control={control}
-                      defaultValue={testimonial.text}
+                      defaultValue={text}
                       rules={{ required: 'This field cannot be empty' }}
                       render={({
                         field: { onChange, value },
@@ -153,7 +159,7 @@ const TestimonialsForm = ({ testimonial }) => {
                           label='Testimonial Text (max 500 char.)*'
                           fullWidth
                           multiline
-                          minRows={8}
+                          minRows={4}
                           inputProps={{ maxLength: 500 }}
                           error={!!error}
                           helperText={error ? error.message : null}
@@ -165,9 +171,9 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${testimonial.id}.alt`}
+                      name={`testimonials${id}.alt`}
                       control={control}
-                      defaultValue={testimonial.alt}
+                      defaultValue={alt}
                       rules={{ required: 'This field cannot be empty' }}
                       render={({
                         field: { onChange, value },
@@ -189,9 +195,9 @@ const TestimonialsForm = ({ testimonial }) => {
                   </Grid>
                   <Grid item>
                     <Controller
-                      name={`testimonials${testimonial.id}.link`}
+                      name={`testimonials${id}.link`}
                       control={control}
-                      defaultValue={testimonial.link}
+                      defaultValue={link}
                       rules={{ required: 'This field cannot be empty' }}
                       render={({
                         field: { onChange, value },
