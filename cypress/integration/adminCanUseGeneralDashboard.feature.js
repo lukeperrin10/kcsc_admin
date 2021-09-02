@@ -92,56 +92,6 @@ describe('Admin Can Use General Dashboard', () => {
         })
       })
 
-      describe('and edit Navigation info', () => {
-        it('is expected to show navigation accordion with pre-filled form in details', () => {
-          cy.get('[data-cy=navigation-form]').within(() => {
-            cy.get('[data-cy=tab-input]')
-              .first()
-              .find('input')
-              .should('have.value', 'home')
-            cy.get('[data-cy=tab-switch]').should('have.length', 14)
-          })
-        })
-
-        context('successfully', () => {
-          beforeEach(() => {
-            cy.intercept('PUT', '**/app_data**', {
-              statusCode: 200,
-              body: {
-                message: 'Info has been updated',
-              },
-            })
-          })
-
-          it('is expected to show success message on submit', () => {
-            cy.get('[data-cy=navigation-submit-button]').click()
-            cy.get('[data-cy=snack-content]').should(
-              'contain.text',
-              'Info has been updated'
-            )
-          })
-        })
-
-        context('unsuccessfully', () => {
-          beforeEach(() => {
-            cy.intercept('PUT', '**/app_data**', {
-              statusCode: 400,
-              body: {
-                error_message: 'Something went wrong, try again later',
-              },
-            })
-          })
-
-          it('is expected to show success message on submit', () => {
-            cy.get('[data-cy=navigation-submit-button]').click()
-            cy.get('[data-cy=snack-content]').should(
-              'contain.text',
-              'Something went wrong, try again later'
-            )
-          })
-        })
-      })
-
       describe('and edit Testimonials info', () => {
         it('is expected to show testimonial accordion with pre-filled form in details', () => {
           cy.get('[data-cy=testimonial-form]').should('have.length', 2)
@@ -151,10 +101,13 @@ describe('Admin Can Use General Dashboard', () => {
               cy.get('[data-cy=testimonial-name]')
                 .find('input')
                 .should('have.value', 'Maggie Black')
-                cy.get('[data-cy=testimonial-text]')
+              cy.get('[data-cy=testimonial-text]')
                 .find('textarea')
-                .should('contain.text', '"In my personal life, I am a daughter, a mother, ')
-                cy.get('[data-cy=testimonial-alt]')
+                .should(
+                  'contain.text',
+                  '"In my personal life, I am a daughter, a mother, '
+                )
+              cy.get('[data-cy=testimonial-alt]')
                 .find('input')
                 .should('have.value', 'Maggie Black smiling to the camera')
             })

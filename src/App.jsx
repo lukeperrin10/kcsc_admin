@@ -18,6 +18,7 @@ import PhoneSidebar from './components/navigation/PhoneSidebar'
 import SuccessSnackbar from './components/popups/SuccessSnackbar'
 import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import './styles/globals.css'
+import NavigationDashboard from './views/NavigationDashboard'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -42,6 +43,7 @@ const App = () => {
           {isSmall ? <PhoneSidebar /> : <Sidebar />}
           <Switch>
             <Route exact path='/' component={GeneralDashboard} />
+            <Route exact path='/navigation' component={NavigationDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
             <Route exact path='/articles' component={ArticlesDashboard} />
             <Route exact path='/articles/create' component={ArticleCreation} />
