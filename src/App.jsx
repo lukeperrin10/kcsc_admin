@@ -10,6 +10,7 @@ import ArticlesDashboard from './views/ArticlesDashboard'
 import ArticleCreation from './views/ArticleCreation'
 import SectionsDashboard from './views/SectionsDashboard'
 import InformationDashboard from './views/InformationDashboard'
+import TestimonialsDashboard from './views/TestimonialsDashboard'
 import InformationCreation from './views/InformationCreation'
 import LoginPage from './components/LoginPage'
 import Sidebar from './components/navigation/Sidebar'
@@ -53,6 +54,7 @@ const App = () => {
               path='/information/create'
               component={InformationCreation}
             />
+            <Route exact path='/testimonials' component={TestimonialsDashboard} />
           </Switch>
         </>
       ) : (

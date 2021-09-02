@@ -18,6 +18,7 @@ import SidebarIcon from './SidebarIcon'
 import logoWhite from '../../assets/LogoCHWLSymbolWhite.png'
 import ListIcon from '@material-ui/icons/List';
 import Authentication from '../../modules/Authentication'
+import PersonIcon from '@material-ui/icons/Person'
 
 const useStyles = makeStyles((theme) => ({
   menuBar: {
@@ -57,6 +58,9 @@ const PhoneSidebar = () => {
             </SidebarIcon>
         <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
           <ListIcon />
+          </SidebarIcon>
+          <SidebarIcon text='Testimonials' to='/testimonials'>
+            <PersonIcon />
           </SidebarIcon>
           <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
             <ViewCompactIcon />

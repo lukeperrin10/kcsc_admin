@@ -4,6 +4,7 @@ import { Typography, Divider, Box } from '@material-ui/core'
 import useCommonStyles from '../theme/useCommonStyles'
 import FooterForm from '../components/GeneralDashboard/FooterForm'
 import TestimonialsForm from '../components/GeneralDashboard/TestimonialsForm'
+import TaglineForm from '../components/GeneralDashboard/TaglineForm'
 import AppData from '../modules/AppData'
 
 const GeneralDashboard = () => {
@@ -27,6 +28,7 @@ const GeneralDashboard = () => {
       <Divider />
       {app_data ? (
         <>
+          <TaglineForm tagline={app_data.tagline} />
           <TestimonialsForm testimonials={app_data.testimonials} />
 
           <FooterForm

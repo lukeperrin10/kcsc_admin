@@ -11,6 +11,7 @@ import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
 import ListIcon from '@material-ui/icons/List';
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
+import PersonIcon from '@material-ui/icons/Person'
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)
@@ -26,6 +27,8 @@ const Sidebar = () => {
         </SidebarIcon>
         <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
           <ListIcon />
+        <SidebarIcon text='Testimonials' to='/testimonials'>
+          <PersonIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />
