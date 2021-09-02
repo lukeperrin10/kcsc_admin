@@ -24,7 +24,7 @@ const Sidebar = () => {
         <SidebarIcon text='General' to='/'>
           <SettingsIcon />
         </SidebarIcon>
-        <SidebarIcon text='Navigation' to='/navigation'>
+        <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
           <ListIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
