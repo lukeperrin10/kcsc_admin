@@ -110,6 +110,7 @@ const InformationCreation = () => {
           fullWidth
           required
           multiline
+          minRows={8}
           label={`description (max ${descriptionMaxLength} char.)*`}
           inputProps={{ maxLength: descriptionMaxLength }}
           id='standard-required'
