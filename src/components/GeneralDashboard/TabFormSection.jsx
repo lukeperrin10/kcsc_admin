@@ -11,8 +11,6 @@ import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
 import useCommonStyles from '../../theme/useCommonStyles'
 
-const _ = require('lodash')
-
 const StyledSwitch = withStyles({
   switchBase: {
     color: '#ddd',
@@ -83,7 +81,7 @@ const TabFormSection = ({
             />
           )}
         />
-        {section && (
+        {/* {section && (
           <Controller
             name={`navigation.main_tabs[${index}].secondary_tabs[${indexSec}].ref`}
             control={control}
@@ -103,7 +101,7 @@ const TabFormSection = ({
               />
             )}
           />
-        )}
+        )} */}
       </Grid>
       <Controller
         name={

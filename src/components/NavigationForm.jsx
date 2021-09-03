@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { useForm } from 'react-hook-form'
 import { Grid } from '@material-ui/core'
 import useNavigationDashboard from '../theme/navigationTheme'
@@ -19,7 +18,7 @@ const NavigationForm = ({ tabs }) => {
   const mainTabsList = tabs.main_tabs.map((mainTab, index) => {
     let secondaryTabList = <></>
     if (mainTab.secondary_tabs) {
-      secondaryTabList = tabs.secondary_tabs.map((secondaryTab, indexSec) => (
+      secondaryTabList = mainTab.secondary_tabs.map((secondaryTab, indexSec) => (
         <TabFormSection
           key={`secondary-${index}.${indexSec}`}
           control={control}
