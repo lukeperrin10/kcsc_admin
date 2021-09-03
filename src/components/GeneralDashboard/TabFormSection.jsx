@@ -11,8 +11,6 @@ import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
 import useCommonStyles from '../../theme/useCommonStyles'
 
-const _ = require('lodash')
-
 const StyledSwitch = withStyles({
   switchBase: {
     color: '#ddd',
@@ -83,27 +81,6 @@ const TabFormSection = ({
             />
           )}
         />
-        {section && (
-          <Controller
-            name={`navigation.main_tabs[${index}].secondary_tabs[${indexSec}].ref`}
-            control={control}
-            defaultValue={_.startCase(section)}
-            rules={{ required: 'This field cannot be empty' }}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TextField
-                data-cy={`tab-ref`}
-                variant='outlined'
-                label={`Ref*`}
-                className={classes.tabLabelInput}
-                inputProps={{ maxLength: labelMaxLength }}
-                error={!!error}
-                helperText={error ? error.message : null}
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-        )}
       </Grid>
       <Controller
         name={
