@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   TextField,
   Grid,
-  Button,
   makeStyles,
   IconButton,
   CardMedia,
@@ -44,7 +43,6 @@ const TestimonialsForm = ({ id, setRedirect }) => {
         photo: newPhoto,
       },
     }
-    debugger
     AppData.update(fromData)
     setRedirect(true)
   }
