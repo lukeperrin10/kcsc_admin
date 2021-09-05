@@ -9,7 +9,7 @@ import CreateTestimonialForm from '../components/TestimonialsDashboard/CreateTes
 const CreateTestimonial = () => {
   const commonClasses = useCommonStyles()
   const testimonials = useSelector((state) => state.app_data?.testimonials)
-  const [id, setId] = useState(null)
+  const [uniqueId, setUniqueId] = useState()
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
@@ -18,10 +18,10 @@ const CreateTestimonial = () => {
       const testimonialIds = testimonials.map((testimonial) => {
         return testimonial.id
       })
-      let uniqueId = Math.max(...testimonialIds) + 1
-      setId(uniqueId)
+      const newId = Math.max(...testimonialIds) + 1
+      setUniqueId(newId)
     }
-  }, [testimonials])
+  }, [])
 
   return (
     <Box className={commonClasses.viewContainer}>
@@ -35,7 +35,10 @@ const CreateTestimonial = () => {
         </Typography>
       </Box>
       {redirect && <Redirect to='/testimonials' />}
-      <CreateTestimonialForm id={id} setRedirect={setRedirect}/>
+      <CreateTestimonialForm
+        newTestimonialId={uniqueId}
+        setRedirect={setRedirect}
+      />
     </Box>
   )
 }

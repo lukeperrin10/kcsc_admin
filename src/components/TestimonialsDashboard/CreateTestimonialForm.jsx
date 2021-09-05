@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TestimonialsForm = ({ id, setRedirect }) => {
+const CreateTestimonialForm = ({ newTestimonialId, setRedirect }) => {
   const [preview, setPreview] = useState()
   const [newPhoto, setNewPhoto] = useState()
   const { control, handleSubmit } = useForm()
@@ -39,10 +39,11 @@ const TestimonialsForm = ({ id, setRedirect }) => {
     const fromData = {
       testimonials: {
         ...attributes,
-        id: id,
+        id: newTestimonialId,
         photo: newPhoto,
       },
     }
+    debugger
     AppData.update(fromData)
     setRedirect(true)
   }
@@ -65,7 +66,7 @@ const TestimonialsForm = ({ id, setRedirect }) => {
   const testimonialsForm = (
     <>
       <Grid
-        data-cy='create-testimonial-form'      
+        data-cy='create-testimonial-form'
         container
         sm={12}
         justifyContent='center'
@@ -73,13 +74,8 @@ const TestimonialsForm = ({ id, setRedirect }) => {
         <form
           data-cy='new-article-modal'
           onSubmit={handleSubmit((attributes) => onSubmit(attributes))}
-          style={{width: '100%'}}>
-          <Grid
-            item
-            container
-            direction='column'
-            spacing={3}
-            >
+          style={{ width: '100%' }}>
+          <Grid item container direction='column' spacing={3}>
             <Grid item style={{ height: 'auto' }}>
               <CardMedia
                 className={classes.photo}
@@ -92,13 +88,14 @@ const TestimonialsForm = ({ id, setRedirect }) => {
               <input
                 accept='image/*'
                 style={{ display: 'none' }}
-                id={`testimonial-image-input-section-${id}`}
+                id={`testimonial-image-input-section-${newTestimonialId}`}
                 type='file'
                 onChange={(event) => {
                   handleImage(event)
                 }}
               />
-              <label htmlFor={`testimonial-image-input-section-${id}`}>
+              <label
+                htmlFor={`testimonial-image-input-section-${newTestimonialId}`}>
                 <IconButton
                   data-cy='image-upload-button'
                   component='span'
@@ -220,4 +217,4 @@ const TestimonialsForm = ({ id, setRedirect }) => {
   )
 }
 
-export default TestimonialsForm
+export default CreateTestimonialForm

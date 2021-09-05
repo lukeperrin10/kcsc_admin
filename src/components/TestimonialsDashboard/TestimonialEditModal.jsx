@@ -41,7 +41,7 @@ const TestimonialsForm = ({ testimonial }) => {
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
 
-  const onSubmit = (attributes) => {
+  const onSubmit = async (attributes) => {
     const fromData = {
       testimonials: {
         ...attributes,
@@ -49,7 +49,10 @@ const TestimonialsForm = ({ testimonial }) => {
         photo: newPhoto,
       },
     }
-    AppData.update(fromData)
+    try {
+      await AppData.update(fromData)
+      setOpen(false)
+    } catch {}
   }
 
   const imageEncoder = (file) =>

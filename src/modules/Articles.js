@@ -10,28 +10,29 @@ const headers = getHeaders()
 const Articles = {
   async index() {
     try {
-      if (window.Cypress) {
-        const response = await axios.get('/articles', { headers: headers })
-        store.dispatch({
-          type: 'ARTICLES_INDEX',
-          payload: response.data.articles,
-        })
-      } else {
-        store.dispatch({
-          type: 'ARTICLES_INDEX',
-          payload: all_articles.articles,
-        })
-      }
+      //if (window.Cypress) {
+      const response = await axios.get('/articles', { headers: headers })
+      store.dispatch({
+        type: 'ARTICLES_INDEX',
+        payload: response.data.articles,
+      })
+      //} else {
+      // store.dispatch({
+      //   type: 'ARTICLES_INDEX',
+      //   payload: all_articles.articles,
+      // })
+      //}
     } catch (error) {
       errorHandler(error)
     }
   },
 
   async create(article) {
-    let params = { article: article }
+    const { title, body, image } = article
+    let params = { article: { title: title, body: body, image: image } }
     try {
       let response = await axios.post('/articles', params, { headers: headers })
-      Articles.index()
+      //Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,
@@ -43,14 +44,14 @@ const Articles = {
 
   async show(id) {
     try {
-      if (window.Cypress) {
-        const response = await axios.get(`/articles/${id}`, {
-          headers: headers,
-        })
-        return response.data
-      } else {
-        return single_article
-      }
+      //if (window.Cypress) {
+      const response = await axios.get(`/articles/${id}`, {
+        headers: headers,
+      })
+      return response.data
+      //} else {
+      // return single_article
+      //}
     } catch (error) {
       errorHandler(error)
     }
@@ -59,11 +60,9 @@ const Articles = {
   async update(article) {
     let params = { article: article }
     try {
-      let response = await axios.put(
-        `/articles/${article.id}`,
-        params,
-        { headers: headers }
-      )
+      let response = await axios.put(`/articles/${article.id}`, params, {
+        headers: headers,
+      })
       Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
@@ -76,7 +75,11 @@ const Articles = {
 
   async update_publish(id, publish) {
     try {
-      const response = await axios.post(`/articles/${id}`, { publish: publish }, { headers: headers })
+      const response = await axios.post(
+        `/articles/${id}`,
+        { publish: publish },
+        { headers: headers }
+      )
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,

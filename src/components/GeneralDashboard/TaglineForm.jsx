@@ -13,7 +13,7 @@ import useCommonStyles from '../../theme/useCommonStyles'
 import AppData from '../../modules/AppData'
 import SubmitButton from '../SubmitButton'
 
-const TaglineForm = (tagline) => {
+const TaglineForm = ({tagline}) => {
   const [expanded, setExpanded] = useState(true)
   const { control, handleSubmit } = useForm()
   const commonClasses = useCommonStyles()
