@@ -9,18 +9,18 @@ const headers = getHeaders()
 const Information = {
   async index() {
     try {
-      if (window.Cypress) {
+      //if (window.Cypress) {
         const response = await axios.get('/information', { headers: headers })
         store.dispatch({
           type: 'INFORMATION_INDEX',
           payload: response.data.information_items,
         })
-      } else {
-        store.dispatch({
-          type: 'INFORMATION_INDEX',
-          payload: information.information_items,
-        })
-      }
+      // } else {
+      //   store.dispatch({
+      //     type: 'INFORMATION_INDEX',
+      //     payload: information.information_items,
+      //   })
+      // }
     } catch (error) {
       errorHandler(error)
     }
@@ -29,11 +29,10 @@ const Information = {
   async create(info) {
     try {
       let response = await axios.post(
-        'api/information',
-        { info: info },
+        '/information',
+        { information_item: info },
         { headers: headers }
       )
-      Information.index()
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,
