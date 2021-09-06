@@ -14,14 +14,14 @@ const CreateTestimonial = () => {
 
   useEffect(() => {
     AppData.index()
-    if (testimonials) {
+    if (testimonials && !uniqueId) {
       const testimonialIds = testimonials.map((testimonial) => {
         return testimonial.id
       })
       const newId = Math.max(...testimonialIds) + 1
       setUniqueId(newId)
     }
-  }, [])
+  }, [testimonials, uniqueId])
 
   return (
     <Box className={commonClasses.viewContainer}>

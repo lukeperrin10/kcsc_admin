@@ -2,26 +2,17 @@ import store from '../state/store/configureStore'
 import { getHeaders } from './Authentication'
 import errorHandler from './ErrorHandler'
 import axios from 'axios'
-import all_articles from '../data/fixtures/all_articles.json'
-import single_article from '../data/fixtures/single_article.json'
 
 const headers = getHeaders()
 
 const Articles = {
   async index() {
     try {
-      //if (window.Cypress) {
       const response = await axios.get('/articles', { headers: headers })
       store.dispatch({
         type: 'ARTICLES_INDEX',
         payload: response.data.articles,
       })
-      //} else {
-      // store.dispatch({
-      //   type: 'ARTICLES_INDEX',
-      //   payload: all_articles.articles,
-      // })
-      //}
     } catch (error) {
       errorHandler(error)
     }
@@ -32,7 +23,6 @@ const Articles = {
     let params = { article: { title: title, body: body, image: image } }
     try {
       let response = await axios.post('/articles', params, { headers: headers })
-      //Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,
