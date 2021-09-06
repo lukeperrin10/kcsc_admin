@@ -43,7 +43,7 @@ const InformationDashboard = () => {
 
   useEffect(() => {
     Information.index()
-  }, [])
+  }, [information])
 
   const tableHeader = (
     <StyledTableRow color='secondary'>

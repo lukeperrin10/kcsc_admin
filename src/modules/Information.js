@@ -8,11 +8,11 @@ const headers = getHeaders()
 const Information = {
   async index() {
     try {
-        const response = await axios.get('/information', { headers: headers })
-        store.dispatch({
-          type: 'INFORMATION_INDEX',
-          payload: response.data.information_items,
-        })
+      const response = await axios.get('/information', { headers: headers })
+      store.dispatch({
+        type: 'INFORMATION_INDEX',
+        payload: response.data.information_items,
+      })
     } catch (error) {
       errorHandler(error)
     }
@@ -36,13 +36,13 @@ const Information = {
 
   async update_switch(itemId, attr, switchState) {
     try {
-      debugger
-      const response = await axios.post(`/information/${itemId}`, {
+      await axios.put(`/information/${itemId}`, {
         [attr]: switchState,
+        id: itemId,
       })
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Updated successfully',
       })
       return 'success'
     } catch (error) {
