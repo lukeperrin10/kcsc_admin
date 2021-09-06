@@ -17,7 +17,7 @@ const StyledSwitch = withStyles({
   track: {},
 })(Switch)
 
-export const Switches = ({ value, itemId, name }) => {
+export const Switches = ({ value, itemId, name, rerender }) => {
   const [checked, setChecked] = useState(value)
 
   const handleChange = async () => {
@@ -26,6 +26,7 @@ export const Switches = ({ value, itemId, name }) => {
     if (result !== 'error') {
       setChecked(switchState)
     }
+    rerender()
   }
 
   return (

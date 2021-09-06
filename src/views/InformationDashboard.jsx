@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -43,7 +43,11 @@ const InformationDashboard = () => {
 
   useEffect(() => {
     Information.index()
-  }, [information])
+  }, [])
+
+  const rerender = () => {
+    Information.index()
+  }
 
   const tableHeader = (
     <StyledTableRow color='secondary'>
@@ -65,7 +69,7 @@ const InformationDashboard = () => {
             align='center'
             className={classes.statusCell}>
             <FormControlLabel
-              control={<Switches value={publish} name="publish" itemId={id} />}
+              control={<Switches value={publish} name="publish" itemId={id} rerender={rerender}/>}
               label={
                 <Typography className={classes.switchLabel}>
                   {publish ? 'Published' : 'Hidden'}
@@ -76,7 +80,7 @@ const InformationDashboard = () => {
           </StyledTableCell>
           <StyledTableCell data-cy='pinned' className={classes.statusCell}>
           <FormControlLabel
-              control={<Switches value={pinned} name="pinned" itemId={id} />}
+              control={<Switches value={pinned} name="pinned" itemId={id} rerender={rerender}/>}
               label={
                 <Typography className={classes.switchLabel}>
                   {pinned ? 'Pinned' : 'Other'}
