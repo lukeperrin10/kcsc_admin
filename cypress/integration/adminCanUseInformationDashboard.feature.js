@@ -63,6 +63,38 @@ describe('Admin Can Use information Dashboard', () => {
         })
       })
 
+      context('Admin is able to edit info snippet', () => {
+        beforeEach(() => {
+          cy.intercept('GET', '**/information/1', {
+            fixture: 'single_information.json',
+          })
+          cy.intercept('PUT', '**/information/1', {
+            message: 'The information has been successfully updated.',
+          })
+          cy.get('[data-cy=edit-button]').first().click()
+        })
+
+        it('is expected to be able to update the information header, description and link', () => {
+          cy.get('[data-cy=info-container]').within(() => {
+            cy.get('[data-cy=info-header]')
+              .find('input')
+              .clear()
+              .type('This is the new Header for this information')
+          })
+          cy.get('[data-cy=info-description]')
+            .clear()
+            .type(
+              'This is the new text for this information, which might be this long but max length is 300 characters'
+            )
+          cy.get('[data-cy=info-description]').clear().type('www.klockren.se')
+          cy.get('[data-cy=submit-button]').click()
+          cy.get('[data-cy=success-message]').should(
+            'contain',
+            'The information has been successfully updated.'
+          )
+        })
+      })
+
       context('unsuccessfully', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/information/**', {
