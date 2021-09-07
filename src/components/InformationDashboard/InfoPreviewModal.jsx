@@ -9,6 +9,7 @@ import {
   Card,
   Grid,
   CardContent,
+  Box,
 } from '@material-ui/core'
 
 import Information from '../../modules/Information'
@@ -88,31 +89,29 @@ const InfoPreviewModal = ({ informationItem, editInformation }) => {
                     </CardContent>
                   </Grid>
                 </Grid>
+                <Box
+                  className={classes.buttonsContainer}
+                >
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    data-cy='close-btn'
+                    type='button'
+                    onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    type='button'
+                    data-cy='submit-button'
+                    onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Box>
               </Card>
-              <ButtonGroup
-                className={classes.buttonsContainer}
-                size='small'
-                variant='text'
-                color='primary'>
-                <Button
-                  className={classes.closeBtn}
-                  variant='contained'
-                  color='primary'
-                  data-cy='close-btn'
-                  type='button'
-                  onClick={handleClose}>
-                  Close
-                </Button>
-                <Button
-                  className={classes.closeBtn}
-                  variant='contained'
-                  color='primary'
-                  type='button'
-                  data-cy='submit-button'
-                  onClick={handleSubmit}>
-                  Submit
-                </Button>
-              </ButtonGroup>
             </Container>
           </Modal>
         </>

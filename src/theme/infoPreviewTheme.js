@@ -13,6 +13,18 @@ const infoPreview = makeStyles((theme) => ({
   cardContent: {
     padding: "30px 20px",
   },
+  contentField: {
+    margin: "30px 20px",
+  },
+  buttonsContainer: {
+    display: 'flex',
+    direction: 'row',
+    justifyContent: 'space-between',
+  },
+  closeBtn: {
+    margin: '40px',
+    borderRadius: '5px',
+  },
 }))
 
 export default infoPreview
