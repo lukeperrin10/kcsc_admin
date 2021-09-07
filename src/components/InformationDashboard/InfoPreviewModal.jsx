@@ -36,6 +36,7 @@ const InfoPreviewModal = ({ informationItem, editInformation }) => {
 
   const handleSubmit = () => {
     Information.update(informationItem)
+    setOpen(false)
   }
   return (
     <>
