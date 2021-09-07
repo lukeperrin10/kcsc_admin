@@ -34,6 +34,37 @@ const Information = {
     }
   },
 
+  async show(id) {
+    try {
+      const response = await axios.get(`/information/${id}`, {
+        headers: headers,
+      })
+      return response.data
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
+  async update(informationItem) {
+    let params = { information: informationItem }
+    try {
+      let response = await axios.put(
+        `/information/${informationItem.id}`,
+        params,
+        {
+          headers: headers,
+        }
+      )
+      Information.index()
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: response.data.message,
+      })
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
   async update_switch(itemId, attr, switchState) {
     try {
       await axios.put(`/information/${itemId}`, {
