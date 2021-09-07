@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -15,6 +15,7 @@ import {
 
 import Information from '../modules/Information'
 import Switches from '../components/InformationDashboard/Switches'
+import InfoPreviewModal from '../components/InformationDashboard/InfoPreviewModal'
 import informationDashboard from '../theme/informationDashboardTheme'
 
 const StyledTableCell = withStyles((theme) => ({
@@ -55,6 +56,7 @@ const InformationDashboard = () => {
       <StyledTableCell align='left'>Pinned</StyledTableCell>
       <StyledTableCell align='left'>Header</StyledTableCell>
       <StyledTableCell align='left'>Description</StyledTableCell>
+      <StyledTableCell align='left'>Action</StyledTableCell>
     </StyledTableRow>
   )
 
@@ -69,7 +71,14 @@ const InformationDashboard = () => {
             align='center'
             className={classes.statusCell}>
             <FormControlLabel
-              control={<Switches value={publish} name="publish" itemId={id} rerender={rerender}/>}
+              control={
+                <Switches
+                  value={publish}
+                  name='publish'
+                  itemId={id}
+                  rerender={rerender}
+                />
+              }
               label={
                 <Typography className={classes.switchLabel}>
                   {publish ? 'Published' : 'Hidden'}
@@ -79,8 +88,15 @@ const InformationDashboard = () => {
             />
           </StyledTableCell>
           <StyledTableCell data-cy='pinned' className={classes.statusCell}>
-          <FormControlLabel
-              control={<Switches value={pinned} name="pinned" itemId={id} rerender={rerender}/>}
+            <FormControlLabel
+              control={
+                <Switches
+                  value={pinned}
+                  name='pinned'
+                  itemId={id}
+                  rerender={rerender}
+                />
+              }
               label={
                 <Typography className={classes.switchLabel}>
                   {pinned ? 'Pinned' : 'Other'}
@@ -94,6 +110,9 @@ const InformationDashboard = () => {
           </StyledTableCell>
           <StyledTableCell data-cy='description' className={classes.descCell}>
             {description}
+          </StyledTableCell>
+          <StyledTableCell data-cy='action'>
+            <InfoPreviewModal information={information} />
           </StyledTableCell>
         </StyledTableRow>
       )
