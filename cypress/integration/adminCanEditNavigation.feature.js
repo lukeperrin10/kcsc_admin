@@ -28,19 +28,19 @@ describe('Admin Can Use Navigation Dashboard', () => {
               .first()
               .find('input')
               .should('have.value', 'home')
-            cy.get('[data-cy=tab-switch]').should('have.length', 32)
+            cy.get('[data-cy=tab-switch]').should('have.length', 14)
           })
         })
 
         context('successfully', () => {
-          beforeEach(() => {
-            cy.intercept('PUT', '**/app_data**', {
-              statusCode: 200,
-              body: {
-                message: 'Info has been updated',
-              },
-            })
-          })
+          // beforeEach(() => {
+          //   cy.intercept('PUT', '**/app_data**', {
+          //     statusCode: 200,
+          //     body: {
+          //       message: 'Info has been updated',
+          //     },
+          //   })
+          // })
 
           it('is expected to show success message on submit', () => {
             cy.get('[data-cy=navigation-submit-button]').click()
