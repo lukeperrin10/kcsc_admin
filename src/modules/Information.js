@@ -45,10 +45,10 @@ const Information = {
     }
   },
 
-  async update(information) {
-    let params = { information: information }
+  async update(information_item) {
+    let params = { information: information_item }
     try {
-      let response = await axios.put(`/information/${information.id}`, params, {
+      let response = await axios.put(`/information/${information_item.id}`, params, {
         headers: headers,
       })
       Information.index()

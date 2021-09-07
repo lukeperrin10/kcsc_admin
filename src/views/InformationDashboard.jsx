@@ -62,8 +62,8 @@ const InformationDashboard = () => {
 
   const tableRows =
     information &&
-    information.map((information_item) => {
-      const { id, header, description, publish, pinned } = information_item
+    information.map((informationItem) => {
+      const { id, header, description, publish, pinned } = informationItem
       return (
         <StyledTableRow data-cy='information' key={id}>
           <StyledTableCell
@@ -112,7 +112,7 @@ const InformationDashboard = () => {
             {description}
           </StyledTableCell>
           <StyledTableCell data-cy='action'>
-            <InfoPreviewModal information={information} />
+            <InfoPreviewModal informationItem={informationItem} />
           </StyledTableCell>
         </StyledTableRow>
       )
