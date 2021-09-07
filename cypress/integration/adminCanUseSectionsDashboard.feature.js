@@ -27,7 +27,8 @@ describe('Admin Can Use Sections Dashboard', () => {
           body: {
             message: 'Info has been updated',
           },
-        }) + TestHelpers.sizeParameters(size)
+        })
+        TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
@@ -171,7 +172,7 @@ describe('Admin Can Use Sections Dashboard', () => {
         )
       })
 
-      it('is expected to create new card', () => {
+      it.only('is expected to create new card', () => {
         cy.get('[data-cy=navigation-tab]').eq(1).click()
         cy.get('[data-cy=section-edit-form]')
           .eq(3)
@@ -184,6 +185,7 @@ describe('Admin Can Use Sections Dashboard', () => {
             cy.get('[data-cy=visible-switch]').should('be.visible')
             cy.get('[data-cy=close-button]').should('be.visible')
             cy.get('[data-cy=image-preview]').should('not.be.visible')
+            cy.get('[data-cy=image-upload-button]').scrollIntoView()
             cy.get('[data-cy=image-upload-button]').should('be.visible')
             cy.get('[data-cy=alt-input]').find('input').type('alt')
             cy.get('[data-cy=name-input]').find('input').type('name')
