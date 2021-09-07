@@ -34,14 +34,10 @@ const Articles = {
 
   async show(id) {
     try {
-      //if (window.Cypress) {
       const response = await axios.get(`/articles/${id}`, {
         headers: headers,
       })
       return response.data
-      //} else {
-      // return single_article
-      //}
     } catch (error) {
       errorHandler(error)
     }
