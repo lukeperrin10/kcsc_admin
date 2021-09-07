@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import {
   Button,
   Modal,
@@ -18,6 +17,8 @@ const InfoPreviewModal = ({ informationItem }) => {
   const classes = infoPreview()
   const [open, setOpen] = useState(false)
   const [currentInformation, setCurrentInformation] = useState()
+  const headerMaxLength = 40
+  const descriptionMaxLength = 300
 
   const getInformation = async () => {
     let response = await Information.show(informationItem.id)
@@ -43,6 +44,8 @@ const InfoPreviewModal = ({ informationItem }) => {
         data-cy='edit-button'
         type='button'
         name='edit'
+        variant='contained'
+        color='primary'
         onClick={() => {
           handleOpen()
         }}>
@@ -57,18 +60,20 @@ const InfoPreviewModal = ({ informationItem }) => {
                   <CardContent className={classes.cardContent}>
                     <TextField
                       className={classes.contentField}
-                      label='Header'
+                      label={`Header (max ${headerMaxLength} char.)*`}
                       data-cy='info-header'
                       fullWidth
                       multiline
+                      inputProps={{ maxLength: headerMaxLength }}
                       defaultValue={currentInformation.header}
                     />
                     <TextField
                       className={classes.contentField}
-                      label='Description'
+                      label={`Description (max ${descriptionMaxLength} char.)*`}
                       data-cy='info-description'
                       multiline
                       fullWidth
+                      inputProps={{ maxLength: descriptionMaxLength }}
                       defaultValue={currentInformation.description}
                     />
                     <TextField

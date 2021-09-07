@@ -25,6 +25,7 @@ const InformationCreation = () => {
     description: '',
     link: '',
   })
+  const headerMaxLength = 40
   const descriptionMaxLength = 300
 
   const handleChange = (event) => {
@@ -95,8 +96,9 @@ const InformationCreation = () => {
           variant='outlined'
           fullWidth
           required
+          label={`header (max ${headerMaxLength} char.)`}
+          inputProps={{ maxLength: headerMaxLength }}
           id='standard-required'
-          label='Header'
           type='string'
           name='header'
           value={info.header}
@@ -111,7 +113,7 @@ const InformationCreation = () => {
           required
           multiline
           minRows={8}
-          label={`description (max ${descriptionMaxLength} char.)*`}
+          label={`description (max ${descriptionMaxLength} char.)`}
           inputProps={{ maxLength: descriptionMaxLength }}
           id='standard-required'
           type='text'
