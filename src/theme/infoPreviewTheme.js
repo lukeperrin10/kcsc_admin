@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core'
 const infoPreview = makeStyles((theme) => ({
   modal: {
     overflow: 'scroll',
+    marginTop: '40px',
   },
   card: {
     minHeight: "148px",
