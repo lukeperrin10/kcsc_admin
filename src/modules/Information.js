@@ -45,12 +45,16 @@ const Information = {
     }
   },
 
-  async update(information_item) {
-    let params = { information: information_item }
+  async update(informationItem) {
+    let params = { information: informationItem }
     try {
-      let response = await axios.put(`/information/${information_item.id}`, params, {
-        headers: headers,
-      })
+      let response = await axios.put(
+        `/information/${informationItem.id}`,
+        params,
+        {
+          headers: headers,
+        }
+      )
       Information.index()
       store.dispatch({
         type: 'SET_SUCCESS',

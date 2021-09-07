@@ -5,7 +5,6 @@ import {
   Modal,
   Container,
   TextField,
-  ButtonGroup,
   Card,
   Grid,
   CardContent,
@@ -15,7 +14,7 @@ import {
 import Information from '../../modules/Information'
 import infoPreview from '../../theme/infoPreviewTheme'
 
-const InfoPreviewModal = ({ informationItem, editInformation }) => {
+const InfoPreviewModal = ({ informationItem }) => {
   const classes = infoPreview()
   const [open, setOpen] = useState(false)
   const [currentInformation, setCurrentInformation] = useState()
@@ -40,82 +39,72 @@ const InfoPreviewModal = ({ informationItem, editInformation }) => {
   }
   return (
     <>
-      <ButtonGroup
-        size='small'
-        orientation='vertical'
-        variant='contained'
-        color='primary'>
-        <Button
-          data-cy='edit-button'
-          type='button'
-          name='edit'
-          onClick={() => {
-            handleOpen()
-          }}>
-          Edit
-        </Button>
-      </ButtonGroup>
+      <Button
+        data-cy='edit-button'
+        type='button'
+        name='edit'
+        onClick={() => {
+          handleOpen()
+        }}>
+        Edit
+      </Button>
       {currentInformation && (
-        <>
-          <Modal open={open} className={classes.modal}>
-            <Container data-cy='info-container' className={classes.card}>
-              <Card elevation={2} className={classes.fullHeight}>
-                <Grid container direction='row' className={classes.fullHeight}>
-                  <Grid item sm={10} xs={11}>
-                    <CardContent className={classes.cardContent}>
-                      <TextField
-                        className={classes.contentField}
-                        label='Header'
-                        data-cy='info-header'
-                        fullWidth
-                        multiline
-                        defaultValue={currentInformation.header}
-                      />
-                      <TextField
-                        className={classes.contentField}
-                        label='Description'
-                        data-cy='info-description'
-                        multiline
-                        fullWidth
-                        defaultValue={currentInformation.description}
-                      />
-                      <TextField
-                        className={classes.contentField}
-                        label='Link'
-                        data-cy='info-link'
-                        multiline
-                        fullWidth
-                        defaultValue={currentInformation.link}
-                      />
-                    </CardContent>
-                  </Grid>
+        <Modal open={open} className={classes.modal}>
+          <Container data-cy='info-container' className={classes.card}>
+            <Card elevation={2} className={classes.fullHeight}>
+              <Grid container direction='row' className={classes.fullHeight}>
+                <Grid item sm={10} xs={11}>
+                  <CardContent className={classes.cardContent}>
+                    <TextField
+                      className={classes.contentField}
+                      label='Header'
+                      data-cy='info-header'
+                      fullWidth
+                      multiline
+                      defaultValue={currentInformation.header}
+                    />
+                    <TextField
+                      className={classes.contentField}
+                      label='Description'
+                      data-cy='info-description'
+                      multiline
+                      fullWidth
+                      defaultValue={currentInformation.description}
+                    />
+                    <TextField
+                      className={classes.contentField}
+                      label='Link'
+                      data-cy='info-link'
+                      multiline
+                      fullWidth
+                      defaultValue={currentInformation.link}
+                    />
+                  </CardContent>
                 </Grid>
-                <Box
-                  className={classes.buttonsContainer}
-                >
-                  <Button
-                    className={classes.closeBtn}
-                    variant='contained'
-                    color='primary'
-                    data-cy='close-btn'
-                    type='button'
-                    onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button
-                    className={classes.closeBtn}
-                    variant='contained'
-                    color='primary'
-                    type='button'
-                    data-cy='submit-button'
-                    onClick={handleSubmit}>
-                    Submit
-                  </Button>
-                </Box>
-              </Card>
-            </Container>
-          </Modal>
-        </>
+              </Grid>
+              <Box className={classes.buttonsContainer}>
+                <Button
+                  className={classes.closeBtn}
+                  variant='contained'
+                  color='primary'
+                  data-cy='close-btn'
+                  type='button'
+                  onClick={handleClose}>
+                  Close
+                </Button>
+                <Button
+                  className={classes.closeBtn}
+                  variant='contained'
+                  color='primary'
+                  type='button'
+                  data-cy='submit-button'
+                  onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </Box>
+            </Card>
+          </Container>
+        </Modal>
       )}
     </>
   )
