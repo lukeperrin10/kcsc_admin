@@ -54,9 +54,9 @@ const InfoPreviewModal = ({ informationItem }) => {
       {currentInformation && (
         <Modal open={open} className={classes.modal}>
           <Container data-cy='info-container' className={classes.card}>
-            <Card elevation={2} className={classes.fullHeight}>
+            <Card className={classes.fullHeight}>
               <Grid container direction='row' className={classes.fullHeight}>
-                <Grid item sm={10} xs={11}>
+                <Grid item xs={12}>
                   <CardContent className={classes.cardContent}>
                     <TextField
                       className={classes.contentField}
@@ -64,6 +64,7 @@ const InfoPreviewModal = ({ informationItem }) => {
                       data-cy='info-header'
                       fullWidth
                       multiline
+                      variant='outlined'
                       inputProps={{ maxLength: headerMaxLength }}
                       defaultValue={currentInformation.header}
                     />
@@ -73,6 +74,8 @@ const InfoPreviewModal = ({ informationItem }) => {
                       data-cy='info-description'
                       multiline
                       fullWidth
+                      minRows={2}
+                      variant='outlined'
                       inputProps={{ maxLength: descriptionMaxLength }}
                       defaultValue={currentInformation.description}
                     />
@@ -82,6 +85,7 @@ const InfoPreviewModal = ({ informationItem }) => {
                       data-cy='info-link'
                       multiline
                       fullWidth
+                      variant='outlined'
                       defaultValue={currentInformation.link}
                     />
                   </CardContent>

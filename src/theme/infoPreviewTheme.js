@@ -7,15 +7,17 @@ const infoPreview = makeStyles((theme) => ({
   },
   card: {
     minHeight: "148px",
+    maxWidth: "800px",
   },
   fullHeight: {
     height: "100%",
+    width: '100%',
   },
   cardContent: {
-    padding: "30px 20px",
+    padding: "40px",
   },
   contentField: {
-    margin: "30px 20px",
+    margin: "30px 0px",
   },
   buttonsContainer: {
     display: 'flex',
