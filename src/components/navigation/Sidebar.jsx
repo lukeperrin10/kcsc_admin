@@ -32,7 +32,7 @@ const Sidebar = () => {
           <PersonIcon />
         </SidebarIcon>
         <SidebarIcon
-          dataCy='testimonial-creation'peak
+          dataCy='testimonial-creation'
           text='Create Testimonial'
           to='/testimonials/create'>
           <CreateIcon />
