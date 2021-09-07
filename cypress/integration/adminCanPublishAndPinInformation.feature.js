@@ -12,15 +12,15 @@ describe('Admin Can Use information Dashboard', () => {
         cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
-        cy.intercept('POST', '**/information/**', {
+        cy.intercept('PUT', '**/information/**', {
           statusCode: 200,
           body: {
-            message: 'Information has been updated',
+            message: 'Updated successfully',
           },
         })
 
-        TestHelpers.sizeParameters(size)
         cy.visit('/')
+        TestHelpers.sizeParameters(size)
         TestHelpers.authenticate()
         const selection = 'information-edit'
         TestHelpers.sizeCase(size, selection)
@@ -38,33 +38,33 @@ describe('Admin Can Use information Dashboard', () => {
                 'contain.text',
                 'Often just simple changes'
               )
-              cy.get('[data-cy=action]').should('contain.text', 'Placeholder')
+              cy.get('[data-cy=action]').should('contain.text', 'Edit')
             })
         })
       })
 
       context('successfully, by clicking `publish` switch', () => {
         it('is expected to show success message', () => {
-          cy.get('[data-cy=publish-2]').click()
+          cy.get('[data-cy=publish-1]').click()
           cy.get('[data-cy=snack-content]').should(
             'contain',
-            'Information has been updated'
+            'Updated successfully'
           )
         })
       })
 
       context('successfully, by clicking `pinned` switch', () => {
         it('is expected to show success message', () => {
-          cy.get('[data-cy=pinned-2]').click()
+          cy.get('[data-cy=pinned-1]').click()
           cy.get('[data-cy=snack-content]').should(
             'contain',
-            'Information has been updated'
+            'Updated successfully'
           )
         })
       })
       context('unsuccessfully', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/information/**', {
+          cy.intercept('PUT', '**/information/**', {
             statusCode: 400,
             body: {
               error_message: 'An error occurred',
