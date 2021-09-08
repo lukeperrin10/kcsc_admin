@@ -39,26 +39,30 @@ const Information = {
       const response = await axios.get(`/information/${id}`, {
         headers: headers,
       })
-      return response.data
+      return response.data.information_item
     } catch (error) {
       errorHandler(error)
     }
   },
 
-  async update(informationItem) {
-    let params = { information: informationItem }
+  async update(formData, id) {
+    let { header, description, link } = formData
+    let params = {
+      information_item: {
+        id: id,
+        header: header,
+        description: description,
+        link: link,
+      },
+    }
     try {
-      let response = await axios.put(
-        `/information/${informationItem.id}`,
-        params,
-        {
-          headers: headers,
-        }
-      )
+      await axios.put(`/information/${id}`, params, {
+        headers: headers,
+      })
       Information.index()
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Info has been updated',
       })
     } catch (error) {
       errorHandler(error)
@@ -67,10 +71,13 @@ const Information = {
 
   async update_switch(itemId, attr, switchState) {
     try {
-      await axios.put(`/information/${itemId}`, {
-        [attr]: switchState,
-        id: itemId,
-      })
+      const params = {
+        information_item: {
+          [attr]: switchState,
+          id: itemId,
+        },
+      }
+      await axios.put(`/information/${itemId}`, params)
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: 'Updated successfully',

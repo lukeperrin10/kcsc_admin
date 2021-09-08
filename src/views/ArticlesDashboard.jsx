@@ -11,12 +11,15 @@ import {
   Paper,
   FormControlLabel,
   Typography,
+  Button,
 } from '@material-ui/core'
 import Articles from '../modules/Articles'
 import PublishedSwitch from '../components/ArticlesDashboard/PublishedSwitch'
 import ArticlePreviewModal from '../components/ArticlesDashboard/ArticlePreviewModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
+import AddIcon from '@material-ui/icons/Add'
+import { Link } from 'react-router-dom'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -51,13 +54,15 @@ const ArticlesDashboard = () => {
   }, [])
 
   const tableHeader = (
-    <StyledTableRow color='secondary'>
-      <StyledTableCell align='center'>Status</StyledTableCell>
-      <StyledTableCell align='left'>Title</StyledTableCell>
-      <StyledTableCell align='left'>Author</StyledTableCell>
-      <StyledTableCell align='left'>Date</StyledTableCell>
-      <StyledTableCell align='left'>Action</StyledTableCell>
-    </StyledTableRow>
+    <>
+      <StyledTableRow color='secondary'>
+        <StyledTableCell align='center'>Status</StyledTableCell>
+        <StyledTableCell align='left'>Title</StyledTableCell>
+        <StyledTableCell align='left'>Author</StyledTableCell>
+        <StyledTableCell align='left'>Date</StyledTableCell>
+        <StyledTableCell align='center'>Action</StyledTableCell>
+      </StyledTableRow>
+    </>
   )
 
   const tableRows =
@@ -80,11 +85,11 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='title' className={classes.titleCell}>
             {title}
           </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+          <StyledTableCell data-cy='author'>{author.name}</StyledTableCell>
           <StyledTableCell data-cy='date' className={classes.dateCell}>
             {date}
           </StyledTableCell>
-          <StyledTableCell data-cy='action'>
+          <StyledTableCell data-cy='action' align='center'>
             <ArticlePreviewModal article={article} />
           </StyledTableCell>
         </StyledTableRow>
@@ -105,7 +110,24 @@ const ArticlesDashboard = () => {
         className={commonClasses.viewContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
-          <TableBody>{articles ? tableRows : noArticlesMessage}</TableBody>
+          <TableBody>
+            {articles ? tableRows : noArticlesMessage}
+            <StyledTableRow>
+              <StyledTableCell align='center'></StyledTableCell>
+              <StyledTableCell align='left'></StyledTableCell>
+              <StyledTableCell align='left'></StyledTableCell>
+              <StyledTableCell align='left'></StyledTableCell>
+              <StyledTableCell align='center'>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  component={Link}
+                  to='/articles/create'>
+                  <AddIcon />
+                </Button>
+              </StyledTableCell>
+            </StyledTableRow>
+          </TableBody>
         </Table>
       </TableContainer>
     </>
