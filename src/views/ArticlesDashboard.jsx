@@ -80,7 +80,7 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='title' className={classes.titleCell}>
             {title}
           </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+          <StyledTableCell data-cy='author'>{author.name}</StyledTableCell>
           <StyledTableCell data-cy='date' className={classes.dateCell}>
             {date}
           </StyledTableCell>
