@@ -46,9 +46,6 @@ const ArticlesDashboard = () => {
   const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
 
-  // Put fixture here to see articles on localhost
-  //const [articles, setArticles] = useState([])
-
   useEffect(() => {
     Articles.index()
   }, [])
@@ -68,15 +65,16 @@ const ArticlesDashboard = () => {
   const tableRows =
     articles &&
     articles.map((article) => {
-      const { id, title, author, date, publish } = article
+      const { id, title, author, date, published } = article
+      
       return (
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={<PublishedSwitch publish={publish} articleId={id} />}
+              control={<PublishedSwitch publish={published} articleId={id} />}
               label={
                 <Typography className={classes.switchLabel}>
-                  {publish ? 'Published' : 'Hidden'}
+                  {published ? 'Published' : 'Hidden'}
                 </Typography>
               }
               labelPlacement='bottom'
