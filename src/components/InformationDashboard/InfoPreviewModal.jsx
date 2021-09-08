@@ -9,14 +9,16 @@ import {
   CardContent,
   Box,
 } from '@material-ui/core'
-
+import { Controller, useForm } from 'react-hook-form'
 import Information from '../../modules/Information'
 import infoPreview from '../../theme/infoPreviewTheme'
+
 
 const InfoPreviewModal = ({ informationItem }) => {
   const classes = infoPreview()
   const [open, setOpen] = useState(false)
   const [currentInformation, setCurrentInformation] = useState()
+  const { control, handleSubmit } = useForm()
   const headerMaxLength = 40
   const descriptionMaxLength = 300
 
@@ -34,10 +36,11 @@ const InfoPreviewModal = ({ informationItem }) => {
     setOpen(false)
   }
 
-  const handleSubmit = () => {
-    Information.update(informationItem)
+  const onSubmit = (formData) => {
+    Information.update(formData, informationItem.id)
     setOpen(false)
   }
+
   return (
     <>
       <Button
@@ -54,64 +57,110 @@ const InfoPreviewModal = ({ informationItem }) => {
       {currentInformation && (
         <Modal open={open} className={classes.modal}>
           <Container data-cy='info-container' className={classes.card}>
-            <Card className={classes.fullHeight}>
-              <Grid container direction='row' className={classes.fullHeight}>
-                <Grid item xs={12}>
-                  <CardContent className={classes.cardContent}>
-                    <TextField
-                      className={classes.contentField}
-                      label={`Header (max ${headerMaxLength} char.)*`}
-                      data-cy='info-header'
-                      fullWidth
-                      multiline
-                      variant='outlined'
-                      inputProps={{ maxLength: headerMaxLength }}
-                      defaultValue={currentInformation.header}
-                    />
-                    <TextField
-                      className={classes.contentField}
-                      label={`Description (max ${descriptionMaxLength} char.)*`}
-                      data-cy='info-description'
-                      multiline
-                      fullWidth
-                      minRows={2}
-                      variant='outlined'
-                      inputProps={{ maxLength: descriptionMaxLength }}
-                      defaultValue={currentInformation.description}
-                    />
-                    <TextField
-                      className={classes.contentField}
-                      label='Link'
-                      data-cy='info-link'
-                      multiline
-                      fullWidth
-                      variant='outlined'
-                      defaultValue={currentInformation.link}
-                    />
-                  </CardContent>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Card className={classes.fullHeight}>
+                <Grid container direction='row' className={classes.fullHeight}>
+                  <Grid item xs={12}>
+                    <CardContent className={classes.cardContent}>
+                      <Controller
+                        name='header'
+                        control={control}
+                        defaultValue={currentInformation.header}
+                        rules={{ required: 'This field cannot be empty' }}
+                        render={({
+                          field: { onChange, value },
+                          fieldState: { error },
+                        }) => (
+                          <TextField
+                            className={classes.contentField}
+                            label={`Header (max ${headerMaxLength} char.)*`}
+                            data-cy='info-header'
+                            fullWidth
+                            multiline
+                            variant='outlined'
+                            inputProps={{ maxLength: headerMaxLength }}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                            value={value}
+                            onChange={onChange}
+                          />
+                        )}
+                      />
+
+                      <Controller
+                        name='description'
+                        control={control}
+                        defaultValue={currentInformation.description}
+                        rules={{ required: 'This field cannot be empty' }}
+                        render={({
+                          field: { onChange, value },
+                          fieldState: { error },
+                        }) => (
+                          <TextField
+                            className={classes.contentField}
+                            label={`Description (max ${descriptionMaxLength} char.)*`}
+                            data-cy='info-description'
+                            multiline
+                            fullWidth
+                            minRows={2}
+                            variant='outlined'
+                            inputProps={{ maxLength: descriptionMaxLength }}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                            value={value}
+                            onChange={onChange}
+                          />
+                        )}
+                      />
+
+                      <Controller
+                        name='link'
+                        control={control}
+                        defaultValue={currentInformation.link}
+                        rules={{ required: 'This field cannot be empty' }}
+                        render={({
+                          field: { onChange, value },
+                          fieldState: { error },
+                        }) => (
+                          <TextField
+                            className={classes.contentField}
+                            label='Link'
+                            data-cy='info-link'
+                            multiline
+                            fullWidth
+                            variant='outlined'
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                            value={value}
+                            onChange={onChange}
+                          />
+                        )}
+                      />
+                    </CardContent>
+                  </Grid>
                 </Grid>
-              </Grid>
-              <Box className={classes.buttonsContainer}>
-                <Button
-                  className={classes.closeBtn}
-                  variant='contained'
-                  color='primary'
-                  data-cy='close-btn'
-                  type='button'
-                  onClick={handleClose}>
-                  Close
-                </Button>
-                <Button
-                  className={classes.closeBtn}
-                  variant='contained'
-                  color='primary'
-                  type='button'
-                  data-cy='submit-button'
-                  onClick={handleSubmit}>
-                  Submit
-                </Button>
-              </Box>
-            </Card>
+                <Box className={classes.buttonsContainer}>
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    data-cy='close-btn'
+                    type='button'
+                    onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button
+                    className={classes.closeBtn}
+                    variant='contained'
+                    color='primary'
+                    type='submit'
+                    data-cy='submit-button'
+                    onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Box>
+              </Card>
+            </form>
           </Container>
         </Modal>
       )}

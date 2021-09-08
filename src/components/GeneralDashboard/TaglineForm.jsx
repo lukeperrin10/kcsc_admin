@@ -30,7 +30,7 @@ const TaglineForm = ({tagline}) => {
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6'>Tagline</Typography>
         </AccordionSummary>
-        <AccordionDetails className={commonClasses.accordionDetails} style={{width: '50%'}}>
+        <AccordionDetails className={commonClasses.accordionDetails} >
           <Grid container direction='column' spacing={3}>
             <Grid item>
               <Controller

@@ -11,12 +11,14 @@ import {
   Paper,
   FormControlLabel,
   Typography,
+  Button,
 } from '@material-ui/core'
-
 import Information from '../modules/Information'
 import Switches from '../components/InformationDashboard/Switches'
 import InfoPreviewModal from '../components/InformationDashboard/InfoPreviewModal'
 import informationDashboard from '../theme/informationDashboardTheme'
+import AddIcon from '@material-ui/icons/Add'
+import { Link } from 'react-router-dom'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -132,7 +134,24 @@ const InformationDashboard = () => {
         className={classes.tableContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
-          <TableBody>{information ? tableRows : noArticlesMessage}</TableBody>
+          <TableBody>
+            {information ? tableRows : noArticlesMessage}
+            <StyledTableRow>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  component={Link}
+                  to='/information/create'>
+                  <AddIcon />
+                </Button>
+              </StyledTableCell>
+            </StyledTableRow>
+          </TableBody>
         </Table>
       </TableContainer>
     </>

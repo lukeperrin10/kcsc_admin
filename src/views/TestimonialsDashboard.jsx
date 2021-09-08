@@ -10,11 +10,14 @@ import {
   TableRow,
   Paper,
   Typography,
+  Button,
 } from '@material-ui/core'
 import AppData from '../modules/AppData'
 import TestimonialEditModal from '../components/TestimonialsDashboard/TestimonialEditModal.jsx'
 import articleDashboard from '../theme/articleDashboardTheme'
 import useCommonStyles from '../theme/useCommonStyles'
+import { Link } from 'react-router-dom'
+import AddIcon from '@material-ui/icons/Add'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -72,7 +75,7 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='date' className={classes.dateCell}>
             {link}
           </StyledTableCell>
-          <StyledTableCell data-cy='date' className={classes.dateCell}>
+          <StyledTableCell data-cy='action' className={classes.dateCell}>
             <TestimonialEditModal testimonial={testimonial} />
           </StyledTableCell>
         </StyledTableRow>
@@ -95,7 +98,23 @@ const ArticlesDashboard = () => {
         className={commonClasses.viewContainer}>
         <Table>
           <TableHead>{tableHeader}</TableHead>
-          <TableBody>{testimonials ? tableRows : noArticlesMessage}</TableBody>
+          <TableBody>
+            {testimonials ? tableRows : noArticlesMessage}
+            <StyledTableRow>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>            
+              <StyledTableCell>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  component={Link}
+                  to='/testimonials/create'>
+                  <AddIcon />
+                </Button>
+              </StyledTableCell>
+            </StyledTableRow>
+          </TableBody>
         </Table>
       </TableContainer>
     </>
