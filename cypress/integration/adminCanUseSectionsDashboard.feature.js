@@ -172,7 +172,7 @@ describe('Admin Can Use Sections Dashboard', () => {
         )
       })
 
-      it.only('is expected to create new card', () => {
+      it('is expected to create new card', () => {
         cy.get('[data-cy=navigation-tab]').eq(1).click()
         cy.get('[data-cy=section-edit-form]')
           .eq(3)
