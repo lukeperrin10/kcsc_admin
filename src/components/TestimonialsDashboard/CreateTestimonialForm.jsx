@@ -67,8 +67,7 @@ const CreateTestimonialForm = ({ newTestimonialId, setRedirect }) => {
     <>
       <Grid
         data-cy='create-testimonial-form'
-        container
-        sm={12}
+        container      
         justifyContent='center'
         className={classes.testimonialContainer}>
         <form

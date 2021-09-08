@@ -80,9 +80,11 @@ const ArticlesDashboard = () => {
     })
 
   const noArticlesMessage = (
-    <Typography variant='h6' style={{ padding: '12px' }}>
-      No articles to display
-    </Typography>
+    <StyledTableCell>
+      <Typography variant='h6' style={{ padding: '12px' }}>
+        No articles to display
+      </Typography>
+    </StyledTableCell>
   )
 
   return (

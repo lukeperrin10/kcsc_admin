@@ -19,7 +19,9 @@ const SectionsList = ({ tabValue }) => {
   useEffect(() => {
     const getSections = async (tabValue) => {
       let response = await Sections.index(tabValue)
-      setSections(response)
+      if (response) {
+        setSections(response)
+      }
     }
     getSections(tabValue)
     return setSections([])
