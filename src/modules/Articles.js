@@ -22,11 +22,12 @@ const Articles = {
     const { title, body, image } = article
     let params = { article: { title: title, body: body, image: image } }
     try {
-      let response = await axios.post('/articles', params, { headers: headers })
+      await axios.post('/articles', params, { headers: headers })
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Article has been created',
       })
+      Articles.index()
     } catch (error) {
       errorHandler(error)
     }
@@ -44,19 +45,14 @@ const Articles = {
   },
 
   async update(article) {
-    debugger
     try {
-      let response = await axios.put(
-        `/articles/${article.article.id}`,
-        article,
-        {
-          headers: headers,
-        }
-      )
+      await axios.put(`/articles/${article.article.id}`, article, {
+        headers: headers,
+      })
       Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Article has been updated',
       })
     } catch (error) {
       errorHandler(error)
@@ -65,14 +61,15 @@ const Articles = {
 
   async update_publish(id, publish) {
     try {
-      const response = await axios.put(
+      await axios.put(
         `/articles/${id}`,
-        { publish: publish },
+        { article: { id: id, published: publish } },
         { headers: headers }
       )
+      const action = publish ? 'published' : 'hidden'
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: `Article has been ${action}`,
       })
       return 'success'
     } catch (error) {

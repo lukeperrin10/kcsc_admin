@@ -44,14 +44,11 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
   }
 
   const onSubmit = async (attributes) => {
-    debugger
     const fromData = {
       article: {
         ...attributes,
-        image: {
-          image: currentArticle.image,
-          alt: alt,
-        },
+        image: currentArticle.image,
+        alt: alt,
         id: currentArticle.id,
       },
     }
@@ -101,8 +98,7 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
                     defaultValue={currentArticle.title}
                     rules={{ required: 'This field cannot be empty' }}
                     render={({
-                      field: { onChange, value },
-                      fieldState: { error },
+                      field: { onChange, value },  
                     }) => (
                       <TextField
                         data-cy='article-title'

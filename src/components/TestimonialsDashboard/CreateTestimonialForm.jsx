@@ -43,7 +43,6 @@ const CreateTestimonialForm = ({ newTestimonialId, setRedirect }) => {
         photo: newPhoto,
       },
     }
-    debugger
     AppData.update(fromData)
     setRedirect(true)
   }
