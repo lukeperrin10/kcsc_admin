@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import store from './state/store/configureStore'
 import Authentication from './modules/Authentication'
 import GeneralDashboard from './views/GeneralDashboard'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
@@ -27,12 +26,6 @@ const App = () => {
 
   useEffect(() => {
     Authentication.validateToken()
-    //if (window.Cypress) {
-      store.dispatch({
-        type: 'AUTHENTICATE',
-        payload: 'Johnny Cage',
-      })
-    //}
   }, [authenticated])
 
   return (

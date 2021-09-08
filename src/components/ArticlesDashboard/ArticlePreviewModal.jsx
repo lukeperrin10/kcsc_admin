@@ -10,10 +10,11 @@ import {
   TextField,
   ButtonGroup,
 } from '@material-ui/core'
-
+import { useForm, Controller } from 'react-hook-form'
 import Articles from '../../modules/Articles'
 import articlePreview from '../../theme/articlePreviewTheme'
 import ImageUploader from '../ImageUploader'
+import SubmitButton from '../SubmitButton'
 
 const ArticlePreviewModal = ({ article, editArticle }) => {
   const classes = articlePreview()
@@ -21,10 +22,12 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
   const [currentArticle, setCurrentArticle] = useState()
   const [changeMode, setChangeMode] = useState(false)
   const [imageVisible, setImageVisible] = useState(true)
+  const [alt, setAlt] = useState()
+  const { control, handleSubmit } = useForm()
 
   const getArticle = async () => {
     let response = await Articles.show(article.id)
-    setCurrentArticle(response)
+    setCurrentArticle(response.article)
   }
 
   const handleOpen = () => {
@@ -36,9 +39,28 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
     setOpen(false)
   }
 
-  const handleSubmit = () => {
-    Articles.update(article)
+  const handleChange = (event) => {
+    setAlt(event.target.value)
   }
+
+  const onSubmit = async (attributes) => {
+    debugger
+    const fromData = {
+      article: {
+        ...attributes,
+        image: {
+          image: currentArticle.image,
+          alt: alt,
+        },
+        id: currentArticle.id,
+      },
+    }
+    try {
+      await Articles.update(fromData)
+      setOpen(false)
+    } catch {}
+  }
+
   return (
     <>
       <ButtonGroup
@@ -63,109 +85,133 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
           Edit
         </Button>
       </ButtonGroup>
+
       {currentArticle && (
         <>
-          <Modal
-            open={open}
-            className={classes.modal}>
+          <Modal open={open} className={classes.modal}>
             <Container
               data-cy='article-container'
               className={classes.articleContainer}>
-              {changeMode ? (
-                <TextField
-                  data-cy='article-title'
-                  label='Title'
-                  fullWidth
-                  defaultValue={currentArticle.title}
-                />
-              ) : (
-                <Typography component='h5' variant='h4' data-cy='title'>
-                  {currentArticle.title}
-                </Typography>
-              )}
+              <form
+                onSubmit={handleSubmit((attributes) => onSubmit(attributes))}>
+                {changeMode ? (
+                  <Controller
+                    name='title'
+                    control={control}
+                    defaultValue={currentArticle.title}
+                    rules={{ required: 'This field cannot be empty' }}
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => (
+                      <TextField
+                        data-cy='article-title'
+                        label='Title'
+                        fullWidth
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                ) : (
+                  <Typography component='h5' variant='h4' data-cy='title'>
+                    {currentArticle.title}
+                  </Typography>
+                )}
 
-              <Grid
-                container
-                justifyContent='space-between'
-                className={classes.information}>
-                <Grid item>
+                <Grid
+                  container
+                  justifyContent='space-between'
+                  className={classes.information}>
+                  <Grid item>
+                    <Typography
+                      component='p'
+                      variant='subtitle1'
+                      data-cy='author'>{`Written by: ${currentArticle.author?.name}`}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      component='p'
+                      variant='subtitle1'
+                      data-cy='date'>
+                      {currentArticle.date}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Divider
+                  className={classes.divider}
+                  orientation='horizontal'
+                  variant='fullWidth'
+                />
+
+                {imageVisible && (
+                  <CardMedia
+                    className={classes.image}
+                    data-cy='image'
+                    component='img'
+                    src={currentArticle.image?.url}
+                    alt={currentArticle.image?.alt}
+                  />
+                )}
+
+                {changeMode && (
+                  <>
+                    <ImageUploader
+                      article={currentArticle}
+                      setArticle={setCurrentArticle}
+                      editArticle={() => editArticle(true)}
+                      setImageVisible={setImageVisible}
+                      handleChange={handleChange}
+                    />
+                  </>
+                )}
+                {changeMode ? (
+                  <Controller
+                    name='body'
+                    control={control}
+                    defaultValue={currentArticle.body}
+                    rules={{ required: 'This field cannot be empty' }}
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => (
+                      <TextField
+                        label='Main body'
+                        data-cy='article-body'
+                        multiline
+                        fullWidth
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                ) : (
                   <Typography
                     component='p'
-                    variant='subtitle1'
-                    data-cy='author'>{`Written by: ${currentArticle.author}`}</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography component='p' variant='subtitle1' data-cy='date'>
-                    {currentArticle.date}
+                    variant='body1'
+                    data-cy='body'
+                    className={classes.body}>
+                    {currentArticle.body}
                   </Typography>
-                </Grid>
-              </Grid>
-              <Divider
-                className={classes.divider}
-                orientation='horizontal'
-                variant='fullWidth'
-              />
+                )}
 
-              {imageVisible && (
-                <CardMedia
-                  className={classes.image}
-                  data-cy='image'
-                  component='img'
-                  src={currentArticle.image?.url}
-                  alt={currentArticle.image?.alt}
-                />
-              )}
-
-              {changeMode && (
-                <>
-                  <ImageUploader
-                    article={currentArticle}
-                    setArticle={setCurrentArticle}
-                    editArticle={() => editArticle(true)}
-                    setImageVisible={setImageVisible}
-                  />
-                </>
-              )}
-              {changeMode ? (
-                <TextField
-                  label='Main body'
-                  data-cy='article-body'
-                  multiline
-                  fullWidth
-                  defaultValue={currentArticle.body}
-                />
-              ) : (
-                <Typography
-                  component='p'
-                  variant='body1'
-                  data-cy='body'
-                  className={classes.body}>
-                  {currentArticle.body}
-                </Typography>
-              )}
-
-              <ButtonGroup className={classes.buttonsContainer} size='small' variant='text' color='primary'>
-                <Button
-                  className={classes.closeBtn}
-                  variant='contained'
-                  color='primary'
-                  data-cy='close-btn'
-                  type='button'
-                  onClick={handleClose}>
-                  Close
-                </Button>
-                {changeMode && (
+                <ButtonGroup
+                  className={classes.buttonsContainer}
+                  size='small'
+                  variant='text'
+                  color='primary'>
                   <Button
                     className={classes.closeBtn}
                     variant='contained'
                     color='primary'
+                    data-cy='close-btn'
                     type='button'
-                    data-cy='submit-button'
-                    onClick={handleSubmit}>
-                    Submit
+                    onClick={handleClose}>
+                    Close
                   </Button>
-                )}
-              </ButtonGroup>
+                  {changeMode && <SubmitButton dataCy='submit-button' />}
+                </ButtonGroup>
+              </form>
             </Container>
           </Modal>
         </>

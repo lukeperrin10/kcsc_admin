@@ -25,7 +25,7 @@ const GeneralDashboard = () => {
         </Typography>
       </Box>
       <Divider />
-      {app_data ? (
+      {app_data.about ? (
         <>
           <TaglineForm tagline={app_data.tagline} />
           <FooterForm

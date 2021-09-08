@@ -44,11 +44,15 @@ const Articles = {
   },
 
   async update(article) {
-    let params = { article: article }
+    debugger
     try {
-      let response = await axios.put(`/articles/${article.id}`, params, {
-        headers: headers,
-      })
+      let response = await axios.put(
+        `/articles/${article.article.id}`,
+        article,
+        {
+          headers: headers,
+        }
+      )
       Articles.index()
       store.dispatch({
         type: 'SET_SUCCESS',

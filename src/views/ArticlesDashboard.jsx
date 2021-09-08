@@ -43,9 +43,6 @@ const ArticlesDashboard = () => {
   const commonClasses = useCommonStyles()
   const articles = useSelector((state) => state.articles)
 
-  // Put fixture here to see articles on localhost
-  //const [articles, setArticles] = useState([])
-
   useEffect(() => {
     Articles.index()
   }, [])
@@ -80,7 +77,7 @@ const ArticlesDashboard = () => {
           <StyledTableCell data-cy='title' className={classes.titleCell}>
             {title}
           </StyledTableCell>
-          <StyledTableCell data-cy='author'>{author}</StyledTableCell>
+          <StyledTableCell data-cy='author'>{author.name}</StyledTableCell>
           <StyledTableCell data-cy='date' className={classes.dateCell}>
             {date}
           </StyledTableCell>
