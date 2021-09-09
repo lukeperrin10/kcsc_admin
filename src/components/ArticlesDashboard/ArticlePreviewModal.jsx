@@ -44,16 +44,16 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
   }
 
   const onSubmit = async (attributes) => {
-    const fromData = {
+    const article = {
       article: {
         ...attributes,
-        image: currentArticle.image,
+        image: currentArticle.image.url ? currentArticle.image.url : currentArticle.image,
         alt: alt,
         id: currentArticle.id,
       },
     }
     try {
-      await Articles.update(fromData)
+      await Articles.update(article)
       setOpen(false)
     } catch {}
   }
