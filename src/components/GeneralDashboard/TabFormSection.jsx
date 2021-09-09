@@ -1,29 +1,32 @@
+// UNCOMMENT TO ADD BACK THE VISIBLE SWITCH
 import React from 'react'
 import {
   Typography,
   TextField,
   Grid,
-  Switch,
-  FormControlLabel,
+  // Switch,
+  // FormControlLabel,
   useMediaQuery
 } from '@material-ui/core'
-import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
+import { 
+  //withStyles, 
+  makeStyles, useTheme } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
-import useCommonStyles from '../../theme/useCommonStyles'
+// import useCommonStyles from '../../theme/useCommonStyles'
 
-const StyledSwitch = withStyles({
-  switchBase: {
-    color: '#ddd',
-    '&$checked': {
-      color: '#0BDA51',
-    },
-    '&$checked + $track': {
-      backgroundColor: '#00FF00',
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch)
+// const StyledSwitch = withStyles({
+//   switchBase: {
+//     color: '#ddd',
+//     '&$checked': {
+//       color: '#0BDA51',
+//     },
+//     '&$checked + $track': {
+//       backgroundColor: '#00FF00',
+//     },
+//   },
+//   checked: {},
+//   track: {},
+// })(Switch)
 
 const useStyles = makeStyles(() => ({
   tabLabelInputContainer: { flex: '1' },
@@ -36,11 +39,11 @@ const TabFormSection = ({
   index,
   indexSec,
   label,
-  visible,
-  section = null,
+  // visible,
+  // section = null,
   secondary = false,
 }) => {
-  const commonClasses = useCommonStyles()
+  // const commonClasses = useCommonStyles()
   const classes = useStyles()
   const labelMaxLength = 50
   const theme = useTheme();
@@ -82,7 +85,7 @@ const TabFormSection = ({
           )}
         />
       </Grid>
-      <Controller
+      {/* <Controller
         name={
           secondary
             ? `navigation.main_tabs[${index}].secondary_tabs[${indexSec}].visible`
@@ -101,7 +104,7 @@ const TabFormSection = ({
             labelPlacement='bottom'
           />
         )}
-      />
+      /> */}
     </Grid>
   )
 }
