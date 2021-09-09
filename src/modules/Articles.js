@@ -19,8 +19,8 @@ const Articles = {
   },
 
   async create(article) {
-    const { title, body, image } = article
-    let params = { article: { title: title, body: body, image: image } }
+    const { title, body, image, alt } = article
+    let params = { article: { title: title, body: body, image: image, alt: alt } }
     try {
       await axios.post('/articles', params, { headers: headers })
       store.dispatch({

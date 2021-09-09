@@ -47,7 +47,7 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
     const fromData = {
       article: {
         ...attributes,
-        image: currentArticle.image,
+        image: currentArticle.image.url ? currentArticle.image.url : currentArticle.image,
         alt: alt,
         id: currentArticle.id,
       },
