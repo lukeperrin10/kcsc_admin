@@ -70,12 +70,18 @@ const ArticlesDashboard = () => {
     articles &&
     articles.map((article) => {
       const { id, title, author, date, published } = article
-      
+
       return (
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={<PublishedSwitch publish={published} articleId={id}  rerender={rerender}/>}
+              control={
+                <PublishedSwitch
+                  publish={published}
+                  articleId={id}
+                  rerender={rerender}
+                />
+              }
               label={
                 <Typography className={classes.switchLabel}>
                   {published ? 'Published' : 'Hidden'}
