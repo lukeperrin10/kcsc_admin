@@ -50,6 +50,10 @@ const ArticlesDashboard = () => {
     Articles.index()
   }, [])
 
+  const rerender = () => {
+    Articles.index()
+  }
+
   const tableHeader = (
     <>
       <StyledTableRow color='secondary'>
@@ -71,7 +75,7 @@ const ArticlesDashboard = () => {
         <StyledTableRow data-cy='article' key={`article-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             <FormControlLabel
-              control={<PublishedSwitch publish={published} articleId={id} />}
+              control={<PublishedSwitch publish={published} articleId={id}  rerender={rerender}/>}
               label={
                 <Typography className={classes.switchLabel}>
                   {published ? 'Published' : 'Hidden'}
