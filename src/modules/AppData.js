@@ -26,6 +26,7 @@ const AppData = {
         let params = { key: key, value: attributes[key] }
         response = await axios.put('/app_data', params, { headers: headers })
       }
+      AppData.index()
       store.dispatch({
         type: 'SET_SUCCESS',
         payload: response.data.message,

@@ -10,7 +10,7 @@ describe('Admin Can Publish Or Unpublish Article', () => {
         cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
-        cy.intercept('POST', '**/articles/**', {
+        cy.intercept('PUT', '**/articles/**', {
           statusCode: 200,
           body: {
             message: 'Article has been unpublished',

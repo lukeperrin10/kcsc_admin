@@ -17,15 +17,16 @@ const StyledSwitch = withStyles({
   track: {},
 })(Switch)
 
-const PublishedSwitch = ({ publish, articleId }) => {
+const PublishedSwitch = ({ publish, articleId, rerender }) => {
   const [checked, setChecked] = useState(publish)
-
+  
   const handleChange = async () => {
     let publishState = !checked    
     let result = await Articles.update_publish(articleId, publishState)
     if (result !== 'error') {
       setChecked(publishState)
     }
+    rerender()
   }
 
   return (
