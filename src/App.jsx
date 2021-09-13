@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+
 import Authentication from './modules/Authentication'
 import GeneralDashboard from './views/GeneralDashboard'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
@@ -11,16 +12,17 @@ import SectionsDashboard from './views/SectionsDashboard'
 import InformationDashboard from './views/InformationDashboard'
 import TestimonialsDashboard from './views/TestimonialsDashboard'
 import InformationCreation from './views/InformationCreation'
+import NavigationDashboard from './views/NavigationDashboard'
+import CreateTestimonial from './views/CreateTestimonial'
 import LoginPage from './components/LoginPage'
 import Sidebar from './components/navigation/Sidebar'
 import PhoneSidebar from './components/navigation/PhoneSidebar'
 import SuccessSnackbar from './components/popups/SuccessSnackbar'
 import ErrorSnackbar from './components/popups/ErrorSnackbar'
-import './styles/globals.css'
-import NavigationDashboard from './views/NavigationDashboard'
-import CreateTestimonial from './views/CreateTestimonial'
 import ResetPassword from './components/ResetPassword'
 import ProtectedRoute from './components/ProtectedRoute'
+import EditPassword from './components/EditPassword'
+import './styles/globals.css'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -34,7 +36,7 @@ const App = () => {
     <>
       <SuccessSnackbar />
       <ErrorSnackbar />
-      {authenticated && <Redirect to='/general'/> }
+      {authenticated && <Redirect to='/general' />}
       {authenticated && (isSmall ? <PhoneSidebar /> : <Sidebar />)}
       <Switch>
         <ProtectedRoute
@@ -89,7 +91,7 @@ const App = () => {
         />
         <Route exact path='/' component={LoginPage} />
         <Route exact path='/password/reset' component={ResetPassword} />
-        {/* <Route exact path='/password/edit' component={EditPassword} /> */}
+        <Route exact path='/password/edit' component={EditPassword} />
       </Switch>
     </>
   )
