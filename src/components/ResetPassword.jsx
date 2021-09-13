@@ -24,7 +24,9 @@ const ResetPassword = () => {
           Reset Password
         </Button>
       </form>
-      {successMessage && <Typography>{successMessage}</Typography>}
+      {successMessage && (
+        <Typography data-cy='success-message'>{successMessage}</Typography>
+      )}
     </>
   )
 }
