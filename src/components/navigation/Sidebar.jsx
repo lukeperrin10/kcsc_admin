@@ -4,13 +4,14 @@ import { Drawer, List, Divider } from '@material-ui/core'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
+import PersonIcon from '@material-ui/icons/Person'
 // import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
+import ListIcon from '@material-ui/icons/List'
+
 import Authentication from '../../modules/Authentication'
 import SidebarIcon from './SidebarIcon'
-import ListIcon from '@material-ui/icons/List'
 import symbolLogo from '../../assets/LogoCHWLSymbolWhite.png'
-import PersonIcon from '@material-ui/icons/Person'
 
 const Sidebar = () => {
   const { name } = useSelector((state) => state)

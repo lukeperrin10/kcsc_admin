@@ -3,6 +3,7 @@ import largeLogo from '../assets/LogoCHWL.png'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Authentication from '../modules/Authentication'
+import { Typography } from '@material-ui/core'
 
 const LoginPage = () => {
   const handleLogin = (event) => {
@@ -37,7 +38,9 @@ const LoginPage = () => {
             Login
           </Button>
         </form>
-        
+        <Button data-cy='forgot-password-link' to='/password/reset'>
+          <Typography>Forgot Password?</Typography>
+        </Button>
       </div>
     </div>
   )

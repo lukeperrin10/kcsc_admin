@@ -19,6 +19,7 @@ import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import './styles/globals.css'
 import NavigationDashboard from './views/NavigationDashboard'
 import CreateTestimonial from './views/CreateTestimonial'
+import ResetPassword from './components/ResetPassword'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -32,6 +33,7 @@ const App = () => {
     <>
       <SuccessSnackbar />
       <ErrorSnackbar />
+
       {authenticated ? (
         <>
           {isSmall ? <PhoneSidebar /> : <Sidebar />}
@@ -48,12 +50,24 @@ const App = () => {
               path='/information/create'
               component={InformationCreation}
             />
-            <Route exact path='/testimonials' component={TestimonialsDashboard} />
-            <Route exact path='/testimonials/create' component={CreateTestimonial} />
+            <Route
+              exact
+              path='/testimonials'
+              component={TestimonialsDashboard}
+            />
+            <Route
+              exact
+              path='/testimonials/create'
+              component={CreateTestimonial}
+            />
           </Switch>
         </>
       ) : (
-        <LoginPage />
+        <Switch>
+          <Route exact path='/' component={LoginPage} />
+          <Route exact path='/password/reset' component={ResetPassword} />
+          {/* <Route exact path='/password/edit' component={EditPassword} /> */}
+        </Switch>
       )}
     </>
   )
