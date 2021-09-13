@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Authentication from './modules/Authentication'
 import GeneralDashboard from './views/GeneralDashboard'
@@ -20,6 +20,7 @@ import './styles/globals.css'
 import NavigationDashboard from './views/NavigationDashboard'
 import CreateTestimonial from './views/CreateTestimonial'
 import ResetPassword from './components/ResetPassword'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -33,42 +34,63 @@ const App = () => {
     <>
       <SuccessSnackbar />
       <ErrorSnackbar />
-
-      {authenticated ? (
-        <>
-          {isSmall ? <PhoneSidebar /> : <Sidebar />}
-          <Switch>
-            <Route exact path='/' component={GeneralDashboard} />
-            <Route exact path='/navigation' component={NavigationDashboard} />
-            <Route exact path='/analytics' component={AnalyticsDashboard} />
-            <Route exact path='/articles' component={ArticlesDashboard} />
-            <Route exact path='/articles/create' component={ArticleCreation} />
-            <Route exact path='/sections' component={SectionsDashboard} />
-            <Route exact path='/information' component={InformationDashboard} />
-            <Route
-              exact
-              path='/information/create'
-              component={InformationCreation}
-            />
-            <Route
-              exact
-              path='/testimonials'
-              component={TestimonialsDashboard}
-            />
-            <Route
-              exact
-              path='/testimonials/create'
-              component={CreateTestimonial}
-            />
-          </Switch>
-        </>
-      ) : (
-        <Switch>
-          <Route exact path='/' component={LoginPage} />
-          <Route exact path='/password/reset' component={ResetPassword} />
-          {/* <Route exact path='/password/edit' component={EditPassword} /> */}
-        </Switch>
-      )}
+      {authenticated && <Redirect to='/general'/> }
+      {authenticated && (isSmall ? <PhoneSidebar /> : <Sidebar />)}
+      <Switch>
+        <ProtectedRoute
+          path='/general'
+          component={GeneralDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/navigation'
+          component={NavigationDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/analytics'
+          component={AnalyticsDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/articles'
+          component={ArticlesDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/articles/create'
+          component={ArticleCreation}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/sections'
+          component={SectionsDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/information'
+          component={InformationDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/information/create'
+          component={InformationCreation}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/testimonials'
+          component={TestimonialsDashboard}
+          authenticated={authenticated}
+        />
+        <ProtectedRoute
+          path='/testimonials/create'
+          component={CreateTestimonial}
+          authenticated={authenticated}
+        />
+        <Route exact path='/' component={LoginPage} />
+        <Route exact path='/password/reset' component={ResetPassword} />
+        {/* <Route exact path='/password/edit' component={EditPassword} /> */}
+      </Switch>
     </>
   )
 }
