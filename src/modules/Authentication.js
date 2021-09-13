@@ -1,7 +1,6 @@
 import store from '../state/store/configureStore'
 import JtockAuth from 'j-tockauth'
 import errorHandler from './ErrorHandler'
-import axios from 'axios'
 
 const auth = new JtockAuth({
   host: process.env.REACT_APP_API_URL,
@@ -32,18 +31,13 @@ const Authentication = {
     }
   },
 
-  async forgotPassword(event) {
+  async resetPassword(event) {
     let email = event.target.email.value
     try {
-      let response = await axios.post('/auth/password', {
-        user: {
-          email: email,
-          //redirect_url: 'https://timotuz.com',
-        },
-      })
-      debugger
+      let response = await auth.resetPassword(email, 'timotuz.com')
+      return response.data.message
     } catch (error) {
-      debugger
+      errorHandler(error)
     }
   },
 

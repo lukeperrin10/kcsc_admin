@@ -17,7 +17,8 @@ describe('Admin is able to change the password', () => {
       describe('successfully', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/auth/password', {
-            message: 'I am sending email with token link',
+            message:
+              "An email has been sent to 'admin@mail.com' containing instructions for resetting your password.",
           })
           cy.intercept('POST', '**/auth/edit', {
             message: 'Password changed successfully',

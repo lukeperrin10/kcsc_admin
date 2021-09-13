@@ -1,15 +1,18 @@
-import { Button, TextField } from '@material-ui/core'
-import React from 'react'
+import { Button, TextField, Typography } from '@material-ui/core'
+import React, { useState } from 'react'
 import Authentication from '../modules/Authentication'
 
 const ResetPassword = () => {
-  const handleClick = (event) => {
+  const [successMessage, setSuccessMessage] = useState()
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    Authentication.forgotPassword(event)
+    const message = await Authentication.resetPassword(event)
+    setSuccessMessage(message)
   }
   return (
     <>
-      <form onSubmit={(event) => handleClick(event)}>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <TextField
           name='email'
           label='Email'
@@ -21,6 +24,7 @@ const ResetPassword = () => {
           Reset Password
         </Button>
       </form>
+      {successMessage && <Typography>{successMessage}</Typography>}
     </>
   )
 }
