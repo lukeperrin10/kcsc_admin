@@ -33,8 +33,8 @@ const Authentication = {
 
   async validateToken() {
     try {
-      let response = await auth.validateToken(getHeaders())
-
+      const headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
+      let response = await auth.validateToken(headers)
       store.dispatch({
         type: 'AUTHENTICATE',
         payload: response.data.name,
