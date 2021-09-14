@@ -45,7 +45,7 @@ const App = () => {
         <Route exact path='/password/edit' component={EditPassword} />
 
         {authenticated && (
-          <>
+          <Switch>
             <Route exact path='/navigation' component={NavigationDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
             <Route exact path='/articles' component={ArticlesDashboard} />
@@ -67,7 +67,7 @@ const App = () => {
               path='/testimonials/create'
               component={CreateTestimonial}
             />
-          </>
+          </Switch>
         )}
       </Switch>
     </>
