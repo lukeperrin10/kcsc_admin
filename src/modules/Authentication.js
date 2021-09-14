@@ -1,6 +1,7 @@
 import store from '../state/store/configureStore'
 import JtockAuth from 'j-tockauth'
 import errorHandler from './ErrorHandler'
+import axios from 'axios'
 
 const auth = new JtockAuth({
   host: process.env.REACT_APP_API_URL,
@@ -34,8 +35,31 @@ const Authentication = {
   async resetPassword(event) {
     let email = event.target.email.value
     try {
-      let response = await auth.resetPassword(email, 'https://kcsc-admin.netlify.app/password/edit')
+      let response = await auth.resetPassword(
+        email,
+        'https://kcsc-admin.netlify.app/password/edit'
+      )
       return response.data.message
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
+
+  async updatePassword(newPassword, confirmPassword, deviseParams) {
+    const params = {
+      password: newPassword,
+      password_confirmation: confirmPassword,
+    }
+    const headers = {
+      uid: deviseParams.uid,
+      client: deviseParams.client,
+      'access-token': deviseParams['access-token'],
+    }
+    try {
+      let response = await axios.put('/auth/password', params, {
+        headers: headers,
+      })
+      return response.data.success
     } catch (error) {
       errorHandler(error)
     }

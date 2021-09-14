@@ -3,6 +3,7 @@ import { TextField, Button, Container, CardMedia } from '@material-ui/core'
 import resetPasswordTheme from '../theme/resetPasswordTheme'
 import logo from '../assets/LogoCHWLSymbol.png'
 import { useParams, Redirect } from 'react-router-dom'
+import Authentication from '../modules/Authentication'
 
 const EditPassword = () => {
   const classes = resetPasswordTheme()
