@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core'
 
 const resetPasswordTheme = makeStyles((theme) => ({
   container: {
@@ -9,13 +9,16 @@ const resetPasswordTheme = makeStyles((theme) => ({
       margin: 'auto',
       width: '100%',
       height: '100vh',
+      padding: '0px 50px',
+    },
+    [theme.breakpoints.up('sm')]: {
       padding: '0px 100px',
     },
-    [theme.breakpoints.up('sm')]: {},
   },
   border: {
     [theme.breakpoints.up('xs')]: {
       display: 'grid',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       alignContent: 'center',
@@ -25,20 +28,18 @@ const resetPasswordTheme = makeStyles((theme) => ({
       width: '100%',
       height: '400px',
     },
-  },
-  form: {
-    [theme.breakpoints.up('xs')]: {
-      paddingBottom: '20px',
-    },
+    
   },
   input: {
     [theme.breakpoints.up('xs')]: {
-      width: '300px',
+      maxWidth: '300px',
+      marginTop: '20px',
     },
   },
   button: {
     [theme.breakpoints.up('xs')]: {
-      marginLeft: '10px',
+      maxWidth: '300px',
+      marginTop: '20px',
       padding: '11px',
     },
   },

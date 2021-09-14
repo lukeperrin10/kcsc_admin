@@ -1,14 +1,8 @@
-import {
-  Button,
-  Container,
-  TextField,
-  Typography,
-} from '@material-ui/core'
+import { Button, Container, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Authentication from '../modules/Authentication'
 import resetPasswordTheme from '../theme/resetPasswordTheme'
-
 
 const ResetPassword = () => {
   const classes = resetPasswordTheme()
@@ -21,10 +15,8 @@ const ResetPassword = () => {
   }
   return (
     <Container className={classes.container}>
-      <Container className={classes.border}>
-        <form
-          onSubmit={(event) => handleSubmit(event)}
-          className={classes.form}>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <Container className={classes.border}>
           <TextField
             className={classes.input}
             name='email'
@@ -38,7 +30,8 @@ const ResetPassword = () => {
             type='submit'
             variant='contained'
             color='primary'
-            data-cy='submit-btn'>
+            data-cy='submit-btn'
+            fullWidth>
             Reset Password
           </Button>
           <Button
@@ -47,14 +40,14 @@ const ResetPassword = () => {
             to='/'
             variant='contained'
             color='cancel'
-            data-cy='submit-btn'>
+            fullWidth>
             Go back
           </Button>
-        </form>
-        {successMessage && (
-          <Typography data-cy='success-message'>{successMessage}</Typography>
-        )}
-      </Container>
+          {successMessage && (
+            <Typography data-cy='success-message'>{successMessage}</Typography>
+          )}
+        </Container>
+      </form>
     </Container>
   )
 }
