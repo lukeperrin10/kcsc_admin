@@ -35,7 +35,6 @@ const Authentication = {
     let email = event.target.email.value
     try {
       let response = await auth.resetPassword(email, 'timotuz.com')
-      debugger
       return response.data.message
     } catch (error) {
       errorHandler(error)
