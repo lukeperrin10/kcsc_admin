@@ -2,12 +2,30 @@ import React from 'react'
 import { TextField, Button, Container, CardMedia } from '@material-ui/core'
 import resetPasswordTheme from '../theme/resetPasswordTheme'
 import logo from '../assets/LogoCHWLSymbol.png'
+import { useParams, Redirect } from 'react-router-dom'
 
 const EditPassword = () => {
   const classes = resetPasswordTheme()
+  const deviseParams = useParams()
+  const [success, setSuccess] = useState(false)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const newPassword = event.target.newPassword.value
+    const confirmPassword = event.target.confirmPassword.value
+    const success = await Authentication.updatePassword(
+      newPassword,
+      confirmPassword,
+      deviseParams
+    )
+    setSuccess(success)
+  }
+
   return (
+    <>
+    {success && <Redirect to='/'/>}
     <Container className={classes.container}>
-      <form>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <CardMedia component='img' image={logo} className={classes.image} />
         <Container className={classes.border}>
           <TextField
@@ -38,6 +56,7 @@ const EditPassword = () => {
         </Container>
       </form>
     </Container>
+    </>
   )
 }
 

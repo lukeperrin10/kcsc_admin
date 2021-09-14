@@ -33,7 +33,7 @@ describe('Admin is able to change the password', () => {
           cy.get('[data-cy=submit-btn]').click()
           cy.get('[data-cy=success-message]').should(
             'contain.text',
-            "An email has been sent to 'admin@mail.com' containing instructions for resetting your password."
+            'Instructions has been sent to your inbox'
           )
           cy.visit('/password/edit')
           cy.get('[data-cy=new-password-input]').type('newPassword')
