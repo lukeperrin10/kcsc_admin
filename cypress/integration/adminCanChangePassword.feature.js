@@ -20,8 +20,9 @@ describe('Admin is able to change the password', () => {
             message:
               "An email has been sent to 'admin@mail.com' containing instructions for resetting your password.",
           })
-          cy.intercept('POST', '**/auth/edit', {
-            message: 'Password changed successfully',
+          cy.intercept('PUT', '**/auth/password', {
+            success: true,
+            message: 'Password has been changed'
           })
         })
 
@@ -45,7 +46,7 @@ describe('Admin is able to change the password', () => {
           cy.url('/')
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'Password changed successfully'
+            'Password has been changed'
           )
         })
       })

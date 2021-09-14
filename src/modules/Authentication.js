@@ -3,6 +3,8 @@ import JtockAuth from 'j-tockauth'
 import errorHandler from './ErrorHandler'
 import axios from 'axios'
 
+const _ = require('lodash')
+
 const auth = new JtockAuth({
   host: process.env.REACT_APP_API_URL,
   debug: false,
@@ -51,13 +53,17 @@ const Authentication = {
       password_confirmation: confirmPassword,
     }
     const headers = {
-      uid: deviseParams.uid,
+      uid: _.unescape( deviseParams.uid ),
       client: deviseParams.client,
       'access-token': deviseParams['access-token'],
     }
     try {
       let response = await axios.put('/auth/password', params, {
         headers: headers,
+      })
+      store.dispatch({
+        type: 'SET_SUCCESS',
+        payload: 'Password has been changed',
       })
       return response.data.success
     } catch (error) {
