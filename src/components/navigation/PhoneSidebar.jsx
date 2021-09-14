@@ -52,7 +52,7 @@ const PhoneSidebar = () => {
         onClick={() => setOpen(false)}>
         <img src={logoWhite} alt='logo' />
         <List>
-          <SidebarIcon text='General' to='/general'>
+          <SidebarIcon text='General' to='/'>
             <SettingsIcon />
           </SidebarIcon>
           <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>

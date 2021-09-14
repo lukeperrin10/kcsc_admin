@@ -22,7 +22,7 @@ const Sidebar = () => {
       <p>Welcome back</p>
       <p data-cy='broker-name'>{name}</p>
       <List>
-        <SidebarIcon text='General' to='/general'>
+        <SidebarIcon text='General' to='/'>
           <SettingsIcon />
         </SidebarIcon>
         <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>

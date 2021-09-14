@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-
 import Authentication from './modules/Authentication'
 import GeneralDashboard from './views/GeneralDashboard'
 import AnalyticsDashboard from './views/AnalyticsDashboard'
@@ -20,7 +19,6 @@ import PhoneSidebar from './components/navigation/PhoneSidebar'
 import SuccessSnackbar from './components/popups/SuccessSnackbar'
 import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import ResetPassword from './views/ResetPassword'
-import ProtectedRoute from './components/ProtectedRoute'
 import EditPassword from './views/EditPassword'
 import './styles/globals.css'
 
@@ -36,31 +34,41 @@ const App = () => {
     <>
       <SuccessSnackbar />
       <ErrorSnackbar />
-      {authenticated && <Redirect to='/general' />}
       {authenticated && (isSmall ? <PhoneSidebar /> : <Sidebar />)}
       <Switch>
-        <ProtectedRoute path='/general' component={GeneralDashboard} />
-        <ProtectedRoute path='/navigation' component={NavigationDashboard} />
-        <ProtectedRoute path='/analytics' component={AnalyticsDashboard} />
-        <ProtectedRoute path='/articles' component={ArticlesDashboard} />
-        <ProtectedRoute path='/articles/create' component={ArticleCreation} />
-        <ProtectedRoute path='/sections' component={SectionsDashboard} />
-        <ProtectedRoute path='/information' component={InformationDashboard} />
-        <ProtectedRoute
-          path='/information/create'
-          component={InformationCreation}
+        <Route
+          exact
+          path='/'
+          component={!authenticated ? LoginPage : GeneralDashboard}
         />
-        <ProtectedRoute
-          path='/testimonials'
-          component={TestimonialsDashboard}
-        />
-        <ProtectedRoute
-          path='/testimonials/create'
-          component={CreateTestimonial}
-        />
-        <Route exact path='/' component={LoginPage} />
         <Route exact path='/password/reset' component={ResetPassword} />
         <Route exact path='/password/edit' component={EditPassword} />
+
+        {authenticated && (
+          <>
+            <Route exact path='/navigation' component={NavigationDashboard} />
+            <Route exact path='/analytics' component={AnalyticsDashboard} />
+            <Route exact path='/articles' component={ArticlesDashboard} />
+            <Route exact path='/articles/create/' component={ArticleCreation} />
+            <Route exact path='/sections' component={SectionsDashboard} />
+            <Route exact path='/information' component={InformationDashboard} />
+            <Route
+              exact
+              path='/information/create'
+              component={InformationCreation}
+            />
+            <Route
+              exact
+              path='/testimonials'
+              component={TestimonialsDashboard}
+            />
+            <Route
+              exact
+              path='/testimonials/create'
+              component={CreateTestimonial}
+            />
+          </>
+        )}
       </Switch>
     </>
   )
