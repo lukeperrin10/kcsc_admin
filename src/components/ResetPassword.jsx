@@ -1,8 +1,9 @@
-import { Button, Container, TextField, Typography } from '@material-ui/core'
+import { Button, CardMedia, Container, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Authentication from '../modules/Authentication'
 import resetPasswordTheme from '../theme/resetPasswordTheme'
+import logo from '../assets/LogoCHWLSymbol.png'
 
 const ResetPassword = () => {
   const classes = resetPasswordTheme()
@@ -16,8 +17,8 @@ const ResetPassword = () => {
   return (
     <Container className={classes.container}>
       <form onSubmit={(event) => handleSubmit(event)}>
+      <CardMedia component='img' image={logo} className={classes.image}/>
         <Container className={classes.border}>
-      
           <TextField
             className={classes.input}
             name='email'

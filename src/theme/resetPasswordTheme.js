@@ -15,6 +15,13 @@ const resetPasswordTheme = makeStyles((theme) => ({
       padding: '0px 100px',
     },
   },
+  image: {
+    [theme.breakpoints.up('xs')]: {
+      width: '200px',
+      margin: 'auto',
+      paddingBottom: '50px',
+    },
+  },
   border: {
     [theme.breakpoints.up('xs')]: {
       display: 'grid',
