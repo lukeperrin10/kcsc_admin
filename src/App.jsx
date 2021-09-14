@@ -39,55 +39,24 @@ const App = () => {
       {authenticated && <Redirect to='/general' />}
       {authenticated && (isSmall ? <PhoneSidebar /> : <Sidebar />)}
       <Switch>
-        <ProtectedRoute
-          path='/general'
-          component={GeneralDashboard}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/navigation'
-          component={NavigationDashboard}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/analytics'
-          component={AnalyticsDashboard}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/articles'
-          component={ArticlesDashboard}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/articles/create'
-          component={ArticleCreation}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/sections'
-          component={SectionsDashboard}
-          authenticated={authenticated}
-        />
-        <ProtectedRoute
-          path='/information'
-          component={InformationDashboard}
-          authenticated={authenticated}
-        />
+        <ProtectedRoute path='/general' component={GeneralDashboard} />
+        <ProtectedRoute path='/navigation' component={NavigationDashboard} />
+        <ProtectedRoute path='/analytics' component={AnalyticsDashboard} />
+        <ProtectedRoute path='/articles' component={ArticlesDashboard} />
+        <ProtectedRoute path='/articles/create' component={ArticleCreation} />
+        <ProtectedRoute path='/sections' component={SectionsDashboard} />
+        <ProtectedRoute path='/information' component={InformationDashboard} />
         <ProtectedRoute
           path='/information/create'
           component={InformationCreation}
-          authenticated={authenticated}
         />
         <ProtectedRoute
           path='/testimonials'
           component={TestimonialsDashboard}
-          authenticated={authenticated}
         />
         <ProtectedRoute
           path='/testimonials/create'
           component={CreateTestimonial}
-          authenticated={authenticated}
         />
         <Route exact path='/' component={LoginPage} />
         <Route exact path='/password/reset' component={ResetPassword} />
