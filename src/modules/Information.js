@@ -39,7 +39,7 @@ const Information = {
       const response = await axios.get(`/information/${id}`, {
         headers: headers,
       })
-      return response.data
+      return response.data?.information_item
     } catch (error) {
       errorHandler(error)
     }
