@@ -28,7 +28,8 @@ describe('Admin Can Use Navigation Dashboard', () => {
               .first()
               .find('input')
               .should('have.value', 'home')
-            cy.get('[data-cy=tab-switch]').should('have.length', 14)
+            // uncomment when add switches back
+            // cy.get('[data-cy=tab-switch]').should('have.length', 14)
           })
         })
 

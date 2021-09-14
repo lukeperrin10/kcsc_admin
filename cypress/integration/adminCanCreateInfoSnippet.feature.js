@@ -5,7 +5,7 @@ import TestHelpers from '../support/testhelper'
 describe('Admin is able to create an info snippet ', () => {
   sizes.forEach((size) => {
     describe(`on ${size}`, () => {
-      const selection = 'information-create'
+      const selection = 'information-edit'
       beforeEach(() => {
         cy.intercept('POST', '**/information', {
           message: 'Your information snippet has successfully been created',
@@ -20,6 +20,7 @@ describe('Admin is able to create an info snippet ', () => {
         cy.visit('/')
         TestHelpers.authenticate()
         TestHelpers.sizeCase(size, selection)
+        cy.get('[data-cy=create-new-information]').click()
       })
 
       describe('successfully', () => {
