@@ -18,8 +18,8 @@ describe('Admin is able to create an info snippet ', () => {
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
-        TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
+        TestHelpers.sizeCase(size, selection)
       })
 
       describe('successfully', () => {

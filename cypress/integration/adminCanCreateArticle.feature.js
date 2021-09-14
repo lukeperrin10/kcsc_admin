@@ -15,8 +15,8 @@ describe('Admin is able to create an article ', () => {
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
-        TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
+        TestHelpers.sizeCase(size, selection)
       })
 
       describe('successfully', () => {

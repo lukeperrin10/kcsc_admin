@@ -17,8 +17,8 @@ describe('Admin Can Publish Or Unpublish Article', () => {
           },
         })
         cy.visit('/')
-        TestHelpers.sizeParameters(size)
         TestHelpers.authenticate()
+        TestHelpers.sizeParameters(size)
         TestHelpers.sizeCase(size, selection)
       })
 

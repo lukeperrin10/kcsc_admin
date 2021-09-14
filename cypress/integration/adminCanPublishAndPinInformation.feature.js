@@ -20,8 +20,8 @@ describe('Admin Can Use information Dashboard', () => {
         })
 
         cy.visit('/')
-        TestHelpers.sizeParameters(size)
         TestHelpers.authenticate()
+        TestHelpers.sizeParameters(size)
         const selection = 'information-edit'
         TestHelpers.sizeCase(size, selection)
       })

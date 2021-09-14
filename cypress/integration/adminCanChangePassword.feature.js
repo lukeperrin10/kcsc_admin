@@ -1,9 +1,6 @@
 /* eslint-disable no-undef */
 import TestHelpers from '../support/testhelper'
-
-// leaving it for now for ease of developing
-// replace with import of sizes when tests green
-const sizes = ['macbook-16']
+import sizes from '../support/index'
 
 describe('Admin is able to change the password', () => {
   sizes.forEach((size) => {
@@ -22,7 +19,7 @@ describe('Admin is able to change the password', () => {
           })
           cy.intercept('PUT', '**/auth/password', {
             success: true,
-            message: 'Password has been changed'
+            message: 'Password has been changed',
           })
         })
 
@@ -53,8 +50,7 @@ describe('Admin is able to change the password', () => {
 
       describe('unsuccessfully with wrong email', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/auth/password', {
-            message: 'User with such email is not found',
+          cy.intercept('POST', '**/auth/password/edit', {
             statusCode: 404,
           })
         })
@@ -63,19 +59,18 @@ describe('Admin is able to change the password', () => {
           cy.get('[data-cy=forgot-password-link]').click()
           cy.url('/password/reset')
 
-          cy.get('[data-cy=email-input]').type('admin@mail.com')
+          cy.get('[data-cy=email-input]').type('example@example.com')
           cy.get('[data-cy=submit-btn]').click()
-          cy.get('[data-cy=wrong-email-error]').should(
+          cy.get('[data-cy=error-snack]').should(
             'contain.text',
-            'User with such email is not found'
+            "Unable to find user with email 'example@example.com'"
           )
         })
       })
 
       describe('unsuccessfully with wrong headers', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/auth/edit', {
-            message: 'Not authorized',
+          cy.intercept('POST', '**/auth/password/edit', {
             statusCode: 401,
           })
         })
@@ -87,10 +82,7 @@ describe('Admin is able to change the password', () => {
             'newPassword'
           )
           cy.get('[data-cy=submit-btn]').click()
-          cy.get('[data-cy=unauthorized-error]').should(
-            'contain.text',
-            'Request is not authorized'
-          )
+          cy.get('[data-cy=error-snack]').should('contain.text', 'Unauthorized')
         })
       })
     })

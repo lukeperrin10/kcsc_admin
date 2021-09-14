@@ -30,8 +30,8 @@ describe('Admin Can Use Sections Dashboard', () => {
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
-        TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
+        TestHelpers.sizeCase(size, selection)
       })
 
       it('is expected to show view structure', () => {
