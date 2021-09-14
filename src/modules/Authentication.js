@@ -53,7 +53,7 @@ const Authentication = {
       password_confirmation: confirmPassword,
     }
     const headers = {
-      uid: _.unescape( deviseParams.uid ),
+      uid: _.unescape(deviseParams.uid),
       client: deviseParams.client,
       'access-token': deviseParams['access-token'],
     }

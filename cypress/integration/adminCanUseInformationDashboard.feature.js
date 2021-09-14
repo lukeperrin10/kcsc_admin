@@ -43,7 +43,7 @@ describe('Admin Can Use information Dashboard', () => {
             fixture: 'single_information.json',
           })
           cy.intercept('PUT', '**/information/1', {
-            message: 'The information has been successfully updated.',
+            message: 'Info has been updated.',
           })
           cy.get('[data-cy=edit-button]').first().click()
         })
@@ -63,7 +63,7 @@ describe('Admin Can Use information Dashboard', () => {
           cy.get('[data-cy=submit-button]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'The information has been successfully updated.'
+            'Info has been updated'
           )
         })
       })
