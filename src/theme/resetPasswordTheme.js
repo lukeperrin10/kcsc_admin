@@ -9,7 +9,7 @@ const resetPasswordTheme = makeStyles((theme) => ({
       margin: 'auto',
       width: '100%',
       height: '100vh',
-      padding: '0px 50px',
+      padding: '0px 10%',
     },
     [theme.breakpoints.up('sm')]: {
       padding: '0px 100px',
@@ -28,19 +28,53 @@ const resetPasswordTheme = makeStyles((theme) => ({
       width: '100%',
       height: '400px',
     },
-    
+    [theme.breakpoints.up('md')]: {
+      width: '50%',
+    },
   },
   input: {
     [theme.breakpoints.up('xs')]: {
-      maxWidth: '300px',
+      width: '275px',
+      marginTop: '20px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '300px',
+      marginTop: '20px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '350px',
       marginTop: '20px',
     },
   },
   button: {
     [theme.breakpoints.up('xs')]: {
-      maxWidth: '300px',
+      width: '275px',
       marginTop: '20px',
       padding: '11px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '300px',
+      marginTop: '20px',
+      padding: '11px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '350px',
+      marginTop: '20px',
+      padding: '11px',
+    },
+  },
+  message: {
+    [theme.breakpoints.up('xs')]: {
+      width: '275px',
+      marginTop: '20px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '300px',
+      marginTop: '20px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '350px',
+      marginTop: '20px',
     },
   },
 }))

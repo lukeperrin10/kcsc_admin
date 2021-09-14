@@ -17,6 +17,7 @@ const ResetPassword = () => {
     <Container className={classes.container}>
       <form onSubmit={(event) => handleSubmit(event)}>
         <Container className={classes.border}>
+      
           <TextField
             className={classes.input}
             name='email'
@@ -30,8 +31,7 @@ const ResetPassword = () => {
             type='submit'
             variant='contained'
             color='primary'
-            data-cy='submit-btn'
-            fullWidth>
+            data-cy='submit-btn'>
             Reset Password
           </Button>
           <Button
@@ -39,12 +39,11 @@ const ResetPassword = () => {
             component={Link}
             to='/'
             variant='contained'
-            color='cancel'
-            fullWidth>
+            color='cancel'>
             Go back
           </Button>
           {successMessage && (
-            <Typography data-cy='success-message'>{successMessage}</Typography>
+            <Typography data-cy='success-message' className={classes.message}>Instructions has been sent to your inbox</Typography>
           )}
         </Container>
       </form>

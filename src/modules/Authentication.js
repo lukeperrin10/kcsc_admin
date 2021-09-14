@@ -34,7 +34,7 @@ const Authentication = {
   async resetPassword(event) {
     let email = event.target.email.value
     try {
-      let response = await auth.resetPassword(email, 'timotuz.com')
+      let response = await auth.resetPassword(email, 'https://kcsc-admin.netlify.app/password/edit')
       return response.data.message
     } catch (error) {
       errorHandler(error)
