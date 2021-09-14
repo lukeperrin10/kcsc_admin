@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const TestHelpers = {
   sizeCase(size, selection) {
     switch (size) {

@@ -50,7 +50,7 @@ describe('Admin is able to change the password', () => {
 
       describe('unsuccessfully with wrong email', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/auth/password/edit', {
+          cy.intercept('POST', '**/auth/password', {
             statusCode: 404,
           })
         })
@@ -63,14 +63,14 @@ describe('Admin is able to change the password', () => {
           cy.get('[data-cy=submit-btn]').click()
           cy.get('[data-cy=error-snack]').should(
             'contain.text',
-            "Unable to find user with email 'example@example.com'"
+            "Request failed with status code 404"
           )
         })
       })
 
       describe('unsuccessfully with wrong headers', () => {
         beforeEach(() => {
-          cy.intercept('POST', '**/auth/password/edit', {
+          cy.intercept('POST', '**/auth/password', {
             statusCode: 401,
           })
         })

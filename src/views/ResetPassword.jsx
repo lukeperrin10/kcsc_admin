@@ -40,7 +40,7 @@ const ResetPassword = () => {
             component={Link}
             to='/'
             variant='contained'
-            color='cancel'>
+            color='default'>
             Go back
           </Button>
           {successMessage && (
