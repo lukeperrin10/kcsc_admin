@@ -87,7 +87,7 @@ describe('Admin Can Use Articles Dashboard', () => {
           cy.get('[data-cy=submit-button]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'The article has been successfully updated.'
+            'Article has been updated'
           )
         })
       })
