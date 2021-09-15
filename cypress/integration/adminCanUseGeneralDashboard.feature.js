@@ -91,65 +91,6 @@ describe('Admin Can Use General Dashboard', () => {
           })
         })
       })
-      // describe('and edit Testimonials info', () => {
-      //   it('is expected to show testimonial accordion with pre-filled form in details', () => {
-      //     cy.get('[data-cy=testimonial-form]').should('have.length', 2)
-      //     cy.get('[data-cy=testimonial-form]')
-      //       .first()
-      //       .within(() => {
-      //         cy.get('[data-cy=testimonial-name]')
-      //           .find('input')
-      //           .should('have.value', 'Maggie Black')
-      //         cy.get('[data-cy=testimonial-text]')
-      //           .find('textarea')
-      //           .should(
-      //             'contain.text',
-      //             '"In my personal life, I am a daughter, a mother, '
-      //           )
-      //         cy.get('[data-cy=testimonial-alt]')
-      //           .find('input')
-      //           .should('have.value', 'Maggie Black smiling to the camera')
-      //       })
-      //   })
-
-      //   context('successfully', () => {
-      //     beforeEach(() => {
-      //       cy.intercept('PUT', '**/app_data**', {
-      //         statusCode: 200,
-      //         body: {
-      //           message: 'Info has been updated',
-      //         },
-      //       })
-      //     })
-
-      //     it('is expected to show success message on submit', () => {
-      //       cy.get('[data-cy=testimonial-submit-button]').first().click()
-      //       cy.get('[data-cy=snack-content]').should(
-      //         'contain.text',
-      //         'Info has been updated'
-      //       )
-      //     })
-      //   })
-
-      //   context('unsuccessfully', () => {
-      //     beforeEach(() => {
-      //       cy.intercept('PUT', '**/app_data**', {
-      //         statusCode: 400,
-      //         body: {
-      //           error_message: 'Something went wrong, try again later',
-      //         },
-      //       })
-      //     })
-
-      //     it('is expected to show success message on submit', () => {
-      //       cy.get('[data-cy=testimonial-submit-button]').first().click()
-      //       cy.get('[data-cy=snack-content]').should(
-      //         'contain.text',
-      //         'Something went wrong, try again later'
-      //       )
-      //     })
-      //   })
-      // })
     })
   })
 })

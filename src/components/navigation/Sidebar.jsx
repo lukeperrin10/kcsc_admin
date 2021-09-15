@@ -28,7 +28,7 @@ const Sidebar = () => {
         <SidebarIcon dataCy='navigation' text='Navigation' to='/navigation'>
           <ListIcon />
         </SidebarIcon>
-        <SidebarIcon text='Testimonials' to='/testimonials'>
+        <SidebarIcon dataCy='testimonials' text='Testimonials' to='/testimonials'>
           <PersonIcon />
         </SidebarIcon>
         {/* <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
