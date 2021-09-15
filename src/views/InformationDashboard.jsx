@@ -143,6 +143,7 @@ const InformationDashboard = () => {
               <StyledTableCell></StyledTableCell>
               <StyledTableCell>
                 <Button
+                  data-cy='create-new-information'
                   variant='contained'
                   color='primary'
                   component={Link}

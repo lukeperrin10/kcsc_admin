@@ -5,7 +5,7 @@ import TestHelpers from '../support/testhelper'
 describe('Admin is able to create an article ', () => {
   sizes.forEach((size) => {
     describe(`on ${size}`, () => {
-      const selection = 'article-creation'
+      const selection = 'articles-dashboard'
       beforeEach(() => {
         cy.intercept('POST', '**/articles', {
           message: 'Your article has successfully been created',
@@ -15,13 +15,14 @@ describe('Admin is able to create an article ', () => {
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
-        TestHelpers.sizeCase(size, selection)
         TestHelpers.authenticate()
+        TestHelpers.sizeCase(size, selection)
       })
 
       describe('successfully', () => {
         it('is expected to show article creation page', () => {
           const filepath = '../fixtures/imageFixture.png'
+          cy.get('[data-cy=create-btn]').click()
           cy.get('[data-cy=article-title]').type('Social Care in London')
           cy.get('[data-cy=article-body]').type(
             'Some longer text to see that the body of the article creation is working correctly'
@@ -33,7 +34,7 @@ describe('Admin is able to create an article ', () => {
           cy.get('[data-cy=article-submit]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'Your article has successfully been created'
+            'Article has been created'
           )
         })
       })

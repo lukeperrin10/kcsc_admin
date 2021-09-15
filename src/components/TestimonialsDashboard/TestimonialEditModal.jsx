@@ -72,7 +72,7 @@ const TestimonialsForm = ({ testimonial }) => {
 
   const testimonialsForm = (
     <>
-      <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
+      <Button data-cy='edit-button' variant='contained' color='primary' onClick={() => setOpen(true)}>
         Edit
       </Button>
       {open && (

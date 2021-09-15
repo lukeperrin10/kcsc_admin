@@ -39,7 +39,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const ArticlesDashboard = () => {
+const TestimonialsDashboard = () => {
   const classes = articleDashboard()
   const commonClasses = useCommonStyles()
   const testimonials = useSelector((state) => state.app_data?.testimonials)
@@ -65,7 +65,7 @@ const ArticlesDashboard = () => {
     testimonials.map((testimonial) => {
       const { id, name, link } = testimonial
       return (
-        <StyledTableRow data-cy='article' key={`article-${id}`}>
+        <StyledTableRow data-cy='testimonial' key={`testimonial-${id}`}>
           <StyledTableCell data-cy='status' align='center'>
             {id}
           </StyledTableCell>
@@ -93,7 +93,7 @@ const ArticlesDashboard = () => {
   return (
     <>
       <TableContainer
-        data-cy='articles-table'
+        data-cy='testimonials-table'
         component={Paper}
         className={commonClasses.viewContainer}>
         <Table>
@@ -121,4 +121,4 @@ const ArticlesDashboard = () => {
   )
 }
 
-export default ArticlesDashboard
+export default TestimonialsDashboard

@@ -3,8 +3,22 @@ import largeLogo from '../assets/LogoCHWL.png'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Authentication from '../modules/Authentication'
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  resetBtn: {
+    [theme.breakpoints.up('xs')]: {
+      marginTop: '20px',
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+}))
 
 const LoginPage = () => {
+  const classes = useStyles()
   const handleLogin = (event) => {
     event.preventDefault()
     Authentication.signIn(event.target)
@@ -37,6 +51,13 @@ const LoginPage = () => {
             Login
           </Button>
         </form>
+        <Button
+          className={classes.resetBtn}
+          component={Link}
+          data-cy='forgot-password-link'
+          to='/password/reset'>
+          Forgot Password?
+        </Button>
       </div>
     </div>
   )

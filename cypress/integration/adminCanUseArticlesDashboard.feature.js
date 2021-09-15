@@ -9,6 +9,9 @@ describe('Admin Can Use Articles Dashboard', () => {
         cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
+        cy.intercept('GET', '**/articles/1', {
+          fixture: 'single_article.json',
+        })
         cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
         })
@@ -37,12 +40,6 @@ describe('Admin Can Use Articles Dashboard', () => {
         })
       })
       describe('Admin is able to preview an article', () => {
-        beforeEach(() => {
-          cy.intercept('GET', '**/articles/1', {
-            fixture: 'single_article.json',
-          })
-        })
-
         it('is expected to preview the article', () => {
           cy.get('[data-cy=article-preview-button]').first().click()
           cy.get('[data-cy=article-container]').within(() => {
@@ -67,9 +64,6 @@ describe('Admin Can Use Articles Dashboard', () => {
 
       describe('Admin is able to edit an article', () => {
         beforeEach(() => {
-          cy.intercept('GET', '**/articles/1', {
-            fixture: 'single_article.json',
-          })
           cy.intercept('PUT', '**/articles/1', {
             message: 'The article has been successfully updated.',
           })
@@ -93,7 +87,7 @@ describe('Admin Can Use Articles Dashboard', () => {
           cy.get('[data-cy=submit-button]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'The article has been successfully updated.'
+            'Article has been updated'
           )
         })
       })

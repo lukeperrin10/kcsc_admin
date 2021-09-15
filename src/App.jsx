@@ -11,14 +11,16 @@ import SectionsDashboard from './views/SectionsDashboard'
 import InformationDashboard from './views/InformationDashboard'
 import TestimonialsDashboard from './views/TestimonialsDashboard'
 import InformationCreation from './views/InformationCreation'
-import LoginPage from './components/LoginPage'
+import NavigationDashboard from './views/NavigationDashboard'
+import CreateTestimonial from './views/CreateTestimonial'
+import LoginPage from './views/LoginPage'
 import Sidebar from './components/navigation/Sidebar'
 import PhoneSidebar from './components/navigation/PhoneSidebar'
 import SuccessSnackbar from './components/popups/SuccessSnackbar'
 import ErrorSnackbar from './components/popups/ErrorSnackbar'
+import ResetPassword from './views/ResetPassword'
+import EditPassword from './views/EditPassword'
 import './styles/globals.css'
-import NavigationDashboard from './views/NavigationDashboard'
-import CreateTestimonial from './views/CreateTestimonial'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
@@ -32,15 +34,22 @@ const App = () => {
     <>
       <SuccessSnackbar />
       <ErrorSnackbar />
-      {authenticated ? (
-        <>
-          {isSmall ? <PhoneSidebar /> : <Sidebar />}
+      {authenticated && (isSmall ? <PhoneSidebar /> : <Sidebar />)}
+      <Switch>
+        <Route
+          exact
+          path='/'
+          component={!authenticated ? LoginPage : GeneralDashboard}
+        />
+        <Route exact path='/password/reset' component={ResetPassword} />
+        <Route exact path='/password/edit' component={EditPassword} />
+
+        {authenticated && (
           <Switch>
-            <Route exact path='/' component={GeneralDashboard} />
             <Route exact path='/navigation' component={NavigationDashboard} />
             <Route exact path='/analytics' component={AnalyticsDashboard} />
             <Route exact path='/articles' component={ArticlesDashboard} />
-            <Route exact path='/articles/create' component={ArticleCreation} />
+            <Route exact path='/articles/create/' component={ArticleCreation} />
             <Route exact path='/sections' component={SectionsDashboard} />
             <Route exact path='/information' component={InformationDashboard} />
             <Route
@@ -48,13 +57,19 @@ const App = () => {
               path='/information/create'
               component={InformationCreation}
             />
-            <Route exact path='/testimonials' component={TestimonialsDashboard} />
-            <Route exact path='/testimonials/create' component={CreateTestimonial} />
+            <Route
+              exact
+              path='/testimonials'
+              component={TestimonialsDashboard}
+            />
+            <Route
+              exact
+              path='/testimonials/create'
+              component={CreateTestimonial}
+            />
           </Switch>
-        </>
-      ) : (
-        <LoginPage />
-      )}
+        )}
+      </Switch>
     </>
   )
 }

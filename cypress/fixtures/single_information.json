@@ -1,8 +1,10 @@
 {
-  "id": 1,
-  "pinned": true,
-  "publish": true,
-  "header": "Item-0",
-  "description": "Often just simple changes aimed at meeting the needs of local communities can be very effective at encouraging increased self care.",
-  "link": "https://www.netdoctor.co.uk/health-services/nhs/a4489/what-is-the-nhs/"
+  "information_item": {
+    "id": 1,
+    "pinned": true,
+    "publish": true,
+    "header": "Item-0",
+    "description": "Often just simple changes aimed at meeting the needs of local communities can be very effective at encouraging increased self care.",
+    "link": "https://www.netdoctor.co.uk/health-services/nhs/a4489/what-is-the-nhs/"
+  }
 }

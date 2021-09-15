@@ -127,6 +127,7 @@ const ArticlesDashboard = () => {
               <StyledTableCell align='left'></StyledTableCell>
               <StyledTableCell align='center'>
                 <Button
+                  data-cy='create-btn'
                   variant='contained'
                   color='primary'
                   component={Link}
