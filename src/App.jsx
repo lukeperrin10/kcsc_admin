@@ -21,14 +21,12 @@ import ErrorSnackbar from './components/popups/ErrorSnackbar'
 import ResetPassword from './views/ResetPassword'
 import EditPassword from './views/EditPassword'
 import './styles/globals.css'
-import store from './state/store/configureStore'
 
 const App = () => {
   const { authenticated } = useSelector((state) => state)
   const isSmall = useMediaQuery('(max-width:1280px)')
 
   useEffect(() => {
-    store.dispatch({ type: 'AUTHENTICATE', payload: 'Johhny Cage' })
     Authentication.validateToken()
   }, [authenticated])
 
