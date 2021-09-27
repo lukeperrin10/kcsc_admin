@@ -11,6 +11,18 @@ To protect Admin interface from unauthorized access the user is required to use 
 *Preview of Log In interface*
 ![title](Images/logInPage.png)
 
+### 1.1 Password Reset
+
+In case if password has been forgotten there is password reset flow. After pressing <img src="Images/forgotPassword.png" height="18" height="auto" /> you will be redirected to reset password page.
+
+*Reset Password Page*
+![title](Images/resetPassword.png)
+
+Here you need to type in an email and press RESET PASSWORD button. If an email you typed is registered in database, system will send further instructions as well as a link to set a new password to this email. By proceeding by the link in email you will be redirected to the page where you can set a new password, if successful you will be redirected to log-in page where you can use new credentials to log in.
+
+*New Password Page*
+![title](Images/newPassword.png)
+
 ## 2. Navigation
 
 All content of the website can be edited using forms. To Navigate to the particular form use the sidebar. On mobile the sidebar is accessible by clicking the menu button <img src="Images/hamburger.png" width="30" height="auto" />
@@ -22,16 +34,60 @@ All forms are grouped into dashboards to make it easy to find a correct form. Fo
 
 ## 3. General Dashboard
 
-After logging in, you will be redirecting to General Dashboard that will let you edit information of Testimonials, site Navigation and Footer using corresponding form. Each form is collapsible by clicking the form's title.
+After logging in, you will be redirecting to General Dashboard that will let you edit information in Footer and Tagline using corresponding form. Each form is collapsible by clicking the form's title.
 
 *Previw General Dashboard*
 ![title](Images/generalDashboard.png)
-*if all forms but Footer are collapsed*
+*if all forms are collapsed*
 ![title](Images/generalDashboardCollapsed.png)
 
-### 3.1 Editing Testimonials
+If not edited, forms display the same information as on public site. When you enter new information and press <img src="Images/submitButton.png" width="60"/> button the information you entered will be updated in database and displayed on public site.
 
-Currently there are two testimonials that can be edited. You can change person's Name, Testimonial Text, Picture, Alt attribute that holds description of what is depicted on the picture (for accessability purposes) and link to the full article. Note that if you put links to external websites you have to specify the full address `https://website.com/etc...`. If you want to redirect to a page on public website you can skip the part up to `.uk`, as an example `/news_info/articles/2`.
+### 3.1 Editing Footer
+
+The second form in the General Dashboard lets you update Footer information. You can update text about CHWL, copyright and accessability disclaimers. The character count is limited to preserve page layout.
+
+*Footer form*  
+<img src="Images/footerForm.png" />
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update footer.
+
+### 3.2 Editing Tagline
+
+Tagline is the text displayed under the CHWL logo on the landing page on public website.
+
+*Tagline form*  
+<img src="Images/taglineForm.png" />
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update tagline.
+
+### 4 Navigation Dashboard
+
+Admin interface provides ability to edit navigation tabs labels and where they lead. The route will be auto generated based on label that's been put in (ex. News & Info => /news_info). Currently there is no ability to add / remove navigation tabs
+
+*main tabs on public website*
+<img src="Images/siteMainTabs.png"/>
+
+*secondary tabs on public website*
+<img src="Images/siteSecondaryTabs.png"/>
+
+Try to make labels as short and descriptive as possible, user experience is greatly dependent on it.
+
+*Navigation Dashboard*  
+<img src="Images/navigationForm.png" width='600px'/>
+
+Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update navigation.
+
+## 5 Testimonials Dashboard
+
+Testimonials dashboard lest you edit existing testimonials and create new ones.
+
+*Testimonials Dashboard*  
+<img src="Images/testimonialsDashboard.png" width="100%"/>
+
+### 5.1 Editing a Testimonial
+
+When <img src="Images/testimonialEditButton.png" height="30"/> button is pressed it will oped testimonial edit form that lets you edit all information concerning given testimonial. You can change person's Name, Testimonial Text, Picture, Alt attribute that holds description of what is depicted on the picture (for accessability purposes) and link to the full article that will be opened when visitor presses Learn More button. Note that if you put links to external websites you have to specify the full address `https://website.com/etc...`. If you want to redirect to a article on CHWL public website, you have to create this article (Section 6 of manual) and then copy the URL from the browser window and paste to the `Link to Full Article` field and press `Submit`.
 
 *example of testimonial form and corresponding card*  
 <img src="Images/testimonialsForm.png" width="49%"/>
@@ -39,36 +95,17 @@ Currently there are two testimonials that can be edited. You can change person's
 
 Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update testimonial.
 
-### 3.2 Editing Navigation
+### 5.2 Creating new Testimonial
 
-Admin interface provides ability to edit navigation tabs labels and where they lead. Be very careful with this feature as it is possible to break the scrolling on the Services page if incorrect ref parameters are provided.
+By pressing <img src="Images/newTestimonial.png" width="30"/> button on `Testimonial Dashboard` you will be redirected to a page with form to create new testimonial
 
-There are two types of Tabs: main and secondary. For main tabs only the label and visibility can be edited. The route will be auto generated based on label that put in (ex. News & Info => /news_info).
+*new testimonial form*  
+<img src="Images/newTestimonialForm.png" width="100%"/>
 
-*main tabs on public website*
-<img src="Images/siteMainTabs.png"/>
 
-Secondary Tabs come in two types, with and without ref. parameter. Secondary Tabs in section Services have this parameter as it is responsible for scroll effect. The ref parameter should be equal to the Title of the section to which it should scroll to.
+You can add an image by pressing <img src="Images/cameraButton.png" width="30"/> that will open dialog to choose a file. After a file is chosen the image will be displayed in the form. Then you have to fill up all the rest of the fields such as Name, Testimonial Text, Alt. (describe what is depicted on the picture you added, necessary for accessability reasons) and Link to Full Article. After all fields have been filled press `Submit` button to make this testimonial public.
 
-*secondary tabs on public website*
-<img src="Images/siteSecondaryTabs.png"/>
-
-*part of the navigation edit form*  
-<img src="Images/navigationForm.png" width='300px'/>
-
-Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update navigation.
-
-### 3.3 Editing Footer
-
-The last form in the General Dashboard lets you update Footer information. You can update text about CHWL, copyright and accessability disclaimers. The character count is limited to preserve page layout.
-
-*Footer form*  
-<img src="Images/footerForm.png" />
-
-Once the necessary changes has been made, click the <img src="Images/submitButton.png" width="60"/> to update footer.
-
-## 4. Editing Page Information
-
+<!-- ## 4. Editing Page Information
 *Previw Sections Dashboard*
 ![title](Images/sectionDashboardPreview.png)
 
@@ -128,21 +165,16 @@ The content of carousel cards is also editable. Firstly the visibility of card c
 <img src="Images/exampleOfCard.png" width="49%"/>
 
 There is also a functionality to add new card bu pressing <img src="Images/addCardButton.png" width='100px'/>. This will open a form that will let you create new card by filling required fields.
-<img src="Images/createCardForm.png" width="49%"/>
+<img src="Images/createCardForm.png" width="49%"/> -->
 
-## 5. Articles Dashboard
+## 6. Articles Dashboard
 
 Here you can see the list of all articles, their title, when and by whom they were created. You can also preview, edit, publish and un-publish existing articles.
 
-*Articles dashboard with legend*  
+*Articles dashboard*
 <img src="Images/articleDashboard.png"/>
-**Legend:**
-1. Navigation to Article Dashboard
-2. Toggle if the Article is shown(published) on the site or if it's not(hidden)
-3. Title of the Articles
-4. Author of the Article (The name of the person who was logged in and created the Article)
-5. Date of when the Article was created
-6. Preview button to see how the article looks on website and Edit button where you can edit (title, body, image of the article)
+
+To quickly see which articles are published and toggle published status use the `switch`. When the article is published (can be acessed from the CHWL public site) the switch looks like this <img src="Images/publishedToggle.png" width="50"/>, when it is hidden like this <img src="Images/hiddenToggle.png" width="50"/>. Clicking on switch toggles article between `published` and `hidden` states.
 
 ### 5.1 Article Preview Modal
 
@@ -152,58 +184,39 @@ Clicking <img src="Images/previewButton.png" height="20px"/> button opens the mo
 <img src="Images/articlePreviewModal.png" width="400px"/>
 
 ### 5.2 Article Edit Modal
-Clicking <img src="Images/editButton.png" height="20px"/> will open form to edit the Article. Here you can change title, image, image's alt attribute (text that screen readers read) and body of the article.
+Clicking <img src="Images/editButton.png" height="20px"/> will open form to edit the Article. Here you can change title, image (by pressing <img src="Images/cameraButton.png" height="20px"/>), image's alt attribute (text that screen readers read) and body of the article.
 
-*Article edit modal and Legend*  
+*Article edit form*  
 <img src="Images/articleEditModal.png" width="400px"/>  
-**Legend:**
-1. Edit title of the Article
-2. Image preview
-3. Change image alt text
-4. Upload image button (max 1 image)
-5. Edit body of the Article
-6. Close modal without saving
-7. Submit Article to save and update it
+
+After you made necessary changes press `Submit` button. If successful changes you made will be reflected on the public site.
 
 ### 5.3 Create Article
 
-Below the Articles tab on sidebar there is a Create Article tab. It leads to the form that allow you to write new article Date and Author are added automatically.
+Clicking on <img src="Images/createButton.png" height="20px"/> will open the form that allow you to write new article, Date and Author of the article are added automatically.
 
-*Article edit modal and Legend*  
+*Article creation form*  
 <img src="Images/articleCreate.png" />  
-**Legend:**
-1. Navigate to create Article form
-2. Write Article title
-3. Write Article body
-4. Write image alt text (text that screen reader reads and is show if slow/broken image)
-5. Upload one image to article (max 1 image)
-6. Save and send it to the article dashboard. (you will also get re directed to the Article dashboard when pressing submit)
+
+All fields are required, pay attention to Image Alt. fields it is an attribute that is important for accessability as it will be available to screen readers. It should contain description of what is depicted on the image you uploaded.
 
 ## 6 Information Dashboard
 
 Here You can see All Information snippets/cards on the public site. You can see their header and description and can choose if you want to display them and pin them.
 
-*Information dashboard and legend*  
+*Information dashboard*  
 <img src="Images/infoDashboard.png" />  
-**Legend:**
-1. Navigate to Information Dashboard
-2. Toggle if the Info is shown(published) on the site or if it's not(hidden)
-3. Toggle if the Info is Pinned or not(other), If pinned it displays among other pinned infos at the top of the info page on the public site. If Other is toggled it displays underneath the pinned ones on the page among the other Infos with Other toggled.
-4. Display the Header of the Info Snippet/Card
-5. Display the Description of the Info Snippet/Card
 
 ### 6.1 Create Information Snippets
 
-To create new information snippets/cards go to Create Information. Decide if you want it to be published or pinned when created. Add header description and Link.
+To create new information snippets/cards press <img src="Images/createButton.png" height="20px"/>. Decide if you want it to be published or pinned when created. Add header description and Link.
 
-*Create information snippet form and legend*  
-<img src="Images/infoDashboard.png" />  
-**Legend:**
-1. Navigate to Information Create
-2. Toggle if Published (Checked = Published)
-3. Toggled if Pinned (Checked = Pinned)
-4. Add Header to Info
-5. Add description to info
-6. Add Link that leads to different page when clicked on the Client site
-7. Click to save and submit the Info and it will appear on the Information Dashboard and you will get redirected to the Information Dashboard
+*Create information snippet*  
+<img src="Images/infoCreate.png" />  
 
+### 6.2 Edit Information Snippets
+
+To edit existing information snippets/cards press <img src="Images/editButton.png" height="20px"/>. It will open a form where you can change Header, Description and link to where you would like to redirect on click.
+
+*Create information snippet*  
+<img src="Images/infoEdit.png" />  
