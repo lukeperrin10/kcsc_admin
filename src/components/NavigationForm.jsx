@@ -56,7 +56,7 @@ const NavigationForm = ({ tabs }) => {
       <form data-cy='navigation-form' onSubmit={handleSubmit(onSubmit)}>
         <Grid container direction='column' spacing={3}>
           {mainTabsList}
-          <SubmitButton dataCy='navigation-submit-button' />
+          <SubmitButton dataCy='navigation-submit-button' disabled={true}/>
         </Grid>
       </form>
     </Grid>
