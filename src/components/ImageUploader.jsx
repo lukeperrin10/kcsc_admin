@@ -145,6 +145,7 @@ const ImageUploader = ({
             className={classes.input}
             id='contained-button-file'
             type='file'
+            required={true}
             onChange={(event) => handleImage(event)}
           />
           <label htmlFor='contained-button-file'>
