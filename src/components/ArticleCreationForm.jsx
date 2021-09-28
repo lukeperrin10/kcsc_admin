@@ -13,7 +13,7 @@ const ArticleCreationForm = ({
 
   return (
     <form
-      noValidate
+      ignoreHidden={false}
       autoComplete='off'
       className={classes.formGroup}
       data-cy='new-article-modal'

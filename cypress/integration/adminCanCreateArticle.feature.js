@@ -13,6 +13,7 @@ describe('Admin is able to create an article ', () => {
         cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',
         })
+        cy.intercept('GET', '**/app_data', { fixture: 'app_data.json' })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
