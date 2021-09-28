@@ -33,7 +33,7 @@ const PublishedSwitch = ({ publish, articleId, rerender }) => {
     <>
       <StyledSwitch
         size='small'
-        value={checked}
+        checked={checked}
         onChange={handleChange}
         data-cy={`publish-${articleId}`}
         name={`publish-${articleId}`}
