@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Button } from '@material-ui/core'
 
-const SubmitButton = ({dataCy}) => {
+const SubmitButton = ({ dataCy, disabled = false }) => {
   return (
     <Grid
       item
@@ -13,7 +13,8 @@ const SubmitButton = ({dataCy}) => {
         data-cy={dataCy}
         type='submit'
         variant='contained'
-        color='primary'>
+        color='primary'
+        disabled={disabled}>
         Submit
       </Button>
     </Grid>

@@ -81,6 +81,7 @@ const TabFormSection = ({
               helperText={error ? error.message : null}
               value={value}
               onChange={onChange}
+              disabled
             />
           )}
         />
