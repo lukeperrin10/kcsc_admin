@@ -343,10 +343,7 @@
 
 @media only screen and (max-width: 1024px) {
   .login-page .login-image {
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
+    display: none;
   }
 }
 
