@@ -268,10 +268,7 @@
     width: 50%;
     object-fit: cover;
     @media only screen and (max-width: $tablet) {
-      z-index: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
+      display: none;
     }
   }
 

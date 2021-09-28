@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Authentication from '../modules/Authentication'
 import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Hidden, CardMedia } from '@material-ui/core'
+import logo from '../assets/LogoCHWLSymbol.png'
 
 const useStyles = makeStyles((theme) => ({
   resetBtn: {
@@ -15,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  image: {
+    width: '100px'
+  }
 }))
 
 const LoginPage = () => {
@@ -27,7 +31,12 @@ const LoginPage = () => {
     <div className='login-page'>
       <img src={largeLogo} className='login-image' alt='office background' />
       <div className='login-container'>
-        <h1>Sign in</h1>
+        <Hidden smDown>
+          <h1>Sign in</h1>
+        </Hidden>
+        <Hidden mdUp>
+          <CardMedia component='img' image={logo} className={classes.image} />
+        </Hidden>
         <form onSubmit={handleLogin} className='form-container'>
           <TextField
             name='email'
