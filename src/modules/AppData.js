@@ -43,11 +43,13 @@ const AppData = {
         secondary_tabs = tab.secondary_tabs.map((secTab) => {
           return {
             label: secTab.label,
-            link: secTab.ref
+            // should check for .ref attr when form is expanded to include it
+            // current condition assumes all secTabs in services are .ref tabs
+            link: (tab.label === 'services')
               ? `/${_.snakeCase(tab.label)}`
               : `/${_.snakeCase(tab.label)}/${_.snakeCase(secTab.label)}`,
             ref: secTab.ref ? _.kebabCase(secTab.ref) : null,
-            visible: secTab.visible,
+            visible: null,
           }
         })
       }
@@ -58,7 +60,7 @@ const AppData = {
           secondary_tabs.length !== 0
             ? secondary_tabs[1].link
             : `/${_.snakeCase(tab.label)}`,
-        visible: tab.visible,
+        visible: null,
         secondary_tabs: !tab.secondary_tabs ? null : secondary_tabs,
       }
     })
