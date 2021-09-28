@@ -24,6 +24,7 @@
   "scripts": {
     "start": "PORT=3002 react-scripts start ",
     "start:silent": "PORT=3002 BROWSER=none react-scripts start",
+    "build": "react-scripts build && echo '/* /index.html 200' | cat >build/_redirects",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cypress": "start-server-and-test start:silent http://localhost:3002/ cy:open",
