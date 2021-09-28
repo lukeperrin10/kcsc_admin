@@ -5,13 +5,18 @@ import {
   Button,
   TextField,
   IconButton,
+  Box
 } from '@material-ui/core'
 import { PhotoCamera } from '@material-ui/icons'
 import useCommonStyles from '../theme/useCommonStyles'
 
 const useStyles = makeStyles((theme) => ({
+  inputContainer: {
+    position: 'relative'
+  },
   input: {
-    display: 'none',
+    opacity: '0',
+    position: 'absolute',
   },
   image: {
     margin: '10px 0 50px 0',
@@ -140,24 +145,26 @@ const ImageUploader = ({
             component='img'
             src={preview && URL?.createObjectURL(preview)}
           />
-          <input
-            accept='image/*'
-            className={classes.input}
-            id='contained-button-file'
-            type='file'
-            required={true}
-            onChange={(event) => handleImage(event)}
-          />
-          <label htmlFor='contained-button-file'>
-            <Button
-              className={classes.uploadBtn}
-              variant='contained'
-              color='primary'
-              component='span'
-              data-cy='upload-image-btn'>
-              Upload Image
-            </Button>
-          </label>
+          <Box className={classes.inputContainer}>
+            <input
+              accept='image/*'
+              className={classes.input}
+              id='contained-button-file'
+              type='file'
+              required={true}
+              onChange={(event) => handleImage(event)}
+            />
+            <label htmlFor='contained-button-file'>
+              <Button
+                className={classes.uploadBtn}
+                variant='contained'
+                color='primary'
+                component='span'
+                data-cy='upload-image-btn'>
+                Upload Image
+              </Button>
+            </label>
+          </Box>
         </>
       )}
     </>
