@@ -220,7 +220,7 @@ const SectionRegularForm = ({
                   className={commonClasses.formImage}
                   data-cy='image-preview'
                   component='img'
-                  src={preview ? URL?.createObjectURL(preview) : image.url}
+                  src={preview ? URL?.createObjectURL(preview) : image?.url}
                 />
                 <TextField
                   className={classes.formEdit}
@@ -231,7 +231,7 @@ const SectionRegularForm = ({
                   placeholder='Enter descriptive text of new image'
                   type='text'
                   name='alt'
-                  defaultValue={image.alt}
+                  defaultValue={image?.alt}
                   onChange={handleChange}
                   helperText={
                     updatedImage &&
