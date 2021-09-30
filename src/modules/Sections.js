@@ -1,9 +1,5 @@
 import axios from 'axios'
 import errorHandler from './ErrorHandler'
-// import about_self_care_view_sections from '../data/fixtures/sections/about_self_care_view_sections.json'
-// import about_us_view_sections from '../data/fixtures/sections/about_us_view_sections.json'
-// import services_view_sections from '../data/fixtures/sections/services_view_sections.json'
-// import information_view_sections from '../data/fixtures/sections/information_view_sections.json'
 import store from '../state/store/configureStore'
 import { getHeaders } from './Authentication'
 
@@ -20,7 +16,6 @@ const Sections = {
       }
       const response = await axios.get(
         `/sections?view=${getSection[tabValue]}`,
-        // `/sections?view=about_us`,
         { headers: headers }
       )
 
