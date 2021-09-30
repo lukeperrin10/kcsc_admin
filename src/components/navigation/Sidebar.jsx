@@ -5,7 +5,7 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ArticleIcon from '@material-ui/icons/Subject'
 import PersonIcon from '@material-ui/icons/Person'
-// import ViewCompactIcon from '@material-ui/icons/ViewCompact'
+import ViewCompactIcon from '@material-ui/icons/ViewCompact'
 import InfoIcon from '@material-ui/icons/Info'
 import ListIcon from '@material-ui/icons/List'
 
@@ -31,9 +31,9 @@ const Sidebar = () => {
         <SidebarIcon dataCy='testimonials' text='Testimonials' to='/testimonials'>
           <PersonIcon />
         </SidebarIcon>
-        {/* <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
+        <SidebarIcon dataCy='sections' text='Sections' to='/sections'>
           <ViewCompactIcon />
-        </SidebarIcon> */}
+        </SidebarIcon>
         <SidebarIcon dataCy='articles-dashboard' text='Articles' to='/articles'>
           <ArticleIcon />
         </SidebarIcon>
