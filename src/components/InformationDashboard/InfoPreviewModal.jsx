@@ -19,8 +19,8 @@ const InfoPreviewModal = ({ informationItem }) => {
   const [open, setOpen] = useState(false)
   const [currentInformation, setCurrentInformation] = useState()
   const { control, handleSubmit } = useForm()
-  const headerMaxLength = 40
-  const descriptionMaxLength = 300
+  const headerMaxLength = 600
+  const descriptionMaxLength = 1200
 
   const getInformation = async () => {
     let response = await Information.show(informationItem.id)

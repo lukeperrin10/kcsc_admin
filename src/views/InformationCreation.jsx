@@ -25,8 +25,8 @@ const InformationCreation = () => {
     description: '',
     link: '',
   })
-  const headerMaxLength = 40
-  const descriptionMaxLength = 300
+  const headerMaxLength = 600
+  const descriptionMaxLength = 1200
 
   const handleChange = (event) => {
     setInfo({
