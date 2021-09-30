@@ -99,20 +99,23 @@ const TestimonialsDashboard = () => {
         <Table>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell>
+              <Button
+                variant='contained'
+                color='primary'
+                component={Link}
+                to='/testimonials/create'>
+                <AddIcon />
+              </Button>
+            </StyledTableCell>
             {testimonials ? tableRows : noArticlesMessage}
             <StyledTableRow>
               <StyledTableCell></StyledTableCell>
               <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>            
-              <StyledTableCell>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  component={Link}
-                  to='/testimonials/create'>
-                  <AddIcon />
-                </Button>
-              </StyledTableCell>
+              <StyledTableCell></StyledTableCell>
             </StyledTableRow>
           </TableBody>
         </Table>
