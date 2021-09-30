@@ -36,8 +36,6 @@ const articlePreview = makeStyles((theme) => ({
     display: 'flex',
     direction: 'row',
     justifyContent: 'space-between',
-  },
-  closeBtn: {
     marginTop: '40px',
   },
 }))

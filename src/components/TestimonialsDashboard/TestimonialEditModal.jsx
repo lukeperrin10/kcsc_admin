@@ -22,14 +22,16 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '600px',
       padding: '30px',
     },
-    [theme.breakpoints.up('sm')]: {
-      padding: '30px',
-    },
   },
   photo: {
-    margin: 'auto',
-    maxWidth: '100%',
     objectFit: 'contain',
+    margin: 'auto',
+    maxWidth: '510px',
+    minWidth: '310px',
+    [theme.breakpoints.up('sm')]: {
+      minWidth: '540px',
+      maxWidth: '540px',
+    },
   },
 }))
 
@@ -72,7 +74,11 @@ const TestimonialsForm = ({ testimonial }) => {
 
   const testimonialsForm = (
     <>
-      <Button data-cy='edit-button' variant='contained' color='primary' onClick={() => setOpen(true)}>
+      <Button
+        data-cy='edit-button'
+        variant='contained'
+        color='primary'
+        onClick={() => setOpen(true)}>
         Edit
       </Button>
       {open && (

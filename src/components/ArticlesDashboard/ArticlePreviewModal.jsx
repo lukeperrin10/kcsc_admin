@@ -9,6 +9,7 @@ import {
   CardMedia,
   TextField,
   ButtonGroup,
+  Box,
 } from '@material-ui/core'
 import { useForm, Controller } from 'react-hook-form'
 import Articles from '../../modules/Articles'
@@ -47,7 +48,9 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
     const article = {
       article: {
         ...attributes,
-        image: currentArticle.image.url ? currentArticle.image.url : currentArticle.image,
+        image: currentArticle.image.url
+          ? currentArticle.image.url
+          : currentArticle.image,
         alt: alt,
         id: currentArticle.id,
       },
@@ -97,9 +100,7 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
                     control={control}
                     defaultValue={currentArticle.title}
                     rules={{ required: 'This field cannot be empty' }}
-                    render={({
-                      field: { onChange, value },  
-                    }) => (
+                    render={({ field: { onChange, value } }) => (
                       <TextField
                         data-cy='article-title'
                         label='Title'
@@ -191,13 +192,8 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
                   </Typography>
                 )}
 
-                <ButtonGroup
-                  className={classes.buttonsContainer}
-                  size='small'
-                  variant='text'
-                  color='primary'>
+                <Box className={classes.buttonsContainer}>
                   <Button
-                    className={classes.closeBtn}
                     variant='contained'
                     color='primary'
                     data-cy='close-btn'
@@ -206,7 +202,7 @@ const ArticlePreviewModal = ({ article, editArticle }) => {
                     Close
                   </Button>
                   {changeMode && <SubmitButton dataCy='submit-button' />}
-                </ButtonGroup>
+                </Box>
               </form>
             </Container>
           </Modal>
