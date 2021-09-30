@@ -45,9 +45,9 @@ describe('Admin Can Use Articles Dashboard', () => {
           cy.get('[data-cy=article-container]').within(() => {
             cy.get('[data-cy=title]').should(
               'contain',
-              'Suicide rate decreased with 88%'
+              'Benefits of Self Care'
             )
-            cy.get('[data-cy=author]').should('contain', 'Sonya Blade')
+            cy.get('[data-cy=author]').should('contain', 'Sonya Scriabina')
             cy.get('[data-cy=date]').should('contain', '2021-05-11')
             cy.get('[data-cy=image]')
               .should('have.attr', 'alt')
