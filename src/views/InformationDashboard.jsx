@@ -135,12 +135,10 @@ const InformationDashboard = () => {
         <Table>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>
-            {information ? tableRows : noArticlesMessage}
-            <StyledTableRow>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
+            <StyledTableCell></StyledTableCell>
               <StyledTableCell>
                 <Button
                   data-cy='create-new-information'
@@ -151,6 +149,12 @@ const InformationDashboard = () => {
                   <AddIcon />
                 </Button>
               </StyledTableCell>
+            {information ? tableRows : noArticlesMessage}
+            <StyledTableRow>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
             </StyledTableRow>
           </TableBody>
         </Table>
