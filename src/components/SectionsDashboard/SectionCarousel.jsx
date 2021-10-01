@@ -7,11 +7,11 @@ import {
   AccordionDetails,
   Grid,
   Button,
-  Divider,
+  // Divider,
   TextField,
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
-import CarouselCardForm from './CarouselCardForm'
+// import CarouselCardForm from './CarouselCardForm'
 import CardCreateModal from './CardCreateModal'
 import { Controller, useForm } from 'react-hook-form'
 import Sections from '../../modules/Sections'
@@ -61,17 +61,17 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
     Sections.update(section)
   }
 
-  const cardList = cards.map((card, arrayIndex) => {
-    return (
-      <Grid key={`card-form-${arrayIndex}`} item xs={12} md={6}>
-        <CarouselCardForm
-          card={card}
-          arrayIndex={arrayIndex}
-          sectionSubmit={sectionSubmit}
-        />
-      </Grid>
-    )
-  })
+  // const cardList = cards.map((card, arrayIndex) => {
+  //   return (
+  //     <Grid key={`card-form-${arrayIndex}`} item xs={12} md={6}>
+  //       <CarouselCardForm
+  //         card={card}
+  //         arrayIndex={arrayIndex}
+  //         sectionSubmit={sectionSubmit}
+  //       />
+  //     </Grid>
+  //   )
+  // })
 
   return (
     <>
@@ -130,7 +130,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
                 </Grid>
               </form>
             </Grid>
-            <Grid item style={{ marginTop: '1rem' }}>
+            {/* <Grid item style={{ marginTop: '1rem' }}>
               <Typography variant='h6'>Edit Cards in Carousel</Typography>
               <Divider />
             </Grid>
@@ -141,7 +141,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
             </Grid>
             <Grid item container direction='row' spacing={3}>
               {cardList}
-            </Grid>
+            </Grid> */}
           </Grid>
         </AccordionDetails>
       </Accordion>
