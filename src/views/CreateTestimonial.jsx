@@ -14,6 +14,9 @@ const CreateTestimonial = () => {
 
   useEffect(() => {
     AppData.index()
+  }, [])
+
+  useEffect(() => {
     if (testimonials && !uniqueId) {
       const testimonialIds = testimonials.map((testimonial) => {
         return testimonial.id
