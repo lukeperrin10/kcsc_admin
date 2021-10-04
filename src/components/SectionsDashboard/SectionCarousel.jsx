@@ -7,7 +7,7 @@ import {
   AccordionDetails,
   Grid,
   Button,
-  // Divider,
+  Divider,
   TextField,
 } from '@material-ui/core'
 import useCommonStyles from '../../theme/useCommonStyles'
@@ -21,35 +21,6 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
   const commonClasses = useCommonStyles()
   const [open, setOpen] = useState(false)
   const { control, handleSubmit } = useForm()
-
-  const sectionSubmit = (newCard) => {
-    if (newCard.id) {
-      let newCards = cards
-      let cardIndex = newCards.findIndex((card) => card.id === newCard.id)
-      newCards[cardIndex] = newCard
-      let section = {
-        id: id,
-        variant: variant,
-        header: header,
-        cards: newCards,
-      }
-      Sections.update(section)
-    } else {
-      let newCards = [...cards, { ...newCard, id: null }]
-      newCards = newCards.map((card, i) => {
-        card.id = i
-        return card
-      })
-      let section = {
-        id: id,
-        variant: variant,
-        header: header,
-        cards: newCards,
-      }
-      setOpen(false)
-      Sections.update(section)
-    }
-  }
 
   const onSubmit = (newHeader) => {
     let section = {
@@ -78,7 +49,6 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
       <CardCreateModal
         open={open}
         setOpen={setOpen}
-        sectionSubmit={sectionSubmit}
       />
       <Accordion
         style={{ backgroundColor: '#00000000' }}
@@ -130,7 +100,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
                 </Grid>
               </form>
             </Grid>
-            {/* <Grid item style={{ marginTop: '1rem' }}>
+            <Grid item style={{ marginTop: '1rem' }}>
               <Typography variant='h6'>Edit Cards in Carousel</Typography>
               <Divider />
             </Grid>
@@ -139,7 +109,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
                 + ADD NEW CARD
               </Button>
             </Grid>
-            <Grid item container direction='row' spacing={3}>
+            {/* <Grid item container direction='row' spacing={3}>
               {cardList}
             </Grid> */}
           </Grid>
