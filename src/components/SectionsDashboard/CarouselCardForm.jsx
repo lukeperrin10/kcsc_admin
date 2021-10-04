@@ -15,13 +15,13 @@ import carouselCard from '../../theme/carouselCardTheme'
 import { useWatch } from 'react-hook-form'
 import { PhotoCamera } from '@material-ui/icons'
 import SubmitButton from '../SubmitButton'
+import Cards from '../../modules/Cards'
 
 const CarouselCard = ({
   card,
   arrayIndex,
   create,
   handleClose,
-  sectionSubmit,
 }) => {
   const classes = carouselCard()
   const descriptionMaxLength = 250
@@ -36,8 +36,12 @@ const CarouselCard = ({
   })
 
   const onSubmit = (formData) => {
-    const newCard = { ...formData.card, id: card.id, logo: newLogo }
-    sectionSubmit(newCard)
+    const newCard = { ...formData.card, logo: newLogo }
+    if (create) {
+      Cards.create(newCard)
+    } else {
+      Cards.update(newCard)
+    }
   }
 
   const imageEncoder = (file) =>
