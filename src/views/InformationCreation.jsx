@@ -61,7 +61,6 @@ const InformationCreation = () => {
       </Box>
       {redirect && <Redirect to='/information' />}
       <form
-        noValidate
         autoComplete='off'
         className={classes.formGroup}
         data-cy='new-article-modal'
