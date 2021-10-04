@@ -36,9 +36,11 @@ const CarouselCard = ({
   })
 
   const onSubmit = (formData) => {
+    const newCard = { ...formData.card, logo: newLogo }
     if (create) {
-      const newCard = { ...formData.card, logo: newLogo }
       Cards.create(newCard)
+    } else {
+      Cards.update(newCard)
     }
   }
 

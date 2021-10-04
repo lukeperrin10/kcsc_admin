@@ -18,6 +18,18 @@ const Sections = {
       errorHandler(error)
     }
   },
+  async update(updatedCard) {
+    try {
+      await axios.put(
+        `/cards/${updatedCard.id}`,
+        { card: updatedCard },
+        { headers: headers }
+      )
+      store.dispatch({ type: 'SET_SUCCESS', payload: 'Card has been updated' })
+    } catch (error) {
+      errorHandler(error)
+    }
+  },
 }
 
 export default Sections

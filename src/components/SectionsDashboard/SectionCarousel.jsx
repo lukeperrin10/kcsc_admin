@@ -24,10 +24,7 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
 
   const onSubmit = (newHeader) => {
     let section = {
-      id: id,
-      variant: variant,
       header: newHeader.header,
-      cards: cards,
     }
     Sections.update(section)
   }
