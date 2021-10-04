@@ -20,14 +20,14 @@ const Information = {
 
   async create(info) {
     try {
-      let response = await axios.post(
+      await axios.post(
         '/information',
         { information_item: info },
         { headers: headers }
       )
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Info item has been created',
       })
     } catch (error) {
       errorHandler(error)
