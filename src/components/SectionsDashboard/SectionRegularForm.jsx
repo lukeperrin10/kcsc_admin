@@ -72,6 +72,7 @@ const SectionRegularForm = ({
       image: { alt: newImage.alt, image: newImage.image },
       variant: variant,
       id: id,
+      buttons: {...buttons}
     }
     Sections.update(updatedSection)
   }
@@ -99,59 +100,59 @@ const SectionRegularForm = ({
     setUpdatedImage(true)
   }
 
-  // const buttonForms = buttons.map((button, buttonIndex) => {
-  //   return (
-  //     <Grid
-  //       data-cy='button-form'
-  //       key={`button-${buttonIndex}`}
-  //       item
-  //       container
-  //       direction='column'
-  //       spacing={3}>
-  //       <Grid item>{`Button ${buttonIndex + 1}`}</Grid>
-  //       <Grid item>
-  //         <Controller
-  //           name={`buttons[${buttonIndex}].text`}
-  //           control={control}
-  //           defaultValue={button.text}
-  //           rules={{ required: 'This field cannot be empty' }}
-  //           render={({ field: { onChange, value }, fieldState: { error } }) => (
-  //             <TextField
-  //               data-cy='text-input'
-  //               variant='outlined'
-  //               label={`Text*`}
-  //               error={!!error}
-  //               fullWidth
-  //               helperText={error ? error.message : null}
-  //               value={value}
-  //               onChange={onChange}
-  //             />
-  //           )}
-  //         />
-  //       </Grid>
-  //       <Grid item>
-  //         <Controller
-  //           name={`buttons[${buttonIndex}].link`}
-  //           control={control}
-  //           defaultValue={button.link}
-  //           rules={{ required: 'This field cannot be empty' }}
-  //           render={({ field: { onChange, value }, fieldState: { error } }) => (
-  //             <TextField
-  //               data-cy='link-input'
-  //               variant='outlined'
-  //               label={`Link*`}
-  //               error={!!error}
-  //               fullWidth
-  //               helperText={error ? error.message : null}
-  //               value={value}
-  //               onChange={onChange}
-  //             />
-  //           )}
-  //         />
-  //       </Grid>
-  //     </Grid>
-  //   )
-  // })
+  const buttonForms = buttons.map((button, buttonIndex) => {
+    return (
+      <Grid
+        data-cy='button-form'
+        key={`button-${buttonIndex}`}
+        item
+        container
+        direction='column'
+        spacing={3}>
+        <Grid item>{`Button ${buttonIndex + 1}`}</Grid>
+        <Grid item>
+          <Controller
+            name={`buttons[${buttonIndex}].text`}
+            control={control}
+            defaultValue={button.text}
+            rules={{ required: 'This field cannot be empty' }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                data-cy='text-input'
+                variant='outlined'
+                label={`Text*`}
+                error={!!error}
+                fullWidth
+                helperText={error ? error.message : null}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item>
+          <Controller
+            name={`buttons[${buttonIndex}].link`}
+            control={control}
+            defaultValue={button.link}
+            rules={{ required: 'This field cannot be empty' }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                data-cy='link-input'
+                variant='outlined'
+                label={`Link*`}
+                error={!!error}
+                fullWidth
+                helperText={error ? error.message : null}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </Grid>
+      </Grid>
+    )
+  })
 
   return (
     <form id={id} data-cy='section-edit-form' onSubmit={handleSubmit(onSubmit)}>
@@ -259,7 +260,7 @@ const SectionRegularForm = ({
                 </label>
               </Grid>
             </Grid>
-            {/* <Grid
+            <Grid
               data-cy='buttons-grid'
               item
               container
@@ -268,7 +269,7 @@ const SectionRegularForm = ({
               xs={12}
               md={6}>
               {buttonForms}
-            </Grid> */}
+            </Grid>
             <SubmitButton dataCy='section-submit-button' />
           </Grid>
         </AccordionDetails>
