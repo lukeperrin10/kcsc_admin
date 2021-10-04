@@ -28,6 +28,12 @@ describe('Admin Can Use Sections Dashboard', () => {
             message: 'Info has been updated',
           },
         })
+        cy.intercept('POST', '**/cards/**', {
+          statusCode: 200,
+          body: {
+            message: 'Card has been updated',
+          },
+        })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
         TestHelpers.authenticate()
@@ -206,7 +212,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           })
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
-          'Info has been updated'
+          'Card has been created'
         )
         cy.get('[data-cy=new-card-form]').should('not.exist')
       })
