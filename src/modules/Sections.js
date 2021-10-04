@@ -25,7 +25,7 @@ const Sections = {
     }
   },
   async update(section) {
-    try {      
+    try {
       let response = {}
       response = await axios.put(
         `/sections/${section.id}`,
