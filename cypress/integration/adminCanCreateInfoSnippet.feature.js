@@ -35,7 +35,7 @@ describe('Admin is able to create an info snippet ', () => {
           cy.get('[data-cy=info-submit]').click()
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'Your information snippet has successfully been created'
+            'Info item has been created'
           )
         })
       })
@@ -44,17 +44,17 @@ describe('Admin is able to create an info snippet ', () => {
         beforeEach(() => {
           cy.intercept('POST', '**/information', {
             statusCode: 400,
-            body: {
-              error_message: 'An error occurred',
-            },
           })
         })
 
         it('is expected to show error message', () => {
+          cy.get('[data-cy=header]').type('Covid 19 measures')
+          cy.get('[data-cy=description]').type('Description')
+          cy.get('[data-cy=link]').type('www.google.com')
           cy.get('[data-cy=info-submit]').click()
           cy.get('[data-cy=snack-content]').should(
             'contain',
-            'An error occurred'
+            'Request failed with status code 400'
           )
         })
       })

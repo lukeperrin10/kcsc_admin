@@ -29,7 +29,7 @@ const errorHandler = (error) => {
   } else {
     store.dispatch({
       type: 'SET_ERROR_MESSAGE',
-      payload: error,
+      payload: 'A problem occurred, please try again later',
     })
   }
 }
