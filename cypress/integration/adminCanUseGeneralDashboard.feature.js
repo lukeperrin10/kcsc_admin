@@ -82,7 +82,7 @@ describe('Admin Can Use General Dashboard', () => {
               },
             })
           })
-          it('is expected to show success message on submit', () => {
+          it('is expected to show error message on submit', () => {
             cy.get('[data-cy=footer-submit-button]').click()
             cy.get('[data-cy=snack-content]').should(
               'contain.text',
