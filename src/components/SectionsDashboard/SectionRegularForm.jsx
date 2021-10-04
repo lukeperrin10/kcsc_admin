@@ -72,8 +72,8 @@ const SectionRegularForm = ({
       image: { alt: newImage.alt, image: newImage.image },
       variant: variant,
       id: id,
-      buttons: {...buttons}
     }
+    updatedSection.buttons = { ...buttons }
     Sections.update(updatedSection)
   }
 
