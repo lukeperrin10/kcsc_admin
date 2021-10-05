@@ -152,12 +152,6 @@ const InformationDashboard = () => {
               </StyledTableCell>
             </StyledTableRow>
             {information ? tableRows : noArticlesMessage}
-            <StyledTableRow>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
-              <StyledTableCell></StyledTableCell>
-            </StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>
