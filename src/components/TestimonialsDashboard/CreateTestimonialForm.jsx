@@ -32,7 +32,14 @@ const useStyles = makeStyles((theme) => ({
 const CreateTestimonialForm = ({ newTestimonialId, setRedirect }) => {
   const [preview, setPreview] = useState()
   const [newPhoto, setNewPhoto] = useState()
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      name: '',
+      text: '',
+      alt: '',
+      link: '',
+    },
+  })
   const classes = useStyles()
 
   const onSubmit = (attributes) => {
@@ -66,7 +73,7 @@ const CreateTestimonialForm = ({ newTestimonialId, setRedirect }) => {
     <>
       <Grid
         data-cy='create-testimonial-form'
-        container      
+        container
         justifyContent='center'
         className={classes.testimonialContainer}>
         <form
