@@ -22,8 +22,8 @@ describe('Admin Can create Testimonials', () => {
         TestHelpers.sizeCase(size, selection)
       })
 
-      context('successfully', () => {
-        it('is expected to show to show success message on submit', () => {
+      describe('successfully', () => {
+        it('is expected to show success message on submit', () => {
           const filepath = '../fixtures/imageFixture.png'
           cy.get('[data-cy=create-testimonial]').click()
           cy.get('[data-cy=create-testimonial-form]').within(() => {
