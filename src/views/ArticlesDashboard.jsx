@@ -136,12 +136,6 @@ const ArticlesDashboard = () => {
               </StyledTableCell>
             </StyledTableRow>
             {articles ? tableRows : noArticlesMessage}
-            <StyledTableRow>
-              <StyledTableCell align='center'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
-            </StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>
