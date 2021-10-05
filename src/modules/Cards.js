@@ -7,7 +7,7 @@ const headers = getHeaders()
 
 const Sections = {
   async create(newCard) {
-    
+    debugger
     try {
       await axios.post('/cards', { card: newCard }, { headers: headers })
       store.dispatch({ type: 'SET_SUCCESS', payload: 'Card has been created' })

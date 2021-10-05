@@ -17,13 +17,7 @@ import { PhotoCamera } from '@material-ui/icons'
 import SubmitButton from '../SubmitButton'
 import Cards from '../../modules/Cards'
 
-const CarouselCard = ({
-  card,
-  arrayIndex,
-  create,
-  handleClose,
-  sectionId
-}) => {
+const CarouselCard = ({ card, arrayIndex, create, handleClose, sectionId }) => {
   const classes = carouselCard()
   const descriptionMaxLength = 250
   const { logo, alt, organization, description, links, published } = card
@@ -38,7 +32,7 @@ const CarouselCard = ({
 
   const onSubmit = (formData) => {
     const newCard = { ...formData.card, logo: newLogo, section_id: sectionId }
-    
+    debugger
     if (create) {
       Cards.create(newCard)
     } else {
@@ -228,7 +222,7 @@ const CarouselCard = ({
             <Controller
               name={`card.web`}
               control={control}
-              defaultValue={links.web}
+              defaultValue={links?.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   data-cy='web-input'
@@ -245,7 +239,7 @@ const CarouselCard = ({
             <Controller
               name={`card.facebook`}
               control={control}
-              defaultValue={links.web}
+              defaultValue={links?.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   data-cy='facebook-input'
@@ -262,7 +256,7 @@ const CarouselCard = ({
             <Controller
               name={`card.twitter`}
               control={control}
-              defaultValue={links.web}
+              defaultValue={links?.web}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   data-cy='twitter-input'
