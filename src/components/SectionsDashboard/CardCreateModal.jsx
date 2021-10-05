@@ -1,14 +1,11 @@
 import React from 'react'
 import CarouselCardForm from './CarouselCardForm'
-import {
-  Modal,
-  Container,
-} from '@material-ui/core'
+import { Modal, Container } from '@material-ui/core'
 
-const CardCreateModal = ({ open, setOpen, sectionSubmit }) => {
+const CardCreateModal = ({ open, setOpen, sectionSubmit, sectionId }) => {
   const emptyCard = {
     id: null,
-    publish: '',
+    published: '',
     logo: '',
     alt: '',
     organization: '',
@@ -25,9 +22,17 @@ const CardCreateModal = ({ open, setOpen, sectionSubmit }) => {
   }
 
   return (
-    <Modal open={open} style={{maxWidth: '600px', margin: 'auto', overflow: 'scroll'}}>
+    <Modal
+      open={open}
+      style={{ maxWidth: '600px', margin: 'auto', overflow: 'scroll' }}>
       <Container data-cy='create-card-modal-container'>
-        <CarouselCardForm card={emptyCard} create={true} handleClose={handleClose} sectionSubmit={sectionSubmit}/>      
+        <CarouselCardForm
+          sectionId={sectionId}
+          card={emptyCard}
+          create={true}
+          handleClose={handleClose}
+          sectionSubmit={sectionSubmit}
+        />
       </Container>
     </Modal>
   )

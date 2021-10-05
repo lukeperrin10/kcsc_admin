@@ -16,7 +16,7 @@ import CardCreateModal from './CardCreateModal'
 import { Controller, useForm } from 'react-hook-form'
 import Sections from '../../modules/Sections'
 
-const SectionCarousel = ({ id, variant, header, cards, index }) => {
+const SectionCarousel = ({ id, header, cards, index }) => {
   const [expanded, setExpanded] = useState(true)
   const commonClasses = useCommonStyles()
   const [open, setOpen] = useState(false)
@@ -32,20 +32,14 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
   const cardList = cards.map((card, arrayIndex) => {
     return (
       <Grid key={`card-form-${arrayIndex}`} item xs={12} md={6}>
-        <CarouselCardForm
-          card={card}
-          arrayIndex={arrayIndex}
-        />
+        <CarouselCardForm card={card} arrayIndex={arrayIndex} sectionId={id} />
       </Grid>
     )
   })
 
   return (
     <>
-      <CardCreateModal
-        open={open}
-        setOpen={setOpen}
-      />
+      <CardCreateModal open={open} setOpen={setOpen} sectionId={id} />
       <Accordion
         style={{ backgroundColor: '#00000000' }}
         expanded={expanded}
@@ -101,7 +95,10 @@ const SectionCarousel = ({ id, variant, header, cards, index }) => {
               <Divider />
             </Grid>
             <Grid item>
-              <Button data-cy='add-new-card-button' color='primary' onClick={() => setOpen(true)}>
+              <Button
+                data-cy='add-new-card-button'
+                color='primary'
+                onClick={() => setOpen(true)}>
                 + ADD NEW CARD
               </Button>
             </Grid>
