@@ -119,27 +119,23 @@ const ArticlesDashboard = () => {
         <Table>
           <TableHead>{tableHeader}</TableHead>
           <TableBody>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell align='center'>
-              <Button
-                data-cy='create-btn'
-                variant='contained'
-                color='primary'
-                component={Link}
-                to='/articles/create'>
-                <AddIcon />
-              </Button>
-            </StyledTableCell>
-            {articles ? tableRows : noArticlesMessage}
             <StyledTableRow>
-              <StyledTableCell align='center'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
-              <StyledTableCell align='left'></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell align='center'>
+                <Button
+                  data-cy='create-btn'
+                  variant='contained'
+                  color='primary'
+                  component={Link}
+                  to='/articles/create'>
+                  <AddIcon />
+                </Button>
+              </StyledTableCell>
             </StyledTableRow>
+            {articles ? tableRows : noArticlesMessage}
           </TableBody>
         </Table>
       </TableContainer>

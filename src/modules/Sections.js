@@ -26,15 +26,14 @@ const Sections = {
   },
   async update(section) {
     try {
-      let response = {}
-      response = await axios.put(
+      await axios.put(
         `/sections/${section.id}`,
         { section: section },
         { headers: headers }
       )
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Section has been updated',
       })
     } catch (error) {
       errorHandler(error)

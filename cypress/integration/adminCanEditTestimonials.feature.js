@@ -20,9 +20,6 @@ describe('Admin Can Edit Testimonials', () => {
         beforeEach(() => {
           cy.intercept('PUT', '**/app_data**', {
             statusCode: 200,
-            body: {
-              message: 'Info has been updated',
-            },
           })
         })
 
@@ -47,9 +44,6 @@ describe('Admin Can Edit Testimonials', () => {
         beforeEach(() => {
           cy.intercept('PUT', '**/app_data**', {
             statusCode: 400,
-            body: {
-              error_message: 'Something went wrong, try again later',
-            },
           })
           cy.get('[data-cy=testimonials-table]').within(() => {
             cy.get('[data-cy=testimonial]')
@@ -64,7 +58,7 @@ describe('Admin Can Edit Testimonials', () => {
           cy.get('[data-cy=testimonial-submit-button]').first().click()
           cy.get('[data-cy=snack-content]').should(
             'contain.text',
-            'Something went wrong, try again later'
+            'Request failed with status code 400'
           )
         })
       })

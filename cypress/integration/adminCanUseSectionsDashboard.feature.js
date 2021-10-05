@@ -24,15 +24,9 @@ describe('Admin Can Use Sections Dashboard', () => {
         })
         cy.intercept('PUT', '**/sections/**', {
           statusCode: 200,
-          body: {
-            message: 'Info has been updated',
-          },
         })
         cy.intercept('POST', '**/cards/**', {
           statusCode: 200,
-          body: {
-            message: 'Card has been updated',
-          },
         })
         TestHelpers.sizeParameters(size)
         cy.visit('/')
@@ -76,7 +70,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           })
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
-          'Info has been updated'
+          'Section has been updated'
         )
       })
 
@@ -113,7 +107,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           })
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
-          'Info has been updated'
+          'Section has been updated'
         )
       })
 
@@ -131,7 +125,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           })
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
-          'Info has been updated'
+          'Section has been updated'
         )
         cy.get('[data-cy=section-edit-form]')
           .eq(3)
@@ -174,7 +168,7 @@ describe('Admin Can Use Sections Dashboard', () => {
           })
         cy.get('[data-cy=snack-content]').should(
           'contain.text',
-          'Info has been updated'
+          'Section has been updated'
         )
       })
 

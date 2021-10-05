@@ -65,7 +65,7 @@ describe('Admin Can Use Articles Dashboard', () => {
       describe('Admin is able to edit an article', () => {
         beforeEach(() => {
           cy.intercept('PUT', '**/articles/1', {
-            message: 'The article has been successfully updated.',
+            statusCode: 200,
           })
           cy.get('[data-cy=article-edit-button]').first().click()
         })

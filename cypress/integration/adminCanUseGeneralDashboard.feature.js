@@ -12,9 +12,6 @@ describe('Admin Can Use General Dashboard', () => {
         })
         cy.intercept('PUT', '**/app_data**', {
           statusCode: 200,
-          body: {
-            message: 'Info has been updated',
-          },
         })
 
         cy.visit('/')
@@ -58,9 +55,6 @@ describe('Admin Can Use General Dashboard', () => {
           beforeEach(() => {
             cy.intercept('PUT', '**/app_data**', {
               statusCode: 200,
-              body: {
-                message: 'Info has been updated',
-              },
             })
           })
 
