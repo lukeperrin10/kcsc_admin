@@ -14,9 +14,6 @@ describe('Admin Can Use information Dashboard', () => {
         })
         cy.intercept('PUT', '**/information/**', {
           statusCode: 200,
-          body: {
-            message: 'Updated successfully',
-          },
         })
 
         cy.visit('/')
@@ -66,9 +63,6 @@ describe('Admin Can Use information Dashboard', () => {
         beforeEach(() => {
           cy.intercept('PUT', '**/information/**', {
             statusCode: 400,
-            body: {
-              error_message: 'An error occurred',
-            },
           })
         })
 
@@ -77,7 +71,7 @@ describe('Admin Can Use information Dashboard', () => {
             cy.get('[data-cy=publish-1]').click()
             cy.get('[data-cy=snack-content]').should(
               'contain',
-              'An error occurred'
+              'Request failed with status code 400'
             )
           })
         })
@@ -87,7 +81,7 @@ describe('Admin Can Use information Dashboard', () => {
             cy.get('[data-cy=pinned-1]').click()
             cy.get('[data-cy=snack-content]').should(
               'contain',
-              'An error occurred'
+              'Request failed with status code 400'
             )
           })
         })

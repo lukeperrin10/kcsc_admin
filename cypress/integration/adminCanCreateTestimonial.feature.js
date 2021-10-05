@@ -8,9 +8,6 @@ describe('Admin Can create Testimonials', () => {
       beforeEach(() => {
         cy.intercept('PUT', '**/app_data**', {
           statusCode: 200,
-          body: {
-            message: 'Testimonial has been created',
-          },
         })
         cy.intercept('GET', '**/app_data', {
           fixture: 'app_data.json',
@@ -40,7 +37,7 @@ describe('Admin Can create Testimonials', () => {
           })
           cy.get('[data-cy=success-message]').should(
             'contain',
-            'Testimonial has been created'
+            'Info has been updated'
           )
         })
       })

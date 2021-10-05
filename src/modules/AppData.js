@@ -20,16 +20,15 @@ const AppData = {
   },
   async update(attributes) {
     try {
-      let response = {}
       for (const key in attributes) {
         const headers = getHeaders()
         let params = { key: key, value: attributes[key] }
-        response = await axios.put('/app_data', params, { headers: headers })
+        await axios.put('/app_data', params, { headers: headers })
       }
       AppData.index()
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: response.data.message,
+        payload: 'Info has been updated',
       })
     } catch (error) {
       errorHandler(error)

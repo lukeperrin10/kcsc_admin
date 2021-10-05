@@ -8,7 +8,7 @@ describe('Admin is able to create an article ', () => {
       const selection = 'articles-dashboard'
       beforeEach(() => {
         cy.intercept('POST', '**/articles', {
-          message: 'Your article has successfully been created',
+          statusCode: 200
         })
         cy.intercept('GET', '**/articles', {
           fixture: 'all_articles.json',

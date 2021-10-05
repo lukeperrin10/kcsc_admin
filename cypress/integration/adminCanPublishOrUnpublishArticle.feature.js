@@ -12,9 +12,6 @@ describe('Admin Can Publish Or Unpublish Article', () => {
         })
         cy.intercept('PUT', '**/articles/**', {
           statusCode: 200,
-          body: {
-            message: 'Article has been hidden',
-          },
         })
         cy.visit('/')
         TestHelpers.authenticate()
@@ -37,14 +34,11 @@ describe('Admin Can Publish Or Unpublish Article', () => {
       beforeEach(() => {
         cy.intercept('PUT', '**/articles/**', {
           statusCode: 400,
-          body: {
-            error_message: 'An error occurred',
-          },
         })
       })
       it('is expected to show error message', () => {
         cy.get('[data-cy=publish-1]').click()
-        cy.get('[data-cy=snack-content]').should('contain', 'An error occurred')
+        cy.get('[data-cy=snack-content]').should('contain', 'Request failed with status code 400')
       })
     })
   })

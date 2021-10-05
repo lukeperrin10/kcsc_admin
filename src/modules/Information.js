@@ -62,7 +62,7 @@ const Information = {
       Information.index()
       store.dispatch({
         type: 'SET_SUCCESS',
-        payload: 'Info has been updated',
+        payload: 'Info item has been updated',
       })
     } catch (error) {
       errorHandler(error)
